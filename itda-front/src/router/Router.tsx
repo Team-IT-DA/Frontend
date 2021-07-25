@@ -1,13 +1,14 @@
-import Home from "./Home";
-import Login from "./Login";
-import MyPage from "./MyPage";
-import Products from "./Products";
-import ProductDetail from "./ProductDetail";
-import AddProduct from "./AddProduct";
-import SignUp from "./SignUp";
-import ShoppingCart from "./ShoppingCart";
-import ThankYou from "./ThankYou";
+import Home from "components/Home";
+import Login from "components/Login";
+import MyPage from "components/MyPage";
+import Products from "components/Products";
+import ProductDetail from "components/ProductDetail";
+import AddProduct from "components/AddProduct";
+import SignUp from "components/SignUp";
+import ShoppingCart from "components/ShoppingCart";
+import ThankYou from "components/ThankYou";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
+
 const Router = () => {
 	return (
 		<BrowserRouter>
