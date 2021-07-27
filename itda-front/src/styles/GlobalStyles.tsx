@@ -1,36 +1,18 @@
-import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
 
+// 위에서 받은 `normalize`로 기본 css가 초기화 합니다.
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  ${normalize}
+
+  html,
+  body {
+    overflow: hidden;
+  }
+
   * {
     box-sizing: border-box;
   }
-
-  body {
-    padding: 0;
-    margin: 20px 20px;
-    background-color: #f7f7fc;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-
-  a {
-    text-decoration: none;
-    color:inherit;
-  }
-  ol,ul,li {
-    list-style:none;
-  }
-  button {
-    cursor: pointer;
-    outline: none; 
-    border: none;
-  }
-  input {
-    outline: none;
-  }
-
-  
 `;
 
 export default GlobalStyle;
