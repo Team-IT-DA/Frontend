@@ -1,5 +1,11 @@
+import SideDrawer from "components/common/Header/SideDrawer";
+
 const ThankYou = () => {
-	return <div></div>;
+  return (
+    <div>
+      <SideDrawer />
+    </div>
+  );
 };
 
 export default ThankYou;
