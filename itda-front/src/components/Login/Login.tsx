@@ -3,7 +3,7 @@ import ProductCard from "components/common/ProductCard";
 const Login = () => {
   return (
     <div>
-      <ProductCard />
+      <ProductCard size="small" horizontal={false} />
     </div>
   );
 };

@@ -4,19 +4,32 @@ const S = {
   Header: {
     leftDiv: styled.div``,
   },
+
   ProductCard: {
-    CardContainer: styled.div`
+    CardContainer: styled.div<{
+      horizontal: boolean;
+      size: { width: string; height: string };
+    }>`
       display: flex;
-      flex-direction: column;
-      width: 150px;
-      height: 170px;
-      border: 1px solid black;
+      flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};
+      width: ${({ size }) => size.width};
+      height: ${({ size }) => size.height};
+      border: 1px solid #cecece;
+      border-radius: 10px;
     `,
 
-    ProductImageHolder: styled.div`
-      width: 150px;
-      height: 100px;
+    ProductImageHolder: styled.div<{
+      horizontal: boolean;
+    }>`
       overflow: hidden;
+      ${({ horizontal }) =>
+        horizontal
+          ? `border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      margin-right:10px;
+      `
+          : `border-top-right-radius: 10px;
+      border-top-left-radius: 10px;`};
     `,
 
     ProductImage: styled.img`
@@ -31,12 +44,16 @@ const S = {
     ProductDescription: styled.div`
       display: flex;
       flex-direction: column;
-      width: 100%;
     `,
 
-    ProductDescriptionTop: styled.div`
+    ProductTitle: styled.div`
       font-size: 15px;
-      height: 40px;
+      margin: 5px 0;
+    `,
+
+    ProductPrice: styled.div`
+      font-size: 13px;
+      font-weight: bold;
     `,
   },
 };
