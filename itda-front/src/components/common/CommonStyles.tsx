@@ -60,6 +60,7 @@ const S = {
   SideDrawer: {
     DrawerHeader: styled.div`
       display: flex;
+      height: 3%;
       justify-content: space-between;
       padding: 5px 17px 0 10px;
       font-weight: bold;
@@ -77,14 +78,13 @@ const S = {
     DrawerContainer: styled.div`
       height: 100vh;
       width: 350px;
-      /* border: 1px solid black; */
       box-shadow: 5px 5px 5px #cacaca;
     `,
 
     DrawerCardList: styled.div`
       display: flex;
       flex-direction: column;
-      height: 550px;
+      height: 80%;
       overflow-y: scroll;
     `,
 
@@ -155,6 +155,38 @@ const S = {
       margin: 10px 0;
       font-size: 13px;
       font-weight: 600;
+    `,
+
+    DrawerBottom: styled.div`
+      display: flex;
+      height: 15%;
+      flex-direction: column;
+      padding: 15px;
+      justify-content: space-between;
+      align-items: flex-end;
+    `,
+
+    DrawerTotalPrice: styled.span`
+      font-size: 20px;
+      font-weight: bold;
+    `,
+
+    DrawerDeliveryFee: styled.span`
+      font-size: 14px;
+      color: #c2c2c2;
+    `,
+
+    DrawerMoveToCartBtn: styled.button`
+      width: 100%;
+      padding: 15px 0;
+      background: linear-gradient(#b6b6b6, #979797);
+      border: none;
+      border-radius: 5px;
+      margin-top: 2%;
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
     `,
   },
 };

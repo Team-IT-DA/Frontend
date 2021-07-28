@@ -17,6 +17,17 @@ const SideDrawer = () => {
         <SideDrawerItem />
         <SideDrawerItem />
       </S.SideDrawer.DrawerCardList>
+      <S.SideDrawer.DrawerBottom>
+        <S.SideDrawer.DrawerTotalPrice>
+          합계: 410000원
+        </S.SideDrawer.DrawerTotalPrice>
+        <S.SideDrawer.DrawerDeliveryFee>
+          (배송비 불포함 금액)
+        </S.SideDrawer.DrawerDeliveryFee>
+        <S.SideDrawer.DrawerMoveToCartBtn>
+          장바구니로 이동
+        </S.SideDrawer.DrawerMoveToCartBtn>
+      </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerContainer>
   );
 };
