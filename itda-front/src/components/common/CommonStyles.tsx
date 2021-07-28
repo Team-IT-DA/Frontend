@@ -58,6 +58,22 @@ const S = {
   },
 
   SideDrawer: {
+    DrawerHeader: styled.div`
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 17px 0 10px;
+      font-weight: bold;
+    `,
+
+    DrawerCardCloseButton: styled.button`
+      background: none;
+      border: none;
+      &:hover {
+        color: #acacac;
+        cursor: pointer;
+      }
+    `,
+
     DrawerContainer: styled.div`
       height: 100vh;
       width: 350px;
@@ -68,8 +84,8 @@ const S = {
     DrawerCardList: styled.div`
       display: flex;
       flex-direction: column;
-      overflow-y: scroll;
       height: 550px;
+      overflow-y: scroll;
     `,
 
     DrawerCardContainer: styled.div`
@@ -83,7 +99,6 @@ const S = {
     DrawerCardDescription: styled.div`
       display: flex;
       flex-direction: row;
-      gap: 10px;
       align-items: center;
       margin-left: 10px;
       /* border: 1px solid orange; */
@@ -99,10 +114,10 @@ const S = {
     DrawerCardCountUpDown: styled.div`
       display: grid;
       border: 1px solid #e0e0e0;
-      width: 50px;
+      width: 70px;
       height: 40px;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 2fr 1fr;
       margin-top: 10px;
       div {
         text-align: center;
@@ -120,6 +135,20 @@ const S = {
     `,
     DrawerCardCount: styled.div`
       grid-row: 1/3;
+    `,
+
+    DrawerCardBottom: styled.div`
+      display: flex;
+      justify-content: space-between;
+    `,
+
+    DrawerCardDeleteButton: styled.button`
+      background: none;
+      border: none;
+      &:hover {
+        color: #acacac;
+        cursor: pointer;
+      }
     `,
 
     DrawerCardPrice: styled.div`

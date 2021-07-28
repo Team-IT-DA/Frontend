@@ -4,10 +4,12 @@ import ProductCard from "../ProductCard";
 const SideDrawer = () => {
   return (
     <S.SideDrawer.DrawerContainer>
-      <div>
+      <S.SideDrawer.DrawerHeader>
         <div>담은 상품 목록</div>
-        <div>x</div>
-      </div>
+        <S.SideDrawer.DrawerCardCloseButton>
+          x
+        </S.SideDrawer.DrawerCardCloseButton>
+      </S.SideDrawer.DrawerHeader>
       <S.SideDrawer.DrawerCardList>
         <SideDrawerItem />
         <SideDrawerItem />
@@ -33,12 +35,16 @@ const SideDrawerItem = () => {
               <div>{"∨"}</div>
             </S.SideDrawer.DrawerCardCountUpDown>
           </div>
-          <div>X</div>
         </S.SideDrawer.DrawerCardDescription>
       </S.SideDrawer.DrawerCardCountDiv>
-      <S.SideDrawer.DrawerCardPrice>
-        총 합: 21400원
-      </S.SideDrawer.DrawerCardPrice>
+      <S.SideDrawer.DrawerCardBottom>
+        <S.SideDrawer.DrawerCardPrice>
+          총 합: 21400원
+        </S.SideDrawer.DrawerCardPrice>
+        <S.SideDrawer.DrawerCardDeleteButton>
+          x
+        </S.SideDrawer.DrawerCardDeleteButton>
+      </S.SideDrawer.DrawerCardBottom>
     </S.SideDrawer.DrawerCardContainer>
   );
 };
