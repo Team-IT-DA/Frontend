@@ -32,6 +32,15 @@ const SideDrawer = () => {
   );
 };
 
+// 장바구니 아이템의 props로 받아올 type들
+// 위에서 map 돌릴 것 같아요
+type drawerITemType = {
+  productStock: number;
+  productImage: string;
+  productName: string;
+  productPrice: number;
+};
+
 const SideDrawerItem = () => {
   return (
     <S.SideDrawer.DrawerCardContainer>
