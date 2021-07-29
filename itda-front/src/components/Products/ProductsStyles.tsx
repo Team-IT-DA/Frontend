@@ -17,7 +17,6 @@ const S = {
 		Layer: styled.div`
 			display: flex;
 			align-items: center;
-			border: 1px red solid;
 		`,
 		InputLayer: styled.div`
 			display: flex;
