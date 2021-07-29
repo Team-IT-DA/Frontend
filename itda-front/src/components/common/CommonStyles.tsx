@@ -1,8 +1,57 @@
 import styled from "styled-components";
+import { ReactComponent as itdaLogo } from "components/common/icons/logo.svg";
+import { ReactComponent as loginIcon } from "components/common/icons/hamburger.svg";
+import { ReactComponent as cartIcon } from "components/common/icons/cart.svg";
 
 const S = {
   Header: {
-    leftDiv: styled.div``,
+    HeaderContainer: styled.div`
+      display: flex;
+      justify-content: center;
+    `,
+
+    HeaderLayout: styled.div`
+      display: flex;
+      width: 80%;
+    `,
+
+    LeftBlock: styled.div`
+      display: flex;
+      width: 50%;
+    `,
+
+    Navigation: styled.nav`
+      font-size: 1.5rem;
+      width: calc(100% / 4);
+      margin: auto 0;
+      cursor: pointer;
+    `,
+
+    LogoBlock: styled.div`
+      display: flex;
+      align-items: center;
+      height: 10rem;
+      & > svg {
+        cursor: pointer;
+      }
+    `,
+
+    RightBlock: styled.div`
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      margin: auto 0;
+      & > svg {
+        margin: 2rem;
+        cursor: pointer;
+      }
+    `,
+
+    ItdaLogo: styled(itdaLogo)``,
+
+    CartButton: styled(cartIcon)``,
+
+    LoginButton: styled(loginIcon)``
   },
 
   ProductCard: {
