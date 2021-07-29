@@ -8,12 +8,12 @@ const S = {
   ProductCard: {
     CardContainer: styled.div<{
       horizontal: boolean;
-      size: { width: string; height: string };
+      size: { width: number; height: number; fontSize: number };
     }>`
       display: flex;
       flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};
-      width: ${({ size }) => size.width};
-      height: ${({ size }) => size.height};
+      width: ${({ size }) => `${size.width}px`};
+      height: ${({ size }) => `${size.height}px`};
       border: 1px solid #cecece;
       border-radius: 10px;
     `,
@@ -46,9 +46,22 @@ const S = {
       flex-direction: column;
     `,
 
-    ProductTitle: styled.div`
-      font-size: 15px;
+    ProductTitle: styled.div<{
+      horizontal: boolean;
+      size: { width: number; height: number; fontSize: number };
+    }>`
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      width: ${({ horizontal, size }) => {
+        if (horizontal) return `${size.width - size.height}px`;
+      }};
+      height: 35px;
+      font-size: ${({ size }) => `${size.fontSize}px`};
       margin: 5px 0;
+      overflow: hidden;
+      white-space: pre-wrap;
+      text-overflow: ellipsis;
     `,
 
     ProductPrice: styled.div`
@@ -60,7 +73,7 @@ const S = {
   SideDrawer: {
     DrawerHeader: styled.div`
       display: flex;
-      height: 3%;
+      height: 4%;
       justify-content: space-between;
       padding: 5px 17px 0 10px;
       font-weight: bold;
@@ -101,13 +114,11 @@ const S = {
       flex-direction: row;
       align-items: center;
       margin-left: 10px;
-      /* border: 1px solid orange; */
     `,
 
     DrawerCardCountDiv: styled.div`
       display: flex;
       align-items: center;
-      /* border: 1px solid green; */
       font-size: 13px;
     `,
 
@@ -192,5 +203,3 @@ const S = {
 };
 
 export default S;
-
-//layout => layer => block
