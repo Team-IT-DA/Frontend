@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { ReactComponent as itdaLogo } from "components/common/icons/logo.svg";
+import { ReactComponent as loginIcon } from "components/common/icons/hamburger.svg";
+import { ReactComponent as cartIcon } from "components/common/icons/cart.svg";
 
 const S = {
   Header: {
@@ -42,7 +45,13 @@ const S = {
         margin: 2rem;
         cursor: pointer;
       }
-    `
+    `,
+
+    ItdaLogo: styled(itdaLogo)``,
+
+    CartButton: styled(cartIcon)``,
+
+    LoginButton: styled(loginIcon)``
   },
 
   ProductCard: {
