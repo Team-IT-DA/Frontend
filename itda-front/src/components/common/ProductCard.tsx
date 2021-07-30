@@ -38,14 +38,14 @@ const ProductCard = ({
   };
 
   return (
-    <S.ProductCard.CardContainer
+    <S.ProductCard.CardLayout
       horizontal={horizontal}
       size={horizontal ? horizontalCardSize[size] : verticalCardSize[size]}
     >
-      <S.ProductCard.ProductImageHolder horizontal={horizontal}>
+      <S.ProductCard.ProductImageHolderLayer horizontal={horizontal}>
         <S.ProductCard.ProductImage alt="이미지" src={productImg} />
-      </S.ProductCard.ProductImageHolder>
-      <S.ProductCard.ProductDescription>
+      </S.ProductCard.ProductImageHolderLayer>
+      <S.ProductCard.ProductDescriptionLayer>
         <S.ProductCard.ProductTitle
           horizontal={horizontal}
           size={horizontal ? horizontalCardSize[size] : verticalCardSize[size]}
@@ -54,8 +54,8 @@ const ProductCard = ({
           <span>{productName}</span>
         </S.ProductCard.ProductTitle>
         <S.ProductCard.ProductPrice>{`${productPrice}원`}</S.ProductCard.ProductPrice>
-      </S.ProductCard.ProductDescription>
-    </S.ProductCard.CardContainer>
+      </S.ProductCard.ProductDescriptionLayer>
+    </S.ProductCard.CardLayout>
   );
 };
 
