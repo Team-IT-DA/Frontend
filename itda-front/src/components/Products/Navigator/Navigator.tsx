@@ -1,12 +1,12 @@
 import CategoryList from "./CategoryList";
 import SearchBar from "./SearchBar";
-
+import S from "../ProductsStyles";
 const Navigator = () => {
 	return (
-		<div>
+		<S.Navigator.Layer>
 			<CategoryList />
 			<SearchBar />
-		</div>
+		</S.Navigator.Layer>
 	);
 };
 
