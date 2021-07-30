@@ -1,5 +1,13 @@
+import S from "./HomeStyles";
+
 const BrandStory = () => {
-	return <div>여기는 브랜드 스토리</div>;
+	return (
+		<>
+		<S.BrandStory.BrandStoryContainer>
+			
+		</S.BrandStory.BrandStoryContainer>
+		</>
+	);
 };
 
 export default BrandStory;
