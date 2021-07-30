@@ -1,11 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-
+import "./index.css";
 const GlobalStyle = createGlobalStyle`
   ${normalize}
   html,
   body {
     overflow: hidden;
+    /* font-family: 'Gowun Batang', serif; */
+    /* font-family: 'Gowun Dodum', sans-serif; */
+    font-family: 'Nanum Gothic', sans-serif;
+    
   }
 
   * {
