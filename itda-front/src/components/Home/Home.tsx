@@ -8,7 +8,6 @@ const Home = () => {
 		<>
 			<S.Home.HomeContainer>
 				<Header color={'#ffffff'}></Header>
-				{/* <S.Home.HeroLayer></S.Home.HeroLayer> */}
 				<Hero />
 			</S.Home.HomeContainer>
 			<BrandStory />
