@@ -1,11 +1,11 @@
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 
-type HeaderPropType = {
+type THeader = {
 	color: string;
 }
 
-const Header = ({ color } : HeaderPropType) => {
+const Header = ({ color } : THeader) => {
 	return (
 		<S.Header.HeaderContainer>
 			<S.Header.HeaderLayout>
