@@ -8,21 +8,21 @@ const LoginForm = () => {
         <S.LoginUsernameField
           id="outlined-basic"
           label="아이디"
-          type="password"
           variant="outlined"
         />
-        <S.LoginUsernameField
+        <S.LoginPasswordField
           id="outlined-password-input"
           label="비밀번호"
           type="password"
           variant="outlined"
         />
+        <S.LoginButton>로그인하기</S.LoginButton>
       </S.LoginFormLayer>
       <S.LoginSocialLayer>
-        <div>카카오톡 로그인</div>
-        <div>네이버 로그인</div>
+        <S.LoginAsKakaoIcon />
+        <S.LoginAsNaverIcon />
       </S.LoginSocialLayer>
-      <div>회원가입 하기</div>
+      <S.LoginSignUpLayer>회원가입 하기</S.LoginSignUpLayer>
     </S.LoginLayout>
   );
 };
