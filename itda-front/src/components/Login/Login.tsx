@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 const Login = () => {
   return (
     <>
-      <Header />
+      <Header color="#555555" />
       <LoginForm />
     </>
   );
