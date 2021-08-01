@@ -3,6 +3,11 @@ import { ReactComponent as hamburgerIcon } from "images/hamburger.svg";
 import { ReactComponent as searchIcon } from "images/search.svg";
 
 const S = {
+	Products: {
+		Layer: styled.div`
+			padding: 0 10%;
+		`,
+	},
 	ProductList: {},
 	Navigator: {
 		Layer: styled.div`
@@ -23,7 +28,7 @@ const S = {
 			justify-content: space-between;
 			padding: 1rem;
 			height: 2.5rem;
-			width: 20rem;
+			width: 30rem;
 
 			border: #f7f7f7 1px solid;
 			border-radius: 10px;
