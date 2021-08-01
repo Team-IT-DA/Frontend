@@ -5,13 +5,14 @@ import BrandStory from "./BrandStory";
 
 const Home = () => {
 	return (
-		<S.Home.HomeContainer>
-			<Header color={'#ffffff'}></Header>
-			{/* <S.Home.HeroLayer></S.Home.HeroLayer> */}
-			<Hero />
+		<>
+			<S.Home.HomeContainer>
+				<Header color={'#ffffff'}></Header>
+				{/* <S.Home.HeroLayer></S.Home.HeroLayer> */}
+				<Hero />
+			</S.Home.HomeContainer>
 			<BrandStory />
-		</S.Home.HomeContainer>
-		// <BrandStory />
+		</>
 	);
 };
 

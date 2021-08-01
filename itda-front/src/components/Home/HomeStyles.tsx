@@ -1,12 +1,12 @@
 import styled from "styled-components";
+import backgroundImage from "images/home_background.jpg";
 
 const S = {
   Home : {
     HomeContainer: styled.section`
-    height: 100vh;
+    min-height: 90vh;
     width: 100vw;
-    border: 1px solid red;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.603)), url(images/home_background.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.503)), url(${backgroundImage});
     background-size: cover;
     background-position: center;
   `
@@ -17,7 +17,8 @@ const S = {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin-top: -6rem;
+      font-family: "Gowun Dodum", serif;
+      margin-top: -8rem;
       position: absolute;
       width: 80%;
       top: 50%;
@@ -35,11 +36,11 @@ const S = {
     `,
 
     Slogan: styled.div`
-      font-size: 2rem;
+      font-size: ${({theme})=> theme.fontSizes.titleSize};
     `,
 
     ProductsListButton: styled.a`
-      font-size: 1.5rem;
+      font-size: ${({theme})=> theme.fontSizes.xxxl};
       border: 1px solid white;
       padding: 1rem;
       margin-top: 1rem;
@@ -54,12 +55,56 @@ const S = {
   },
 
   BrandStory : {
-    BrandStoryContainer: styled.section`
-      height: 100vh;
+    BrandStoryLayout: styled.section`
+      position: relative;
+      height: 90vh;
+    `,
 
+    Banner: styled.div`
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 220px;
+      background-color: #F8F1F1;
+      font-size: 3rem;
+      font-family: 'Gowun Batang', serif;
+      font-weight: 900;
+
+      & > h3 {
+        width: 80%;
+        margin: auto 0;
+      }
+    `,
+
+    Layer: styled.div`
+      position: absolute;
+      width: 45%;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    `,
+
+    Title: styled.div`
+      text-align: center;
+      font-size: 2.5rem;
+      font-family: 'Gowun Batang', serif;
+    `,
+
+    Introduction: styled.div`
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      font-family: 'Nanum Gothic', sans-serif;
+      & > p {
+        line-height: 55px;
+        font-size: ${({theme})=> theme.fontSizes.xxl};
+      }
     `
   }
-
 
 }
 
