@@ -6,7 +6,7 @@ import BrandStory from "./BrandStory";
 const Home = () => {
 	return (
 		<S.Home.HomeContainer>
-			<Header></Header>
+			<Header color={'#ffffff'}></Header>
 			{/* <S.Home.HeroLayer></S.Home.HeroLayer> */}
 			<Hero />
 			<BrandStory />
