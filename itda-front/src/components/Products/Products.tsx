@@ -4,7 +4,7 @@ import ProductList from "./ProductList";
 const Products = () => {
 	return (
 		<>
-			<Header />
+			<Header color={'#555555'}/>
 			<Navigator />
 			<ProductList />
 		</>

@@ -9,17 +9,22 @@ const S = {
     HeaderContainer: styled.div`
       display: flex;
       justify-content: center;
-      font-family: "Gowun Batang", serif;
+      height: 100px;
+      font-family: "Gowun Dodum", serif;
     `,
 
     HeaderLayout: styled.div`
       display: flex;
+      min-width: 1200px;
       width: 80%;
     `,
 
     LeftBlock: styled.div`
       display: flex;
       width: 50%;
+      & > nav {
+        color: ${({color}) => color};
+      };
     `,
 
     Navigation: styled.nav`
@@ -27,12 +32,12 @@ const S = {
       width: calc(100% / 4);
       margin: auto 0;
       cursor: pointer;
+      font-size: ${({theme})=> theme.fontSizes.base};
     `,
 
     LogoBlock: styled.div`
       display: flex;
       align-items: center;
-      height: 10rem;
       & > svg {
         cursor: pointer;
       }
@@ -49,11 +54,33 @@ const S = {
       }
     `,
 
-    ItdaLogo: styled(itdaLogo)``,
+    ItdaLogo: styled(itdaLogo)`
+      height: 70px;
+      width: auto;
+      & path {
+        fill: ${({color}) => color};
+      }
+      & line {
+        stroke: ${({color}) => color};
+      }
+    `,
 
-    CartButton: styled(cartIcon)``,
+    CartButton: styled(cartIcon)`
+      height: 40px;
+      width: auto;
+      stroke: ${({color}) => color};
+      & path {
+        fill: ${({color}) => color}
+      }
+    `,
 
-    LoginButton: styled(loginIcon)``,
+    LoginButton: styled(loginIcon)`
+      height: 40px;
+      width: auto;
+      & path {
+        stroke: ${({color}) => color};
+      }
+    `,
   },
 
   ProductCard: {
