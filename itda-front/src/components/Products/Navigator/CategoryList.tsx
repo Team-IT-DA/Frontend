@@ -1,4 +1,5 @@
 import S from "../ProductsStyles";
+import { Redirect } from "react-router-dom";
 import { useState } from "react";
 import useToggle from "hooks/useToggle";
 const CategoryList = () => {
@@ -29,17 +30,22 @@ const CategoryList = () => {
 	));
 
 	return (
-		<S.CategoryList.Layer>
-			<S.CategoryList.ButtonLayout>
-				<S.CategoryList.MenuButton onMouseEnter={setToggleFlag} />
-				<S.CategoryList.Text>전체 카테고리</S.CategoryList.Text>
-			</S.CategoryList.ButtonLayout>
-			{toggleFlag && (
-				<S.CategoryList.ListLayout onMouseLeave={setToggleFlag}>
-					{list}
-				</S.CategoryList.ListLayout>
+		<>
+			{selectedCategory && (
+				<Redirect to={`/products?category=${selectedCategory}`} />
 			)}
-		</S.CategoryList.Layer>
+			<S.CategoryList.Layer>
+				<S.CategoryList.ButtonLayout>
+					<S.CategoryList.MenuButton onMouseEnter={setToggleFlag} />
+					<S.CategoryList.Text>전체 카테고리</S.CategoryList.Text>
+				</S.CategoryList.ButtonLayout>
+				{toggleFlag && (
+					<S.CategoryList.ListLayout onMouseLeave={setToggleFlag}>
+						{list}
+					</S.CategoryList.ListLayout>
+				)}
+			</S.CategoryList.Layer>
+		</>
 	);
 };
 

@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { ReactComponent as hamburgerIcon } from "images/hamburger.svg";
 import { ReactComponent as searchIcon } from "images/search.svg";
-import { ReactComponent as cancelIcon } from "images/cancel.svg";
 
 const S = {
+	Products: {
+		Layer: styled.div`
+			padding: 0 10%;
+		`,
+	},
 	ProductList: {},
 	Navigator: {
 		Layer: styled.div`
@@ -24,7 +28,7 @@ const S = {
 			justify-content: space-between;
 			padding: 1rem;
 			height: 2.5rem;
-			width: 20rem;
+			width: 30rem;
 
 			border: #f7f7f7 1px solid;
 			border-radius: 10px;
@@ -43,8 +47,6 @@ const S = {
 		SearchButton: styled(searchIcon)`
 			margin-left: 1rem;
 		`,
-		CancelButton: styled(cancelIcon)``,
-
 		DropDownList: styled.li`
 			padding: 10px 0;
 			cursor: pointer;
@@ -79,12 +81,13 @@ const S = {
 		`,
 		ListLayout: styled.ul`
 			position: absolute;
-			top: 3rem;
+			top: 8rem;
 			padding: 0;
 			background-color: #fefefe;
 			border-radius: 5px;
 			border: 1px #f2f2f2 solid;
 		`,
+
 		MenuButton: styled(hamburgerIcon)`
 			cursor: pointer;
 			margin-bottom: 4px;
