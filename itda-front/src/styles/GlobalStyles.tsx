@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
   html,
   body {
-    overflow: hidden;
+    /* overflow: hidden; */
     /* font-family: 'Gowun Batang', serif; */
     /* font-family: 'Gowun Dodum', sans-serif; */
     font-family: 'Nanum Gothic', sans-serif;

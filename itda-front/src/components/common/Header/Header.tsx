@@ -1,14 +1,14 @@
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 
-type HeaderPropType = {
+type THeader = {
 	color: string;
 }
 
-const Header = ({ color } : HeaderPropType) => {
+const Header = ({ color } : THeader) => {
 	return (
-		<S.Header.HeaderContainer>
-			<S.Header.HeaderLayout>
+		<S.Header.HeaderLayout>
+			<S.Header.HeaderLayer>
 				<S.Header.LeftBlock color={color}>
 						<S.Header.Navigation>홈</S.Header.Navigation>
 						<S.Header.Navigation>제품 소개</S.Header.Navigation>
@@ -21,8 +21,8 @@ const Header = ({ color } : HeaderPropType) => {
 					<S.Header.CartButton color={color}/>
 					<S.Header.LoginButton color={color}/>
 				</S.Header.RightBlock>
-			</S.Header.HeaderLayout>
-		</S.Header.HeaderContainer>
+			</S.Header.HeaderLayer>
+		</S.Header.HeaderLayout>
 	);
 };
 

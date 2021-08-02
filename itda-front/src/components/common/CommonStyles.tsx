@@ -6,14 +6,14 @@ import Button from "@material-ui/core/Button";
 
 const S = {
   Header: {
-    HeaderContainer: styled.div`
+    HeaderLayout: styled.div`
       display: flex;
       justify-content: center;
       height: 100px;
       font-family: "Gowun Dodum", serif;
     `,
 
-    HeaderLayout: styled.div`
+    HeaderLayer: styled.div`
       display: flex;
       min-width: 1200px;
       width: 80%;
