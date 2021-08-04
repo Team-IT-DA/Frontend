@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 const S = {
   Header: {
     HeaderLayout: styled.div`
+      position: relative;
       display: flex;
       justify-content: center;
       height: 100px;
@@ -150,9 +151,12 @@ const S = {
 
   SideDrawer: {
     DrawerLayout: styled.div`
+      position: absolute;
+      right: 1.5rem;
+      z-index: 99;
       height: 100vh;
       width: 350px;
-      box-shadow: 5px 5px 5px #cacaca;
+      /* box-shadow: 5px 5px 5px #cacaca; */
     `,
 
     DrawerHeaderLayer: styled.div`
