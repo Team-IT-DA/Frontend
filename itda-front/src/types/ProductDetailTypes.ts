@@ -1,4 +1,6 @@
-export interface IProductDetail extends ISeller {
+import { ICommonInfo } from "./CommonTypes";
+
+export interface IProductDetail extends ICommonInfo {
   price: number;
   salesUnit: string;
   weight: string;
@@ -7,12 +9,5 @@ export interface IProductDetail extends ISeller {
   origin: string;
   packagingType: string;
   detailDescription: string;
-  seller: ISeller;
-}
-
-export interface ISeller {
-  id: number;
-  name: string;
-  imageUrl: string;
-  description: string;
+  seller: ICommonInfo;
 }
