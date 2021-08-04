@@ -174,7 +174,7 @@ const S = {
 
     TabToggleLayer: styled.div`
       display: flex;
-      border: 1px solid #eee;
+      border-top: 1px solid #eee;
       width: 100%;
       font-size: 1.5rem;
       &:hover {
@@ -182,21 +182,26 @@ const S = {
       }
     `,
 
-    InformationTabBlock: styled.div`
+    InformationTabBlock: styled.div<{ isInfo: boolean }>`
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50%;
       height: 6rem;
-      background: #e2e2e2;
+      ${({ isInfo }) => (isInfo ? `background: none;` : `background: #e2e2e2;`)}
     `,
 
-    ReviewTabBlock: styled.div`
+    ReviewTabBlock: styled.div<{ isInfo: boolean }>`
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50%;
       height: 6rem;
+      ${({ isInfo }) =>
+        isInfo
+          ? `background: #e2e2e2;`
+          : `background: none;
+      `}
     `,
   },
 };

@@ -1,5 +1,5 @@
 const ProductReview = () => {
-  return <div>리뷰</div>;
+  return <h1>리뷰</h1>;
 };
 
 export default ProductReview;
