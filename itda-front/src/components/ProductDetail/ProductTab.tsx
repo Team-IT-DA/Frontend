@@ -1,16 +1,19 @@
+import S from "./ProductDetailStyles";
 import ProductDescription from "./ProductDescription";
 import ProductReview from "./ProductReview";
 
 const ProductTab = () => {
   return (
-    <div>
-      <div>
-        <div>상품설명 탭</div>
-        <div>후기 탭</div>
-      </div>
+    <S.ProductTab.TabLayout>
+      <S.ProductTab.TabToggleLayer>
+        <S.ProductTab.InformationTabBlock>
+          상품설명
+        </S.ProductTab.InformationTabBlock>
+        <S.ProductTab.ReviewTabBlock>후기</S.ProductTab.ReviewTabBlock>
+      </S.ProductTab.TabToggleLayer>
       <ProductDescription />
       <ProductReview />
-    </div>
+    </S.ProductTab.TabLayout>
   );
 };
 

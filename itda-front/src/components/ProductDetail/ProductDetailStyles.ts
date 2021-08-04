@@ -164,6 +164,41 @@ const S = {
       background: ${({ theme }) => theme.colors.navy.light};
     `,
   },
+  ProductTab: {
+    TabLayout: styled.div`
+      display: flex;
+      flex-direction: column;
+      width: 1050px;
+      margin: 5rem auto;
+    `,
+
+    TabToggleLayer: styled.div`
+      display: flex;
+      border: 1px solid #eee;
+      width: 100%;
+      font-size: 1.5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    `,
+
+    InformationTabBlock: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: 6rem;
+      background: #e2e2e2;
+    `,
+
+    ReviewTabBlock: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: 6rem;
+    `,
+  },
 };
 
 export default S;
