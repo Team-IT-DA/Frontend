@@ -78,13 +78,6 @@ const S = {
         }
       }
     `,
-
-    DetailBuyBlock: styled.div`
-      display: flex;
-      justify-content: space-between;
-      margin: 1rem 0 0 0;
-    `,
-
     DetailCountDiv: styled.div`
       display: flex;
       width: 6rem;
@@ -104,10 +97,19 @@ const S = {
         font-weight: bold;
       }
     `,
-
-    DetailTotalPriceDiv: styled.div`
+    DetailBuyBlock: styled.div`
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin: 2.1rem 0 0 0;
       font-size: 0.8rem;
-      margin-top: 1.1rem;
+    `,
+
+    DetailPriceDiv: styled.div`
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 11.8rem;
     `,
 
     DetailTotalPrice: styled.span`

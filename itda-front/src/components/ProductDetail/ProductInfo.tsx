@@ -78,30 +78,31 @@ const ProductInfo = () => {
             </li>
             <li>
               <dl>
-                <dt>안내사항</dt>
-                <dd>식품 특성상 중량은 5%내외의 차이가 있습니다.</dd>
+                <dt>구매 수량</dt>
+                <dd>
+                  <S.ProductInfo.DetailCountDiv>
+                    <button
+                      disabled={productCount <= 1}
+                      onClick={() => setProductCount(productCount - 1)}
+                    >
+                      -
+                    </button>
+                    <div>{productCount}</div>
+                    <button onClick={() => setProductCount(productCount + 1)}>
+                      +
+                    </button>
+                  </S.ProductInfo.DetailCountDiv>
+                </dd>
               </dl>
             </li>
           </S.ProductInfo.DetailProductInfo>
           <S.ProductInfo.DetailBuyBlock>
-            <S.ProductInfo.DetailCountDiv>
-              <button
-                disabled={productCount <= 1}
-                onClick={() => setProductCount(productCount - 1)}
-              >
-                -
-              </button>
-              <div>{productCount}</div>
-              <button onClick={() => setProductCount(productCount + 1)}>
-                +
-              </button>
-            </S.ProductInfo.DetailCountDiv>
-            <S.ProductInfo.DetailTotalPriceDiv>
-              총 상품 금액:
+            <S.ProductInfo.DetailPriceDiv>
+              <span>총 상품 금액:</span>
               <S.ProductInfo.DetailTotalPrice>
                 {mockProduct.price * productCount}원
               </S.ProductInfo.DetailTotalPrice>
-            </S.ProductInfo.DetailTotalPriceDiv>
+            </S.ProductInfo.DetailPriceDiv>
           </S.ProductInfo.DetailBuyBlock>
         </S.ProductInfo.DetailBlock>
       </S.ProductInfo.ProductDetailLayer>
