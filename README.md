@@ -1,5 +1,7 @@
 # ITDA FRONTEND
 
+## 📚 Wiki
+[Wiki](https://github.com/Team-IT-DA/Frontend/wiki)
 ## 📒 Documents
 
  <li><a href = "https://www.figma.com/file/J0nqddp2DDYeZu74qIGcJO/ITDA?node-id=0%3A1">🎨 Wireframe</li>
