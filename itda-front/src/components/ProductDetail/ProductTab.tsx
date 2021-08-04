@@ -24,7 +24,8 @@ const ProductTab = () => {
           후기
         </S.ProductTab.ReviewTabBlock>
       </S.ProductTab.TabToggleLayer>
-      {isTabStateInfo ? <ProductDescription /> : <ProductReview />}
+      <ProductDescription />
+      <ProductReview />
     </S.ProductTab.TabLayout>
   );
 };
