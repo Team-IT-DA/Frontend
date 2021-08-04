@@ -1,12 +1,20 @@
 import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
-const SideDrawer = () => {
+type TSideDrawer = {
+  setIsClicked: any;
+};
+
+const SideDrawer = ({ setIsClicked }: TSideDrawer) => {
+  const handleCloseButtonClick = () => {
+    setIsClicked(false);
+  };
+
   return (
     <S.SideDrawer.DrawerLayout>
       <S.SideDrawer.DrawerHeaderLayer>
         <div>담은 상품 목록</div>
-        <S.SideDrawer.DrawerCardCloseButton>
+        <S.SideDrawer.DrawerCardCloseButton onClick={handleCloseButtonClick}>
           x
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
