@@ -1,50 +1,79 @@
 import { useRecoilState } from "recoil";
 import { detailProductCount } from "stores/ProductDetailAtoms";
+import { IProductDetail } from "types/ProductDetailTypes";
 import S from "./ProductDetailStyles";
 
 const ProductInfo = () => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
-
+  const mockProduct: IProductDetail = {
+    id: 1,
+    name: "흙당근",
+    imageUrl:
+      "https://freshleader.co.kr/data/item/1f8_1060_0008/thumb-1f8_1_450x520.jpg",
+    description: "제주 바다 바람을 품은 친환경 흙당근",
+    price: 19900,
+    salesUnit: "1봉지",
+    weight: "500g (2~4개입)",
+    deliveryFee: 2500,
+    deliveryFeeCondition: "30,000원 이상 무료 배송",
+    origin: "제주",
+    packagingType: "냉장/종이포장",
+    detailDescription: "###제목<br><p>내용들어가고 어쩌고</p>",
+    seller: {
+      id: 1,
+      name: "박크롱",
+      imageUrl:
+        "http://img.segye.com/content/image/2021/07/29/20210729513138.jpg",
+      description: "신선한 제품을 재배합니다.",
+    },
+  };
   return (
     <S.ProductInfo.InfoLayout>
       <S.ProductInfo.ProductDetailLayer>
         <S.ProductInfo.ImageBlock
-          src="https://freshleader.co.kr/data/item/1f8_1060_0008/thumb-1f8_1_450x520.jpg"
+          src={mockProduct.imageUrl}
           alt="상품 이미지"
         />
         <S.ProductInfo.DetailBlock>
-          <S.ProductInfo.DetailName>크롱의 흙당근 2kg</S.ProductInfo.DetailName>
+          <S.ProductInfo.DetailName>
+            {mockProduct.name}
+          </S.ProductInfo.DetailName>
           <S.ProductInfo.DetailShortInfo>
-            제주 바다 바람을 품은 친환경 흙당근
+            {mockProduct.description}
           </S.ProductInfo.DetailShortInfo>
-          <S.ProductInfo.DetailPrice>19,900원</S.ProductInfo.DetailPrice>
+          <S.ProductInfo.DetailPrice>
+            {mockProduct.price}원
+          </S.ProductInfo.DetailPrice>
           <S.ProductInfo.DetailProductInfo>
             <li>
               <dl>
                 <dt>판매 단위</dt>
-                <dd>1봉지</dd>
+                <dd>{mockProduct.salesUnit}</dd>
               </dl>
               <dl>
                 <dt>중량/용량</dt>
-                <dd>500g(2~4개입)</dd>
+                <dd>{mockProduct.weight}</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>배송</dt>
-                <dd>2,500원 (30,000원 이상 무료 배송)</dd>
+                <dd>
+                  {mockProduct.deliveryFee}원 (
+                  {mockProduct.deliveryFeeCondition})
+                </dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>원산지</dt>
-                <dd>제주</dd>
+                <dd>{mockProduct.origin}</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>포장타입</dt>
-                <dd>냉장/종이포장</dd>
+                <dd>{mockProduct.packagingType}</dd>
               </dl>
             </li>
             <li>
@@ -57,7 +86,7 @@ const ProductInfo = () => {
           <S.ProductInfo.DetailBuyBlock>
             <S.ProductInfo.DetailCountDiv>
               <button
-                disabled={productCount <= 0}
+                disabled={productCount <= 1}
                 onClick={() => setProductCount(productCount - 1)}
               >
                 -
@@ -70,7 +99,7 @@ const ProductInfo = () => {
             <S.ProductInfo.DetailTotalPriceDiv>
               총 상품 금액:
               <S.ProductInfo.DetailTotalPrice>
-                19,900원
+                {mockProduct.price * productCount}원
               </S.ProductInfo.DetailTotalPrice>
             </S.ProductInfo.DetailTotalPriceDiv>
           </S.ProductInfo.DetailBuyBlock>
@@ -80,7 +109,7 @@ const ProductInfo = () => {
         <S.ProductInfo.SellerBlock>
           <S.ProductInfo.SellerImageWrapper>
             <S.ProductInfo.SellerImage
-              src="http://img.segye.com/content/image/2021/07/29/20210729513138.jpg"
+              src={mockProduct.seller.imageUrl}
               alt="판매자사진"
             />
           </S.ProductInfo.SellerImageWrapper>

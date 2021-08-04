@@ -7,5 +7,5 @@ export const isTabStateDetailInfo = atom({
 
 export const detailProductCount = atom({
   key: "detailProductCount",
-  default: 0,
+  default: 1,
 });
