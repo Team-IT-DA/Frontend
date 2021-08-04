@@ -22,6 +22,7 @@ const Header = ({ color } : THeader) => {
 					<S.Header.LoginButton color={color}/>
 				</S.Header.RightBlock>
 			</S.Header.HeaderLayer>
+			<SideDrawer />
 		</S.Header.HeaderLayout>
 	);
 };
