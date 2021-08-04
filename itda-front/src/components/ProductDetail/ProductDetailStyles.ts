@@ -85,6 +85,26 @@ const S = {
       margin: 1rem 0 0 0;
     `,
 
+    DetailCountDiv: styled.div`
+      display: flex;
+      width: 6rem;
+      height: 2rem;
+      border: 1px solid #dddfe1;
+      border-radius: 4px;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+      }
+      button {
+        width: 3rem;
+        color: #333;
+        background: none;
+        font-weight: bold;
+      }
+    `,
+
     DetailTotalPriceDiv: styled.div`
       font-size: 0.8rem;
       margin-top: 1.1rem;

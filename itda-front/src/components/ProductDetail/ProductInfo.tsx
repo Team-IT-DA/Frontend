@@ -1,6 +1,10 @@
+import { useRecoilState } from "recoil";
+import { detailProductCount } from "stores/ProductDetailAtoms";
 import S from "./ProductDetailStyles";
 
 const ProductInfo = () => {
+  const [productCount, setProductCount] = useRecoilState(detailProductCount);
+
   return (
     <S.ProductInfo.InfoLayout>
       <S.ProductInfo.ProductDetailLayer>
@@ -51,7 +55,18 @@ const ProductInfo = () => {
             </li>
           </S.ProductInfo.DetailProductInfo>
           <S.ProductInfo.DetailBuyBlock>
-            <div>수량조절버튼</div>
+            <S.ProductInfo.DetailCountDiv>
+              <button
+                disabled={productCount <= 0}
+                onClick={() => setProductCount(productCount - 1)}
+              >
+                -
+              </button>
+              <div>{productCount}</div>
+              <button onClick={() => setProductCount(productCount + 1)}>
+                +
+              </button>
+            </S.ProductInfo.DetailCountDiv>
             <S.ProductInfo.DetailTotalPriceDiv>
               총 상품 금액:
               <S.ProductInfo.DetailTotalPrice>

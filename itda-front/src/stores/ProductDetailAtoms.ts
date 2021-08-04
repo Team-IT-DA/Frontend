@@ -4,3 +4,8 @@ export const isTabStateDetailInfo = atom({
   key: "isTabStateDetailInfo",
   default: true,
 });
+
+export const detailProductCount = atom({
+  key: "detailProductCount",
+  default: 0,
+});
