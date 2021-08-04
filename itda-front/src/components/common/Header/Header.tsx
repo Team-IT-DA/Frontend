@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useToggle from "hooks/useToggle";
 
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
@@ -8,7 +8,7 @@ type THeader = {
 };
 
 const Header = ({ color }: THeader) => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useToggle(false);
 
   const toggleSideDrawer = () => {
     setIsClicked(true);
