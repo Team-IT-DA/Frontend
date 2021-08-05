@@ -1,16 +1,19 @@
 import { useRecoilState } from "recoil";
 import S from "./ProductDetailStyles";
-import { isReviewOnlyPhoto } from "stores/ProductDetailAtoms";
-import { useState } from "react";
+import {
+  isReviewOnlyPhoto,
+  reviews,
+  currentPage,
+} from "stores/ProductDetailAtoms";
 
 const ProductReview = () => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
 
-  const [reviews, setReviews] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [productReviews, setProductReviews] = useRecoilState(reviews);
+  const [page, setPage] = useRecoilState(currentPage);
   const reviewsPerPage = 5;
 
-  // 여기서 useEffect로 reviews설정할 예정 (의존배열에 reviews가 들어갈듯합니다)
+  // 여기서 useEffect로 productReviews설정할 예정 (의존배열에 reviews가 들어갈듯합니다)
   // setCurrentPage를 Pagination 컴포넌트에 내려주고 있음
   // 그래서 currentPage가 변할때마다 ITDA api 설계글에 쓰여있는대로
   // Get api/products/1/reviews?pageNo=${currentPage}&offset=${reviewsPerPage}
@@ -32,9 +35,9 @@ const ProductReview = () => {
         </S.ReviewTab.ReviewListBlock>
         <Pagination
           reviewsPerPage={reviewsPerPage}
-          paginate={setCurrentPage}
+          paginate={setPage}
           totalPosts={17}
-          currentPage={currentPage}
+          currentPage={page}
         />
       </S.ReviewTab.ReviewListLayer>
     </S.ReviewTab.ReviewTabLayout>
@@ -78,11 +81,6 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalPosts / reviewsPerPage); i++) {
     pageNumbers.push(i);
   }
-
-  const handlePageClick = (num: number) => {
-    paginate(num);
-    console.log(num);
-  };
 
   return (
     <S.ReviewTab.PaginationLayer>

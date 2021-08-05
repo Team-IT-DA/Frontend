@@ -14,3 +14,13 @@ export const isReviewOnlyPhoto = atom({
   key: "isReviewOnlyPhoto",
   default: false,
 });
+
+export const reviews = atom({
+  key: "detailPageReviews",
+  default: [],
+});
+
+export const currentPage = atom({
+  key: "currentReviewPage",
+  default: 1,
+});
