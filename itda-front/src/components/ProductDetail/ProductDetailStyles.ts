@@ -327,8 +327,14 @@ const S = {
       margin-top: 1rem;
     `,
 
-    PaginationNumber: styled.li`
-      margin-right: 0.3rem;
+    PaginationNumber: styled.li<{ isClicked: boolean }>`
+      margin-right: 0.5rem;
+      color: ${({ theme, isClicked }) =>
+        isClicked ? theme.colors.black : "#e2e2e2"};
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        cursor: pointer;
+      }
     `,
   },
 };
