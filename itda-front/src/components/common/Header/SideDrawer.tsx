@@ -2,7 +2,7 @@ import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
 type TSideDrawer = {
-  setIsClicked: any;
+  setIsClicked: (value: boolean) => void;
 };
 
 const SideDrawer = ({ setIsClicked }: TSideDrawer) => {
