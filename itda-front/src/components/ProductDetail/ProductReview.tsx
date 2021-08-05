@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useRef } from "react";
 import S from "./ProductDetailStyles";
 import {
   isReviewOnlyPhoto,
@@ -7,8 +7,9 @@ import {
   currentPage,
 } from "stores/ProductDetailAtoms";
 
-const ProductReview = () => {
+const ProductReview = ({}) => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
+  const reviewTabRef = useRef(null);
 
   const [productReviews, setProductReviews] = useRecoilState(reviews);
   const [page, setPage] = useRecoilState(currentPage);
@@ -21,7 +22,7 @@ const ProductReview = () => {
   // 이렇게 할 예정입니다.
 
   return (
-    <S.ReviewTab.ReviewTabLayout>
+    <S.ReviewTab.ReviewTabLayout ref={reviewTabRef}>
       <S.ReviewTab.ReviewTitleLayer>상품 후기</S.ReviewTab.ReviewTitleLayer>
       <S.ReviewTab.ReviewCountLayer>리뷰 13건</S.ReviewTab.ReviewCountLayer>
       <S.ReviewTab.ReviewPhotoTabLayer isPhoto={isPhotoReview}>

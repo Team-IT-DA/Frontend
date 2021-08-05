@@ -244,7 +244,6 @@ const S = {
       display: flex;
       flex-direction: column;
       width: 100%;
-      margin-top: 50rem;
     `,
 
     ReviewTitleLayer: styled.div`
