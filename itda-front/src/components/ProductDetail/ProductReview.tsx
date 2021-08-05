@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 import S from "./ProductDetailStyles";
 import {
   isReviewOnlyPhoto,

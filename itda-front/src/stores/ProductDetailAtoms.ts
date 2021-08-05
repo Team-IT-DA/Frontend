@@ -24,3 +24,8 @@ export const currentPage = atom({
   key: "currentReviewPage",
   default: 1,
 });
+
+export const tabUIStickyState = atom({
+  key: "detailTabStickyState",
+  default: false,
+});

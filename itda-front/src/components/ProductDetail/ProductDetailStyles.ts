@@ -192,10 +192,20 @@ const S = {
       flex-direction: column;
       width: 1050px;
       margin: 5rem auto;
+      position: relative;
     `,
 
-    TabToggleLayer: styled.div`
+    TabToggleLayer: styled.div<{ isSticky: boolean }>`
       display: flex;
+      ${({ isSticky }) =>
+        isSticky
+          ? `
+          position: sticky;
+          top: 0;
+          left: 0;
+          right: 0;
+      `
+          : ""};
       border-top: 1px solid #eee;
       width: 100%;
       font-size: 1.5rem;
@@ -210,7 +220,8 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
-      ${({ isInfo }) => (isInfo ? `background: none;` : `background: #e2e2e2;`)}
+      border-left: 1px solid #eee;
+      ${({ isInfo }) => (isInfo ? `background:#fff` : `background: #e2e2e2;`)}
     `,
 
     ReviewTabBlock: styled.div<{ isInfo: boolean }>`
@@ -219,10 +230,11 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
+      border-right: 1px solid #eee;
       ${({ isInfo }) =>
         isInfo
           ? `background: #e2e2e2;`
-          : `background: none;
+          : `background: #fff;
       `}
     `,
   },
