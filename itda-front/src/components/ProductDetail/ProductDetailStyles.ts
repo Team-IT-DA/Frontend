@@ -246,7 +246,7 @@ const S = {
       font-size: ${({ theme }) => theme.fontSizes.xl};
     `,
 
-    ReviewPhotoTabLayer: styled.div`
+    ReviewPhotoTabLayer: styled.div<{ isPhoto: boolean }>`
       display: flex;
       align-items: center;
 
@@ -261,6 +261,16 @@ const S = {
         border: 1px solid #cccccc;
         &:hover {
           cursor: pointer;
+        }
+        &:nth-child(1) {
+          color: ${({ isPhoto }) => (isPhoto ? "#e2e2e2" : "black")};
+          border-bottom: ${({ isPhoto }) =>
+            isPhoto ? "1px solid #e2e2e2" : "none"};
+        }
+        &:nth-child(2) {
+          color: ${({ isPhoto }) => (isPhoto ? "black" : "#e2e2e2")};
+          border-bottom: ${({ isPhoto }) =>
+            isPhoto ? "none" : "1px solid #e2e2e2"};
         }
       }
     `,

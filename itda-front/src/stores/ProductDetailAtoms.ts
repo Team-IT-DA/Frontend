@@ -9,3 +9,8 @@ export const detailProductCount = atom({
   key: "detailProductCount",
   default: 1,
 });
+
+export const isReviewOnlyPhoto = atom({
+  key: "isReviewOnlyPhoto",
+  default: false,
+});
