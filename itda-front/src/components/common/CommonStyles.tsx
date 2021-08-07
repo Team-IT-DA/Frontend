@@ -157,7 +157,7 @@ const S = {
     DrawerLayout: styled.div`
       background-color: #f2f6f8;
       top: 0;
-      position: absolute;
+      position: fixed;
       padding: 1rem;
       right: 0;
       z-index: 99;
