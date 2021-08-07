@@ -192,10 +192,20 @@ const S = {
       flex-direction: column;
       width: 1050px;
       margin: 5rem auto;
+      position: relative;
     `,
 
-    TabToggleLayer: styled.div`
+    TabToggleLayer: styled.div<{ isSticky: boolean }>`
       display: flex;
+      ${({ isSticky }) =>
+        isSticky
+          ? `
+          position: sticky;
+          top: 0;
+          left: 0;
+          right: 0;
+      `
+          : ""};
       border-top: 1px solid #eee;
       width: 100%;
       font-size: 1.5rem;
@@ -210,7 +220,8 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
-      ${({ isInfo }) => (isInfo ? `background: none;` : `background: #e2e2e2;`)}
+      border-left: 1px solid #eee;
+      ${({ isInfo }) => (isInfo ? `background:#fff` : `background: #e2e2e2;`)}
     `,
 
     ReviewTabBlock: styled.div<{ isInfo: boolean }>`
@@ -219,11 +230,122 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
+      border-right: 1px solid #eee;
       ${({ isInfo }) =>
         isInfo
           ? `background: #e2e2e2;`
-          : `background: none;
+          : `background: #fff;
       `}
+    `,
+  },
+
+  ReviewTab: {
+    ReviewTabLayout: styled.div`
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    `,
+
+    ReviewTitleLayer: styled.div`
+      font-size: ${({ theme }) => theme.fontSizes.titleSize};
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    `,
+
+    ReviewCountLayer: styled.div`
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+    `,
+
+    ReviewPhotoTabLayer: styled.div<{ isPhoto: boolean }>`
+      display: flex;
+      align-items: center;
+
+      font-size: ${({ theme }) => theme.fontSizes.l};
+      margin: 1.5rem 0 1rem 0;
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10rem;
+        height: 4rem;
+        border: 1px solid #cccccc;
+        &:hover {
+          cursor: pointer;
+        }
+        &:nth-child(1) {
+          color: ${({ isPhoto }) => (isPhoto ? "#e2e2e2" : "black")};
+          border-bottom: ${({ isPhoto }) =>
+            isPhoto ? "1px solid #e2e2e2" : "none"};
+        }
+        &:nth-child(2) {
+          color: ${({ isPhoto }) => (isPhoto ? "black" : "#e2e2e2")};
+          border-bottom: ${({ isPhoto }) =>
+            isPhoto ? "none" : "1px solid #e2e2e2"};
+        }
+      }
+    `,
+
+    ReviewListLayer: styled.div``,
+
+    ReviewListBlock: styled.ul``,
+
+    SingleReviewLayout: styled.ul`
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    `,
+
+    ReviewerLayer: styled.div`
+      display: flex;
+      align-items: center;
+    `,
+
+    ReviewerImageBlock: styled.img`
+      width: 4rem;
+      height: 4rem;
+      border-radius: 70%;
+      border: 1px solid #666;
+      margin-right: 1rem;
+    `,
+    ReviewerNameBlock: styled.div`
+      font-weight: bold;
+      margin-bottom: 0.1rem;
+    `,
+
+    ReviewDateBlock: styled.div`
+      color: #cfcfcf;
+    `,
+    ReviewImageLayer: styled.div`
+      display: flex;
+      width: 12rem;
+      height: 8rem;
+      margin: 1.5rem 0 0.5rem 0;
+    `,
+    ReviewImage: styled.img`
+      width: 100%;
+      height: 100%;
+    `,
+    ReviewContentLayer: styled.div`
+      margin-bottom: 1rem;
+    `,
+
+    PaginationLayer: styled.ul`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+    `,
+
+    PaginationNumber: styled.li<{ isClicked: boolean }>`
+      margin-right: 0.5rem;
+      color: ${({ theme, isClicked }) =>
+        isClicked ? theme.colors.black : "#e2e2e2"};
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        cursor: pointer;
+      }
     `,
   },
 };
