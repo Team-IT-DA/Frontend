@@ -1,13 +1,21 @@
 import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
-const SideDrawer = () => {
+type TSideDrawer = {
+  setIsClicked: (value: boolean) => void;
+};
+
+const SideDrawer = ({ setIsClicked }: TSideDrawer) => {
+  const handleCloseButtonClick = () => {
+    setIsClicked(false);
+  };
+
   return (
     <S.SideDrawer.DrawerLayout>
       <S.SideDrawer.DrawerHeaderLayer>
         <div>담은 상품 목록</div>
-        <S.SideDrawer.DrawerCardCloseButton>
-          x
+        <S.SideDrawer.DrawerCardCloseButton onClick={handleCloseButtonClick}>
+          <S.SideDrawer.DrawerCloseIcon />
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
@@ -57,9 +65,13 @@ const SideDrawerItem = () => {
           <div>
             <div>상품 재고: 56개</div>
             <S.SideDrawer.DrawerCardCountUpDown>
+              <button>
+                <S.SideDrawer.DrawerCountUpIcon />
+              </button>
               <S.SideDrawer.DrawerCardCount>3</S.SideDrawer.DrawerCardCount>
-              <button>{"∧"}</button>
-              <button>{"∨"}</button>
+              <button>
+                <S.SideDrawer.DrawerCountDownIcon />
+              </button>
             </S.SideDrawer.DrawerCardCountUpDown>
           </div>
         </S.SideDrawer.DrawerCardDescription>
@@ -69,7 +81,7 @@ const SideDrawerItem = () => {
           총 합: 21400원
         </S.SideDrawer.DrawerCardPrice>
         <S.SideDrawer.DrawerCardDeleteButton>
-          x
+          삭제
         </S.SideDrawer.DrawerCardDeleteButton>
       </S.SideDrawer.DrawerCardBottom>
     </S.SideDrawer.DrawerCardLayout>

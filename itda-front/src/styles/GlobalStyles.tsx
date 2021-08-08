@@ -21,6 +21,8 @@ const GlobalStyle = createGlobalStyle`
   }
   ol,ul,li {
     list-style:none;
+    padding:0;
+    margin:0;
   }
   button {
     cursor: pointer;

@@ -2,11 +2,18 @@ import styled from "styled-components";
 import { ReactComponent as itdaLogo } from "components/common/icons/logo.svg";
 import { ReactComponent as loginIcon } from "components/common/icons/hamburger.svg";
 import { ReactComponent as cartIcon } from "components/common/icons/cart.svg";
+import {
+  MdKeyboardArrowUp,
+  MdKeyboardArrowDown,
+  MdClose,
+} from "react-icons/md";
+import { VscChromeClose } from "react-icons/vsc";
 import Button from "@material-ui/core/Button";
 
 const S = {
   Header: {
     HeaderLayout: styled.div`
+      position: relative;
       display: flex;
       justify-content: center;
       height: 100px;
@@ -92,14 +99,11 @@ const S = {
       flex-direction: ${({ horizontal }) => (horizontal ? "row" : "column")};
       width: ${({ size }) => `${size.width}px`};
       height: ${({ size }) => `${size.height}px`};
-      border: 1px solid #cecece;
-      border-radius: 10px;
     `,
 
     ProductImageHolderLayer: styled.div<{
       horizontal: boolean;
     }>`
-      overflow: hidden;
       ${({ horizontal }) =>
         horizontal
           ? `border-bottom-left-radius: 10px;
@@ -150,9 +154,15 @@ const S = {
 
   SideDrawer: {
     DrawerLayout: styled.div`
+      background-color: #f2f6f8;
+      top: 0;
+      position: fixed;
+      padding: 1rem;
+      right: 0;
+      z-index: 99;
       height: 100vh;
-      width: 350px;
-      box-shadow: 5px 5px 5px #cacaca;
+      width: 430px;
+      /* box-shadow: 5px 5px 5px #cacaca; */
     `,
 
     DrawerHeaderLayer: styled.div`
@@ -172,6 +182,12 @@ const S = {
       }
     `,
 
+    DrawerCloseIcon: styled(VscChromeClose)`
+      color: ${({ theme }) => theme.colors.navy.normal};
+      width: 1.5rem;
+      height: 1.5rem;
+    `,
+
     DrawerCardListLayer: styled.div`
       display: flex;
       flex-direction: column;
@@ -184,59 +200,61 @@ const S = {
       flex-direction: column;
       padding: 2px;
       margin: 10px 7px;
-      background: white;
-      box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.beige.light};
+      background-color: #f2f6f8;
+      &:nth-child(1) {
+        border-top: 1px solid #dfdbdb;
+        padding-top: 18px;
+      }
+      /* box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.beige.light}; */
     `,
 
     DrawerCardDescription: styled.div`
-      display: flex;
-      flex-direction: row;
-      align-items: center;
       margin-left: 10px;
+      padding: 5px;
+      & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
     `,
 
     DrawerCardCountDiv: styled.div`
       display: flex;
-      align-items: center;
+      justify-content: space-between;
       font-size: 13px;
     `,
 
     DrawerCardCountUpDown: styled.div`
       display: grid;
-      border: 1px solid #e0e0e0;
-      width: 70px;
-      height: 40px;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 2fr 1fr;
+      /* border: 1px solid #e0e0e0; */
+      width: 35px;
+      height: 50px;
+      grid-template-columns: 1fr;
+      grid-template-rows: 3fr 1fr;
       margin-top: 10px;
-      div {
-        text-align: center;
-        &:nth-child(1) {
-          display: flex;
-          align-items: center;
-          font-size: 12px;
-          justify-content: center;
-          border-right: 1px solid #e0e0e0;
-        }
-        &:nth-child(2) {
-          border-bottom: 1px solid #e0e0e0;
-        }
-      }
     `,
+
+    DrawerCountUpIcon: styled(MdKeyboardArrowUp)``,
+    DrawerCountDownIcon: styled(MdKeyboardArrowDown)``,
+
     DrawerCardCount: styled.div`
-      grid-row: 1/3;
+      padding: 5px;
+      text-align: center;
     `,
 
     DrawerCardBottom: styled.div`
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid #dfdbdb;
     `,
 
     DrawerCardDeleteButton: styled.button`
       background: none;
       border: none;
+      color: ${({ theme }) => theme.colors.navy.light};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
       &:hover {
-        color: ${({ theme }) => theme.colors.navy.light};
+        color: ${({ theme }) => theme.colors.navy.normal};
         cursor: pointer;
       }
     `,
@@ -245,6 +263,7 @@ const S = {
       margin: 10px 0;
       font-size: 13px;
       font-weight: 600;
+      color: ${({ theme }) => theme.colors.navy.dark};
     `,
 
     DrawerBottom: styled.div`
