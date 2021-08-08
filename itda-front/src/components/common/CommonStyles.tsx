@@ -104,6 +104,7 @@ const S = {
     ProductImageHolderLayer: styled.div<{
       horizontal: boolean;
     }>`
+      position: relative;
       ${({ horizontal }) =>
         horizontal
           ? `border-bottom-left-radius: 10px;
@@ -114,12 +115,16 @@ const S = {
       border-top-left-radius: 10px;`};
     `,
 
-    ProductImage: styled.img`
+    ProductImage: styled.img<{
+      horizontal: boolean;
+    }>`
       width: 100%;
-      height: 350px;
+      height: ${({ horizontal }) => (horizontal ? "100%" : "350px")};
+      cursor: pointer;
+
       &:hover {
-        transform: scale(1.05);
-        transition: 0.2s ease-in-out;
+        transform: scale(1.01);
+        transition: 0.2s ease-out;
       }
     `,
 
@@ -132,23 +137,50 @@ const S = {
       horizontal: boolean;
       size: { width: number; height: number; fontSize: number };
     }>`
-      display: -webkit-box;
+      /* display: -webkit-box;
       -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      -webkit-box-orient: vertical; */
       width: ${({ horizontal, size }) => {
         if (horizontal) return `${size.width - size.height}px`;
       }};
-      height: 35px;
+      /* height: 35px; */
       font-size: ${({ size }) => `${size.fontSize}px`};
-      margin: 5px 0;
+      font-weight: bold;
+      padding: 0px 0px 10px 5px;
+      /* margin: 5px 0; */
       overflow: hidden;
-      white-space: pre-wrap;
-      text-overflow: ellipsis;
+      /* white-space: pre-wrap;
+      text-overflow: ellipsis; */
     `,
 
     ProductPrice: styled.div`
-      font-size: 13px;
+      font-size: 16px;
       font-weight: bold;
+      padding: 0px 0px 10px 5px;
+    `,
+    ProductDescription: styled.div`
+      font-size: 13px;
+      color: ${({ theme }) => theme.colors.gray.normal};
+      padding: 0px 0px 10px 5px;
+    `,
+    ProductCartIcon: styled(cartIcon)`
+      position: absolute;
+      top: 18rem;
+      right: 1.5rem;
+      z-index: 1;
+      height: 40px;
+      width: auto;
+      stroke: ${({ theme }) => theme.colors.gray.normal};
+      & path {
+        fill: ${({ theme }) => theme.colors.gray.normal};
+      }
+      &:hover {
+        & path {
+          stroke: ${({ theme }) => theme.colors.mint.normal};
+          fill: ${({ theme }) => theme.colors.mint.normal};
+        }
+        cursor: pointer;
+      }
     `,
   },
 
