@@ -3,96 +3,127 @@ import { ReactComponent as hamburgerIcon } from "images/hamburger.svg";
 import { ReactComponent as searchIcon } from "images/search.svg";
 
 const S = {
-	Products: {
-		Layer: styled.div`
-			padding: 0 10%;
-		`,
-	},
-	ProductList: {},
-	Navigator: {
-		Layer: styled.div`
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		`,
-	},
+  Products: {
+    HeaderLayout: styled.div`
+      background: #ffffff;
+      box-shadow: 0px 0px 2px 2px rgba(228, 227, 227, 0.5);
+      backdrop-filter: blur(4px);
+    `,
+    HeaderLayer: styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-	SearchBar: {
-		Layer: styled.div`
-			display: flex;
-			align-items: center;
-		`,
-		InputLayer: styled.div`
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 1rem;
-			height: 2.5rem;
-			width: 30rem;
+      backdrop-filter: blur(4px);
+    `,
+    MainLayout: styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `,
+  },
+  ProductList: {
+    Layout: styled.div``,
+    Layer: styled.div`
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+    `,
+    Block: styled.div`
+      margin: 20px;
+    `,
+    CountLayer: styled.div`
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      height: 4rem;
+    `,
+  },
+  Navigator: {
+    Layer: styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    `,
+  },
 
-			border: #f7f7f7 1px solid;
-			border-radius: 10px;
-			background: #f7f7f7;
-			color: #000;
-			font-size: 14px;
-			cursor: pointer;
-		`,
-		Input: styled.input`
-			padding: 1rem;
-			height: 100%;
-			width: 100%;
-			border: none;
-			background: none;
-		`,
-		SearchButton: styled(searchIcon)`
-			margin-left: 1rem;
-		`,
-		DropDownList: styled.li`
-			padding: 10px 0;
-			cursor: pointer;
+  SearchBar: {
+    Layer: styled.div`
+      display: flex;
+      align-items: center;
+      margin-left: 32rem;
+    `,
+    InputLayer: styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      height: 2.5rem;
+      width: 25rem;
+      border: #f7f7f7 1px solid;
+      border-radius: 10px;
+      background: #f7f7f7;
+      color: #000;
+      font-size: 14px;
+      cursor: pointer;
+    `,
+    Input: styled.input`
+      padding: 1rem;
+      height: 100%;
+      width: 100%;
+      border: none;
+      background: none;
+    `,
+    SearchButton: styled(searchIcon)`
+      margin-left: 1rem;
+    `,
+    DropDownList: styled.li`
+      padding: 10px 0;
+      cursor: pointer;
 
-			:hover {
-				text-decoration: underline;
-			}
-		`,
-	},
-	CategoryList: {
-		ButtonLayout: styled.div`
-			position: relative;
-			display: flex;
-			align-items: center;
-		`,
-		Layer: styled.div``,
-		Text: styled.div`
-			display: flex;
-			align-items: center;
-			padding: 10px;
-		`,
+      :hover {
+        text-decoration: underline;
+      }
+    `,
+  },
+  CategoryList: {
+    ButtonLayout: styled.div`
+      position: relative;
+      display: flex;
+      align-items: center;
+    `,
+    Layer: styled.div``,
+    Text: styled.div`
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    `,
 
-		List: styled.li`
-			padding: 10px 0;
-			cursor: pointer;
-			padding: 10px 20px;
+    List: styled.li`
+      padding: 10px 0;
+      cursor: pointer;
+      padding: 10px 20px;
 
-			:hover {
-				background-color: #f2f2f2;
-				color: #046d9a;
-			}
-		`,
-		ListLayout: styled.ul`
-			position: absolute;
-			top: 8rem;
-			padding: 0;
-			background-color: #fefefe;
-			border-radius: 5px;
-			border: 1px #f2f2f2 solid;
-		`,
+      :hover {
+        background-color: #f2f2f2;
+        color: #046d9a;
+      }
+    `,
+    ListLayout: styled.ul`
+      position: absolute;
+      top: 8rem;
+      padding: 0;
+      background-color: #fefefe;
+      border-radius: 5px;
+      border: 1px #f2f2f2 solid;
+    `,
 
-		MenuButton: styled(hamburgerIcon)`
-			cursor: pointer;
-			margin-bottom: 4px;
-		`,
-	},
+    MenuButton: styled(hamburgerIcon)`
+      cursor: pointer;
+      margin-bottom: 4px;
+    `,
+  },
 };
 
 export default S;

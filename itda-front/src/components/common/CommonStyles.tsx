@@ -23,8 +23,8 @@ const S = {
       display: flex;
       width: 50%;
       & > nav {
-        color: ${({color}) => color};
-      };
+        color: ${({ color }) => color};
+      }
     `,
 
     Navigation: styled.nav`
@@ -32,7 +32,7 @@ const S = {
       width: calc(100% / 4);
       margin: auto 0;
       cursor: pointer;
-      font-size: ${({theme})=> theme.fontSizes.base};
+      font-size: ${({ theme }) => theme.fontSizes.base};
     `,
 
     LogoBlock: styled.div`
@@ -58,19 +58,19 @@ const S = {
       height: 70px;
       width: auto;
       & path {
-        fill: ${({color}) => color};
+        fill: ${({ color }) => color};
       }
       & line {
-        stroke: ${({color}) => color};
+        stroke: ${({ color }) => color};
       }
     `,
 
     CartButton: styled(cartIcon)`
       height: 40px;
       width: auto;
-      stroke: ${({color}) => color};
+      stroke: ${({ color }) => color};
       & path {
-        fill: ${({color}) => color}
+        fill: ${({ color }) => color};
       }
     `,
 
@@ -78,7 +78,7 @@ const S = {
       height: 40px;
       width: auto;
       & path {
-        stroke: ${({color}) => color};
+        stroke: ${({ color }) => color};
       }
     `,
   },
@@ -112,7 +112,7 @@ const S = {
 
     ProductImage: styled.img`
       width: 100%;
-      height: 100%;
+      height: 350px;
       &:hover {
         transform: scale(1.05);
         transition: 0.2s ease-in-out;
