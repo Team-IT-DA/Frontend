@@ -15,7 +15,7 @@ const Header = ({ color }: THeader) => {
 
   const updateScroll = () => {
     const { pageYOffset } = window;
-    const hide = pageYOffset > 0 && pageYOffset - scrollPosition >= 0;
+    const hide = pageYOffset > 0 && pageYOffset - scrollPosition > 0;
     setScrollFlag(hide);
     setScrollPosition(pageYOffset);
   };

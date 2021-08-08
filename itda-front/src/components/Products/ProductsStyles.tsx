@@ -94,11 +94,12 @@ const S = {
   },
   CategoryList: {
     ButtonLayout: styled.div`
-      position: relative;
       display: flex;
       align-items: center;
     `,
-    Layer: styled.div``,
+    Layer: styled.div`
+      position: relative;
+    `,
     Text: styled.div`
       display: flex;
       align-items: center;
@@ -116,7 +117,7 @@ const S = {
     `,
     ListLayout: styled.ul`
       position: absolute;
-      top: 10rem;
+      top: 3.2rem;
       padding: 0;
       background-color: ${({ theme }) => theme.colors.white};
       border-radius: 5px;
