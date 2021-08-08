@@ -116,8 +116,7 @@ const S = {
 
     ProductImage: styled.img`
       width: 100%;
-      height: 100%;
-      border-radius: 5px;
+      height: 350px;
       &:hover {
         transform: scale(1.05);
         transition: 0.2s ease-in-out;
