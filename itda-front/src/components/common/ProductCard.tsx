@@ -52,7 +52,9 @@ const ProductCard = ({
           ref={imageRef}
           alt="이미지"
           src={imageSrc}
+          horizontal={horizontal}
         />
+        <S.ProductCard.ProductCartIcon />
       </S.ProductCard.ProductImageHolderLayer>
       <S.ProductCard.ProductDescriptionLayer>
         <S.ProductCard.ProductTitle

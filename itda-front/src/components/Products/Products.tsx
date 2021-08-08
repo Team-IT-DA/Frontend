@@ -11,7 +11,6 @@ const Products = () => {
         </S.Products.HeaderLayer>
         <Navigator />
       </S.Products.HeaderLayout>
-
       <S.Products.MainLayout>
         <ProductList />
       </S.Products.MainLayout>
