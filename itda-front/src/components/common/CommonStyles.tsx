@@ -134,13 +134,16 @@ const S = {
       horizontal: boolean;
       size: { width: number; height: number; fontSize: number };
     }>`
-      display: -webkit-box;
+      ${({ horizontal }) =>
+        horizontal
+          ? `display: -webkit-box;
       -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      -webkit-box-orient: vertical;`
+          : ``}
       width: ${({ horizontal, size }) => {
         if (horizontal) return `${size.width - size.height}px`;
       }};
-      height: 35px;
+      height: 29px;
       font-size: ${({ size }) => `${size.fontSize}px`};
       margin: 5px 0;
       overflow: hidden;
