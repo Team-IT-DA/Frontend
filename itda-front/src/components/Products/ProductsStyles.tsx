@@ -5,21 +5,25 @@ import { ReactComponent as searchIcon } from "images/search.svg";
 const S = {
   Products: {
     HeaderLayout: styled.div`
-      background: #ffffff;
-      box-shadow: 0px 0px 2px 2px rgba(228, 227, 227, 0.5);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 99;
+      background: ${({ theme }) => theme.colors.white};
+      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.extraLight};
       backdrop-filter: blur(4px);
     `,
     HeaderLayer: styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-
       backdrop-filter: blur(4px);
     `,
     MainLayout: styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-top: 10rem;
     `,
   },
   ProductList: {
@@ -45,6 +49,7 @@ const S = {
       align-items: center;
       justify-content: center;
       width: 100%;
+      padding: 0.5rem 0;
     `,
   },
 
@@ -61,10 +66,10 @@ const S = {
       padding: 1rem;
       height: 2.5rem;
       width: 25rem;
-      border: #f7f7f7 1px solid;
+      border: ${({ theme }) => theme.colors.gray.extraLight} 1px solid;
       border-radius: 10px;
-      background: #f7f7f7;
-      color: #000;
+      background: ${({ theme }) => theme.colors.gray.extraLight};
+      color: ${({ theme }) => theme.colors.black};
       font-size: 14px;
       cursor: pointer;
     `,
@@ -89,11 +94,12 @@ const S = {
   },
   CategoryList: {
     ButtonLayout: styled.div`
-      position: relative;
       display: flex;
       align-items: center;
     `,
-    Layer: styled.div``,
+    Layer: styled.div`
+      position: relative;
+    `,
     Text: styled.div`
       display: flex;
       align-items: center;
@@ -101,22 +107,21 @@ const S = {
     `,
 
     List: styled.li`
-      padding: 10px 0;
-      cursor: pointer;
       padding: 10px 20px;
+      cursor: pointer;
 
       :hover {
-        background-color: #f2f2f2;
-        color: #046d9a;
+        background-color: ${({ theme }) => theme.colors.gray.extraLight};
+        color: ${({ theme }) => theme.colors.mint.normal};
       }
     `,
     ListLayout: styled.ul`
       position: absolute;
-      top: 8rem;
+      top: 3.2rem;
       padding: 0;
-      background-color: #fefefe;
+      background-color: ${({ theme }) => theme.colors.white};
       border-radius: 5px;
-      border: 1px #f2f2f2 solid;
+      border: 1px solid ${({ theme }) => theme.colors.gray.extraLight};
     `,
 
     MenuButton: styled(hamburgerIcon)`
