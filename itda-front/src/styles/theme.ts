@@ -6,6 +6,11 @@ const colors = {
 	beige: {
 		light: "#F8F1F1",
 	},
+	gray:{
+		x_light:"#dfdbdb",
+		light:"#c2c2c2",
+		dark:"#666"
+	},
 	skyBlue: {
 		normal: "#46CDCF",
 	},
