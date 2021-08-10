@@ -114,9 +114,11 @@ const S = {
       border-top-left-radius: 10px;`};
     `,
 
-    ProductImage: styled.img`
-      width: 100%;
-      height: 350px;
+    ProductImage: styled.img<{
+      horizontal: boolean;
+    }>`
+      width: ${({ horizontal }) => (horizontal ? `100px` : "100%")};
+      height: ${({ horizontal }) => (horizontal ? "100%" : "350px")};
       &:hover {
         transform: scale(1.05);
         transition: 0.2s ease-in-out;
@@ -147,7 +149,7 @@ const S = {
     `,
 
     ProductPrice: styled.div`
-      font-size: ${({theme})=>theme.fontSizes.xs};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: bold;
     `,
   },
@@ -201,7 +203,7 @@ const S = {
       margin: 10px 7px;
       background-color: #f2f6f8;
       &:nth-child(1) {
-        border-top: 1px solid ${({theme})=>theme.colors.gray.light};
+        border-top: 1px solid ${({ theme }) => theme.colors.gray.light};
         padding-top: 18px;
       }
       /* box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.beige.light}; */
@@ -243,7 +245,7 @@ const S = {
     DrawerCardBottom: styled.div`
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid ${({theme})=>theme.colors.gray.light};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.gray.light};
     `,
 
     DrawerCardDeleteButton: styled.button`
