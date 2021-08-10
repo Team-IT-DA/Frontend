@@ -123,6 +123,7 @@ const S = {
         transform: scale(1.05);
         transition: 0.2s ease-in-out;
       }
+      border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
     `,
 
     ProductDescriptionLayer: styled.div`
