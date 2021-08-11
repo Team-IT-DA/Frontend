@@ -7,8 +7,7 @@ const useScrollToggle = (initState: Boolean = false) => {
   const updateScroll = () => {
     //TODO: 매직넘버 리팩토링(10)
     const { scrollY } = window;
-    if (scrollY > 10) setScrollFlag(true);
-    else setScrollFlag(false);
+    scrollY > 10 ? setScrollFlag(true) : setScrollFlag(false);
   };
   const handleScroll = throttle(updateScroll, 100);
 
