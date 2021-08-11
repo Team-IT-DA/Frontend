@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as itdaLogo } from "components/common/icons/logo.svg";
-import { ReactComponent as loginIcon } from "components/common/icons/hamburger.svg";
-import { ReactComponent as cartIcon } from "components/common/icons/cart.svg";
+import { ReactComponent as itdaLogo } from "images/icons/logo.svg";
+import { ReactComponent as loginIcon } from "images/icons/hamburger.svg";
+import { ReactComponent as cartIcon } from "images/icons/cart.svg";
 import {
   MdKeyboardArrowUp,
   MdKeyboardArrowDown,

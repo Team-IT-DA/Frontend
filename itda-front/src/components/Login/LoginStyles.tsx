@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { ReactComponent as kakaoLogin } from "components/common/icons/kakaoLogin.svg";
-import { ReactComponent as naverLogin } from "components/common/icons/naverLogin.svg";
+import { ReactComponent as kakaoLogin } from "images/icons/kakaoLogin.svg";
+import { ReactComponent as naverLogin } from "images/icons/naverLogin.svg";
 
 const S = {
   LoginLayout: styled.div`
