@@ -7,8 +7,10 @@ const colors = {
     light: "#F8F1F1",
   },
   gray: {
+    extraLight: " #f2f2f2",
     x_light: "#dfdbdb",
-    light: "#c2c2c2",
+    light: "#cecece",
+    normal: "#999999",
     dark: "#666",
   },
   skyBlue: {
