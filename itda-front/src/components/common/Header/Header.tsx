@@ -30,7 +30,9 @@ const Header = ({ color }: THeader) => {
           <S.Header.LoginButton color={color} />
         </S.Header.RightBlock>
       </S.Header.HeaderLayer>
-      {isClicked && <SideDrawer setIsClicked={setIsClicked} />}
+      {isClicked && (
+        <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
+      )}
     </S.Header.HeaderLayout>
   );
 };
