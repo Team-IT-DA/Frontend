@@ -3,13 +3,13 @@ const calcRem = (size: number) => `${size / 16}rem`;
 const colors = {
   white: "#FEFEFE",
   black: "#000",
-  gray: {
-    extraLight: " #f2f2f2",
-    light: "#cecece",
-    normal: "#999999",
-  },
   beige: {
     light: "#F8F1F1",
+  },
+  gray: {
+    x_light: "#dfdbdb",
+    light: "#c2c2c2",
+    dark: "#666",
   },
   skyBlue: {
     normal: "#46CDCF",

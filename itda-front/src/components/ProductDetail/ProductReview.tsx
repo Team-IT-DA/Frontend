@@ -31,7 +31,7 @@ const ProductReview = ({}) => {
       </S.ReviewTab.ReviewPhotoTabLayer>
       <S.ReviewTab.ReviewListLayer>
         <S.ReviewTab.ReviewListBlock>
-          {Array.from({ length: 5 }).map((v) => (
+          {Array.from({ length: reviewsPerPage }).map((v) => (
             <Review />
           ))}
         </S.ReviewTab.ReviewListBlock>
