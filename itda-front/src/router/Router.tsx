@@ -1,4 +1,5 @@
 import Home from "components/Home";
+import BrandStory from "components/Home/BrandStory";
 import Login from "components/Login";
 import MyPage from "components/MyPage";
 import Products from "components/Products";
@@ -14,14 +15,15 @@ const Router = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/myPage" component={MyPage}></Route>
+        <Route path="/brandstory" component={BrandStory}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/myPage" component={MyPage}></Route>
         <Route path="/products" component={Products}></Route>
-        <Route exact path="/product/:id" component={ProductDetail}></Route>
-        <Route exact path="/products/new" component={AddProduct}></Route>
-        <Route exact path="/cart" component={ShoppingCart}></Route>
-        <Route exact path="/signUp" component={SignUp}></Route>
-        <Route exact path="/thankYou" component={ThankYou}></Route>
+        <Route path="/product/:id" component={ProductDetail}></Route>
+        <Route path="/products/new" component={AddProduct}></Route>
+        <Route path="/cart" component={ShoppingCart}></Route>
+        <Route path="/signUp" component={SignUp}></Route>
+        <Route path="/thankYou" component={ThankYou}></Route>
       </Switch>
     </BrowserRouter>
   );
