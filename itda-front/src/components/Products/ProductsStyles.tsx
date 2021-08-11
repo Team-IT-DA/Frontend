@@ -117,6 +117,7 @@ const S = {
     `,
     ListLayout: styled.ul`
       position: absolute;
+      width: 12.5rem;
       top: 3.2rem;
       padding: 0;
       background-color: ${({ theme }) => theme.colors.white};
