@@ -8,6 +8,7 @@ import {
   MdClose,
 } from "react-icons/md";
 import { VscChromeClose } from "react-icons/vsc";
+import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";
 
 const S = {
@@ -329,6 +330,27 @@ const S = {
         color: white;
         background: ${({ theme }) => theme.colors.navy.normal};
       }
+    `,
+  },
+  TopButton: {
+    Icon: styled(HiChevronDoubleUp)`
+      color: ${({ theme }) => theme.colors.navy.normal};
+      width: 1.5rem;
+      height: 1.5rem;
+    `,
+    Layout: styled.div`
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      background-color: ${({ theme }) => theme.colors.white};
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0px 1px 2px 1px ${({ theme }) => theme.colors.gray.light};
     `,
   },
 };
