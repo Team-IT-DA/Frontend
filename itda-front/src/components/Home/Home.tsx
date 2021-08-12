@@ -1,6 +1,6 @@
 import Header from "components/common/Header/Header";
 import Hero from "./Hero";
-import BrandStory from "./BrandStory";
+import BrandStory from "../BrandStory/BrandStory";
 import S from "./HomeStyles";
 
 const Home = () => {
