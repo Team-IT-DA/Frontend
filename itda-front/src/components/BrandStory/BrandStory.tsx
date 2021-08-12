@@ -1,3 +1,4 @@
+import Header from "components/common/Header";
 import S from "./BrandStoryStyles";
 
 const BrandStory = () => {
@@ -9,6 +10,7 @@ const BrandStory = () => {
   return (
     <>
       <S.BrandStory.BrandStoryLayout>
+        <Header color={"#555555"} />
         <S.BrandStory.Banner>
           <h3>/ 브랜드 스토리</h3>
         </S.BrandStory.Banner>
