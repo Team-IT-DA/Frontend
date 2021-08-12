@@ -24,7 +24,9 @@ const Header = ({ color }: THeader) => {
           <S.Header.Navigation>
             <Link to="/">홈</Link>
           </S.Header.Navigation>
-          <S.Header.Navigation>제품 소개</S.Header.Navigation>
+          <S.Header.Navigation>
+            <Link to="/products">제품 소개</Link>
+          </S.Header.Navigation>
           <S.Header.Navigation>
             <Link to="/brandstory">브랜드 이야기</Link>
           </S.Header.Navigation>
