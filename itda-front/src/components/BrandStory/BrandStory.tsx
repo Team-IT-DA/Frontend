@@ -10,7 +10,7 @@ const BrandStory = () => {
   return (
     <>
       <S.BrandStory.BrandStoryLayout>
-        <Header color={"#555555"} />
+        <Header />
         <S.BrandStory.Banner>
           <h3>/ 브랜드 스토리</h3>
         </S.BrandStory.Banner>

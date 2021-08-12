@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToggle from "hooks/useToggle";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import useScrollToggle from "hooks/useScrollToggle";
 
-type THeader = {
-  color: string;
-};
-
-const Header = ({ color }: THeader) => {
+const Header = () => {
   const [isClicked, setIsClicked] = useToggle(false);
   const scrollFlag = useScrollToggle(false);
+
+  const checkPageName = () => {
+    const splitedURL = window.location.href.split("/");
+    return splitedURL[splitedURL.length - 1] === "" ? true : false;
+  };
+  const isHomePage = checkPageName();
+  const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => setIsClicked(true);
 

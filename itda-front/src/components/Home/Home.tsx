@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <S.Home.HomeContainer>
-        <Header color={"#ffffff"}></Header>
+        <Header />
         <Hero />
       </S.Home.HomeContainer>
       <BrandStory />
