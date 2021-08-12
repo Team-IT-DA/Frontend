@@ -3,22 +3,21 @@ import styled from "styled-components";
 const S = {
   BrandStory: {
     BrandStoryLayout: styled.section`
-      position: relative;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       height: 90vh;
-      min-width: 1600px;
+      width: 100%;
     `,
 
     Banner: styled.div`
       display: flex;
       justify-content: center;
-      position: absolute;
       width: 100%;
-      top: 25%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 220px;
-      background-color: #f8f1f1;
-      font-size: ${({ theme }) => theme.fontSizes.largeTitleSize};
+      height: 200px;
+      background-color: ${({ theme }) => theme.colors.beige.light};
+      font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-family: "Gowun Batang", serif;
       font-weight: 900;
 
@@ -29,15 +28,13 @@ const S = {
     `,
 
     Layer: styled.div`
-      position: absolute;
       width: 45%;
-      top: 65%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      min-width: 700px;
     `,
 
     Title: styled.div`
       text-align: center;
+      color: ${({ theme }) => theme.colors.purple.dark};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-family: "Gowun Batang", serif;
     `,

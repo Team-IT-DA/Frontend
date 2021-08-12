@@ -6,6 +6,7 @@ const S = {
     HomeContainer: styled.section`
       min-height: 90vh;
       width: 100vw;
+      min-width: 1000px;
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.65),
           rgba(0, 0, 0, 0.503)
@@ -13,27 +14,35 @@ const S = {
         url(${backgroundImage});
       background-size: cover;
       background-position: center;
+      position: fixed;
     `,
   },
 
   Hero: {
     HeroLayout: styled.div`
+      position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      min-width: 1600px;
+      align-items: center;
+      height: 80%;
       font-family: "Gowun Dodum", serif;
-      margin-top: -8rem;
-      position: absolute;
-      width: 80%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 0%);
 
       & > * {
         margin: 1rem;
         color: white;
       }
+    `,
+
+    Layer: styled.div`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90%;
+      height: 220px;
+      padding: 0 2rem;
     `,
 
     Title: styled.div`
