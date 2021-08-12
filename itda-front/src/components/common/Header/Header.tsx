@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useToggle from "hooks/useToggle";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import useScrollToggle from "hooks/useScrollToggle";
 
-type THeader = {
-  color: string;
-};
-
-const Header = ({ color }: THeader) => {
+const Header = () => {
   const [isClicked, setIsClicked] = useToggle(false);
   const scrollFlag = useScrollToggle(false);
+
+  const checkPageName = () => {
+    const splitedURL = window.location.href.split("/");
+    return splitedURL[splitedURL.length - 1] === "" ? true : false;
+  };
+  const isHomePage = checkPageName();
+  const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => setIsClicked(true);
 
@@ -24,7 +26,9 @@ const Header = ({ color }: THeader) => {
           <S.Header.Navigation>
             <Link to="/">홈</Link>
           </S.Header.Navigation>
-          <S.Header.Navigation>제품 소개</S.Header.Navigation>
+          <S.Header.Navigation>
+            <Link to="/products">제품 소개</Link>
+          </S.Header.Navigation>
           <S.Header.Navigation>
             <Link to="/brandstory">브랜드 이야기</Link>
           </S.Header.Navigation>

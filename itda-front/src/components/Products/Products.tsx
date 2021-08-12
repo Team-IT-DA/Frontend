@@ -8,7 +8,7 @@ const Products = () => {
     <>
       <S.Products.HeaderLayout>
         <S.Products.HeaderLayer>
-          <Header color={"#555555"} />
+          <Header />
         </S.Products.HeaderLayer>
         <Navigator />
       </S.Products.HeaderLayout>

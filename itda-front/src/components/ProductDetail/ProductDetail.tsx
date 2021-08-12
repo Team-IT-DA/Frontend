@@ -6,7 +6,7 @@ import S from "./ProductDetailStyles";
 const ProductDetail = () => {
   return (
     <>
-      <Header color="#55555" />
+      <Header />
       <S.ProductDetailWall>
         <ProductInfo />
         <ProductTab />

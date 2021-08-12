@@ -1,5 +1,5 @@
 import Home from "components/Home";
-import BrandStory from "components/Home/BrandStory";
+import BrandStory from "components/BrandStory/BrandStory";
 import Login from "components/Login";
 import MyPage from "components/MyPage";
 import Products from "components/Products";
