@@ -2,10 +2,12 @@ import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
 type TSideDrawer = {
+  isClicked: boolean;
   setIsClicked: (value: boolean) => void;
 };
 
-const SideDrawer = ({ setIsClicked }: TSideDrawer) => {
+const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
+  console.log(isClicked);
   const handleCloseButtonClick = () => {
     setIsClicked(false);
   };
@@ -14,7 +16,10 @@ const SideDrawer = ({ setIsClicked }: TSideDrawer) => {
     <S.SideDrawer.DrawerLayout>
       <S.SideDrawer.DrawerHeaderLayer>
         <div>담은 상품 목록</div>
-        <S.SideDrawer.DrawerCardCloseButton onClick={handleCloseButtonClick}>
+        <S.SideDrawer.DrawerCardCloseButton
+          isClicked={isClicked}
+          onClick={handleCloseButtonClick}
+        >
           <S.SideDrawer.DrawerCloseIcon />
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>

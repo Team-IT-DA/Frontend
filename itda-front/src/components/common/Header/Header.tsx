@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useToggle from "hooks/useToggle";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
@@ -19,9 +21,13 @@ const Header = ({ color }: THeader) => {
     <S.Header.HeaderLayout>
       <S.Header.HeaderLayer>
         <S.Header.LeftBlock color={color}>
-          <S.Header.Navigation>홈</S.Header.Navigation>
+          <S.Header.Navigation>
+            <Link to="/">홈</Link>
+          </S.Header.Navigation>
           <S.Header.Navigation>제품 소개</S.Header.Navigation>
-          <S.Header.Navigation>브랜드 이야기</S.Header.Navigation>
+          <S.Header.Navigation>
+            <Link to="/brandstory">브랜드 이야기</Link>
+          </S.Header.Navigation>
         </S.Header.LeftBlock>
         <S.Header.LogoBlock>
           <S.Header.ItdaLogo color={color} />
@@ -31,7 +37,9 @@ const Header = ({ color }: THeader) => {
           <S.Header.LoginButton color={color} />
         </S.Header.RightBlock>
       </S.Header.HeaderLayer>
-      {isClicked && <SideDrawer setIsClicked={setIsClicked} />}
+      {isClicked && (
+        <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
+      )}
     </S.Header.HeaderLayout>
   );
 };

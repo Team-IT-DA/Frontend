@@ -39,6 +39,8 @@ const fontSizes = {
   xxl: calcRem(22),
   xxxl: calcRem(24),
   titleSize: calcRem(32),
+  largeTitleSize: calcRem(48),
+  extraLageTitleSize: calcRem(75),
 };
 const theme = { colors, fontSizes };
 

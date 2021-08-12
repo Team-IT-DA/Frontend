@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { ReactComponent as itdaLogo } from "components/common/icons/logo.svg";
-import { ReactComponent as loginIcon } from "components/common/icons/hamburger.svg";
-import { ReactComponent as cartIcon } from "components/common/icons/cart.svg";
+import styled, { keyframes, css } from "styled-components";
+import { ReactComponent as itdaLogo } from "images/icons/logo.svg";
+import { ReactComponent as loginIcon } from "images/icons/hamburger.svg";
+import { ReactComponent as cartIcon } from "images/icons/cart.svg";
 import {
   MdKeyboardArrowUp,
   MdKeyboardArrowDown,
@@ -10,6 +10,28 @@ import {
 import { VscChromeClose } from "react-icons/vsc";
 import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";
+
+const slideIn = keyframes`
+from {
+  transform: translateX(100%)
+}
+to {
+  transform: translateX(0%)
+}
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0%)
+  }
+  to {
+    transform: translateX(100%)
+  }
+`;
+
+interface ICloseButton {
+  isClicked: boolean;
+}
 
 const S = {
   Header: {
@@ -191,13 +213,17 @@ const S = {
   SideDrawer: {
     DrawerLayout: styled.div`
       background-color: #f2f6f8;
-      top: 0;
-      position: fixed;
-      padding: 1rem;
-      right: 0;
-      z-index: 99;
       height: 100vh;
       width: 430px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 99;
+      padding: 1rem;
+
+      animation-duration: 0.5s;
+      animation-timing-function: easeOutSine;
+      animation-name: ${(isClicked) => (isClicked ? slideIn : slideOut)};
     `,
 
     DrawerHeaderLayer: styled.div`
@@ -208,13 +234,21 @@ const S = {
       font-weight: bold;
     `,
 
-    DrawerCardCloseButton: styled.button`
+    DrawerCardCloseButton: styled.button<ICloseButton>`
       background: none;
       border: none;
       &:hover {
         color: #acacac;
         cursor: pointer;
       }
+      /* 장바구니가 옆으로 사라지게 하는 애니메이션인데 현재는 작동이 안됌. 임시보류 */
+      ${(isClicked) =>
+        isClicked &&
+        css`
+          animation-name: ${slideOut};
+          animation-duration: 0.4s;
+          animation-timing-function: ease;
+        `}
     `,
 
     DrawerCloseIcon: styled(VscChromeClose)`
