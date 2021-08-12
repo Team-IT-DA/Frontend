@@ -8,6 +8,7 @@ import {
   MdClose,
 } from "react-icons/md";
 import { VscChromeClose } from "react-icons/vsc";
+import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";
 
 const slideIn = keyframes`
@@ -140,32 +141,35 @@ const S = {
     ProductImage: styled.img<{
       horizontal: boolean;
     }>`
-      width: 100%;
+      width: ${({ horizontal }) => (horizontal ? `100px` : "100%")};
       height: ${({ horizontal }) => (horizontal ? "100%" : "350px")};
-      cursor: pointer;
-
       &:hover {
         transform: scale(1.01);
         transition: 0.2s ease-out;
       }
+      border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
     `,
 
     ProductDescriptionLayer: styled.div`
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     `,
 
     ProductTitle: styled.div<{
       horizontal: boolean;
       size: { width: number; height: number; fontSize: number };
     }>`
-      /* display: -webkit-box;
+      ${({ horizontal }) =>
+        horizontal
+          ? `display: -webkit-box;
       -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; */
+      -webkit-box-orient: vertical;`
+          : ``}
       width: ${({ horizontal, size }) => {
         if (horizontal) return `${size.width - size.height}px`;
       }};
-      /* height: 35px; */
+      height: 29px;
       font-size: ${({ size }) => `${size.fontSize}px`};
       font-weight: bold;
       padding: 0px 0px 10px 5px;
@@ -176,7 +180,7 @@ const S = {
     `,
 
     ProductPrice: styled.div`
-      font-size: 16px;
+      font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: bold;
       padding: 0px 0px 10px 5px;
     `,
@@ -267,7 +271,7 @@ const S = {
       margin: 10px 7px;
       background-color: #f2f6f8;
       &:nth-child(1) {
-        border-top: 1px solid #dfdbdb;
+        border-top: 1px solid ${({ theme }) => theme.colors.gray.light};
         padding-top: 18px;
       }
       /* box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.beige.light}; */
@@ -291,7 +295,6 @@ const S = {
 
     DrawerCardCountUpDown: styled.div`
       display: grid;
-      /* border: 1px solid #e0e0e0; */
       width: 35px;
       height: 50px;
       grid-template-columns: 1fr;
@@ -310,7 +313,7 @@ const S = {
     DrawerCardBottom: styled.div`
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #dfdbdb;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.gray.light};
     `,
 
     DrawerCardDeleteButton: styled.button`
@@ -359,9 +362,30 @@ const S = {
       margin-top: 2%;
       &:hover {
         cursor: pointer;
-        color: white;
+        color: ${({ theme }) => theme.colors.white};
         background: ${({ theme }) => theme.colors.navy.normal};
       }
+    `,
+  },
+  TopButton: {
+    Icon: styled(HiChevronDoubleUp)`
+      color: ${({ theme }) => theme.colors.navy.normal};
+      width: 1.5rem;
+      height: 1.5rem;
+    `,
+    Layout: styled.div`
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      background-color: ${({ theme }) => theme.colors.white};
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0px 1px 2px 1px ${({ theme }) => theme.colors.gray.light};
     `,
   },
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useToggle from "hooks/useToggle";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
-import throttle from "util/throttle";
+import useScrollToggle from "hooks/useScrollToggle";
 
 type THeader = {
   color: string;
@@ -11,24 +11,7 @@ type THeader = {
 
 const Header = ({ color }: THeader) => {
   const [isClicked, setIsClicked] = useToggle(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [scrollFlag, setScrollFlag] = useState(false);
-
-  const updateScroll = () => {
-    const { pageYOffset } = window;
-    const hide = pageYOffset > 0 && pageYOffset - scrollPosition > 0;
-    setScrollFlag(hide);
-    setScrollPosition(pageYOffset);
-  };
-
-  const handleScroll = throttle(updateScroll, 100);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollPosition]);
+  const scrollFlag = useScrollToggle(false);
 
   const toggleSideDrawer = () => setIsClicked(true);
 

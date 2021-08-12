@@ -160,7 +160,7 @@ const S = {
 
     SellerDetail: styled.span`
       font-size: 0.9rem;
-      color: #666;
+      color: ${({ theme }) => theme.colors.gray.dark};
     `,
 
     PaymentBlock: styled.div`
@@ -206,7 +206,7 @@ const S = {
           right: 0;
       `
           : ""};
-      border-top: 1px solid #eee;
+      border-top: 1px solid ${({ theme }) => theme.colors.gray.x_light};
       width: 100%;
       font-size: 1.5rem;
       &:hover {
@@ -220,8 +220,9 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
-      border-left: 1px solid #eee;
-      ${({ isInfo }) => (isInfo ? `background:#fff` : `background: #e2e2e2;`)}
+      border-left: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+      ${({ isInfo, theme }) =>
+        isInfo ? `background:${theme.colors.white}` : `background: #e2e2e2;`}
     `,
 
     ReviewTabBlock: styled.div<{ isInfo: boolean }>`
@@ -230,11 +231,11 @@ const S = {
       align-items: center;
       width: 50%;
       height: 6rem;
-      border-right: 1px solid #eee;
-      ${({ isInfo }) =>
+      border-right: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+      ${({ isInfo, theme }) =>
         isInfo
           ? `background: #e2e2e2;`
-          : `background: #fff;
+          : `background: ${theme.colors.white};
       `}
     `,
   },
@@ -274,14 +275,16 @@ const S = {
           cursor: pointer;
         }
         &:nth-child(1) {
-          color: ${({ isPhoto }) => (isPhoto ? "#e2e2e2" : "black")};
-          border-bottom: ${({ isPhoto }) =>
-            isPhoto ? "1px solid #e2e2e2" : "none"};
+          color: ${({ isPhoto, theme }) =>
+            isPhoto ? `1px solid ${theme.colors.gray.x_light}` : "black"};
+          border-bottom: ${({ isPhoto, theme }) =>
+            isPhoto ? `1px solid ${theme.colors.gray.x_light}` : "none"};
         }
         &:nth-child(2) {
-          color: ${({ isPhoto }) => (isPhoto ? "black" : "#e2e2e2")};
-          border-bottom: ${({ isPhoto }) =>
-            isPhoto ? "none" : "1px solid #e2e2e2"};
+          color: ${({ isPhoto, theme }) =>
+            isPhoto ? "black" : `1px solid ${theme.colors.gray.x_light}`};
+          border-bottom: ${({ isPhoto, theme }) =>
+            isPhoto ? "none" : `1px solid ${theme.colors.gray.x_light}`};
         }
       }
     `,
@@ -306,7 +309,7 @@ const S = {
       width: 4rem;
       height: 4rem;
       border-radius: 70%;
-      border: 1px solid #666;
+      border: 1px solid ${({ theme }) => theme.colors.gray.dark};
       margin-right: 1rem;
     `,
     ReviewerNameBlock: styled.div`
@@ -315,7 +318,7 @@ const S = {
     `,
 
     ReviewDateBlock: styled.div`
-      color: #cfcfcf;
+      color: ${({ theme }) => theme.colors.gray.light};
     `,
     ReviewImageLayer: styled.div`
       display: flex;
@@ -346,6 +349,23 @@ const S = {
         color: ${({ theme }) => theme.colors.navy.normal};
         cursor: pointer;
       }
+    `,
+  },
+
+  PhotoModal: {
+    ModalWrapper: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 99;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
     `,
   },
 };

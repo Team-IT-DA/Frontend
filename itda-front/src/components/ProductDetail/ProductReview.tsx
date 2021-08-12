@@ -1,11 +1,13 @@
 import { useRecoilState } from "recoil";
 import { useRef } from "react";
+import useToggle from "hooks/useToggle";
 import S from "./ProductDetailStyles";
 import {
   isReviewOnlyPhoto,
   reviews,
   currentPage,
 } from "stores/ProductDetailAtoms";
+import PhotoModal from "./PhotoModal";
 
 const ProductReview = ({}) => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
@@ -31,7 +33,7 @@ const ProductReview = ({}) => {
       </S.ReviewTab.ReviewPhotoTabLayer>
       <S.ReviewTab.ReviewListLayer>
         <S.ReviewTab.ReviewListBlock>
-          {Array.from({ length: 5 }).map((v) => (
+          {Array.from({ length: reviewsPerPage }).map((v) => (
             <Review />
           ))}
         </S.ReviewTab.ReviewListBlock>
@@ -47,22 +49,38 @@ const ProductReview = ({}) => {
 };
 
 const Review = () => {
+  const [toggleState, setToggle] = useToggle(false);
+
+  const handlePhotoClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.className === "photoImg") return;
+    setToggle();
+  };
+
   return (
-    <S.ReviewTab.SingleReviewLayout>
-      <S.ReviewTab.ReviewerLayer>
-        <S.ReviewTab.ReviewerImageBlock src="https://ifh.cc/g/gFFnTG.jpg" />
-        <div>
-          <S.ReviewTab.ReviewerNameBlock>크롱</S.ReviewTab.ReviewerNameBlock>
-          <S.ReviewTab.ReviewDateBlock>2021/06/06</S.ReviewTab.ReviewDateBlock>
-        </div>
-      </S.ReviewTab.ReviewerLayer>
-      <S.ReviewTab.ReviewImageLayer>
-        <S.ReviewTab.ReviewImage src="https://ifh.cc/g/gFFnTG.jpg" />
-      </S.ReviewTab.ReviewImageLayer>
-      <S.ReviewTab.ReviewContentLayer>
-        상품이 너무 신선해요 ~ 추천합니다 ! 짱 추 !
-      </S.ReviewTab.ReviewContentLayer>
-    </S.ReviewTab.SingleReviewLayout>
+    <>
+      <S.ReviewTab.SingleReviewLayout>
+        <S.ReviewTab.ReviewerLayer>
+          <S.ReviewTab.ReviewerImageBlock src="https://ifh.cc/g/gFFnTG.jpg" />
+          <div>
+            <S.ReviewTab.ReviewerNameBlock>크롱</S.ReviewTab.ReviewerNameBlock>
+            <S.ReviewTab.ReviewDateBlock>
+              2021/06/06
+            </S.ReviewTab.ReviewDateBlock>
+          </div>
+        </S.ReviewTab.ReviewerLayer>
+        <S.ReviewTab.ReviewImageLayer>
+          <S.ReviewTab.ReviewImage
+            onClick={handlePhotoClick}
+            src="https://ifh.cc/g/gFFnTG.jpg"
+          />
+        </S.ReviewTab.ReviewImageLayer>
+        <S.ReviewTab.ReviewContentLayer>
+          상품이 너무 신선해요 ~ 추천합니다 ! 짱 추 !
+        </S.ReviewTab.ReviewContentLayer>
+      </S.ReviewTab.SingleReviewLayout>
+      {toggleState && <PhotoModal handlePhotoClick={handlePhotoClick} />}
+    </>
   );
 };
 
