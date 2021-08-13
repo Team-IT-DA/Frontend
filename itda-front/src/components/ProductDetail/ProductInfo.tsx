@@ -42,13 +42,13 @@ const ProductInfo = () => {
             {mockProduct.description}
           </S.ProductInfo.DetailShortInfo>
           <S.ProductInfo.DetailPrice>
-            {mockProduct.price}원
+            {mockProduct.price.toLocaleString()}원
           </S.ProductInfo.DetailPrice>
           <S.ProductInfo.DetailProductInfo>
             <li>
               <dl>
                 <dt>판매 단위</dt>
-                <dd>{mockProduct.salesUnit}</dd>
+                <dd>{mockProduct.salesUnit.toLocaleString()}</dd>
               </dl>
               <dl>
                 <dt>중량/용량</dt>
@@ -59,7 +59,7 @@ const ProductInfo = () => {
               <dl>
                 <dt>배송</dt>
                 <dd>
-                  {mockProduct.deliveryFee}원 (
+                  {mockProduct.deliveryFee.toLocaleString()}원 (
                   {mockProduct.deliveryFeeCondition})
                 </dd>
               </dl>
@@ -100,7 +100,7 @@ const ProductInfo = () => {
             <S.ProductInfo.DetailPriceDiv>
               <span>총 상품 금액:</span>
               <S.ProductInfo.DetailTotalPrice>
-                {mockProduct.price * productCount}원
+                {(mockProduct.price * productCount).toLocaleString()}원
               </S.ProductInfo.DetailTotalPrice>
             </S.ProductInfo.DetailPriceDiv>
           </S.ProductInfo.DetailBuyBlock>

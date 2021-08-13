@@ -109,7 +109,7 @@ const S = {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      width: 11.8rem;
+      width: 12.8rem;
     `,
 
     DetailTotalPrice: styled.span`
