@@ -1,7 +1,7 @@
 import S from "./CommonStyles";
 import useLazyLoad from "hooks/useLazyLoad";
 
-type ProductCardPropType = {
+type TProductCardPropType = {
   size: string;
   horizontal: boolean;
   productImg: string;
@@ -10,11 +10,11 @@ type ProductCardPropType = {
   seller: string;
 };
 
-type cardSizeType = {
-  [index: string]: widthHeightType;
+type TcardSizeType = {
+  [index: string]: TwidthHeightType;
 };
 
-type widthHeightType = {
+type TwidthHeightType = {
   width: number;
   height: number;
   fontSize: number;
@@ -27,7 +27,7 @@ const ProductCard = ({
   productName,
   productPrice,
   seller,
-}: ProductCardPropType) => {
+}: TProductCardPropType) => {
   return (
     <>
       {horizontal ? (
@@ -60,10 +60,10 @@ const VerticalCard = ({
   productName,
   productPrice,
   seller,
-}: ProductCardPropType) => {
+}: TProductCardPropType) => {
   const { imageSrc, imageRef } = useLazyLoad(productImg);
 
-  const verticalCardSize: cardSizeType = {
+  const verticalCardSize: TcardSizeType = {
     small: { width: 150, height: 200, fontSize: 13 },
     large: { width: 200, height: 250, fontSize: 15 },
     extra: { width: 350, height: 450, fontSize: 18 },
@@ -103,8 +103,8 @@ const HorizontalCard = ({
   productName,
   productPrice,
   seller,
-}: ProductCardPropType) => {
-  const horizontalCardSize: cardSizeType = {
+}: TProductCardPropType) => {
+  const horizontalCardSize: TcardSizeType = {
     small: { width: 200, height: 100, fontSize: 13 },
     large: { width: 250, height: 125, fontSize: 15 },
     extra: { width: 300, height: 400, fontSize: 16 },
