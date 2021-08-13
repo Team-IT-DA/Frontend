@@ -3,7 +3,7 @@ import {
   IoIosCheckmarkCircle,
   IoIosCheckmarkCircleOutline,
 } from "react-icons/io";
-import { HiX, HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa";
 const S = {
   CounterButton: {
@@ -21,7 +21,6 @@ const S = {
         font-size: 15px;
       }
       button {
-        /* outline: red 1px solid; */
         display: flex;
         justify-content: center;
         align-items: center;

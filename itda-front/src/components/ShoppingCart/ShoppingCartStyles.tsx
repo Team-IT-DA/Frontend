@@ -30,7 +30,6 @@ const S = {
       grid-template-columns: 2fr 1fr;
       justify-items: center;
       width: 80rem;
-      /* outline: 1px blue solid; */
     `,
     ProductsLayer: styled.div`
       width: 100%;
