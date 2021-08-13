@@ -322,13 +322,15 @@ const S = {
     `,
     ReviewImageLayer: styled.div`
       display: flex;
-      width: 12rem;
+      width: 30rem;
       height: 8rem;
+
       margin: 1.5rem 0 0.5rem 0;
     `,
     ReviewImage: styled.img`
-      width: 100%;
-      height: 100%;
+      width: 190px;
+      height: 130px;
+      margin-right: 1rem;
     `,
     ReviewContentLayer: styled.div`
       margin-bottom: 1rem;

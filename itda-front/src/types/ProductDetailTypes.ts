@@ -1,4 +1,4 @@
-import { ICommonInfo } from "./CommonTypes";
+import { ICommonInfo, ICommonWriterInfo } from "./CommonTypes";
 
 export interface IProductDetail extends ICommonInfo {
   price: number;
@@ -10,4 +10,12 @@ export interface IProductDetail extends ICommonInfo {
   packagingType: string;
   detailDescription: string;
   seller: ICommonInfo;
+}
+
+export interface IReview {
+  id: number;
+  writer: ICommonWriterInfo;
+  date: string;
+  image: string[];
+  contents: string;
 }
