@@ -10,6 +10,7 @@ export interface IProductDetail extends ICommonInfo {
   packagingType: string;
   detailDescription: string;
   seller: ICommonInfo;
+  notice: string;
 }
 
 export interface IReview {

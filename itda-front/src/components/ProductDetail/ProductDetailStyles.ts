@@ -99,7 +99,7 @@ const S = {
     `,
     DetailBuyBlock: styled.div`
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-end;
       margin: 2.1rem 0 0 0;
       font-size: 0.8rem;
