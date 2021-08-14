@@ -19,7 +19,7 @@ const Router = () => {
         <Route path="/login" component={Login}></Route>
         <Route path="/myPage" component={MyPage}></Route>
         <Route path="/products" component={Products}></Route>
-        <Route path="/product/:id" component={ProductDetail}></Route>
+        <Route path="/product/:productId" component={ProductDetail}></Route>
         <Route path="/products/new" component={AddProduct}></Route>
         <Route path="/cart" component={ShoppingCart}></Route>
         <Route path="/signUp" component={SignUp}></Route>
