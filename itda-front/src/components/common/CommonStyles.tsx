@@ -11,26 +11,30 @@ import { VscChromeClose } from "react-icons/vsc";
 import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";
 
-const slideIn = keyframes`
-from {
-  transform: translateX(100%)
-}
-to {
-  transform: translateX(0%)
-}
+const slideIn = css`
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
 `;
 
-const slideOut = keyframes`
-  from {
-    transform: translateX(0%)
-  }
-  to {
-    transform: translateX(100%)
+const slideOut = css`
+  @keyframes slideOut {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(100%);
+    }
   }
 `;
 
 interface ICloseButton {
-  isClicked: boolean;
+  isClicked: undefined | boolean;
 }
 
 const S = {
@@ -211,7 +215,7 @@ const S = {
   },
 
   SideDrawer: {
-    DrawerLayout: styled.div`
+    DrawerLayout: styled.div<{ isClicked: undefined | boolean }>`
       background-color: #f2f6f8;
       height: 100vh;
       width: 430px;
@@ -221,9 +225,42 @@ const S = {
       z-index: 99;
       padding: 1rem;
 
-      animation-duration: 0.5s;
-      animation-timing-function: easeOutSine;
-      animation-name: ${(isClicked) => (isClicked ? slideIn : slideOut)};
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0%);
+        }
+      }
+
+      @keyframes slideOut {
+        from {
+          transform: translateX(0%);
+        }
+        to {
+          transform: translateX(100%);
+        }
+      }
+
+      ${({ isClicked }) => {
+        return isClicked === undefined
+          ? css`
+              transform: translateX(100%);
+            `
+          : css`
+              animation-fill-mode: forwards;
+              animation-duration: 0.5s;
+              animation-timing-function: easeOutSine;
+              animation-name: ${({
+                isClicked,
+              }: {
+                isClicked: undefined | boolean;
+              }) => {
+                return isClicked ? "slideIn" : "slideOut";
+              }};
+            `;
+      }}
     `,
 
     DrawerHeaderLayer: styled.div`
@@ -242,13 +279,13 @@ const S = {
         cursor: pointer;
       }
       /* 장바구니가 옆으로 사라지게 하는 애니메이션인데 현재는 작동이 안됌. 임시보류 */
-      ${(isClicked) =>
+      /* ${(isClicked) =>
         isClicked &&
         css`
           animation-name: ${slideOut};
           animation-duration: 0.4s;
           animation-timing-function: ease;
-        `}
+        `} */
     `,
 
     DrawerCloseIcon: styled(VscChromeClose)`

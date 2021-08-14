@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import useToggle from "hooks/useToggle";
+// import useToggle from "hooks/useToggle";
+
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import useScrollToggle from "hooks/useScrollToggle";
 
 const Header = () => {
-  const [isClicked, setIsClicked] = useToggle(false);
+  const [isClicked, setIsClicked] = useState<undefined | boolean>(undefined);
   const scrollFlag = useScrollToggle(false);
 
   const checkPageName = () => {
@@ -15,7 +17,10 @@ const Header = () => {
   const isHomePage = checkPageName();
   const color = isHomePage ? "#ffffff" : "#555555";
 
-  const toggleSideDrawer = () => setIsClicked(true);
+  const toggleSideDrawer = () => {
+    console.log("toggle 장바구니", isClicked);
+    setIsClicked(true);
+  };
 
   return scrollFlag ? (
     <></>
@@ -41,9 +46,7 @@ const Header = () => {
           <S.Header.LoginButton color={color} />
         </S.Header.RightBlock>
       </S.Header.HeaderLayer>
-      {isClicked && (
-        <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
-      )}
+      <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
     </S.Header.HeaderLayout>
   );
 };
