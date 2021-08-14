@@ -5,13 +5,14 @@ import {
 } from "react-icons/io";
 import { HiX } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import Button from "@material-ui/core/Button";
 const S = {
   CounterButton: {
     Layout: styled.div`
       display: flex;
       width: 5.5rem;
       height: 2rem;
-      border: 1px solid #dddfe1;
+      border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
       border-radius: 4px;
       div {
         display: flex;
@@ -62,6 +63,24 @@ const S = {
       }
     `,
   },
+  GradientButton: styled(Button)<{
+    disabled?: boolean;
+    width: string;
+  }>`
+    background: ${props =>
+      props.disabled
+        ? props.theme.colors.gray.light
+        : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
+    border-radius: 3px;
+    border: none;
+    color: ${({ theme }) => theme.colors.white};
+    height: 48;
+    width: ${({ width }) => width};
+    box-shadow: 0 3px 5px 2px ${({ theme }) => theme.colors.gray.light};
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: capitalize;
+  `,
 };
 
 export default S;
