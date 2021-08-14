@@ -1,12 +1,18 @@
+import CounterButton from "components/common/Atoms/CounterButton";
 import { useRecoilState } from "recoil";
 import { detailProductCount } from "stores/ProductDetailAtoms";
 import { IProductDetail } from "types/ProductDetailTypes";
 import S from "./ProductDetailStyles";
+import { withRouter, RouteComponentProps } from "react-router";
 
-const ProductInfo = () => {
+interface MatchParams {
+  productId: string;
+}
+
+const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
   const mockProduct: IProductDetail = {
-    id: 1,
+    id: Number(match.params.productId),
     name: "흙당근",
     imageUrl:
       "https://freshleader.co.kr/data/item/1f8_1060_0008/thumb-1f8_1_450x520.jpg",
@@ -85,18 +91,7 @@ const ProductInfo = () => {
             </li>
           </S.ProductInfo.DetailProductInfo>
           <S.ProductInfo.DetailBuyBlock>
-            <S.ProductInfo.DetailCountDiv>
-              <button
-                disabled={productCount <= 1}
-                onClick={() => setProductCount(productCount - 1)}
-              >
-                -
-              </button>
-              <div>{productCount}</div>
-              <button onClick={() => setProductCount(productCount + 1)}>
-                +
-              </button>
-            </S.ProductInfo.DetailCountDiv>
+            <CounterButton state={productCount} setState={setProductCount} />
             <S.ProductInfo.DetailPriceDiv>
               <span>총 상품 금액:</span>
               <S.ProductInfo.DetailTotalPrice>
@@ -116,10 +111,10 @@ const ProductInfo = () => {
           </S.ProductInfo.SellerImageWrapper>
           <S.ProductInfo.SellerInfo>
             <S.ProductInfo.SellerName>
-              크롱에게 문의하기
+              {mockProduct.seller.name}에게 문의하기
             </S.ProductInfo.SellerName>
             <S.ProductInfo.SellerDetail>
-              "신선한 제품을 재배합니다"
+              "{mockProduct.seller.description}"
             </S.ProductInfo.SellerDetail>
           </S.ProductInfo.SellerInfo>
         </S.ProductInfo.SellerBlock>
@@ -134,4 +129,4 @@ const ProductInfo = () => {
   );
 };
 
-export default ProductInfo;
+export default withRouter(ProductInfo);
