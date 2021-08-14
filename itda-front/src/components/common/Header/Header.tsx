@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import useToggle from "hooks/useToggle";
 
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
@@ -18,7 +17,6 @@ const Header = () => {
   const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => {
-    console.log("toggle 장바구니", isClicked);
     setIsClicked(true);
   };
 

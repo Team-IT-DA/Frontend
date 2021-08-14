@@ -11,28 +11,6 @@ import { VscChromeClose } from "react-icons/vsc";
 import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";
 
-const slideIn = css`
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-`;
-
-const slideOut = css`
-  @keyframes slideOut {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
-`;
-
 interface ICloseButton {
   isClicked: undefined | boolean;
 }
@@ -278,14 +256,6 @@ const S = {
         color: #acacac;
         cursor: pointer;
       }
-      /* 장바구니가 옆으로 사라지게 하는 애니메이션인데 현재는 작동이 안됌. 임시보류 */
-      /* ${(isClicked) =>
-        isClicked &&
-        css`
-          animation-name: ${slideOut};
-          animation-duration: 0.4s;
-          animation-timing-function: ease;
-        `} */
     `,
 
     DrawerCloseIcon: styled(VscChromeClose)`
