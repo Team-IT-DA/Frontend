@@ -19,6 +19,7 @@ const ProductInfo = () => {
     origin: "제주",
     packagingType: "냉장/종이포장",
     detailDescription: "###제목<br><p>내용들어가고 어쩌고</p>",
+    notice: "주의하세요",
     seller: {
       id: 1,
       name: "박크롱",
@@ -42,13 +43,13 @@ const ProductInfo = () => {
             {mockProduct.description}
           </S.ProductInfo.DetailShortInfo>
           <S.ProductInfo.DetailPrice>
-            {mockProduct.price}원
+            {mockProduct.price.toLocaleString()}원
           </S.ProductInfo.DetailPrice>
           <S.ProductInfo.DetailProductInfo>
             <li>
               <dl>
                 <dt>판매 단위</dt>
-                <dd>{mockProduct.salesUnit}</dd>
+                <dd>{mockProduct.salesUnit.toLocaleString()}</dd>
               </dl>
               <dl>
                 <dt>중량/용량</dt>
@@ -59,7 +60,7 @@ const ProductInfo = () => {
               <dl>
                 <dt>배송</dt>
                 <dd>
-                  {mockProduct.deliveryFee}원 (
+                  {mockProduct.deliveryFee.toLocaleString()}원 (
                   {mockProduct.deliveryFeeCondition})
                 </dd>
               </dl>
@@ -72,35 +73,34 @@ const ProductInfo = () => {
             </li>
             <li>
               <dl>
-                <dt>포장타입</dt>
+                <dt>포장 타입</dt>
                 <dd>{mockProduct.packagingType}</dd>
               </dl>
             </li>
             <li>
               <dl>
-                <dt>구매 수량</dt>
-                <dd>
-                  <S.ProductInfo.DetailCountDiv>
-                    <button
-                      disabled={productCount <= 1}
-                      onClick={() => setProductCount(productCount - 1)}
-                    >
-                      -
-                    </button>
-                    <div>{productCount}</div>
-                    <button onClick={() => setProductCount(productCount + 1)}>
-                      +
-                    </button>
-                  </S.ProductInfo.DetailCountDiv>
-                </dd>
+                <dt>안내 사항</dt>
+                <dd>{mockProduct.notice}</dd>
               </dl>
             </li>
           </S.ProductInfo.DetailProductInfo>
           <S.ProductInfo.DetailBuyBlock>
+            <S.ProductInfo.DetailCountDiv>
+              <button
+                disabled={productCount <= 1}
+                onClick={() => setProductCount(productCount - 1)}
+              >
+                -
+              </button>
+              <div>{productCount}</div>
+              <button onClick={() => setProductCount(productCount + 1)}>
+                +
+              </button>
+            </S.ProductInfo.DetailCountDiv>
             <S.ProductInfo.DetailPriceDiv>
               <span>총 상품 금액:</span>
               <S.ProductInfo.DetailTotalPrice>
-                {mockProduct.price * productCount}원
+                {(mockProduct.price * productCount).toLocaleString()}원
               </S.ProductInfo.DetailTotalPrice>
             </S.ProductInfo.DetailPriceDiv>
           </S.ProductInfo.DetailBuyBlock>

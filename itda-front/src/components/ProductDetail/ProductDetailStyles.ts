@@ -99,7 +99,7 @@ const S = {
     `,
     DetailBuyBlock: styled.div`
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-end;
       margin: 2.1rem 0 0 0;
       font-size: 0.8rem;
@@ -109,7 +109,7 @@ const S = {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      width: 11.8rem;
+      width: 12.8rem;
     `,
 
     DetailTotalPrice: styled.span`
@@ -322,13 +322,15 @@ const S = {
     `,
     ReviewImageLayer: styled.div`
       display: flex;
-      width: 12rem;
+      width: 30rem;
       height: 8rem;
+
       margin: 1.5rem 0 0.5rem 0;
     `,
     ReviewImage: styled.img`
-      width: 100%;
-      height: 100%;
+      width: 190px;
+      height: 130px;
+      margin-right: 1rem;
     `,
     ReviewContentLayer: styled.div`
       margin-bottom: 1rem;

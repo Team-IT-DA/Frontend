@@ -4,3 +4,8 @@ export interface ICommonInfo {
   imageUrl: string;
   description: string;
 }
+
+export interface ICommonWriterInfo {
+  name: string;
+  imgUrl: string;
+}

@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { IReview } from "types/ProductDetailTypes";
 
 export const isTabStateDetailInfo = atom({
   key: "isTabStateDetailInfo",
@@ -15,7 +16,7 @@ export const isReviewOnlyPhoto = atom({
   default: false,
 });
 
-export const reviews = atom({
+export const reviews = atom<IReview[]>({
   key: "detailPageReviews",
   default: [],
 });
