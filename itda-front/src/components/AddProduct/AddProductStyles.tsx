@@ -7,19 +7,26 @@ const S = {
     justify-content: center;
     margin: 1rem auto;
     width: 1080px;
-    border: 1px solid black;
+    h1 {
+      color: ${({ theme }) => theme.colors.gray.normal};
+      font-family: "Gowun Batang", sans-serif;
+    }
+  `,
+  AddProductTitleFormLayout: styled.div`
+    display: flex;
+    flex-direction: column;
   `,
 
   AddProductFormLayer: styled.div`
     display: flex;
-    margin: 0 auto;
+    justify-content: space-between;
   `,
   AddProductImageBlock: styled.div``,
 
   AddProductImageHolder: styled.div`
     border: 1px solid green;
-    width: 250px;
-    height: 300px;
+    width: 300px;
+    height: 350px;
   `,
   AddProductImg: styled.img`
     width: 100%;
@@ -34,7 +41,7 @@ const S = {
   AddProductGridBox: styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     height: fit-content;
     grid-gap: 2rem;
     div {
@@ -45,9 +52,17 @@ const S = {
       width: 300px;
     }
   `,
+  AddProductSelectBoxHolder: styled.div`
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-between;
+    input {
+      width: 300px;
+    }
+  `,
+
   AddProductSelectBox: styled.div`
     display: flex;
-    margin-top: 1rem;
     gap: 3rem;
   `,
 
