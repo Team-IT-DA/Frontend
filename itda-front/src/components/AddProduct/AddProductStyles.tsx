@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { TextField } from "@material-ui/core";
 
 const S = {
   AddProductLayout: styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 auto;
+    margin: 1rem auto;
     width: 1080px;
     border: 1px solid black;
   `,
@@ -22,13 +21,17 @@ const S = {
     width: 250px;
     height: 300px;
   `,
-
   AddProductImg: styled.img`
     width: 100%;
     height: 100%;
   `,
 
   AddProductFormBlock: styled.div`
+    display: flex;
+    flex-direction: column;
+  `,
+
+  AddProductGridBox: styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -41,6 +44,11 @@ const S = {
     input {
       width: 300px;
     }
+  `,
+  AddProductSelectBox: styled.div`
+    display: flex;
+    margin-top: 1rem;
+    gap: 3rem;
   `,
 
   AddProductEditorLayer: styled.div``,
