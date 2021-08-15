@@ -2,18 +2,17 @@ import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
 type TSideDrawer = {
-  isClicked: boolean;
+  isClicked: undefined | boolean;
   setIsClicked: (value: boolean) => void;
 };
 
 const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
-  console.log(isClicked);
   const handleCloseButtonClick = () => {
     setIsClicked(false);
   };
 
   return (
-    <S.SideDrawer.DrawerLayout>
+    <S.SideDrawer.DrawerLayout isClicked={isClicked}>
       <S.SideDrawer.DrawerHeaderLayer>
         <div>담은 상품 목록</div>
         <S.SideDrawer.DrawerCardCloseButton
