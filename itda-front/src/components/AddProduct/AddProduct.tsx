@@ -11,6 +11,8 @@ import { productPreviewImage, addProductInfos } from "stores/AddProductAtoms";
 import Header from "components/common/Header";
 import S from "./AddProductStyles";
 import GradientButton from "components/common/Atoms/GradientButton";
+import MDEditor from "@uiw/react-md-editor";
+import { useState } from "react";
 
 const AddProduct = () => {
   const [previewImg, setPreviewImg] = useRecoilState(productPreviewImage);
@@ -35,7 +37,8 @@ const AddProduct = () => {
     const { name, value } = e.target;
     setProductInput({ ...productInput, [name]: value });
   };
-
+  const [value, setValue] = useState<any>("");
+  console.log(value);
   return (
     <>
       <Header />
@@ -132,6 +135,7 @@ const AddProduct = () => {
         </S.AddProductFormLayer>
         <S.AddProductEditorLayer>
           <h1>에디터 영역</h1>
+          <MDEditor value={value} onChange={setValue} />
         </S.AddProductEditorLayer>
         <S.AddProductButtonLayer>
           <GradientButton
