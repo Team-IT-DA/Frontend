@@ -129,7 +129,6 @@ const AddProduct = () => {
             </S.AddProductSelectBoxHolder>
           </S.AddProductFormBlock>
         </S.AddProductFormLayer>
-
         <S.AddProductEditorLayer>
           <h1>에디터 영역</h1>
         </S.AddProductEditorLayer>
