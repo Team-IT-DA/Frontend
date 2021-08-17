@@ -67,6 +67,11 @@ const S = {
   `,
 
   AddProductEditorLayer: styled.div``,
+
+  AddProductButtonLayer: styled.div`
+    display: flex;
+    justify-content: flex-end;
+  `,
 };
 
 export default S;

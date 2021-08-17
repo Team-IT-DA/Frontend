@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { productPreviewImage, addProductInfos } from "stores/AddProductAtoms";
 import Header from "components/common/Header";
 import S from "./AddProductStyles";
+import GradientButton from "components/common/Atoms/GradientButton";
 
 const AddProduct = () => {
   const [previewImg, setPreviewImg] = useRecoilState(productPreviewImage);
@@ -132,9 +133,14 @@ const AddProduct = () => {
         <S.AddProductEditorLayer>
           <h1>에디터 영역</h1>
         </S.AddProductEditorLayer>
-        <button onClick={() => alert(JSON.stringify(productInput))}>
-          SUBMIT
-        </button>
+        <S.AddProductButtonLayer>
+          <GradientButton
+            width={"18rem"}
+            onClick={() => alert(JSON.stringify(productInput))}
+          >
+            SUBMIT
+          </GradientButton>
+        </S.AddProductButtonLayer>
       </S.AddProductLayout>
     </>
   );
