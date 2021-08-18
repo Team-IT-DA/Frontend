@@ -11,8 +11,8 @@ import { productPreviewImage, addProductInfos } from "stores/AddProductAtoms";
 import Header from "components/common/Header";
 import S from "./AddProductStyles";
 import GradientButton from "components/common/Atoms/GradientButton";
-import MDEditor from "@uiw/react-md-editor";
-import { useState } from "react";
+import TinyEditor from "components/common/TinyEditor";
+import React from "react";
 
 const AddProduct = () => {
   const [previewImg, setPreviewImg] = useRecoilState(productPreviewImage);
@@ -37,8 +37,14 @@ const AddProduct = () => {
     const { name, value } = e.target;
     setProductInput({ ...productInput, [name]: value });
   };
-  const [value, setValue] = useState<any>("");
-  console.log(value);
+
+  const handleProductSelectChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setProductInput({ ...productInput, [name]: value });
+  };
+
   return (
     <>
       <Header />
@@ -86,10 +92,11 @@ const AddProduct = () => {
                       원산지
                     </InputLabel>
                     <NativeSelect
-                      name="name"
+                      name="origin"
                       inputProps={{
                         id: "name-native-error",
                       }}
+                      onChange={handleProductSelectChange}
                     >
                       <option value="제주도">제주도</option>
                       <option value="대구">대구</option>
@@ -104,10 +111,11 @@ const AddProduct = () => {
                       포장 타입
                     </InputLabel>
                     <NativeSelect
-                      name="name"
+                      name="packagingType"
                       inputProps={{
                         id: "name-native-error",
                       }}
+                      onChange={handleProductSelectChange}
                     >
                       <option value="박스">박스</option>
                       <option value="비닐">비닐</option>
@@ -135,7 +143,7 @@ const AddProduct = () => {
         </S.AddProductFormLayer>
         <S.AddProductEditorLayer>
           <h1>에디터 영역</h1>
-          <MDEditor value={value} onChange={setValue} />
+          <TinyEditor />
         </S.AddProductEditorLayer>
         <S.AddProductButtonLayer>
           <GradientButton
