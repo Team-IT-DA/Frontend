@@ -1,4 +1,4 @@
-import CounterButton from "components/common/Atoms/CounterButton";
+import StepperButton from "components/common/Atoms/StepperButton";
 import { useRecoilState } from "recoil";
 import { detailProductCount } from "stores/ProductDetailAtoms";
 import { IProductDetail } from "types/ProductDetailTypes";
@@ -91,7 +91,7 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
             </li>
           </S.ProductInfo.DetailProductInfo>
           <S.ProductInfo.DetailBuyBlock>
-            <CounterButton state={productCount} setState={setProductCount} />
+            <StepperButton state={productCount} setState={setProductCount} />
             <S.ProductInfo.DetailPriceDiv>
               <span>총 상품 금액:</span>
               <S.ProductInfo.DetailTotalPrice>
