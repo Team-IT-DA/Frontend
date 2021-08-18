@@ -14,6 +14,7 @@ export default function TinyEditor() {
         setValue({ ...value, detailDescription: newValue });
       }}
       init={{
+        height: 500,
         plugins: [
           "advlist autolink lists link image charmap print preview anchor",
           "searchreplace visualblocks code fullscreen",
