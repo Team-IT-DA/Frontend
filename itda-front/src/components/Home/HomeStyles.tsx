@@ -3,10 +3,9 @@ import backgroundImage from "images/home_background.jpg";
 
 const S = {
   Home: {
-    HomeContainer: styled.section`
-      min-height: 90vh;
-      width: 100vw;
-      min-width: 1000px;
+    HomeLayout: styled.div``,
+
+    HomeLayer: styled.div`
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.65),
           rgba(0, 0, 0, 0.503)
@@ -14,17 +13,25 @@ const S = {
         url(${backgroundImage});
       background-size: cover;
       background-position: center;
-      position: fixed;
+    `,
+  },
+
+  Main: {
+    MainLayout: styled.section`
+      min-height: 90vh;
+      width: 100vw;
+      min-width: 1000px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      /* position: fixed; */
     `,
   },
 
   Hero: {
     HeroLayout: styled.div`
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 80%;
       font-family: "Gowun Dodum", serif;
+      margin: 5rem;
 
       & > * {
         margin: 1rem;
@@ -33,14 +40,9 @@ const S = {
     `,
 
     Layer: styled.div`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 50%);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 90%;
       height: 220px;
       padding: 0 2rem;
     `,
