@@ -4,7 +4,7 @@ import GradientButton from "components/common/Atoms/GradientButton";
 const PaymentInfo = () => {
   const subTitles = ["주문금액", "배송비", "합계"];
   const subTitleList = subTitles.map((title, idx) => (
-    <li>
+    <li key={idx}>
       <S.PaymentInfo.SubTitle key={idx}>{title}</S.PaymentInfo.SubTitle>
     </li>
   ));
