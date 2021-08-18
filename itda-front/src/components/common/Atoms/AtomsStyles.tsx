@@ -7,7 +7,7 @@ import { HiX } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Button from "@material-ui/core/Button";
 const S = {
-  CounterButton: {
+  StepperButton: {
     Layout: styled.div`
       display: flex;
       width: 5.5rem;
