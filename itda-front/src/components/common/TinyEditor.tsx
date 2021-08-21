@@ -5,7 +5,6 @@ import { addProductInfos } from "stores/AddProductAtoms";
 export default function TinyEditor() {
   const [value, setValue] = useRecoilState<any>(addProductInfos);
 
-  console.log(value);
   return (
     <Editor
       value={value.detailDescription}

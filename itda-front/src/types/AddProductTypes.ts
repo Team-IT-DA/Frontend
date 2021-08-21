@@ -1,4 +1,5 @@
 export interface IAddProduct {
+  [index: string]: string | number;
   name: string;
   price: number;
   description: string;

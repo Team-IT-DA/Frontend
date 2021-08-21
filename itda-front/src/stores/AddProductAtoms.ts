@@ -18,7 +18,7 @@ export const addProductInfos = atom<IAddProduct>({
     name: "",
     productImage: "",
     description: "",
-    price: 19900,
+    price: 0,
     salesUnit: "",
     weight: "",
     deliveryFee: 0,
@@ -31,4 +31,9 @@ export const addProductInfos = atom<IAddProduct>({
     accountHolder: "",
     account: "",
   },
+});
+
+export const checkBlankInputs = atom({
+  key: "checkBlanckInputs",
+  default: false,
 });

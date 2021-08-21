@@ -7,7 +7,11 @@ import {
 } from "@material-ui/core";
 import { inputNames } from "util/constants";
 import { useRecoilState } from "recoil";
-import { productPreviewImage, addProductInfos } from "stores/AddProductAtoms";
+import {
+  productPreviewImage,
+  addProductInfos,
+  checkBlankInputs,
+} from "stores/AddProductAtoms";
 import Header from "components/common/Header";
 import S from "./AddProductStyles";
 import GradientButton from "components/common/Atoms/GradientButton";
@@ -17,6 +21,7 @@ import React from "react";
 const AddProduct = () => {
   const [previewImg, setPreviewImg] = useRecoilState(productPreviewImage);
   const [productInput, setProductInput] = useRecoilState(addProductInfos);
+  const [hasBlankInput, setBlank] = useRecoilState(checkBlankInputs);
 
   const handlePreviewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -43,6 +48,18 @@ const AddProduct = () => {
   ) => {
     const { name, value } = e.target;
     setProductInput({ ...productInput, [name]: value });
+  };
+
+  const handleSubmitClick = () => {
+    const blankInputs = Object.entries(productInput).filter(
+      (v) => v[1] === "" || v[1] === 0
+    );
+    console.log(blankInputs);
+    blankInputs.length ? setBlank(true) : setBlank(false);
+    const newProduct = {
+      productInput,
+    };
+    // post newProduct
   };
 
   return (
@@ -73,7 +90,20 @@ const AddProduct = () => {
                   <TextField
                     InputLabelProps={{ shrink: true }}
                     id="outlined-textarea"
-                    error={false}
+                    error={
+                      hasBlankInput &&
+                      (productInput[input.name] === "" ||
+                        productInput[input.name] === 0)
+                        ? true
+                        : false
+                    }
+                    helperText={
+                      hasBlankInput &&
+                      (productInput[input.name] === "" ||
+                        productInput[input.name] === 0)
+                        ? "필수 항목입니다!"
+                        : null
+                    }
                     label={input.label}
                     type="text"
                     variant="outlined"
@@ -146,10 +176,7 @@ const AddProduct = () => {
           <TinyEditor />
         </S.AddProductEditorLayer>
         <S.AddProductButtonLayer>
-          <GradientButton
-            width={"18rem"}
-            onClick={() => alert(JSON.stringify(productInput))}
-          >
+          <GradientButton width={"18rem"} onClick={handleSubmitClick}>
             SUBMIT
           </GradientButton>
         </S.AddProductButtonLayer>
