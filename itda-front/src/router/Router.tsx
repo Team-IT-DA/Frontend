@@ -9,6 +9,7 @@ import SignUp from "components/SignUp";
 import ShoppingCart from "components/ShoppingCart";
 import ThankYou from "components/ThankYou";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
+import SignUpCompletePage from "components/SignUp/SignUpCompletePage";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/addProduct" component={AddProduct}></Route>
         <Route path="/cart" component={ShoppingCart}></Route>
         <Route path="/signUp" component={SignUp}></Route>
+        <Route path="/signUpComplete" component={SignUpCompletePage}></Route>
         <Route path="/thankYou" component={ThankYou}></Route>
       </Switch>
     </BrowserRouter>
