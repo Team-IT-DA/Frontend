@@ -32,7 +32,9 @@ const GlobalStyle = createGlobalStyle`
   input {
     outline: none;
   }
-
+  dl{
+    display:flex;
+  }
 `;
 
 export default GlobalStyle;

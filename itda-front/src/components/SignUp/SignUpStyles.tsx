@@ -103,6 +103,59 @@ const S = {
       }
     `,
   },
+  SignUpComplete: {
+    Layout: styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 500px;
+      height: fit-content;
+      margin: 3rem auto;
+    `,
+
+    TitleLayer: styled.div`
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.navy.light};
+      font-size: ${({ theme }) => theme.fontSizes.xxxl};
+    `,
+
+    InfoLayer: styled.div`
+      display: flex;
+      flex-direction: column;
+      dl {
+        padding: 1rem;
+      }
+
+      dt {
+        width: 4rem;
+
+        font-weight: bold;
+        font-size: ${({ theme }) => theme.fontSizes.small};
+      }
+    `,
+
+    ButtonLayer: styled.div`
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      button {
+        width: 14rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: ${({ theme }) => theme.colors.navy.light};
+        color: white;
+        border-radius: 3px;
+      }
+    `,
+
+    LineDivider: styled.div`
+      width: 100%;
+      border-top: 1px solid ${({ theme }) => theme.colors.navy.light};
+    `,
+  },
 };
 
 export default S;
