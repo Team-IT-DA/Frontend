@@ -11,6 +11,7 @@ import PhotoModal from "./PhotoModal";
 import { reviewMock } from "./mocks";
 import { useEffect } from "react";
 import { IReview } from "types/ProductDetailTypes";
+import Pagination from "components/common/Atoms/Pagination";
 
 const ProductReview = () => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
@@ -75,12 +76,12 @@ const ProductReview = () => {
           ))}
         </S.ReviewTab.ReviewListBlock>
         <Pagination
-          reviewsPerPage={reviewsPerPage}
+          itemsPerPage={reviewsPerPage}
           paginate={setPage}
           totalPosts={
             isPhotoReview
-              ? reviewMock.length
-              : reviewMock.filter((mock) => mock.image.length).length
+              ? reviewMock.filter((mock) => mock.image.length).length
+              : reviewMock.length
           }
           currentPage={page}
         />
@@ -128,38 +129,6 @@ const Review = ({ reviewData }: { reviewData: IReview }) => {
       </S.ReviewTab.SingleReviewLayout>
       {toggleState && <PhotoModal handlePhotoClick={handlePhotoClick} />}
     </>
-  );
-};
-
-interface IPagination {
-  reviewsPerPage: number;
-  totalPosts: number;
-  paginate: (num: number) => void;
-  currentPage: number;
-}
-
-const Pagination = ({
-  reviewsPerPage,
-  totalPosts,
-  paginate,
-  currentPage,
-}: IPagination) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / reviewsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  return (
-    <S.ReviewTab.PaginationLayer>
-      {pageNumbers.map((number) => (
-        <S.ReviewTab.PaginationNumber
-          isClicked={number === currentPage}
-          onClick={() => paginate(number)}
-        >
-          {number}
-        </S.ReviewTab.PaginationNumber>
-      ))}
-    </S.ReviewTab.PaginationLayer>
   );
 };
 
