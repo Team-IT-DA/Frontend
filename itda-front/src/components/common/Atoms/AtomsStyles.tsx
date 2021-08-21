@@ -67,7 +67,7 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${props =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.colors.gray.light
         : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
@@ -81,6 +81,25 @@ const S = {
     font-weight: bold;
     text-transform: capitalize;
   `,
+
+  Pagination: {
+    Layer: styled.ul`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+    `,
+
+    Number: styled.li<{ isClicked: boolean }>`
+      margin-right: 0.5rem;
+      color: ${({ theme, isClicked }) =>
+        isClicked ? theme.colors.black : "#e2e2e2"};
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        cursor: pointer;
+      }
+    `,
+  },
 };
 
 export default S;
