@@ -1,4 +1,4 @@
-interface IShoppingCartProduct {
+interface ICartProduct {
   id: number;
   imageUrl: string;
   productName: string;
@@ -6,4 +6,4 @@ interface IShoppingCartProduct {
   count: number;
 }
 
-export type { IShoppingCartProduct };
+export type { ICartProduct };

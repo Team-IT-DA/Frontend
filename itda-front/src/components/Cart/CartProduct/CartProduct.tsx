@@ -1,15 +1,11 @@
-import S from "./ShoppingCartStyles";
-import Header from "components/common/Header";
-import AddressInfo from "./AddressInfo/";
-import PaymentInfo from "./PaymentInfo";
-import ShoppingCartProduct from "./ShoppingCartProduct";
+import S from "../CartStyles";
 import CheckButton from "components/common/Atoms/CheckButton";
-import { selectedProduct, cartProductData } from "stores/ShoppingCartAtoms";
+import { selectedProduct, cartProductData } from "stores/CartAtoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { GETCartData } from "util/mock/GETCartData";
-
-const ShoppingCart = () => {
+import CarProductCard from "./CartProductCard";
+const CartProduct = () => {
   const [isAllSelected, setIsAllSelected] = useState(false);
   const [cartProductState, setCartProductState] = useRecoilState(
     cartProductData
@@ -53,7 +49,7 @@ const ShoppingCart = () => {
 
   const cartProductList = () => {
     return cartProductState.map(product => (
-      <ShoppingCartProduct
+      <CarProductCard
         key={product.id}
         id={product.id}
         imageUrl={product.imageUrl}
@@ -78,40 +74,17 @@ const ShoppingCart = () => {
   }, [selectedProductState]);
 
   return (
-    <>
-      <S.ShoppingCart.HeaderLayout>
-        <Header />
-      </S.ShoppingCart.HeaderLayout>
-
-      <S.ShoppingCart.CartHeaderLayout>
-        장바구니
-      </S.ShoppingCart.CartHeaderLayout>
-      <S.ShoppingCart.MainLayout>
-        <S.ShoppingCart.ContainerLayer>
-          <S.ShoppingCart.ProductsLayer>
-            <S.ShoppingCartProduct.HeaderLayout>
-              <CheckButton
-                checked={isAllSelected}
-                onClick={handleCheckButton}
-              />
-              <S.ShoppingCartProduct.HeaderTextLayer>
-                전체선택 ({selectedProductState.size}개)
-              </S.ShoppingCartProduct.HeaderTextLayer>
-              <S.ShoppingCartProduct.HeaderTextLayer>
-                선택삭제
-              </S.ShoppingCartProduct.HeaderTextLayer>
-            </S.ShoppingCartProduct.HeaderLayout>
-            {cartProductList()}
-          </S.ShoppingCart.ProductsLayer>
-          <S.ShoppingCart.SummaryLayer>
-            <AddressInfo />
-            <S.ShoppingCart.DivisionLine />
-            <PaymentInfo />
-          </S.ShoppingCart.SummaryLayer>
-        </S.ShoppingCart.ContainerLayer>
-      </S.ShoppingCart.MainLayout>
-    </>
+    <S.Cart.ProductsLayer>
+      <S.CartProduct.HeaderLayout>
+        <CheckButton checked={isAllSelected} onClick={handleCheckButton} />
+        <S.CartProduct.HeaderTextLayer>
+          전체선택 ({selectedProductState.size}개)
+        </S.CartProduct.HeaderTextLayer>
+        <S.CartProduct.HeaderTextLayer>선택삭제</S.CartProduct.HeaderTextLayer>
+      </S.CartProduct.HeaderLayout>
+      {cartProductList()}
+    </S.Cart.ProductsLayer>
   );
 };
 
-export default ShoppingCart;
+export default CartProduct;

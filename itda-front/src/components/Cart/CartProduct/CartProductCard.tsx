@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import S from "./ShoppingCartStyles";
+import S from "../CartStyles";
 import CheckButton from "components/common/Atoms/CheckButton";
 import StepperButton from "components/common/Atoms/StepperButton";
 import CancelButton from "components/common/Atoms/CancelButton";
-import { selectedProduct } from "stores/ShoppingCartAtoms";
+import { selectedProduct } from "stores/CartAtoms";
 import { useRecoilState } from "recoil";
-import { IShoppingCartProduct } from "types/ShoppingCartTypes";
+import { ICartProduct } from "types/CartTypes";
 
-const ShoppingCartProduct = ({
+const CartProductCard = ({
   id,
   imageUrl,
   productName,
   price,
   count,
-}: IShoppingCartProduct) => {
+}: ICartProduct) => {
   const [selectedProductState, setSelectedProductState] = useRecoilState(
     selectedProduct
   );
@@ -52,20 +52,20 @@ const ShoppingCartProduct = ({
 
   return (
     <>
-      <S.ShoppingCartProduct.ContentsLayout>
+      <S.CartProduct.ContentsLayout>
         <CheckButton checked={isSelected} onClick={handleCheckButton} />
-        <S.ShoppingCartProduct.Image src={imageUrl} />
-        <S.ShoppingCartProduct.ProductNameLayer>
+        <S.CartProduct.Image src={imageUrl} />
+        <S.CartProduct.ProductNameLayer>
           {productName}
-        </S.ShoppingCartProduct.ProductNameLayer>
+        </S.CartProduct.ProductNameLayer>
         <StepperButton state={productCount} setState={setProductCount} />
-        <S.ShoppingCartProduct.ProductPrice>
+        <S.CartProduct.ProductPrice>
           {(productCount * price).toLocaleString()}
-        </S.ShoppingCartProduct.ProductPrice>
+        </S.CartProduct.ProductPrice>
         <CancelButton />
-      </S.ShoppingCartProduct.ContentsLayout>
+      </S.CartProduct.ContentsLayout>
     </>
   );
 };
 
-export default ShoppingCartProduct;
+export default CartProductCard;

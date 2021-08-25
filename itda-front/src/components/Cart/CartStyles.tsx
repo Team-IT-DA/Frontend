@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { GrDeliver } from "react-icons/gr";
 const S = {
-  ShoppingCart: {
+  Cart: {
     CartHeaderLayout: styled.div`
       display: flex;
       justify-content: center;
@@ -56,7 +56,7 @@ const S = {
       padding-bottom: 2rem;
     `,
   },
-  ShoppingCartProduct: {
+  CartProduct: {
     HeaderLayout: styled.div`
       display: flex;
       align-items: center;

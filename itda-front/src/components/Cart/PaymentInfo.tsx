@@ -1,4 +1,4 @@
-import S from "./ShoppingCartStyles";
+import S from "./CartStyles";
 import GradientButton from "components/common/Atoms/GradientButton";
 
 const PaymentInfo = () => {
