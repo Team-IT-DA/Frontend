@@ -2,7 +2,7 @@ import S from "./CartStyles";
 import Header from "components/common/Header";
 import AddressInfo from "./AddressInfo";
 import PaymentInfo from "./PaymentInfo";
-import CartProduct from "./CartProduct/CartProduct";
+import CartProduct from "./CartProduct/";
 
 const Cart = () => {
   return (
