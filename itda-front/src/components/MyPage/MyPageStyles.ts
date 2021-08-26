@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const S = {
   MyPage: {
+    Layout: styled.div`
+      overflow-x: hidden;
+    `,
+
     HeaderLayout: styled.div`
       width: 100%;
       top: 0;

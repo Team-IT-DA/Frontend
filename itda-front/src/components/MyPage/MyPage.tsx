@@ -6,17 +6,17 @@ import VerticalTabs from "components/MyPage/MyPageTabs";
 const MyPage = () => {
   return (
     <>
-      <S.MyPage.HeaderLayout>
-        <Header />
-      </S.MyPage.HeaderLayout>
-      <S.MyPage.MainLayout>
-        <S.MyPage.SideTabLayout>
-          <VerticalTabs>
-            <MyPageOrderList />
-          </VerticalTabs>
-        </S.MyPage.SideTabLayout>
-        <S.MyPage.ContentLayout></S.MyPage.ContentLayout>
-      </S.MyPage.MainLayout>
+      <S.MyPage.Layout>
+        <S.MyPage.HeaderLayout>
+          <Header />
+        </S.MyPage.HeaderLayout>
+        <S.MyPage.MainLayout>
+          <S.MyPage.SideTabLayout>
+            <VerticalTabs />
+          </S.MyPage.SideTabLayout>
+          <S.MyPage.ContentLayout></S.MyPage.ContentLayout>
+        </S.MyPage.MainLayout>
+      </S.MyPage.Layout>
     </>
   );
 };

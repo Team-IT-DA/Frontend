@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import MyPageOrderList from "components/MyPage/MyPageOrderList";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,14 +53,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabs: {
     width: 250,
     borderRight: `1px solid ${theme.palette.divider}`,
+    color: "#555555",
   },
 }));
 
 export default function VerticalTabs(props: VerticalTabsProps) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  // const { MyPageOrderList } = props.children;
-
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
@@ -80,7 +80,7 @@ export default function VerticalTabs(props: VerticalTabsProps) {
         <Tab label="개인 정보 수정" {...a11yProps(3)}></Tab>
       </Tabs>
       <TabPanel value={value} index={0}>
-        주문 내역
+        <MyPageOrderList />
       </TabPanel>
       <TabPanel value={value} index={1}>
         상품 후기
