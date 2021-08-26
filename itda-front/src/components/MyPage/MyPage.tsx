@@ -1,5 +1,24 @@
+import S from "./MyPageStyles";
+import Header from "components/common/Header";
+import MyPageOrderList from "./MyPageOrderList";
+import VerticalTabs from "components/MyPage/MyPageTabs";
+
 const MyPage = () => {
-	return <div></div>;
+  return (
+    <>
+      <S.MyPage.Layout>
+        <S.MyPage.HeaderLayout>
+          <Header />
+        </S.MyPage.HeaderLayout>
+        <S.MyPage.MainLayout>
+          <S.MyPage.SideTabLayout>
+            <VerticalTabs />
+          </S.MyPage.SideTabLayout>
+          <S.MyPage.ContentLayout></S.MyPage.ContentLayout>
+        </S.MyPage.MainLayout>
+      </S.MyPage.Layout>
+    </>
+  );
 };
 
 export default MyPage;
