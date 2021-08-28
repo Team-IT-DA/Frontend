@@ -10,7 +10,7 @@ export default function TinyEditor() {
       value={value.detailDescription}
       apiKey="0jy0itwdqb4xmmeblh148y5w6bd3j22tjmc7udno3ptkinxk"
       onEditorChange={(newValue, editor) => {
-        setValue({ ...value, newValue });
+        setValue(newValue);
       }}
       init={{
         height: 500,

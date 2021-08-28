@@ -1,7 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { addProductInfos, checkBlankInputs } from "stores/AddProductAtoms";
-import { useRecoilState } from "recoil";
-import { IAddProduct } from "types/AddProductTypes";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IAddProductTextField } from "types/AddProductTypes";
 
 interface InameInput {
   name: string;
@@ -10,8 +10,8 @@ interface InameInput {
 
 const AddProductTextField = (input: InameInput) => {
   const [productInput, setProductInput] =
-    useRecoilState<IAddProduct>(addProductInfos);
-  const [hasBlankInput, setBlank] = useRecoilState(checkBlankInputs);
+    useRecoilState<IAddProductTextField>(addProductInfos);
+  const hasBlankInput = useRecoilValue(checkBlankInputs);
   const handleProductInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const newInput = {
@@ -21,22 +21,24 @@ const AddProductTextField = (input: InameInput) => {
     setProductInput(newInput);
   };
 
+  const isError =
+    hasBlankInput &&
+    (productInput[input.name] === "" || productInput[input.name] === 0)
+      ? true
+      : false;
+
+  const helperText =
+    hasBlankInput &&
+    (productInput[input.name] === "" || productInput[input.name] === 0)
+      ? "필수 항목입니다!"
+      : null;
+
   return (
     <TextField
       InputLabelProps={{ shrink: true }}
       id="outlined-textarea"
-      error={
-        hasBlankInput &&
-        (productInput[input.name] === "" || productInput[input.name] === 0)
-          ? true
-          : false
-      }
-      helperText={
-        hasBlankInput &&
-        (productInput[input.name] === "" || productInput[input.name] === 0)
-          ? "필수 항목입니다!"
-          : null
-      }
+      error={isError}
+      helperText={helperText}
       label={input.label}
       type="text"
       variant="outlined"

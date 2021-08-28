@@ -8,7 +8,7 @@ import {
   checkBlankInputs,
   addProductSelectInput,
 } from "stores/AddProductAtoms";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const AddProductSelectBox = ({
   label,
@@ -22,6 +22,7 @@ const AddProductSelectBox = ({
   const [productSelectInput, setProductSelectInput] = useRecoilState(
     addProductSelectInput
   );
+  const hasBlankInput = useRecoilValue(checkBlankInputs);
 
   const handleProductSelectChange = (
     e: React.ChangeEvent<HTMLSelectElement>
@@ -30,8 +31,10 @@ const AddProductSelectBox = ({
     setProductSelectInput({ ...productSelectInput, [name]: value });
   };
 
+  const isError = hasBlankInput && productSelectInput[name] !== "";
+
   return (
-    <FormControl error={false}>
+    <FormControl error={isError}>
       <InputLabel shrink={true} htmlFor="name-native-error">
         {label}
       </InputLabel>
@@ -46,7 +49,7 @@ const AddProductSelectBox = ({
           <option value={optionName}>{optionName}</option>
         ))}
       </NativeSelect>
-      {/* <FormHelperText>Error</FormHelperText> */}
+      {isError && <FormHelperText>필수 항목입니다!</FormHelperText>}
     </FormControl>
   );
 };

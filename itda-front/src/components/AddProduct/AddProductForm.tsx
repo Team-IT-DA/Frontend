@@ -4,6 +4,7 @@ import TinyEditor from "components/common/TinyEditor";
 import AddProductTextField from "./AddProductTextField";
 import AddProductSelectBox from "./AddProductSelectBox";
 import AddProductImageBlock from "./AddProductImageBlock";
+import AddProductSubmitLayer from "./AddProductSubmitLayer";
 
 const AddProductForm = () => {
   return (
@@ -12,11 +13,11 @@ const AddProductForm = () => {
       <S.AddProductFormLayer>
         <AddProductImageBlock />
         <S.AddProductFormBlock>
-          <S.AddProductGridBox>
+          <S.AddProductTextFieldBox>
             {inputNames.map((input) => (
               <AddProductTextField {...input} />
             ))}
-          </S.AddProductGridBox>
+          </S.AddProductTextFieldBox>
           <S.AddProductSelectBoxHolder>
             <S.AddProductSelectBox>
               <div>
@@ -42,6 +43,7 @@ const AddProductForm = () => {
         <h1>에디터 영역</h1>
         <TinyEditor />
       </S.AddProductEditorLayer>
+      <AddProductSubmitLayer />
     </S.AddProductLayout>
   );
 };

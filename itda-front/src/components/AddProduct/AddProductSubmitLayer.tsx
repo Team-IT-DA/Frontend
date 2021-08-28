@@ -1,27 +1,25 @@
 import S from "./AddProductStyles";
-import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import GradientButton from "components/common/Atoms/GradientButton";
-import {
-  productPreviewImage,
-  addProductInfos,
-  checkBlankInputs,
-} from "stores/AddProductAtoms";
+import { finalAddProductValue, checkBlankInputs } from "stores/AddProductAtoms";
 
 const AddProductSubmitLayer = () => {
   const [hasBlankInput, setBlank] = useRecoilState(checkBlankInputs);
-  const [productInput, setProductInput] = useRecoilState(addProductInfos);
+  const productFinalInput = useRecoilValue(finalAddProductValue);
 
   const handleSubmitClick = () => {
-    const blankInputs = Object.entries(productInput).filter(
+    const blankInputs = Object.entries(productFinalInput).filter(
       (v) => v[1] === "" || v[1] === 0
     );
-    console.log(blankInputs);
+
     blankInputs.length ? setBlank(true) : setBlank(false);
+    console.log(productFinalInput);
     const newProduct = {
-      productInput,
+      productFinalInput,
     };
-    // post newProduct
+
+    /*여기서 hasBlankInput이 false면
+    POST newProduct => axios.post(url, newProduct); */
   };
 
   return (
