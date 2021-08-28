@@ -37,3 +37,16 @@ export const checkBlankInputs = atom({
   key: "checkBlanckInputs",
   default: false,
 });
+
+export const editorValue = atom({
+  key: "editorValue",
+  default: "",
+});
+
+export const addProductSelectInput = atom({
+  key: "addProductSelectInput",
+  default: {
+    origin: "",
+    packagingType: "",
+  },
+});
