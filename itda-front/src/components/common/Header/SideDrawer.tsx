@@ -1,11 +1,12 @@
+import S from "../CommonStyles";
+import StepperButton from "components/common/Atoms/StepperButton";
+import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { detailProductCount } from "stores/ProductDetailAtoms";
 import { cartProductData } from "stores/ShoppingCartAtoms";
+import { IShoppingCartProduct } from "types/ShoppingCartTypes";
 import { GETCartData } from "util/mock/GETCartData";
-import S from "../CommonStyles";
-import StepperButton from "components/common/Atoms/StepperButton";
-import ProductCard from "../ProductCard";
 
 type TSideDrawer = {
   isClicked: undefined | boolean;
@@ -19,9 +20,16 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
     setIsClicked(false);
   };
 
+  const removeItem = (id: number) => {
+    const newProductData = cartProductList.filter(
+      (item: IShoppingCartProduct) => item.id !== id
+    );
+    setCartProductList(newProductData);
+  };
+
   useEffect(() => {
     setCartProductList(MockData);
-  }, []);
+  }, [cartProductList.length === 0]);
 
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
@@ -40,9 +48,11 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
             <SideDrawerItem
               // productSeller={} => 넣을 것인가?
               // productStock={} => 넣을 것인가?
+              productId={item.id}
               productImage={item.imageUrl}
               productName={item.productName}
               productPrice={item.price}
+              removeItem={removeItem}
             />
           );
         })}
@@ -67,15 +77,19 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
 type drawerITemType = {
   // productSeller: string
   // productStock: number /* 재고정보 & 판매자 정보 넣을 것인가? => API GET cart에는 현재 없음*/;
+  productId: number;
   productImage: string;
   productName: string;
   productPrice: number;
+  removeItem: (id: number) => void;
 };
 
 const SideDrawerItem = ({
+  productId,
   productImage,
   productName,
   productPrice,
+  removeItem,
 }: drawerITemType) => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
 
@@ -101,7 +115,9 @@ const SideDrawerItem = ({
         <S.SideDrawer.DrawerCardPrice>
           총 합: 21400원
         </S.SideDrawer.DrawerCardPrice>
-        <S.SideDrawer.DrawerCardDeleteButton>
+        <S.SideDrawer.DrawerCardDeleteButton
+          onClick={() => removeItem(productId)}
+        >
           삭제
         </S.SideDrawer.DrawerCardDeleteButton>
       </S.SideDrawer.DrawerCardBottom>
