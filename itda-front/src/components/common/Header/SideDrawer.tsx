@@ -32,7 +32,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
 
   useEffect(() => {
     setCartProductList(MockData);
-  }, [cartProductList.length === 0]);
+  }, []);
 
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
@@ -46,20 +46,20 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        {cartProductList.map((item) => {
-          return (
-            <SideDrawerItem
-              // productSeller={} => 넣을 것인가?
-              // productStock={} => 넣을 것인가?
-              productId={item.id}
-              productImage={item.imageUrl}
-              productName={item.productName}
-              productPrice={item.price}
-              removeItem={removeItem}
-              updateItemNumber={updateItemNumber}
-            />
-          );
-        })}
+        {cartProductList.length !== 0 &&
+          cartProductList.map((cartItem) => {
+            return (
+              <SideDrawerItem
+                // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
+                productId={cartItem.id}
+                productImage={cartItem.imageUrl}
+                productName={cartItem.productName}
+                productPrice={cartItem.price}
+                removeItem={removeItem}
+                updateItemNumber={updateItemNumber}
+              />
+            );
+          })}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
@@ -80,7 +80,6 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
 // 위에서 map 돌릴 것 같아요
 type drawerITemType = {
   // productSeller: string
-  // productStock: number /* 재고정보 & 판매자 정보 넣을 것인가? => API GET cart에는 현재 없음*/;
   productId: number;
   productImage: string;
   productName: string;
@@ -112,7 +111,6 @@ const SideDrawerItem = ({
         />
         <S.SideDrawer.DrawerCardDescription>
           <div>
-            <div>상품 재고: 56개</div>
             <StepperButton state={productCount} setState={setProductCount} />
             <StepperSubmitButton onClick={updateItemNumber} />
           </div>
