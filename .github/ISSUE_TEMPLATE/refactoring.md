@@ -2,7 +2,7 @@
 name: Refactoring
 about: Refactoring 관련 이슈
 title: "[REFACTOR]"
-labels: ''
+labels: "refactor \U0001F525"
 assignees: ''
 
 ---
