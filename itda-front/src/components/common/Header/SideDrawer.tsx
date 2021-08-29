@@ -1,3 +1,6 @@
+import StepperButton from "components/common/Atoms/StepperButton";
+import { useRecoilState } from "recoil";
+import { detailProductCount } from "stores/ProductDetailAtoms";
 import S from "../CommonStyles";
 import ProductCard from "../ProductCard";
 
@@ -24,10 +27,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
         <SideDrawerItem />
-        <SideDrawerItem />
-        <SideDrawerItem />
-        <SideDrawerItem />
-        <SideDrawerItem />
+        {/* <SideDrawerItem /> */}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
@@ -54,6 +54,8 @@ type drawerITemType = {
 };
 
 const SideDrawerItem = () => {
+  const [productCount, setProductCount] = useRecoilState(detailProductCount);
+
   return (
     <S.SideDrawer.DrawerCardLayout>
       <S.SideDrawer.DrawerCardCountDiv>
@@ -68,7 +70,7 @@ const SideDrawerItem = () => {
         <S.SideDrawer.DrawerCardDescription>
           <div>
             <div>상품 재고: 56개</div>
-            <S.SideDrawer.DrawerCardCountUpDown>
+            {/* <S.SideDrawer.DrawerCardCountUpDown>
               <button>
                 <S.SideDrawer.DrawerCountUpIcon />
               </button>
@@ -76,7 +78,8 @@ const SideDrawerItem = () => {
               <button>
                 <S.SideDrawer.DrawerCountDownIcon />
               </button>
-            </S.SideDrawer.DrawerCardCountUpDown>
+            </S.SideDrawer.DrawerCardCountUpDown> */}
+            <StepperButton state={productCount} setState={setProductCount} />
           </div>
         </S.SideDrawer.DrawerCardDescription>
       </S.SideDrawer.DrawerCardCountDiv>

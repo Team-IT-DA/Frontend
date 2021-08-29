@@ -300,22 +300,22 @@ const S = {
       font-size: 13px;
     `,
 
-    DrawerCardCountUpDown: styled.div`
-      display: grid;
-      width: 35px;
-      height: 50px;
-      grid-template-columns: 1fr;
-      grid-template-rows: 3fr 1fr;
-      margin-top: 10px;
-    `,
+    // DrawerCardCountUpDown: styled.div`
+    //   display: grid;
+    //   width: 35px;
+    //   height: 50px;
+    //   grid-template-columns: 1fr;
+    //   grid-template-rows: 3fr 1fr;
+    //   margin-top: 10px;
+    // `,
 
-    DrawerCountUpIcon: styled(MdKeyboardArrowUp)``,
-    DrawerCountDownIcon: styled(MdKeyboardArrowDown)``,
+    // DrawerCountUpIcon: styled(MdKeyboardArrowUp)``,
+    // DrawerCountDownIcon: styled(MdKeyboardArrowDown)``,
 
-    DrawerCardCount: styled.div`
-      padding: 5px;
-      text-align: center;
-    `,
+    // DrawerCardCount: styled.div`
+    //   padding: 5px;
+    //   text-align: center;
+    // `,
 
     DrawerCardBottom: styled.div`
       display: flex;
