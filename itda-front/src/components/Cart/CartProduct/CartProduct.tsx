@@ -5,6 +5,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { GETCartData } from "util/mock/GETCartData";
 import CarProductCard from "./CartProductCard";
+
 const CartProduct = () => {
   const [isAllSelected, setIsAllSelected] = useState(false);
   const [cartProductState, setCartProductState] = useRecoilState(
@@ -38,10 +39,7 @@ const CartProduct = () => {
         }
       });
       setIsAllSelected(false);
-
-      //전체 선택 눌러서 나머지 아이템 다 선택
     } else {
-      //전체 선택 해제
       setIsAllSelected(false);
       setSelectedProductState(prev => new Map());
     }
@@ -68,19 +66,39 @@ const CartProduct = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedProductState.size === cartProductState.length)
-      setIsAllSelected(true);
-    else setIsAllSelected(false);
+    selectedProductState.size > 0 &&
+    selectedProductState.size === cartProductState.length
+      ? setIsAllSelected(true)
+      : setIsAllSelected(false);
   }, [selectedProductState]);
+
+  const deleteSelectedProduct = () => {
+    //TODO: 장바구니 삭제 POST 적용하면 아래 내용 필요 없음
+    const ids = [...selectedProductState.keys()];
+
+    setCartProductState(prev =>
+      [...prev].filter(data => !ids.includes(data.id))
+    );
+
+    setSelectedProductState(prev => {
+      const newState = new Map(prev);
+      const ids = [...selectedProductState.keys()];
+      ids.forEach(id => newState.delete(id));
+      return newState;
+    });
+  };
 
   return (
     <S.Cart.ProductsLayer>
       <S.CartProduct.HeaderLayout>
         <CheckButton checked={isAllSelected} onClick={handleCheckButton} />
-        <S.CartProduct.HeaderTextLayer>
-          전체선택 ({selectedProductState.size}개)
+        <S.CartProduct.HeaderTextLayer>전체선택</S.CartProduct.HeaderTextLayer>
+        {selectedProductState.size > 0
+          ? `(${selectedProductState.size}개)`
+          : ""}
+        <S.CartProduct.HeaderTextLayer onClick={deleteSelectedProduct}>
+          선택삭제
         </S.CartProduct.HeaderTextLayer>
-        <S.CartProduct.HeaderTextLayer>선택삭제</S.CartProduct.HeaderTextLayer>
       </S.CartProduct.HeaderLayout>
       {cartProductList()}
     </S.Cart.ProductsLayer>
