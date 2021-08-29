@@ -1,7 +1,10 @@
-import StepperButton from "components/common/Atoms/StepperButton";
 import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 import { detailProductCount } from "stores/ProductDetailAtoms";
+import { cartProductData } from "stores/ShoppingCartAtoms";
+import { GETCartData } from "util/mock/GETCartData";
 import S from "../CommonStyles";
+import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
 
 type TSideDrawer = {
@@ -10,9 +13,15 @@ type TSideDrawer = {
 };
 
 const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
+  const MockData = GETCartData.data.detail;
+  const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const handleCloseButtonClick = () => {
     setIsClicked(false);
   };
+
+  useEffect(() => {
+    setCartProductList(MockData);
+  }, []);
 
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
@@ -26,8 +35,17 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        <SideDrawerItem />
-        {/* <SideDrawerItem /> */}
+        {cartProductList.map((item) => {
+          return (
+            <SideDrawerItem
+              // productSeller={} => 넣을 것인가?
+              // productStock={} => 넣을 것인가?
+              productImage={item.imageUrl}
+              productName={item.productName}
+              productPrice={item.price}
+            />
+          );
+        })}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
@@ -47,13 +65,18 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
 // 장바구니 아이템의 props로 받아올 type들
 // 위에서 map 돌릴 것 같아요
 type drawerITemType = {
-  productStock: number;
+  // productSeller: string
+  // productStock: number /* 재고정보 & 판매자 정보 넣을 것인가? => API GET cart에는 현재 없음*/;
   productImage: string;
   productName: string;
   productPrice: number;
 };
 
-const SideDrawerItem = () => {
+const SideDrawerItem = ({
+  productImage,
+  productName,
+  productPrice,
+}: drawerITemType) => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
 
   return (
@@ -61,24 +84,15 @@ const SideDrawerItem = () => {
       <S.SideDrawer.DrawerCardCountDiv>
         <ProductCard
           size="small"
-          productImg="https://t1.daumcdn.net/news/202105/25/catlab/20210525054449077awum.jpg"
-          productName="박크롱의 신선한 당근 2kg신선한 당근 2kg신선한 당근 2kg"
-          productPrice={3000}
-          seller="박크롱"
+          productImg={productImage}
+          productName={productName}
+          productPrice={productPrice}
+          seller="박크롱" //seller 정보 넣을 것인가
           horizontal={true}
         />
         <S.SideDrawer.DrawerCardDescription>
           <div>
             <div>상품 재고: 56개</div>
-            {/* <S.SideDrawer.DrawerCardCountUpDown>
-              <button>
-                <S.SideDrawer.DrawerCountUpIcon />
-              </button>
-              <S.SideDrawer.DrawerCardCount>3</S.SideDrawer.DrawerCardCount>
-              <button>
-                <S.SideDrawer.DrawerCountDownIcon />
-              </button>
-            </S.SideDrawer.DrawerCardCountUpDown> */}
             <StepperButton state={productCount} setState={setProductCount} />
           </div>
         </S.SideDrawer.DrawerCardDescription>
