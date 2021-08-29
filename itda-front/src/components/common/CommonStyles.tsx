@@ -200,7 +200,7 @@ const S = {
       position: fixed;
       top: 0;
       right: 0;
-      z-index: 99;
+      z-index: 99999;
       padding: 1rem;
 
       @keyframes slideIn {
@@ -286,11 +286,11 @@ const S = {
 
     DrawerCardDescription: styled.div`
       margin-left: 10px;
-      padding: 5px;
       & > div {
         display: flex;
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: flex-end;
+        justify-content: space-around;
       }
     `,
 
@@ -298,23 +298,6 @@ const S = {
       display: flex;
       justify-content: space-between;
       font-size: 13px;
-    `,
-
-    DrawerCardCountUpDown: styled.div`
-      display: grid;
-      width: 35px;
-      height: 50px;
-      grid-template-columns: 1fr;
-      grid-template-rows: 3fr 1fr;
-      margin-top: 10px;
-    `,
-
-    DrawerCountUpIcon: styled(MdKeyboardArrowUp)``,
-    DrawerCountDownIcon: styled(MdKeyboardArrowDown)``,
-
-    DrawerCardCount: styled.div`
-      padding: 5px;
-      text-align: center;
     `,
 
     DrawerCardBottom: styled.div`
