@@ -1,5 +1,6 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
+import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
 import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
@@ -27,6 +28,8 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
     setCartProductList(newProductData);
   };
 
+  const updateItemNumber = () => {};
+
   useEffect(() => {
     setCartProductList(MockData);
   }, [cartProductList.length === 0]);
@@ -53,6 +56,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
               productName={item.productName}
               productPrice={item.price}
               removeItem={removeItem}
+              updateItemNumber={updateItemNumber}
             />
           );
         })}
@@ -82,6 +86,7 @@ type drawerITemType = {
   productName: string;
   productPrice: number;
   removeItem: (id: number) => void;
+  updateItemNumber: () => void;
 };
 
 const SideDrawerItem = ({
@@ -90,6 +95,7 @@ const SideDrawerItem = ({
   productName,
   productPrice,
   removeItem,
+  updateItemNumber,
 }: drawerITemType) => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
 
@@ -108,6 +114,7 @@ const SideDrawerItem = ({
           <div>
             <div>상품 재고: 56개</div>
             <StepperButton state={productCount} setState={setProductCount} />
+            <StepperSubmitButton onClick={updateItemNumber} />
           </div>
         </S.SideDrawer.DrawerCardDescription>
       </S.SideDrawer.DrawerCardCountDiv>
