@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { GrDeliver } from "react-icons/gr";
 const S = {
-  ShoppingCart: {
-    Layout: styled.div`
-      overflow-x: hidden;
-    `,
-
+  Cart: {
     CartHeaderLayout: styled.div`
       display: flex;
       justify-content: center;
@@ -60,17 +56,18 @@ const S = {
       padding-bottom: 2rem;
     `,
   },
-  ShoppingCartProduct: {
+  CartProduct: {
     HeaderLayout: styled.div`
       display: flex;
       align-items: center;
       padding: 1rem;
     `,
-    HeaderTextLayer: styled.div`
+    HeaderTextLayer: styled.button`
       display: flex;
       align-items: center;
-      padding-left: 0.5rem;
+      padding: 0.5rem;
       font-weight: bold;
+      background-color: white;
     `,
     ContentsLayout: styled.div`
       display: flex;
@@ -95,7 +92,6 @@ const S = {
       width: 10rem;
       font-weight: bold;
     `,
-    SelectOption: styled.span``,
   },
 
   AddressFormModal: {},

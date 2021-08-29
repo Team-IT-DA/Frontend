@@ -1,4 +1,4 @@
-import S from "../ShoppingCartStyles";
+import S from "../CartStyles";
 const AddressFormModal = () => {
   return <div></div>;
 };
