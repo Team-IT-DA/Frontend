@@ -10,6 +10,7 @@ import Cart from "components/Cart";
 import ThankYou from "components/ThankYou";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import SignUpCompletePage from "components/SignUp/SignUpCompletePage";
+import MyReview from "components/MyPage/MyReview";
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
         <Route path="/signUp" component={SignUp}></Route>
         <Route path="/signUpComplete" component={SignUpCompletePage}></Route>
         <Route path="/thankYou" component={ThankYou}></Route>
+        <Route path="/JennyTest" component={MyReview}></Route>
       </Switch>
     </BrowserRouter>
   );
