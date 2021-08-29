@@ -18,7 +18,7 @@ const PaymentInfo = () => {
       return acc;
     }, 0);
   };
-  console.log(cartProductState);
+
   const totalAmount = calculateTotalAmount();
   return (
     <S.PaymentInfo.Layout>
