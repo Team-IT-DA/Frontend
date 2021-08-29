@@ -1,7 +1,7 @@
 ---
 name: Chore
 about: 세부 사항 변경용 issue
-title: ''
+title: "[CHORE]"
 labels: "chore\U0001F337"
 assignees: ''
 

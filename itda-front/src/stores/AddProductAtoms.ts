@@ -1,5 +1,9 @@
-import { atom } from "recoil";
-import { IAddProduct } from "types/AddProductTypes";
+import { atom, selector } from "recoil";
+import {
+  IAddProduct,
+  IAddProductSelectField,
+  IAddProductTextField,
+} from "types/AddProductTypes";
 
 export const productPreviewImage = atom<{
   file: any;
@@ -12,8 +16,8 @@ export const productPreviewImage = atom<{
   },
 });
 
-export const addProductInfos = atom<IAddProduct>({
-  key: "addProductInputInfos",
+export const addProductInfos = atom<IAddProductTextField>({
+  key: "addProductTextFieldValue",
   default: {
     name: "",
     productImage: "",
@@ -23,9 +27,6 @@ export const addProductInfos = atom<IAddProduct>({
     weight: "",
     deliveryFee: 0,
     deliveryFeeCondition: "",
-    origin: "",
-    packagingType: "",
-    detailDescription: "",
     notice: "",
     bank: "",
     accountHolder: "",
@@ -36,4 +37,32 @@ export const addProductInfos = atom<IAddProduct>({
 export const checkBlankInputs = atom({
   key: "checkBlanckInputs",
   default: false,
+});
+
+export const editorValue = atom({
+  key: "editorValue",
+  default: "",
+});
+
+export const addProductSelectInput = atom<IAddProductSelectField>({
+  key: "addProductSelectInput",
+  default: {
+    origin: "",
+    packagingType: "",
+  },
+});
+
+export const finalAddProductValue = selector({
+  key: "finalAddProductValue",
+  get: ({ get }) => {
+    const addProductTextValue = get(addProductInfos);
+    const addProductEditorValue = get(editorValue);
+    const addProductSelectValue = get(addProductSelectInput);
+
+    return {
+      ...addProductTextValue,
+      detailDescription: addProductEditorValue,
+      ...addProductSelectValue,
+    };
+  },
 });

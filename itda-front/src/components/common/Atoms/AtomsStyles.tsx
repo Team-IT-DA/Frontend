@@ -6,6 +6,7 @@ import {
 import { HiX } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Button from "@material-ui/core/Button";
+import theme from "styles/theme";
 const S = {
   StepperButton: {
     Layout: styled.div`
@@ -67,7 +68,7 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${(props) =>
+    background: ${props =>
       props.disabled
         ? props.theme.colors.gray.light
         : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
@@ -100,6 +101,18 @@ const S = {
       }
     `,
   },
+  StepperSubmitButton: styled.button`
+    width: 3rem;
+    height: 2rem;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid ${({ theme }) => theme.colors.gray.light};
+    color: ${({ theme }) => theme.colors.gray.light};
+    &:hover {
+      border: 1px solid ${({ theme }) => theme.colors.mint.normal};
+      color: ${({ theme }) => theme.colors.mint.normal};
+    }
+  `,
 };
 
 export default S;

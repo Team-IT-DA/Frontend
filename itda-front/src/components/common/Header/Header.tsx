@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import useScrollToggle from "hooks/useScrollToggle";
 
-const Header = () => {
+type THeader = {
+  isSticky?: boolean;
+};
+
+const Header = ({ isSticky = false }: THeader) => {
   const [isClicked, setIsClicked] = useState<undefined | boolean>(undefined);
   const scrollFlag = useScrollToggle(false);
 
@@ -20,8 +23,34 @@ const Header = () => {
     setIsClicked(true);
   };
 
-  return scrollFlag ? (
-    <></>
+  return isSticky ? (
+    scrollFlag ? (
+      <></>
+    ) : (
+      <S.Header.HeaderLayout>
+        <S.Header.HeaderLayer>
+          <S.Header.LeftBlock color={color}>
+            <S.Header.Navigation>
+              <Link to="/">홈</Link>
+            </S.Header.Navigation>
+            <S.Header.Navigation>
+              <Link to="/products">제품 소개</Link>
+            </S.Header.Navigation>
+            <S.Header.Navigation>
+              <Link to="/brandstory">브랜드 이야기</Link>
+            </S.Header.Navigation>
+          </S.Header.LeftBlock>
+          <S.Header.LogoBlock>
+            <S.Header.ItdaLogo color={color} />
+          </S.Header.LogoBlock>
+          <S.Header.RightBlock>
+            <S.Header.CartButton color={color} onClick={toggleSideDrawer} />
+            <S.Header.LoginButton color={color} />
+          </S.Header.RightBlock>
+        </S.Header.HeaderLayer>
+        <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
+      </S.Header.HeaderLayout>
+    )
   ) : (
     <S.Header.HeaderLayout>
       <S.Header.HeaderLayer>
