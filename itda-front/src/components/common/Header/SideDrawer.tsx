@@ -4,8 +4,8 @@ import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { detailProductCount } from "stores/ProductDetailAtoms";
-import { cartProductData } from "stores/ShoppingCartAtoms";
-import { IShoppingCartProduct } from "types/ShoppingCartTypes";
+import { cartProductData } from "stores/CartAtoms";
+import { ICartProduct } from "types/CartTypes";
 import { GETCartData } from "util/mock/GETCartData";
 
 type TSideDrawer = {
@@ -22,7 +22,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
 
   const removeItem = (id: number) => {
     const newProductData = cartProductList.filter(
-      (item: IShoppingCartProduct) => item.id !== id
+      (item: ICartProduct) => item.id !== id
     );
     setCartProductList(newProductData);
   };
