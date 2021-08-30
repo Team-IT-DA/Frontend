@@ -3,10 +3,9 @@ import StepperButton from "components/common/Atoms/StepperButton";
 import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
 import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
-import { detailProductCount } from "stores/ProductDetailAtoms";
+import { useState, useEffect, SetStateAction } from "react";
 import { cartProductData } from "stores/CartAtoms";
-import { ICartProduct } from "types/CartTypes";
+import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
 import { GETCartData } from "util/mock/GETCartData";
 
 type TSideDrawer = {
@@ -17,6 +16,11 @@ type TSideDrawer = {
 const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
   const MockData = GETCartData.data.detail;
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
+  const [cartProductsCount, setCartProductsCount] = useState<
+    ISendingCartProduct[]
+  >([]);
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
+
   const handleCloseButtonClick = () => {
     setIsClicked(false);
   };
@@ -34,6 +38,18 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
     setCartProductList(MockData);
   }, []);
 
+  useEffect(() => {
+    const cartItemCountArray = cartProductList.map(
+      (cartItem: ISendingCartProduct) => {
+        return {
+          id: cartItem.id,
+          count: cartItem.count,
+        };
+      }
+    );
+    setCartProductsCount(cartItemCountArray);
+  }, [cartProductList]);
+
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
       <S.SideDrawer.DrawerHeaderLayer>
@@ -46,7 +62,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        {cartProductList.length !== 0 &&
+        {cartProductsCount.length !== 0 &&
           cartProductList.map((cartItem) => {
             return (
               <SideDrawerItem
@@ -56,14 +72,15 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
                 productName={cartItem.productName}
                 productPrice={cartItem.price}
                 removeItem={removeItem}
-                updateItemNumber={updateItemNumber}
+                cartProductsCount={cartProductsCount}
+                setCartProductsCount={setCartProductsCount}
               />
             );
           })}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
-          합계: 410000원
+          {`합계: ${cartTotalPrice}`}
         </S.SideDrawer.DrawerTotalPrice>
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
@@ -85,7 +102,8 @@ type drawerITemType = {
   productName: string;
   productPrice: number;
   removeItem: (id: number) => void;
-  updateItemNumber: () => void;
+  cartProductsCount: ISendingCartProduct[];
+  setCartProductsCount: React.Dispatch<SetStateAction<ISendingCartProduct[]>>;
 };
 
 const SideDrawerItem = ({
@@ -94,9 +112,25 @@ const SideDrawerItem = ({
   productName,
   productPrice,
   removeItem,
-  updateItemNumber,
+  cartProductsCount,
+  setCartProductsCount,
 }: drawerITemType) => {
-  const [productCount, setProductCount] = useRecoilState(detailProductCount);
+  const [productCount, setProductCount] = useState(
+    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
+  );
+
+  const updateItemNumber = () => {};
+
+  useEffect(() => {
+    const newCount = {
+      id: productId,
+      count: productCount,
+    };
+    const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
+      return cartItem.id === productId ? newCount : cartItem;
+    });
+    setCartProductsCount(updatedCartProductsCount);
+  }, [productCount]);
 
   return (
     <S.SideDrawer.DrawerCardLayout>

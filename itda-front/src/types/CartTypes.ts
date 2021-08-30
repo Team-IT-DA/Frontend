@@ -6,4 +6,9 @@ interface ICartProduct {
   count: number;
 }
 
-export type { ICartProduct };
+interface ISendingCartProduct {
+  id: number;
+  count: number;
+}
+
+export type { ICartProduct, ISendingCartProduct };

@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { ICartProduct } from "types/CartTypes";
+import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
 
 export const selectedProduct = atom({
   key: "selectedProduct",
@@ -8,5 +8,10 @@ export const selectedProduct = atom({
 
 export const cartProductData = atom<ICartProduct[]>({
   key: "cartProductData",
+  default: [],
+});
+
+export const sendingCartProductData = atom<ISendingCartProduct[]>({
+  key: "sendingCartProductData",
   default: [],
 });
