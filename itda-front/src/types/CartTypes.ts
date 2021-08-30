@@ -8,6 +8,7 @@ interface ICartProduct {
 
 interface ISendingCartProduct {
   id: number;
+  price: number;
   count: number;
 }
 

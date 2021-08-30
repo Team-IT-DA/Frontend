@@ -343,7 +343,7 @@ const S = {
       color: #c2c2c2;
     `,
 
-    DrawerMoveToCartBtn: styled(Button)`
+    DrawerMoveToCartButton: styled(Button)`
       width: 100%;
       padding: 15px 0;
       background: ${({ theme }) => theme.colors.navy.light};

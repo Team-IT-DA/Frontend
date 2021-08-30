@@ -1,6 +1,5 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
-import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
 import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
 import { useState, useEffect, SetStateAction } from "react";
@@ -32,7 +31,11 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
     setCartProductList(newProductData);
   };
 
-  const updateItemNumber = () => {};
+  const handleMoveToCartButtonClicked = () => {
+    //cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
+    // todo: POST요청으로 장바구니 데이터 서버에 전달
+    // todo: cart페이지로 이동
+  };
 
   useEffect(() => {
     setCartProductList(MockData);
@@ -43,12 +46,21 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
       (cartItem: ISendingCartProduct) => {
         return {
           id: cartItem.id,
+          price: cartItem.price,
           count: cartItem.count,
         };
       }
     );
     setCartProductsCount(cartItemCountArray);
   }, [cartProductList]);
+
+  useEffect(() => {
+    let total = 0;
+    cartProductsCount.forEach((cartItem) => {
+      total += cartItem.price * cartItem.count;
+    });
+    setCartTotalPrice(total);
+  }, [cartProductsCount]);
 
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
@@ -85,9 +97,11 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
         </S.SideDrawer.DrawerDeliveryFee>
-        <S.SideDrawer.DrawerMoveToCartBtn>
+        <S.SideDrawer.DrawerMoveToCartButton
+          onClick={handleMoveToCartButtonClicked}
+        >
           장바구니로 이동
-        </S.SideDrawer.DrawerMoveToCartBtn>
+        </S.SideDrawer.DrawerMoveToCartButton>
       </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerLayout>
   );
@@ -119,11 +133,10 @@ const SideDrawerItem = ({
     cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
   );
 
-  const updateItemNumber = () => {};
-
   useEffect(() => {
     const newCount = {
       id: productId,
+      price: productPrice,
       count: productCount,
     };
     const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
@@ -146,7 +159,6 @@ const SideDrawerItem = ({
         <S.SideDrawer.DrawerCardDescription>
           <div>
             <StepperButton state={productCount} setState={setProductCount} />
-            <StepperSubmitButton onClick={updateItemNumber} />
           </div>
         </S.SideDrawer.DrawerCardDescription>
       </S.SideDrawer.DrawerCardCountDiv>

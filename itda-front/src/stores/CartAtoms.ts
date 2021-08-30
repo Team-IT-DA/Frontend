@@ -10,8 +10,3 @@ export const cartProductData = atom<ICartProduct[]>({
   key: "cartProductData",
   default: [],
 });
-
-export const sendingCartProductData = atom<ISendingCartProduct[]>({
-  key: "sendingCartProductData",
-  default: [],
-});
