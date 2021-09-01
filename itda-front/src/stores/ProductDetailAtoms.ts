@@ -30,3 +30,8 @@ export const tabUIStickyState = atom({
   key: "detailTabStickyState",
   default: false,
 });
+
+export const detailProductData = atom({
+  key: "detailProductData",
+  default: {},
+});

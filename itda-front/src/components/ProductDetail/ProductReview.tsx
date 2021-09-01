@@ -33,7 +33,7 @@ const ProductReview = () => {
       );
     } else {
       setProductReviews(
-        //포토리뷰이면 포토리뷰만 필터링해서 렌더링
+        //포토리뷰이면 포토리뷰만 필터링해서 렌더링 -> 서버에서 필터링 해줘서 보내준다고 했음
         reviewMock
           .filter((mock) => mock.image.length)
           .slice(
