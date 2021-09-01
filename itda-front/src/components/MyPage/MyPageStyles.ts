@@ -4,6 +4,7 @@ const S = {
   MyPage: {
     Layout: styled.div`
       overflow-x: hidden;
+      height: 100vh;
     `,
 
     HeaderLayout: styled.div`
@@ -23,16 +24,15 @@ const S = {
     SideTabLayout: styled.div``,
 
     ContentLayout: styled.div`
-      border: 1px solid orange;
       width: 100%;
-      /* height: 100vh; */
+      height: 100%;
       padding: 3rem;
     `,
 
     ContentLayer: styled.div`
-      border: 1px solid green;
+      /* position: fixed; */
       min-width: 768px;
-      height: auto;
+      overflow-y: scroll;
     `,
   },
 
@@ -68,7 +68,7 @@ const S = {
     Layout: styled.div`
       width: 100%;
       height: 100%;
-      border: 1px solid black;
+      /* border: 1px solid black; */
     `,
 
     Layer: styled.div`
