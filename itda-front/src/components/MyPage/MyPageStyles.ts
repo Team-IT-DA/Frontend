@@ -14,12 +14,54 @@ const S = {
       display: flex;
       align-items: center;
       justify-content: center;
+      border-bottom: 2px solid #f2f2f2;
     `,
-    MainLayout: styled.div``,
+    MainLayout: styled.div`
+      display: flex;
+    `,
 
     SideTabLayout: styled.div``,
 
-    ContentLayout: styled.div``,
+    ContentLayout: styled.div`
+      border: 1px solid orange;
+      width: 100%;
+      /* height: 100vh; */
+      padding: 3rem;
+    `,
+
+    ContentLayer: styled.div`
+      border: 1px solid green;
+      min-width: 768px;
+      height: auto;
+    `,
+  },
+
+  MyPageTabs: {
+    Layout: styled.div`
+      width: 250px;
+    `,
+
+    Layer: styled.div``,
+  },
+
+  MyPageTab: {
+    Layout: styled.div<{
+      isSelected: boolean;
+    }>`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      cursor: pointer;
+      background-color: ${(props) =>
+        props.isSelected ? `${props.theme.colors.gray.extraLight}` : "ffffff"};
+      border-right: ${(props) =>
+        props.isSelected
+          ? `2px solid ${props.theme.colors.navy.normal}`
+          : "none"};
+      font-weight: ${(props) => (props.isSelected ? "900" : "200")};
+      transition: background-color 0.3s;
+    `,
   },
 
   MyReview: {

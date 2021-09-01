@@ -1,7 +1,7 @@
 import S from "./MyPageStyles";
 import Header from "components/common/Header";
 import MyPageOrderList from "./MyPageOrderList";
-import VerticalTabs from "components/MyPage/MyPageTabs";
+import MyPageTabs from "components/MyPage/MyPageTabs";
 
 const MyPage = () => {
   return (
@@ -12,9 +12,11 @@ const MyPage = () => {
         </S.MyPage.HeaderLayout>
         <S.MyPage.MainLayout>
           <S.MyPage.SideTabLayout>
-            <VerticalTabs />
+            <MyPageTabs />
           </S.MyPage.SideTabLayout>
-          <S.MyPage.ContentLayout></S.MyPage.ContentLayout>
+          <S.MyPage.ContentLayout>
+            <S.MyPage.ContentLayer></S.MyPage.ContentLayer>
+          </S.MyPage.ContentLayout>
         </S.MyPage.MainLayout>
       </S.MyPage.Layout>
     </>
