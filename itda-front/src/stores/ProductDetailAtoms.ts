@@ -35,3 +35,8 @@ export const detailProductData = atom({
   key: "detailProductData",
   default: {},
 });
+
+export const detailProductPrice = atom({
+  key: "productPrice",
+  default: 0,
+});
