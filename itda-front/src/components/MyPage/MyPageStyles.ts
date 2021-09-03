@@ -4,6 +4,7 @@ const S = {
   MyPage: {
     Layout: styled.div`
       overflow-x: hidden;
+      height: 100vh;
     `,
 
     HeaderLayout: styled.div`
@@ -14,19 +15,64 @@ const S = {
       display: flex;
       align-items: center;
       justify-content: center;
+      border-bottom: 2px solid #f2f2f2;
     `,
-    MainLayout: styled.div``,
+    MainLayout: styled.div`
+      display: flex;
+    `,
 
     SideTabLayout: styled.div``,
 
-    ContentLayout: styled.div``,
+    ContentLayout: styled.div`
+      width: 100%;
+      height: 100%;
+      padding: 3rem;
+    `,
+
+    ContentLayer: styled.div`
+      /* position: fixed; */
+      min-width: 768px;
+      overflow-y: scroll;
+    `,
+  },
+
+  MyPageTabs: {
+    Layout: styled.div`
+      width: 250px;
+    `,
+
+    Layer: styled.div``,
+  },
+
+  MyPageTab: {
+    Layout: styled.div<{
+      category: string;
+      currentSelectedTab: string;
+    }>`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      cursor: pointer;
+      background-color: ${(props) =>
+        props.currentSelectedTab === props.category
+          ? `${props.theme.colors.gray.extraLight}`
+          : "ffffff"};
+      border-right: ${(props) =>
+        props.currentSelectedTab === props.category
+          ? `2px solid ${props.theme.colors.navy.normal}`
+          : "none"};
+      font-weight: ${(props) =>
+        props.currentSelectedTab === props.category ? "900" : "200"};
+      transition: background-color 0.3s;
+    `,
   },
 
   MyReview: {
     Layout: styled.div`
       width: 100%;
       height: 100%;
-      border: 1px solid black;
+      /* border: 1px solid black; */
     `,
 
     Layer: styled.div`

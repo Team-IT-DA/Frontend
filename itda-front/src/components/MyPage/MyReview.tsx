@@ -7,7 +7,7 @@ const MyReview = () => {
       리뷰 수만큼 돌릴건데.. 여기도 pagination 필요할 느낌쓰
       아니면 편하게 스크롤도 갠춘 ㅎㅎ ^-^
       */}
-      {Array.from({ length: 2 }).map((review) => (
+      {Array.from({ length: 4 }).map((review) => (
         <S.MyReview.Layer>
           <S.MyReview.ReviewInfoBox>
             <S.MyReview.ReviewProductDiv>
