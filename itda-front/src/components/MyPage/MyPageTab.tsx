@@ -1,20 +1,23 @@
-import { SetStateAction, Dispatch } from "react";
 import S from "./MyPageStyles";
 
 interface IMyPageTabProps {
-  index: number;
   category: string;
-  isSelected: boolean;
-  setIsSelected: Dispatch<SetStateAction<number>>;
+  currentSelectedTab: string;
+  handleTabClick: (tabName: string) => void;
 }
 
-const MyPageTab = (props: IMyPageTabProps) => {
+const MyPageTab = ({
+  category,
+  currentSelectedTab,
+  handleTabClick,
+}: IMyPageTabProps) => {
   return (
     <S.MyPageTab.Layout
-      isSelected={props.isSelected}
-      onClick={() => props.setIsSelected(props.index)}
+      category={category}
+      currentSelectedTab={currentSelectedTab}
+      onClick={() => handleTabClick(category)}
     >
-      {props.category}
+      {category}
     </S.MyPageTab.Layout>
   );
 };

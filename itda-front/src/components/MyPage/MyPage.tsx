@@ -1,3 +1,4 @@
+import { useState } from "react";
 import S from "./MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "components/MyPage/MyPageTabs";
@@ -5,21 +6,31 @@ import MyReview from "components/MyPage/MyReview";
 import MyPageOrderList from "./MyPageOrderList";
 
 const MyPage = () => {
+  const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
+
+  const handleTabClick = (tabName: string) => {
+    setCurrentSelectedTab(tabName);
+  };
+
   return (
     <>
       <S.MyPage.Layout>
         <S.MyPage.HeaderLayout>
-          {/** sticky 헤더 적용안되는 것 같음ㅜ */}
           <Header isSticky={true} />
         </S.MyPage.HeaderLayout>
         <S.MyPage.MainLayout>
           <S.MyPage.SideTabLayout>
-            <MyPageTabs />
+            <MyPageTabs
+              currentSelectedTab={currentSelectedTab}
+              handleTabClick={handleTabClick}
+            />
           </S.MyPage.SideTabLayout>
           <S.MyPage.ContentLayout>
             <S.MyPage.ContentLayer>
-              {/**어떤 컴포넌트가 들어올 지에 따라 다름 */}
-              <MyReview />
+              {currentSelectedTab === "주문 내역" && <MyPageOrderList />}
+              {currentSelectedTab === "상품 후기" && <MyReview />}
+              {currentSelectedTab === "잇다톡"}
+              {currentSelectedTab === "개인 정보 수정"}
             </S.MyPage.ContentLayer>
           </S.MyPage.ContentLayout>
         </S.MyPage.MainLayout>

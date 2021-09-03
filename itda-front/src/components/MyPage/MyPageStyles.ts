@@ -46,7 +46,8 @@ const S = {
 
   MyPageTab: {
     Layout: styled.div<{
-      isSelected: boolean;
+      category: string;
+      currentSelectedTab: string;
     }>`
       display: flex;
       justify-content: center;
@@ -54,12 +55,15 @@ const S = {
       height: 60px;
       cursor: pointer;
       background-color: ${(props) =>
-        props.isSelected ? `${props.theme.colors.gray.extraLight}` : "ffffff"};
+        props.currentSelectedTab === props.category
+          ? `${props.theme.colors.gray.extraLight}`
+          : "ffffff"};
       border-right: ${(props) =>
-        props.isSelected
+        props.currentSelectedTab === props.category
           ? `2px solid ${props.theme.colors.navy.normal}`
           : "none"};
-      font-weight: ${(props) => (props.isSelected ? "900" : "200")};
+      font-weight: ${(props) =>
+        props.currentSelectedTab === props.category ? "900" : "200"};
       transition: background-color 0.3s;
     `,
   },
