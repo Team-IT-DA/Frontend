@@ -1,12 +1,10 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
-import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
 import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
-import { detailProductCount } from "stores/ProductDetailAtoms";
+import { useState, useEffect, SetStateAction } from "react";
 import { cartProductData } from "stores/CartAtoms";
-import { ICartProduct } from "types/CartTypes";
+import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
 import { GETCartData } from "util/mock/GETCartData";
 
 type TSideDrawer = {
@@ -17,6 +15,11 @@ type TSideDrawer = {
 const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
   const MockData = GETCartData.data.detail;
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
+  const [cartProductsCount, setCartProductsCount] = useState<
+    ISendingCartProduct[]
+  >([]);
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
+
   const handleCloseButtonClick = () => {
     setIsClicked(false);
   };
@@ -28,11 +31,36 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
     setCartProductList(newProductData);
   };
 
-  const updateItemNumber = () => {};
+  const handleMoveToCartButtonClicked = () => {
+    //cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
+    // todo: POST요청으로 장바구니 데이터 서버에 전달
+    // todo: cart페이지로 이동
+  };
 
   useEffect(() => {
     setCartProductList(MockData);
   }, []);
+
+  useEffect(() => {
+    const cartItemCountArray = cartProductList.map(
+      (cartItem: ISendingCartProduct) => {
+        return {
+          id: cartItem.id,
+          price: cartItem.price,
+          count: cartItem.count,
+        };
+      }
+    );
+    setCartProductsCount(cartItemCountArray);
+  }, [cartProductList]);
+
+  useEffect(() => {
+    let total = 0;
+    cartProductsCount.forEach((cartItem) => {
+      total += cartItem.price * cartItem.count;
+    });
+    setCartTotalPrice(total);
+  }, [cartProductsCount]);
 
   return (
     <S.SideDrawer.DrawerLayout isClicked={isClicked}>
@@ -46,7 +74,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        {cartProductList.length !== 0 &&
+        {cartProductsCount.length !== 0 &&
           cartProductList.map((cartItem) => {
             return (
               <SideDrawerItem
@@ -56,21 +84,24 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
                 productName={cartItem.productName}
                 productPrice={cartItem.price}
                 removeItem={removeItem}
-                updateItemNumber={updateItemNumber}
+                cartProductsCount={cartProductsCount}
+                setCartProductsCount={setCartProductsCount}
               />
             );
           })}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
-          합계: 410000원
+          {`합계: ${cartTotalPrice}`}
         </S.SideDrawer.DrawerTotalPrice>
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
         </S.SideDrawer.DrawerDeliveryFee>
-        <S.SideDrawer.DrawerMoveToCartBtn>
+        <S.SideDrawer.DrawerMoveToCartButton
+          onClick={handleMoveToCartButtonClicked}
+        >
           장바구니로 이동
-        </S.SideDrawer.DrawerMoveToCartBtn>
+        </S.SideDrawer.DrawerMoveToCartButton>
       </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerLayout>
   );
@@ -85,7 +116,8 @@ type drawerITemType = {
   productName: string;
   productPrice: number;
   removeItem: (id: number) => void;
-  updateItemNumber: () => void;
+  cartProductsCount: ISendingCartProduct[];
+  setCartProductsCount: React.Dispatch<SetStateAction<ISendingCartProduct[]>>;
 };
 
 const SideDrawerItem = ({
@@ -94,9 +126,24 @@ const SideDrawerItem = ({
   productName,
   productPrice,
   removeItem,
-  updateItemNumber,
+  cartProductsCount,
+  setCartProductsCount,
 }: drawerITemType) => {
-  const [productCount, setProductCount] = useRecoilState(detailProductCount);
+  const [productCount, setProductCount] = useState(
+    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
+  );
+
+  useEffect(() => {
+    const newCount = {
+      id: productId,
+      price: productPrice,
+      count: productCount,
+    };
+    const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
+      return cartItem.id === productId ? newCount : cartItem;
+    });
+    setCartProductsCount(updatedCartProductsCount);
+  }, [productCount]);
 
   return (
     <S.SideDrawer.DrawerCardLayout>
@@ -112,7 +159,6 @@ const SideDrawerItem = ({
         <S.SideDrawer.DrawerCardDescription>
           <div>
             <StepperButton state={productCount} setState={setProductCount} />
-            <StepperSubmitButton onClick={updateItemNumber} />
           </div>
         </S.SideDrawer.DrawerCardDescription>
       </S.SideDrawer.DrawerCardCountDiv>

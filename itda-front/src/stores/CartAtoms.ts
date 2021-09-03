@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { ICartProduct } from "types/CartTypes";
+import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
 
 export const selectedProduct = atom({
   key: "selectedProduct",
