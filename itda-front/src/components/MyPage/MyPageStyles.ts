@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const S = {
   MyPage: {
@@ -134,6 +136,85 @@ const S = {
     WrittenDateDiv: styled.span`
       display: flex;
       align-items: center;
+    `,
+  },
+
+  MyInfoBefore: {
+    Layout: styled.div`
+      width: 90%;
+      height: 100%;
+      margin: 0 auto;
+    `,
+
+    HeaderLayer: styled.div`
+      font-size: ${({ theme }) => theme.fontSizes.titleSize};
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    `,
+
+    TitleLayer: styled.div`
+      font-size: ${({ theme }) => theme.fontSizes.small};
+      div {
+        :first-child {
+          font-weight: bold;
+          font-size: ${({ theme }) => theme.fontSizes.xl};
+          margin-bottom: 0.7rem;
+        }
+      }
+      margin-bottom: 2rem;
+    `,
+
+    Divider3px: styled.div`
+      width: 100%;
+      border-top: 3px solid ${({ theme }) => theme.colors.gray.dark};
+      margin: 1rem 0;
+    `,
+
+    Divider1px: styled.div`
+      width: 100%;
+      border-top: 1px solid ${({ theme }) => theme.colors.gray.dark};
+      margin: 1rem 0;
+    `,
+
+    FormLayer: styled.div`
+      width: 65%;
+      margin: 2rem auto;
+    `,
+
+    FormBlock: styled.div`
+      display: flex;
+      margin-bottom: 1.5rem;
+    `,
+
+    FormTitle: styled.div`
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      width: 100px;
+      margin-right: 5rem;
+    `,
+
+    FormInput: styled(TextField)`
+      width: 100%;
+    `,
+
+    ButtonLayer: styled.div`
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    `,
+
+    ButtonOK: styled(Button)`
+      background: ${({ theme }) => theme.colors.navy.light};
+      color: white;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      height: 3.5rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+      width: 40%;
+      margin: 1rem 0;
     `,
   },
 };

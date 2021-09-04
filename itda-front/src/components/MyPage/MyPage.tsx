@@ -4,6 +4,7 @@ import Header from "components/common/Header";
 import MyPageTabs from "components/MyPage/MyPageTabs";
 import MyReview from "components/MyPage/MyReview";
 import MyPageOrderList from "./MyPageOrderList";
+import MyInfoEditBefore from "./MyInfoEditBefore";
 
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
@@ -30,7 +31,7 @@ const MyPage = () => {
               {currentSelectedTab === "주문 내역" && <MyPageOrderList />}
               {currentSelectedTab === "상품 후기" && <MyReview />}
               {currentSelectedTab === "잇다톡"}
-              {currentSelectedTab === "개인 정보 수정"}
+              {currentSelectedTab === "개인 정보 수정" && <MyInfoEditBefore />}
             </S.MyPage.ContentLayer>
           </S.MyPage.ContentLayout>
         </S.MyPage.MainLayout>
