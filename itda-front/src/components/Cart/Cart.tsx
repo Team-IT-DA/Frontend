@@ -6,7 +6,7 @@ import CartProduct from "./CartProduct/";
 import AddressForm from "./AddressForm";
 const Cart = () => {
   return (
-    <>
+    <S.Cart.Layout>
       <S.AddressFormModal.BlackBackground />
       {/* 모달 클릭 여부에 따라 리턴 */}
       <S.Cart.HeaderLayout>
@@ -28,7 +28,7 @@ const Cart = () => {
           </S.Cart.SummaryLayer>
         </S.Cart.ContainerLayer>
       </S.Cart.MainLayout>
-    </>
+    </S.Cart.Layout>
   );
 };
 

@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { GrDeliver } from "react-icons/gr";
 const S = {
   Cart: {
+    Layout: styled.div`
+      overflow-x: hidden;
+    `,
     ModalLayout: styled.div`
       display: flex;
       justify-content: center;
