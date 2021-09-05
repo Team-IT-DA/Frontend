@@ -220,6 +220,7 @@ const S = {
 
   MyInfoAfter: {
     Layout: styled.div`
+      min-width: 1024px;
       width: 90%;
       height: 100%;
       margin: 0 auto;
@@ -230,15 +231,153 @@ const S = {
       font-weight: bold;
       margin-bottom: 1.5rem;
       height: 5rem;
-      border: 1px solid yellow;
     `,
 
-    FormLayer: styled.div``,
+    FormLayer: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    `,
+
+    FormInputsLayer: styled.div`
+      width: 70%;
+      & > div {
+        margin: 1.5rem 0;
+        height: 50px;
+      }
+    `,
+
+    CurrentPasswordBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    CurrentPasswordLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    CurrentPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NewPasswordBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    NewPasswordLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NewPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NewPasswordConfirmBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    NewPasswordConfirmLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NewPasswordConfirmInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NameBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    NameLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NameInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    EmailBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    EmailLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    EmailInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    EmailCheckButton: styled(Button)`
+      color: ${({ theme }) => theme.colors.navy.light};
+      border: 1px solid ${({ theme }) => theme.colors.navy.light};
+      height: 50px;
+      width: 50%;
+    `,
+
+    CellPhoneNumberBlock: styled.div`
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    `,
+
+    CellPhoneNumberLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    CellPhoneNumberInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    CellPhoneNumberCheckButton: styled(Button)`
+      color: ${({ theme }) => theme.colors.navy.light};
+      border: 1px solid ${({ theme }) => theme.colors.navy.light};
+      height: 50px;
+      width: 50%;
+    `,
+
+    FormButtonsLayer: styled.div`
+      height: 100%;
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      & > button {
+        margin: 1rem 0;
+      }
+    `,
 
     ButtonLayer: styled.div`
       display: flex;
       justify-content: center;
-
+      margin-top: 1.5rem;
       & > button {
         margin: 1rem;
       }
