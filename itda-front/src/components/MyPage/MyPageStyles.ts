@@ -217,6 +217,57 @@ const S = {
       margin: 1rem 0;
     `,
   },
+
+  MyInfoAfter: {
+    Layout: styled.div`
+      width: 90%;
+      height: 100%;
+      margin: 0 auto;
+    `,
+
+    HeaderLayer: styled.div`
+      font-size: ${({ theme }) => theme.fontSizes.titleSize};
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      height: 5rem;
+      border: 1px solid yellow;
+    `,
+
+    FormLayer: styled.div``,
+
+    ButtonLayer: styled.div`
+      display: flex;
+      justify-content: center;
+
+      & > button {
+        margin: 1rem;
+      }
+    `,
+
+    ButtonExpireAccount: styled(Button)`
+      background: ${({ theme }) => theme.colors.gray.normal};
+      color: white;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      height: 3.5rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+      width: 20%;
+    `,
+
+    ButtonConfirmEdit: styled(Button)`
+      background: ${({ theme }) => theme.colors.navy.light};
+      color: white;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      height: 3.5rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+      width: 20%;
+    `,
+  },
 };
 
 export default S;
