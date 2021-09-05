@@ -8,9 +8,15 @@ interface IOrder {
   orderId: number;
 }
 
-const OrderList = ({ orderList }: { orderList: IOrder[] }) => {
+const OrderList = ({
+  orderList,
+  width,
+}: {
+  orderList: IOrder[];
+  width: string;
+}) => {
   return (
-    <S.OrderList.Layout>
+    <S.OrderList.Layout width={width}>
       <S.OrderList.TitleLayer>주문 내역</S.OrderList.TitleLayer>
       <S.OrderList.ProductLayer>
         {orderList.map((order) => (

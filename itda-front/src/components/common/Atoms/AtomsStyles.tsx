@@ -140,10 +140,10 @@ const S = {
   `,
 
   OrderList: {
-    Layout: styled.div`
+    Layout: styled.div<{ width: string }>`
       display: flex;
       flex-direction: column;
-      width: 1050px;
+      width: ${({ width }) => width};
       margin: 3rem auto;
     `,
 
