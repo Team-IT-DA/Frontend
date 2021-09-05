@@ -1,6 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+const inputBlockStyle = css`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+`;
 
 const S = {
   MyPage: {
@@ -248,11 +256,7 @@ const S = {
     `,
 
     CurrentPasswordBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     CurrentPasswordLabel: styled.div`
@@ -265,11 +269,7 @@ const S = {
     `,
 
     NewPasswordBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     NewPasswordLabel: styled.div`
@@ -282,11 +282,7 @@ const S = {
     `,
 
     NewPasswordConfirmBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     NewPasswordConfirmLabel: styled.div`
@@ -299,11 +295,7 @@ const S = {
     `,
 
     NameBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     NameLabel: styled.div`
@@ -316,11 +308,7 @@ const S = {
     `,
 
     EmailBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     EmailLabel: styled.div`
@@ -340,11 +328,7 @@ const S = {
     `,
 
     CellPhoneNumberBlock: styled.div`
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+      ${inputBlockStyle}
     `,
 
     CellPhoneNumberLabel: styled.div`
