@@ -1,6 +1,6 @@
 enum ESearchCriteria {
-	PRODUCT = "PRODUCT",
-	SELLER = "SELLER",
+  PRODUCT = "PRODUCT",
+  SELLER = "SELLER",
 }
 
 export { ESearchCriteria };
