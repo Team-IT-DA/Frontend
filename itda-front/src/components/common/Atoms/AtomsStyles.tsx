@@ -138,6 +138,64 @@ const S = {
       color: ${({ theme }) => theme.colors.mint.normal};
     }
   `,
+
+  OrderList: {
+    Layout: styled.div`
+      display: flex;
+      flex-direction: column;
+      width: 1050px;
+      margin: 3rem auto;
+    `,
+
+    TitleLayer: styled.div`
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-weight: bold;
+    `,
+
+    ProductLayer: styled.div`
+      display: flex;
+      flex-direction: column;
+      border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+      width: 100%;
+      padding: 0 1rem;
+      font-weight: bold;
+    `,
+
+    PriceLayer: styled.div`
+      display: flex;
+      justify-content: flex-end;
+      font-weight: bold;
+    `,
+
+    ProductBlock: styled.div`
+      display: flex;
+      margin: 1rem 0;
+    `,
+
+    ProductImage: styled.img`
+      width: 200px;
+      height: 150px;
+      margin-right: 3rem;
+    `,
+
+    ProductInfo: styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem 0;
+      span {
+        display: block;
+      }
+    `,
+
+    ProductName: styled.div`
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.l};
+    `,
+  },
 };
 
 export default S;
