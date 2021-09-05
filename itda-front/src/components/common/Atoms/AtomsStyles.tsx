@@ -68,7 +68,7 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${props =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.colors.gray.light
         : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
@@ -82,6 +82,31 @@ const S = {
     font-weight: bold;
     text-transform: capitalize;
   `,
+
+  ColorButton: {
+    Layer: styled(Button)<{
+      isWhiteButton: boolean;
+      baseColor: string;
+      width: string;
+      height: string;
+    }>`
+      width: ${({ width }) => width};
+      height: ${({ height }) => height};
+      background-color: ${({ isWhiteButton, baseColor }) =>
+        isWhiteButton ? "#fff" : baseColor};
+      color: ${({ isWhiteButton, baseColor }) =>
+        isWhiteButton ? baseColor : "#fff"};
+      border: 1px solid ${({ baseColor }) => baseColor};
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      &:hover {
+        background: ${({ baseColor, isWhiteButton }) =>
+          isWhiteButton ? "#f0f0f0" : baseColor};
+        color: ${({ baseColor, isWhiteButton }) =>
+          isWhiteButton ? baseColor : "#fff"};
+      }
+    `,
+  },
 
   Pagination: {
     Layer: styled.ul`
