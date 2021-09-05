@@ -10,7 +10,7 @@ import MyInfoEditAfter from "./MyInfoEditAfter";
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
   //임시로 만든 로그인 상태
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleTabClick = (tabName: string) => {
     setCurrentSelectedTab(tabName);
