@@ -1,5 +1,6 @@
 import OrderList from "components/common/Atoms/OrderList";
 import Header from "components/common/Header";
+import orders from "util/mock/orderListData";
 import S from "./ThankyouStyles";
 
 const ThankYou = () => {
@@ -9,7 +10,7 @@ const ThankYou = () => {
       <S.ThankyouLayout>
         <h1>마음을 잇는 현명한 소비에 함께해주셔서 감사합니다.</h1>
         <h3>24시간 이내로 무통장입금을 완료하지 않으시면 자동취소 됩니다.</h3>
-        <OrderList />
+        <OrderList orderList={orders} />
         <S.PaymentLayerTitle>결제 내역</S.PaymentLayerTitle>
         <S.PaymentLayer>
           <S.PaymentItemBlock>

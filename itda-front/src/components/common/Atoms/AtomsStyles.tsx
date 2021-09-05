@@ -172,7 +172,10 @@ const S = {
 
     ProductBlock: styled.div`
       display: flex;
-      margin: 1rem 0;
+      :first-child {
+        margin-top: 1rem;
+      }
+      margin-bottom: 1rem;
     `,
 
     ProductImage: styled.img`
