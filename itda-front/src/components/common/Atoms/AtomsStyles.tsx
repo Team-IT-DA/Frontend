@@ -6,7 +6,9 @@ import {
 import { HiX } from "react-icons/hi";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Button from "@material-ui/core/Button";
-import theme from "styles/theme";
+import Radio from "@material-ui/core/Radio";
+import TextField from "@material-ui/core/TextField";
+import NativeSelect from "@material-ui/core/NativeSelect";
 const S = {
   StepperButton: {
     Layout: styled.div`
@@ -27,7 +29,6 @@ const S = {
         justify-content: center;
         align-items: center;
         width: 2rem;
-
         background: none;
         font-weight: bold;
       }
@@ -56,11 +57,14 @@ const S = {
     `,
   },
   CancelButton: {
-    Icon: styled(HiX)`
+    Icon: styled(HiX)<{ hoverEffect?: boolean }>`
       color: ${({ theme }) => theme.colors.gray.light};
       cursor: pointer;
       :hover {
-        color: ${({ theme }) => theme.colors.navy.normal};
+        color: ${props =>
+          props.hoverEffect
+            ? props.theme.colors.navy.normal
+            : props.theme.colors.gray.light};
       }
     `,
   },
@@ -113,6 +117,44 @@ const S = {
       color: ${({ theme }) => theme.colors.mint.normal};
     }
   `,
+  RadioButton: {
+    Layout: styled.div`
+      display: flex;
+      align-items: center;
+    `,
+    Button: styled(Radio)`
+      color: ${({ theme }) => theme.colors.mint.normal};
+      padding: 1px;
+    `,
+    Text: styled.div`
+      font-size: 13px;
+    `,
+  },
+  RadioButtonWithCancel: {
+    Layout: styled.div`
+      display: flex;
+      align-items: center;
+    `,
+    Button: styled(Radio)`
+      color: ${({ theme }) => theme.colors.mint.normal};
+      padding: 1px;
+    `,
+    Text: styled.div`
+      font-size: 13px;
+    `,
+  },
+
+  TextInput: styled(TextField)<{ width: string }>`
+    width: ${({ width }) => width};
+  `,
+  SelectBox: {
+    NativeSelect: styled(NativeSelect)`
+      border: 1px solid ${({ theme }) => theme.colors.gray.light};
+      padding: 3px 10px;
+      border-radius: 4px;
+      background-color: none;
+    `,
+  },
 };
 
 export default S;

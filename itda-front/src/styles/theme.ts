@@ -16,6 +16,9 @@ const colors = {
   skyBlue: {
     normal: "#46CDCF",
   },
+  blue: {
+    extraLight: " #f2f6f8",
+  },
   navy: {
     light: "#3D84A8",
     normal: "#11698E",
