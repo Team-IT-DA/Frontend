@@ -2,12 +2,18 @@ import S from "components/Cart/CartStyles";
 import TextInput from "components/common/Atoms/TextInput";
 import PhoneNumberForm from "components/Cart/AddressForm/NewAddressForm/PhoneNumberForm";
 import AddressSearchForm from "./AddressSearchForm";
+import { useState } from "react";
 const NewAddressForm = () => {
+  const [inputState, setInputState] = useState(""); //임시 상태
   return (
     <>
       <S.AddressFormModal.Layer>
         <S.AddressFormModal.SubTitle>수령인</S.AddressFormModal.SubTitle>
-        <TextInput />
+        <TextInput
+          state={inputState}
+          setState={setInputState}
+          width={"100px"}
+        />
       </S.AddressFormModal.Layer>
       <S.AddressFormModal.Layer>
         <S.AddressFormModal.SubTitle>연락처</S.AddressFormModal.SubTitle>

@@ -1,67 +1,44 @@
 import S from "./AtomsStyles";
-import { useState } from "react";
 
 type TTextInput = {
   label?: string | number;
   variant?: "outlined" | "filled" | "standard";
   size?: "small" | "medium";
-  width?: "small" | "medium" | "large";
+  width?: string;
+  isRequired?: boolean;
+  state: string;
+  setState: (input: string) => void; //textInput이니 string 타입을 상태로 가지게 했습니다.(변경가능)
 };
 
 const TextInput = ({
   label,
-  size = "small",
+  size = "small", //size가 아닌 height로는 높이 조정이 불가능해서 주어진 높이 관련 속성인 size로 정했습니다.
   variant = "outlined",
-  width = "small",
+  width = "100px",
+  isRequired = true,
+  state,
+  setState,
 }: TTextInput) => {
-  const [inputState, setInputState] = useState("");
-  const handleError = () => {
-    return inputState === "" ? true : false; //왜 안되지
+  const handleEmptyInput = () => {
+    //공백일 때 false를 반환합니다.
+    return isRequired && state === "" ? true : false;
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputState(e.target.value);
+    setState(e.target.value);
   };
 
-  const getCustomInput = () => {
-    switch (width) {
-      case "small": {
-        return (
-          <S.TextInput.Small
-            error={handleError()}
-            type="text"
-            label={label}
-            variant={variant}
-            size={size}
-            onChange={handleInputChange}
-          />
-        );
-      }
-      case "medium": {
-        return (
-          <S.TextInput.Medium
-            type="text"
-            label={label}
-            variant={variant}
-            size={size}
-            onChange={handleInputChange}
-          />
-        );
-      }
-      case "large": {
-        return (
-          <S.TextInput.Large
-            type="text"
-            label={label}
-            variant={variant}
-            size={size}
-            onChange={handleInputChange}
-          />
-        );
-      }
-    }
-  };
-
-  return <>{getCustomInput()}</>;
+  return (
+    <S.TextInput
+      error={handleEmptyInput()}
+      type="text"
+      label={label}
+      variant={variant}
+      size={size}
+      onChange={handleInputChange}
+      width={width}
+    />
+  );
 };
 
 export default TextInput;

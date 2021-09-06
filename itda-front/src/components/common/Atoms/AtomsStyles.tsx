@@ -144,17 +144,9 @@ const S = {
     `,
   },
 
-  TextInput: {
-    Small: styled(TextField)`
-      width: 100px;
-    `,
-    Medium: styled(TextField)`
-      width: 200px;
-    `,
-    Large: styled(TextField)`
-      width: 400px;
-    `,
-  },
+  TextInput: styled(TextField)<{ width: string }>`
+    width: ${({ width }) => width};
+  `,
   SelectBox: {
     NativeSelect: styled(NativeSelect)`
       border: 1px solid ${({ theme }) => theme.colors.gray.light};
