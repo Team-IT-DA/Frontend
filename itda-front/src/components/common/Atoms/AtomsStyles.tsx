@@ -61,7 +61,7 @@ const S = {
       color: ${({ theme }) => theme.colors.gray.light};
       cursor: pointer;
       :hover {
-        color: ${props =>
+        color: ${(props) =>
           props.hoverEffect
             ? props.theme.colors.navy.normal
             : props.theme.colors.gray.light};
@@ -72,7 +72,7 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${props =>
+    background: ${(props) =>
       props.disabled
         ? props.theme.colors.gray.light
         : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
@@ -86,6 +86,31 @@ const S = {
     font-weight: bold;
     text-transform: capitalize;
   `,
+
+  ColorButton: {
+    Layer: styled(Button)<{
+      isWhiteButton: boolean;
+      baseColor: string;
+      width: string;
+      height: string;
+    }>`
+      width: ${({ width }) => width};
+      height: ${({ height }) => height};
+      background-color: ${({ isWhiteButton, baseColor }) =>
+        isWhiteButton ? "#fff" : baseColor};
+      color: ${({ isWhiteButton, baseColor }) =>
+        isWhiteButton ? baseColor : "#fff"};
+      border: 1px solid ${({ baseColor }) => baseColor};
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      &:hover {
+        background: ${({ baseColor, isWhiteButton }) =>
+          isWhiteButton ? "#f0f0f0" : baseColor};
+        color: ${({ baseColor, isWhiteButton }) =>
+          isWhiteButton ? baseColor : "#fff"};
+      }
+    `,
+  },
 
   Pagination: {
     Layer: styled.ul`
@@ -153,6 +178,67 @@ const S = {
       padding: 3px 10px;
       border-radius: 4px;
       background-color: none;
+    `,
+  },
+
+  OrderList: {
+    Layout: styled.div<{ width: string }>`
+      display: flex;
+      flex-direction: column;
+      width: ${({ width }) => width};
+      margin: 3rem auto;
+    `,
+
+    TitleLayer: styled.div`
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-weight: bold;
+    `,
+
+    ProductLayer: styled.div`
+      display: flex;
+      flex-direction: column;
+      border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+      width: 100%;
+      padding: 0 1rem;
+      font-weight: bold;
+    `,
+
+    PriceLayer: styled.div`
+      display: flex;
+      justify-content: flex-end;
+      font-weight: bold;
+    `,
+
+    ProductBlock: styled.div`
+      display: flex;
+      :first-child {
+        margin-top: 1rem;
+      }
+      margin-bottom: 1rem;
+    `,
+
+    ProductImage: styled.img`
+      width: 200px;
+      height: 150px;
+      margin-right: 3rem;
+    `,
+
+    ProductInfo: styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem 0;
+      span {
+        display: block;
+      }
+    `,
+
+    ProductName: styled.div`
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.l};
     `,
   },
 };

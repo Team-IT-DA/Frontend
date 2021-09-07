@@ -1,4 +1,6 @@
+import OrderList from "components/common/Atoms/OrderList";
 import Header from "components/common/Header";
+import orders from "util/mock/orderListData";
 import S from "./ThankyouStyles";
 
 const ThankYou = () => {
@@ -8,41 +10,7 @@ const ThankYou = () => {
       <S.ThankyouLayout>
         <h1>마음을 잇는 현명한 소비에 함께해주셔서 감사합니다.</h1>
         <h3>24시간 이내로 무통장입금을 완료하지 않으시면 자동취소 됩니다.</h3>
-        <S.OrderLayerTitle>주문 내역</S.OrderLayerTitle>
-        <S.OrderLayer>
-          <S.OrderItemBlock>
-            <S.OrderItemImg
-              src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg"
-              alt="당근"
-            />
-            <S.OrderItemDescription>
-              <S.OrderItemTitle>김크롱의 유기농 당근 2kg</S.OrderItemTitle>
-              <div>
-                <span>수량: 1</span>
-                <span>20,000원</span>
-              </div>
-            </S.OrderItemDescription>
-          </S.OrderItemBlock>
-          <S.OrderItemBlock>
-            <S.OrderItemImg
-              src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg"
-              alt="당근"
-            />
-            <S.OrderItemDescription>
-              <S.OrderItemTitle>김크롱의 유기농 당근 2kg</S.OrderItemTitle>
-              <div>
-                <span>수량: 1</span>
-                <span>20,000원</span>
-              </div>
-            </S.OrderItemDescription>
-          </S.OrderItemBlock>
-          <S.OrderItemTotalPrice>
-            <dl>
-              <dt>총 주문 금액</dt>
-              <dd>20,000원</dd>
-            </dl>
-          </S.OrderItemTotalPrice>
-        </S.OrderLayer>
+        <OrderList orderList={orders} width="1050px" />
         <S.PaymentLayerTitle>결제 내역</S.PaymentLayerTitle>
         <S.PaymentLayer>
           <S.PaymentItemBlock>

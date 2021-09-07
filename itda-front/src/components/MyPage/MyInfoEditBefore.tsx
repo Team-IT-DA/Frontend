@@ -1,3 +1,5 @@
+import ColorButton from "components/common/Atoms/ColorButton";
+import theme from "styles/theme";
 import S from "./MyPageStyles";
 
 const MyInfoEditBefore = () => {
@@ -28,7 +30,14 @@ const MyInfoEditBefore = () => {
       </S.MyInfoBefore.FormLayer>
       <S.MyInfoBefore.Divider1px />
       <S.MyInfoBefore.ButtonLayer>
-        <S.MyInfoBefore.ButtonOK>확인</S.MyInfoBefore.ButtonOK>
+        <ColorButton
+          isWhiteButton={false}
+          baseColor={theme.colors.navy.normal}
+          width="30%"
+          height="3.5rem"
+        >
+          확인
+        </ColorButton>
       </S.MyInfoBefore.ButtonLayer>
     </S.MyInfoBefore.Layout>
   );
