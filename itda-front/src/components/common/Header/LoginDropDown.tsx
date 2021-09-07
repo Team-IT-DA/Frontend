@@ -20,7 +20,10 @@ type TLoginDropDownMenuProp = {
 const LoginDropDownMenu = ({ name }: TLoginDropDownMenuProp) => {
   return (
     <S.LoginDropDown.DropDownMenuLayout>
-      {name}
+      {name === "마이페이지" && <a href="/myPage">{name}</a>}
+      {name === "로그아웃" && <a href="/login">{name}</a>}
+      {name === "로그인" && <a href="/login">{name}</a>}
+      {name === "회원가입" && <a href="/signUp">{name}</a>}
     </S.LoginDropDown.DropDownMenuLayout>
   );
 };
