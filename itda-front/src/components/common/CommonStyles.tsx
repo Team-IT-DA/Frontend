@@ -97,7 +97,7 @@ const S = {
   },
 
   LoginDropDown: {
-    DropDownLayout: styled.div`
+    DropDownLayout: styled.ul`
       position: absolute;
       top: 100px;
       right: 25px;
@@ -106,7 +106,7 @@ const S = {
       border-radius: 10px;
     `,
 
-    DropDownMenuLayout: styled.div`
+    DropDownMenuLayout: styled.li`
       height: 35px;
       width: 100%;
       display: flex;
