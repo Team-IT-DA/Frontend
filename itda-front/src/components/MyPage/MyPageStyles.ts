@@ -203,19 +203,6 @@ const S = {
       justify-content: center;
       width: 100%;
     `,
-
-    ButtonOK: styled(Button)`
-      background: ${({ theme }) => theme.colors.navy.light};
-      color: white;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-      height: 3.5rem;
-      &:hover {
-        background: ${({ theme }) => theme.colors.navy.normal};
-      }
-      width: 40%;
-      margin: 1rem 0;
-    `,
   },
 };
 
