@@ -26,6 +26,7 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      position: relative;
       display: flex;
       min-width: 1200px;
       width: 80%;
@@ -91,6 +92,30 @@ const S = {
       width: auto;
       & path {
         stroke: ${({ color }) => color};
+      }
+    `,
+  },
+
+  LoginDropDown: {
+    DropDownLayout: styled.div`
+      position: absolute;
+      top: 100px;
+      right: 25px;
+      background-color: ${({ theme }) => theme.colors.white};
+      width: 130px;
+      border-radius: 10px;
+    `,
+
+    DropDownMenuLayout: styled.div`
+      height: 35px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: pointer;
+      :not(:last-child) {
+        border-bottom: 1px solid ${({ theme }) => theme.colors.gray.x_light};
       }
     `,
   },
