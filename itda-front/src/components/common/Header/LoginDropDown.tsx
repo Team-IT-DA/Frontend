@@ -1,14 +1,22 @@
+import { MutableRefObject } from "react";
 import S from "../CommonStyles";
 
-const LoginDropDown = () => {
+type TLoginDropDownProp = {
+  ref?: MutableRefObject<null> | undefined;
+  className: string;
+};
+
+const LoginDropDown = ({ ref, className }: TLoginDropDownProp) => {
   const loggedInMenu = ["마이페이지", "로그아웃"];
   const loggedOutMenu = ["로그인", "회원가입"];
 
   return (
-    <S.LoginDropDown.DropDownLayout>
-      {loggedInMenu.map((menuName: string) => (
-        <LoginDropDownMenu name={menuName} />
-      ))}
+    <S.LoginDropDown.DropDownLayout ref={ref}>
+      <S.LoginDropDown.DropDownLayer className={className}>
+        {loggedInMenu.map((menuName: string) => (
+          <LoginDropDownMenu name={menuName} />
+        ))}
+      </S.LoginDropDown.DropDownLayer>
     </S.LoginDropDown.DropDownLayout>
   );
 };

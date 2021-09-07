@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
@@ -10,6 +10,7 @@ type THeader = {
 };
 
 const Header = ({ isSticky = false }: THeader) => {
+  const dropDownRef = useRef(null);
   const [isSideDrawerClicked, setIsSideDrawerClicked] = useState<
     undefined | boolean
   >(undefined);
@@ -31,6 +32,27 @@ const Header = ({ isSticky = false }: THeader) => {
     console.log("clicked!!");
     setIsDropDownActive(!isDropDownActive);
   };
+
+  useEffect(() => {
+    const pageClickEvent = (e: MouseEvent) => {
+      console.log("eventtarget", e.target);
+      console.log("dropDownRef.current", dropDownRef.current);
+      if (
+        dropDownRef.current !== null //왜 자꾸 null이 나올까? null이 아니라 DOM 요소가 나와야 비교를 하는데 null이 자꾸 뜸.
+        // && dropDownRef.current.contains(e.target)
+      ) {
+        setIsDropDownActive(!isDropDownActive);
+      }
+    };
+
+    if (isDropDownActive) {
+      window.addEventListener("click", pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  }, [isDropDownActive]);
 
   return isSticky ? (
     scrollFlag ? (
@@ -59,7 +81,10 @@ const Header = ({ isSticky = false }: THeader) => {
               onClick={handleLoginButtonClick}
             />
           </S.Header.RightBlock>
-          <LoginDropDown />
+          <LoginDropDown
+            ref={dropDownRef}
+            className={`dropdown ${isDropDownActive ? "active" : "inactive"}`}
+          />
         </S.Header.HeaderLayer>
         <SideDrawer
           isSideDrawerClicked={isSideDrawerClicked}
@@ -91,7 +116,10 @@ const Header = ({ isSticky = false }: THeader) => {
             onClick={handleLoginButtonClick}
           />
         </S.Header.RightBlock>
-        <LoginDropDown />
+        <LoginDropDown
+          ref={dropDownRef}
+          className={`dropdown ${isDropDownActive ? "active" : "inactive"}`}
+        />
       </S.Header.HeaderLayer>
       <SideDrawer
         isSideDrawerClicked={isSideDrawerClicked}
