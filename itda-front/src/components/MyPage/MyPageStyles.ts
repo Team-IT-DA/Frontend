@@ -182,8 +182,9 @@ const S = {
     `,
 
     FormBlock: styled.div`
+      width: 60%;
       display: flex;
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem;
     `,
 
     FormTitle: styled.div`

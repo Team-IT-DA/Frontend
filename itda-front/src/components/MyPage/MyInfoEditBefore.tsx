@@ -1,8 +1,11 @@
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 import S from "./MyPageStyles";
+import TextInput from "components/common/Atoms/TextInput";
+import { useState } from "react";
 
 const MyInfoEditBefore = () => {
+  const [testState, setTestState] = useState("");
   return (
     <S.MyInfoBefore.Layout>
       <S.MyInfoBefore.HeaderLayer>개인정보 수정</S.MyInfoBefore.HeaderLayer>
@@ -17,14 +20,20 @@ const MyInfoEditBefore = () => {
       <S.MyInfoBefore.FormLayer>
         <S.MyInfoBefore.FormBlock>
           <S.MyInfoBefore.FormTitle>아이디</S.MyInfoBefore.FormTitle>
-          <S.MyInfoBefore.FormInput id="outlined-basic" variant="outlined" />
+          <TextInput
+            width={"100%"}
+            size="medium"
+            state={testState}
+            setState={setTestState}
+          />
         </S.MyInfoBefore.FormBlock>
         <S.MyInfoBefore.FormBlock>
           <S.MyInfoBefore.FormTitle>비밀번호</S.MyInfoBefore.FormTitle>
-          <S.MyInfoBefore.FormInput
-            id="outlined-password-input"
-            type="password"
-            variant="outlined"
+          <TextInput
+            width={"100%"}
+            size="medium"
+            state={testState}
+            setState={setTestState}
           />
         </S.MyInfoBefore.FormBlock>
       </S.MyInfoBefore.FormLayer>
