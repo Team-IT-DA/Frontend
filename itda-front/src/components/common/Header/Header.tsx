@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
@@ -9,8 +9,12 @@ type THeader = {
   isSticky?: boolean;
 };
 
+interface MutableRefObject<T> {
+  current: T;
+}
+
 const Header = ({ isSticky = false }: THeader) => {
-  const dropDownRef = useRef(null);
+  const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
   const [isSideDrawerClicked, setIsSideDrawerClicked] = useState<
     undefined | boolean
   >(undefined);
@@ -32,6 +36,10 @@ const Header = ({ isSticky = false }: THeader) => {
     console.log("clicked!!");
     setIsDropDownActive(!isDropDownActive);
   };
+
+  useEffect(() => {
+    console.log(dropDownRef.current);
+  }, [dropDownRef]);
 
   useEffect(() => {
     const pageClickEvent = (e: MouseEvent) => {
