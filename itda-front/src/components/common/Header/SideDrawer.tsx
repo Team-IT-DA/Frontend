@@ -8,11 +8,14 @@ import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
 import { GETCartData } from "util/mock/GETCartData";
 
 type TSideDrawer = {
-  isClicked: undefined | boolean;
-  setIsClicked: (value: boolean) => void;
+  isSideDrawerClicked: undefined | boolean;
+  setIsSideDrawerClicked: (value: boolean) => void;
 };
 
-const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
+const SideDrawer = ({
+  isSideDrawerClicked,
+  setIsSideDrawerClicked,
+}: TSideDrawer) => {
   const MockData = GETCartData.data.detail;
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
@@ -21,7 +24,7 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
   const handleCloseButtonClick = () => {
-    setIsClicked(false);
+    setIsSideDrawerClicked(false);
   };
 
   const removeItem = (id: number) => {
@@ -63,11 +66,11 @@ const SideDrawer = ({ isClicked, setIsClicked }: TSideDrawer) => {
   }, [cartProductsCount]);
 
   return (
-    <S.SideDrawer.DrawerLayout isClicked={isClicked}>
+    <S.SideDrawer.DrawerLayout isClicked={isSideDrawerClicked}>
       <S.SideDrawer.DrawerHeaderLayer>
         <div>담은 상품 목록</div>
         <S.SideDrawer.DrawerCardCloseButton
-          isClicked={isClicked}
+          isClicked={isSideDrawerClicked}
           onClick={handleCloseButtonClick}
         >
           <S.SideDrawer.DrawerCloseIcon />

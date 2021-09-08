@@ -26,6 +26,7 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      position: relative;
       display: flex;
       min-width: 1200px;
       width: 80%;
@@ -89,8 +90,48 @@ const S = {
     LoginButton: styled(loginIcon)`
       height: 40px;
       width: auto;
+      border-radius: 20px;
       & path {
         stroke: ${({ color }) => color};
+      }
+
+      :hover {
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.1s ease;
+      }
+    `,
+  },
+
+  LoginDropDown: {
+    DropDownLayout: styled.div<{ ref: any }>``,
+
+    DropDownLayer: styled.ul`
+      position: absolute;
+      top: 85px;
+      right: 25px;
+      background-color: ${({ theme }) => theme.colors.white};
+      width: 130px;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      opacity: ${(props) => (props.className === "dropdown active" ? 1 : 0)};
+      visibility: ${(props) =>
+        props.className === "dropdown active" ? "visible" : "hidden"}; ;
+    `,
+
+    DropDownMenuLayout: styled.li`
+      height: 35px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: pointer;
+      :not(:last-child) {
+        border-bottom: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+      }
+      :hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        transition: color 0.2s;
       }
     `,
   },

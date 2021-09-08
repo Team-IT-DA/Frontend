@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
+import LoginDropDown from "./LoginDropDown";
 import useScrollToggle from "hooks/useScrollToggle";
 
 type THeader = {
   isSticky?: boolean;
 };
 
+interface MutableRefObject<T> {
+  current: T;
+}
+
 const Header = ({ isSticky = false }: THeader) => {
-  const [isClicked, setIsClicked] = useState<undefined | boolean>(undefined);
+  const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
+  const [isSideDrawerClicked, setIsSideDrawerClicked] = useState<
+    undefined | boolean
+  >(undefined);
+  const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
   const scrollFlag = useScrollToggle(false);
 
   const checkPageName = () => {
@@ -20,8 +29,32 @@ const Header = ({ isSticky = false }: THeader) => {
   const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => {
-    setIsClicked(true);
+    setIsSideDrawerClicked(true);
   };
+
+  const handleLoginButtonClick = () => {
+    setIsDropDownActive(!isDropDownActive);
+  };
+
+  useEffect(() => {
+    console.log(dropDownRef.current);
+  }, [dropDownRef]);
+
+  useEffect(() => {
+    const pageClickEvent = (e: MouseEvent) => {
+      if (dropDownRef.current !== null) {
+        setIsDropDownActive(!isDropDownActive);
+      }
+    };
+
+    if (isDropDownActive) {
+      window.addEventListener("click", pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  }, [isDropDownActive]);
 
   return isSticky ? (
     scrollFlag ? (
@@ -45,10 +78,20 @@ const Header = ({ isSticky = false }: THeader) => {
           </S.Header.LogoBlock>
           <S.Header.RightBlock>
             <S.Header.CartButton color={color} onClick={toggleSideDrawer} />
-            <S.Header.LoginButton color={color} />
+            <S.Header.LoginButton
+              color={color}
+              onClick={handleLoginButtonClick}
+            />
           </S.Header.RightBlock>
+          <LoginDropDown
+            ref={dropDownRef}
+            className={`dropdown ${isDropDownActive ? "active" : "inactive"}`}
+          />
         </S.Header.HeaderLayer>
-        <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
+        <SideDrawer
+          isSideDrawerClicked={isSideDrawerClicked}
+          setIsSideDrawerClicked={setIsSideDrawerClicked}
+        />
       </S.Header.HeaderLayout>
     )
   ) : (
@@ -70,10 +113,20 @@ const Header = ({ isSticky = false }: THeader) => {
         </S.Header.LogoBlock>
         <S.Header.RightBlock>
           <S.Header.CartButton color={color} onClick={toggleSideDrawer} />
-          <S.Header.LoginButton color={color} />
+          <S.Header.LoginButton
+            color={color}
+            onClick={handleLoginButtonClick}
+          />
         </S.Header.RightBlock>
+        <LoginDropDown
+          ref={dropDownRef}
+          className={`dropdown ${isDropDownActive ? "active" : "inactive"}`}
+        />
       </S.Header.HeaderLayer>
-      <SideDrawer isClicked={isClicked} setIsClicked={setIsClicked} />
+      <SideDrawer
+        isSideDrawerClicked={isSideDrawerClicked}
+        setIsSideDrawerClicked={setIsSideDrawerClicked}
+      />
     </S.Header.HeaderLayout>
   );
 };
