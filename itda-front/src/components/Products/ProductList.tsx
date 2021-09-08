@@ -5,7 +5,7 @@ import productPage from "util/mock/productData";
 const ProductList = () => {
   const { products } = productPage.data;
   const productList = products.map(
-    ({ id, imageUrl, productName, sellerName, price }) => (
+    ({ id, imageUrl, productName, sellerName, price, description }) => (
       <S.ProductList.Block>
         <ProductCard
           key={id}
@@ -15,6 +15,7 @@ const ProductList = () => {
           productName={productName}
           productPrice={price}
           seller={sellerName}
+          description={description}
         />
       </S.ProductList.Block>
     )

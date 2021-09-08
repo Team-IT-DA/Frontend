@@ -8,6 +8,7 @@ type TProductCardPropType = {
   productName: string;
   productPrice: number;
   seller: string;
+  description?: string;
 };
 
 type TcardSizeType = {
@@ -27,6 +28,7 @@ const ProductCard = ({
   productName,
   productPrice,
   seller,
+  description = "",
 }: TProductCardPropType) => {
   return (
     <>
@@ -47,6 +49,7 @@ const ProductCard = ({
           productName={productName}
           productPrice={productPrice}
           seller={seller}
+          description={description}
         />
       )}
     </>
@@ -60,6 +63,7 @@ const VerticalCard = ({
   productName,
   productPrice,
   seller,
+  description,
 }: TProductCardPropType) => {
   const { imageSrc, imageRef } = useLazyLoad(productImg);
 
@@ -80,7 +84,6 @@ const VerticalCard = ({
           src={imageSrc}
           horizontal={horizontal}
         />
-        <S.ProductCard.ProductCartIcon />
       </S.ProductCard.ProductImageHolderLayer>
       <S.ProductCard.ProductDescriptionLayer>
         <S.ProductCard.ProductTitle
@@ -90,7 +93,12 @@ const VerticalCard = ({
           <span>{`[${seller}]`}</span>
           <span>{productName}</span>
         </S.ProductCard.ProductTitle>
-        <S.ProductCard.ProductPrice>{`${productPrice.toLocaleString()}원`}</S.ProductCard.ProductPrice>
+        <S.ProductCard.ProductDescription>
+          {description}
+        </S.ProductCard.ProductDescription>
+        <S.ProductCard.ProductPrice
+          horizontal={horizontal}
+        >{`${productPrice.toLocaleString()}원`}</S.ProductCard.ProductPrice>
       </S.ProductCard.ProductDescriptionLayer>
     </S.ProductCard.CardLayout>
   );
@@ -129,7 +137,9 @@ const HorizontalCard = ({
         >
           [{seller}] {productName}
         </S.ProductCard.ProductTitle>
-        <S.ProductCard.ProductPrice>{`${productPrice.toLocaleString()}원`}</S.ProductCard.ProductPrice>
+        <S.ProductCard.ProductPrice
+          horizontal={horizontal}
+        >{`${productPrice.toLocaleString()}원`}</S.ProductCard.ProductPrice>
       </S.ProductCard.ProductDescriptionLayer>
     </S.ProductCard.CardLayout>
   );

@@ -8,6 +8,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 2,
@@ -16,6 +17,7 @@ const productPage = {
         productName: "엽떡 짝꿍",
         sellerName: "이크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 3,
@@ -24,6 +26,7 @@ const productPage = {
         productName: "엽떡 짝꿍",
         sellerName: "김크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 4,
@@ -32,6 +35,7 @@ const productPage = {
         productName: "엽떡 짝꿍",
         sellerName: "최크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 5,
@@ -39,6 +43,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 6,
@@ -46,6 +51,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 7,
@@ -53,6 +59,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
 
       {
@@ -61,6 +68,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 9,
@@ -68,6 +76,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 10,
@@ -75,6 +84,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 11,
@@ -82,6 +92,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 12,
@@ -89,6 +100,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 13,
@@ -96,6 +108,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 14,
@@ -103,6 +116,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 15,
@@ -110,6 +124,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 16,
@@ -117,6 +132,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 17,
@@ -124,6 +140,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 18,
@@ -131,6 +148,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 19,
@@ -138,6 +156,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
       {
         id: 20,
@@ -145,6 +164,7 @@ const productPage = {
         productName: "맛있는 엽떡",
         sellerName: "박크롱",
         price: 50000,
+        description: "직접 끓인 특제 소스와 쫄깃한 떡",
       },
     ],
   },
