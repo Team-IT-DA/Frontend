@@ -103,11 +103,11 @@ const S = {
   },
 
   LoginDropDown: {
-    DropDownLayout: styled.div``,
+    DropDownLayout: styled.div<{ ref: any }>``,
 
     DropDownLayer: styled.ul`
       position: absolute;
-      top: 100px;
+      top: 85px;
       right: 25px;
       background-color: ${({ theme }) => theme.colors.white};
       width: 130px;

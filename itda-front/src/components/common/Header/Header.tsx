@@ -33,7 +33,6 @@ const Header = ({ isSticky = false }: THeader) => {
   };
 
   const handleLoginButtonClick = () => {
-    console.log("clicked!!");
     setIsDropDownActive(!isDropDownActive);
   };
 
@@ -43,12 +42,7 @@ const Header = ({ isSticky = false }: THeader) => {
 
   useEffect(() => {
     const pageClickEvent = (e: MouseEvent) => {
-      console.log("eventtarget", e.target);
-      console.log("dropDownRef.current", dropDownRef.current);
-      if (
-        dropDownRef.current !== null //왜 자꾸 null이 나올까? null이 아니라 DOM 요소가 나와야 비교를 하는데 null이 자꾸 뜸.
-        // && dropDownRef.current.contains(e.target)
-      ) {
+      if (dropDownRef.current !== null) {
         setIsDropDownActive(!isDropDownActive);
       }
     };

@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import React, { MutableRefObject } from "react";
 import { useRecoilState } from "recoil";
 import { isLoggedIn } from "stores/LoginAtoms";
 import S from "../CommonStyles";
@@ -9,26 +9,27 @@ type TLoginDropDownProp = {
   className: string;
 };
 
-const LoginDropDown = ({ ref, className }: TLoginDropDownProp) => {
-  const loggedInByUser = useRecoilState(isLoggedIn);
-  console.log(loggedInByUser);
-  const loggedInMenu = ["마이페이지", "로그아웃"];
-  const loggedOutMenu = ["로그인", "회원가입"];
+const LoginDropDown = React.forwardRef(
+  ({ className }: TLoginDropDownProp, ref) => {
+    const loggedInByUser = useRecoilState(isLoggedIn);
+    const loggedInMenu = ["마이페이지", "로그아웃"];
+    const loggedOutMenu = ["로그인", "회원가입"];
 
-  return (
-    <S.LoginDropDown.DropDownLayout ref={ref}>
-      <S.LoginDropDown.DropDownLayer className={className}>
-        {loggedInByUser[0]
-          ? loggedInMenu.map((menuName: string) => (
-              <LoginDropDownMenu name={menuName} />
-            ))
-          : loggedOutMenu.map((menuName: string) => (
-              <LoginDropDownMenu name={menuName} />
-            ))}
-      </S.LoginDropDown.DropDownLayer>
-    </S.LoginDropDown.DropDownLayout>
-  );
-};
+    return (
+      <S.LoginDropDown.DropDownLayout ref={ref}>
+        <S.LoginDropDown.DropDownLayer className={className}>
+          {loggedInByUser[0]
+            ? loggedInMenu.map((menuName: string) => (
+                <LoginDropDownMenu name={menuName} />
+              ))
+            : loggedOutMenu.map((menuName: string) => (
+                <LoginDropDownMenu name={menuName} />
+              ))}
+        </S.LoginDropDown.DropDownLayer>
+      </S.LoginDropDown.DropDownLayout>
+    );
+  }
+);
 
 type TLoginDropDownMenuProp = {
   name: string;
