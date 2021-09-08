@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
+import skeletonUI from "images/skeletonUI.gif";
 
 const useLazyLoad = (src: string) => {
-  const [imageSrc, setImageSrc] = useState(
-    "https://miro.medium.com/max/880/0*H3jZONKqRuAAeHnG.jpg"
-  );
+  const [imageSrc, setImageSrc] = useState(skeletonUI);
   const imageRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     let observer: IntersectionObserver;
@@ -15,7 +14,7 @@ const useLazyLoad = (src: string) => {
             observer.unobserve(entry.target);
           }
         },
-        { threshold: 0.4 }
+        { threshold: 0.3 }
       );
       imageRef.current && observer.observe(imageRef.current);
     }
