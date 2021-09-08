@@ -6,7 +6,10 @@ import NewAddressForm from "./NewAddressForm/";
 import DefaultAddressForm from "./DefaultAddressForm";
 import DeliveryRequestForm from "./DeliveryRequestForm";
 import CancelButton from "components/common/Atoms/CancelButton";
+import { isDefaultAddress } from "stores/CartAtoms";
+import { useRecoilValue } from "recoil";
 const AddressFormModal = () => {
+  const isDefaultAddressState = useRecoilValue(isDefaultAddress);
   const saveAddressInfo = () => {};
   return (
     <>
@@ -32,9 +35,9 @@ const AddressFormModal = () => {
             </S.AddressFormModal.SubTitle>
             <LastAddressSelection />
           </S.AddressFormModal.Layer>
-          <NewAddressForm />
-          {/* <DefaultAddressForm /> */}
-          {/* 스위칭 */}
+
+          {isDefaultAddressState ? <DefaultAddressForm /> : <NewAddressForm />}
+
           <S.AddressFormModal.Layer>
             <S.AddressFormModal.SubTitle>
               배송메모(선택)
