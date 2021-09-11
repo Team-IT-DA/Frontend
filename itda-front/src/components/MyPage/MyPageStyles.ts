@@ -229,6 +229,7 @@ const S = {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      border-radius: 10px;
     `,
 
     ReviewTextBox: styled(TextField)`
@@ -241,14 +242,6 @@ const S = {
       justify-content: space-between;
       width: 100%;
       position: relative;
-      button {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 1.6rem;
-        height: 1.6rem;
-        border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
-      }
       h2 {
         margin-left: 2rem;
         color: ${({ theme }) => theme.colors.navy.dark};

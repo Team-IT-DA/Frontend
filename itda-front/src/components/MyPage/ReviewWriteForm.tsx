@@ -1,21 +1,25 @@
 import ColorButton from "components/common/Atoms/ColorButton";
+import React from "react";
 import theme from "styles/theme";
 import S from "./MyPageStyles";
 
-const ReviewWriteForm = () => {
+const ReviewWriteForm = ({
+  handleModalOpen,
+}: {
+  handleModalOpen: (e: React.MouseEvent<HTMLElement>) => void;
+}) => {
   return (
-    <S.ReviewBox.Wrapper>
-      <S.ReviewBox.Layout>
+    <S.ReviewBox.Wrapper onClick={handleModalOpen}>
+      <S.ReviewBox.Layout className="reviewModal">
         <S.ReviewBox.TopLayer>
           <h2>리뷰 작성</h2>
-          <button>x</button>
         </S.ReviewBox.TopLayer>
         <S.ReviewBox.TextFieldLayer>
           <S.ReviewBox.ReviewTextBox
             id="outlined-multiline-static"
             multiline
             rows={11}
-            defaultValue="Default Value"
+            placeholder="따뜻한 리뷰 한마디"
             variant="outlined"
           />
           <input type="file" />
