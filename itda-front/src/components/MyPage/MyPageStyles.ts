@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import theme from "styles/theme";
 
 const inputBlockStyle = css`
   display: flex;
@@ -377,6 +378,67 @@ const S = {
         background: ${({ theme }) => theme.colors.navy.normal};
       }
       width: 20%;
+    `,
+  },
+  ReviewBox: {
+    Wrapper: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    `,
+
+    Layout: styled.div`
+      width: 665px;
+      height: 450px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 10px;
+    `,
+
+    ReviewTextBox: styled(TextField)`
+      width: 600px;
+      margin: 0 auto;
+    `,
+
+    TopLayer: styled.div`
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      h2 {
+        margin-left: 2rem;
+        color: ${({ theme }) => theme.colors.navy.dark};
+      }
+    `,
+
+    TextFieldLayer: styled.div`
+      width: 100%;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      input {
+        margin: 1rem 0 0 2rem;
+      }
+    `,
+
+    BottomLayer: styled.div`
+      width: 100%;
+      position: relative;
+      button {
+        position: absolute;
+        right: 2rem;
+        bottom: 1rem;
+      }
     `,
   },
 };

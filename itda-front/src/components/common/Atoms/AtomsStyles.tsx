@@ -93,6 +93,7 @@ const S = {
       baseColor: string;
       width: string;
       height: string;
+      fontSize?: string;
     }>`
       width: ${({ width }) => width};
       height: ${({ height }) => height};
@@ -102,7 +103,7 @@ const S = {
         isWhiteButton ? baseColor : "#fff"};
       border: 1px solid ${({ baseColor }) => baseColor};
       font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
+      font-size: ${({ fontSize }) => fontSize};
       &:hover {
         background: ${({ baseColor, isWhiteButton }) =>
           isWhiteButton ? "#f0f0f0" : baseColor};
@@ -182,7 +183,7 @@ const S = {
   },
 
   OrderList: {
-    Layout: styled.div<{ width: string }>`
+    Layout: styled.div<{ width?: string }>`
       display: flex;
       flex-direction: column;
       width: ${({ width }) => width};
@@ -214,10 +215,16 @@ const S = {
 
     ProductBlock: styled.div`
       display: flex;
+      position: relative;
       :first-child {
         margin-top: 1rem;
       }
       margin-bottom: 1rem;
+      button {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+      }
     `,
 
     ProductImage: styled.img`

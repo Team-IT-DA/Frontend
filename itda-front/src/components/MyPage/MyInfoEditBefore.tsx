@@ -44,6 +44,7 @@ const MyInfoEditBefore = () => {
           baseColor={theme.colors.navy.normal}
           width="30%"
           height="3.5rem"
+          fontSize="18px"
         >
           확인
         </ColorButton>
