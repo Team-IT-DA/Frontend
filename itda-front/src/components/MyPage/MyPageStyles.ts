@@ -1,6 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+const inputBlockStyle = css`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+`;
 
 const S = {
   MyPage: {
@@ -203,6 +211,172 @@ const S = {
       display: flex;
       justify-content: center;
       width: 100%;
+    `,
+  },
+
+  MyInfoAfter: {
+    Layout: styled.div`
+      min-width: 1024px;
+      width: 90%;
+      height: 100%;
+      margin: 0 auto;
+    `,
+
+    HeaderLayer: styled.div`
+      font-size: ${({ theme }) => theme.fontSizes.titleSize};
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      height: 5rem;
+    `,
+
+    FormLayer: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    `,
+
+    FormInputsLayer: styled.div`
+      width: 70%;
+      & > div {
+        margin: 1.5rem 0;
+        height: 50px;
+      }
+    `,
+
+    CurrentPasswordBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    CurrentPasswordLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    CurrentPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NewPasswordBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    NewPasswordLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NewPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NewPasswordConfirmBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    NewPasswordConfirmLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NewPasswordConfirmInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    NameBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    NameLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    NameInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    EmailBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    EmailLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    EmailInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    EmailCheckButton: styled(Button)`
+      color: ${({ theme }) => theme.colors.navy.light};
+      border: 1px solid ${({ theme }) => theme.colors.navy.light};
+      height: 50px;
+      width: 50%;
+    `,
+
+    CellPhoneNumberBlock: styled.div`
+      ${inputBlockStyle}
+    `,
+
+    CellPhoneNumberLabel: styled.div`
+      text-align: left;
+      width: 30%;
+    `,
+
+    CellPhoneNumberInput: styled(TextField)`
+      width: 50%;
+    `,
+
+    CellPhoneNumberCheckButton: styled(Button)`
+      color: ${({ theme }) => theme.colors.navy.light};
+      border: 1px solid ${({ theme }) => theme.colors.navy.light};
+      height: 50px;
+      width: 50%;
+    `,
+
+    FormButtonsLayer: styled.div`
+      height: 100%;
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      & > button {
+        margin: 1rem 0;
+      }
+    `,
+
+    ButtonLayer: styled.div`
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      & > button {
+        margin: 1rem;
+      }
+    `,
+
+    ButtonExpireAccount: styled(Button)`
+      background: ${({ theme }) => theme.colors.gray.normal};
+      color: white;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      height: 3.5rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+      width: 20%;
+    `,
+
+    ButtonConfirmEdit: styled(Button)`
+      background: ${({ theme }) => theme.colors.navy.light};
+      color: white;
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+      height: 3.5rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+      width: 20%;
     `,
   },
 };
