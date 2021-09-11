@@ -10,3 +10,8 @@ export const cartProductData = atom<ICartProduct[]>({
   key: "cartProductData",
   default: [],
 });
+
+export const isDefaultAddress = atom({
+  key: "isDefaultAddress",
+  default: true,
+});

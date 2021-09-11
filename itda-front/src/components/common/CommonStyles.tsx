@@ -202,34 +202,19 @@ const S = {
       text-overflow: ellipsis; */
     `,
 
-    ProductPrice: styled.div`
-      font-size: ${({ theme }) => theme.fontSizes.xs};
+    ProductPrice: styled.div<{ horizontal: boolean }>`
+      font-size: ${props =>
+        props.horizontal
+          ? props.theme.fontSizes.xs
+          : props.theme.fontSizes.base};
       font-weight: bold;
       padding: 0px 0px 10px 5px;
     `,
+
     ProductDescription: styled.div`
       font-size: 13px;
       color: ${({ theme }) => theme.colors.gray.normal};
       padding: 0px 0px 10px 5px;
-    `,
-    ProductCartIcon: styled(cartIcon)`
-      position: absolute;
-      top: 18rem;
-      right: 1.5rem;
-      z-index: 1;
-      height: 40px;
-      width: auto;
-      stroke: ${({ theme }) => theme.colors.gray.normal};
-      & path {
-        fill: ${({ theme }) => theme.colors.gray.normal};
-      }
-      &:hover {
-        & path {
-          stroke: ${({ theme }) => theme.colors.mint.normal};
-          fill: ${({ theme }) => theme.colors.mint.normal};
-        }
-        cursor: pointer;
-      }
     `,
   },
 

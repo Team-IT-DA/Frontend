@@ -1,10 +1,9 @@
-import { useState } from "react";
 import S from "./AtomsStyles";
 
 type TRadioButton = {
   value: string;
   state: string;
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  setState: (initialState: string) => void;
 };
 
 const RadioButton = ({ value, state, setState }: TRadioButton) => {
