@@ -1,4 +1,6 @@
+import theme from "styles/theme";
 import S from "./AtomsStyles";
+import ColorButton from "./ColorButton";
 
 interface IOrder {
   orderName: string;
@@ -10,10 +12,14 @@ interface IOrder {
 
 const OrderList = ({
   orderList,
-  width,
+  width = "500px",
+  useReviewButton = false,
+  onClickReviewButton,
 }: {
   orderList: IOrder[];
-  width: string;
+  width?: string;
+  useReviewButton?: boolean;
+  onClickReviewButton?: React.MouseEventHandler<HTMLElement>;
 }) => {
   return (
     <S.OrderList.Layout width={width}>
@@ -34,6 +40,17 @@ const OrderList = ({
                 <span>{order.orderPrice.toLocaleString()}원</span>
               </div>
             </S.OrderList.ProductInfo>
+            {useReviewButton && (
+              <ColorButton
+                width="100px"
+                height="30px"
+                isWhiteButton={false}
+                baseColor={theme.colors.navy.normal}
+                fontSize={theme.fontSizes.xs}
+              >
+                Review
+              </ColorButton>
+            )}
           </S.OrderList.ProductBlock>
         ))}
       </S.OrderList.ProductLayer>
