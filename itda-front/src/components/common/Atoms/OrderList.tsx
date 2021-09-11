@@ -14,16 +14,20 @@ const OrderList = ({
   orderList,
   width = "500px",
   useReviewButton = false,
+  useOrderTitle = true,
   onClickReviewButton,
 }: {
   orderList: IOrder[];
   width?: string;
   useReviewButton?: boolean;
+  useOrderTitle?: boolean;
   onClickReviewButton?: React.MouseEventHandler<HTMLElement>;
 }) => {
   return (
     <S.OrderList.Layout width={width}>
-      <S.OrderList.TitleLayer>주문 내역</S.OrderList.TitleLayer>
+      {useOrderTitle && (
+        <S.OrderList.TitleLayer>주문 내역</S.OrderList.TitleLayer>
+      )}
       <S.OrderList.ProductLayer>
         {orderList.map((order) => (
           <S.OrderList.ProductBlock>
@@ -47,6 +51,7 @@ const OrderList = ({
                 isWhiteButton={false}
                 baseColor={theme.colors.navy.normal}
                 fontSize={theme.fontSizes.xs}
+                onClickButton={onClickReviewButton}
               >
                 Review
               </ColorButton>
