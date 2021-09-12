@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
 
 //판매자 정보 수정 페이지와 등록상품조회 페이지의 스타일을 관리합니다.
 const S = {
@@ -27,13 +28,17 @@ const S = {
     `,
 
     ProfileImageBlock: styled.div`
-      width: 50%;
-      border: 1px solid red;
+      width: 30%;
+      height: 500px;
+      display: flex;
+      align-items: center;
     `,
 
     DescriptionBlock: styled.div`
       width: 50%;
-      border: 1px solid green;
+      height: 500px;
+      display: flex;
+      align-items: center;
     `,
   },
 
@@ -46,25 +51,49 @@ const S = {
     `,
 
     ImageHolder: styled.div`
-      border: 1px solid ${({ theme }) => theme.colors.gray.normal};
-      width: 300px;
-      height: 350px;
+      width: 250px;
+      height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid ${({ theme }) => theme.colors.gray.normal};
+      border-radius: 200px;
     `,
 
     PreviewImageText: styled.p`
       font-size: 1rem;
+      color: ${({ theme }) => theme.colors.gray.normal};
     `,
 
     PreviewImage: styled.img`
       width: 100%;
       height: 100%;
+      border-radius: 200px;
     `,
 
     ImageUploadInput: styled.input`
       margin: 1rem;
+    `,
+  },
+
+  ProfileTextForm: {
+    Layout: styled.div`
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `,
+
+    ProfileTextbox: styled(TextField)`
+      width: 500px;
+      margin: 0 auto;
+    `,
+
+    ButtonLayer: styled.div`
+      padding: 1rem;
+      & > button {
+        font-weight: 350;
+      }
     `,
   },
 };

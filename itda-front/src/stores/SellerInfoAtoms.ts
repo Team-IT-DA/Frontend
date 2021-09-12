@@ -10,3 +10,10 @@ export const sellerProfilePreviewImage = atom<{
     previewURL: null,
   },
 });
+
+export const sellerProfileText = atom<{ text: string }>({
+  key: "sellerProfileText",
+  default: {
+    text: "",
+  },
+});

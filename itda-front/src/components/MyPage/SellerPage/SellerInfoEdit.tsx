@@ -1,5 +1,6 @@
 import S from "./SellerInfoStyles";
 import ProfileImageUploader from "./ProfileImageUploader";
+import ProfileTextForm from "./ProfileTextForm";
 
 const SellerInfoEdit = () => {
   return (
@@ -11,7 +12,9 @@ const SellerInfoEdit = () => {
         <S.SellerInfoEdit.ProfileImageBlock>
           <ProfileImageUploader />
         </S.SellerInfoEdit.ProfileImageBlock>
-        <S.SellerInfoEdit.DescriptionBlock></S.SellerInfoEdit.DescriptionBlock>
+        <S.SellerInfoEdit.DescriptionBlock>
+          <ProfileTextForm />
+        </S.SellerInfoEdit.DescriptionBlock>
       </S.SellerInfoEdit.FormLayer>
     </S.SellerInfoEdit.Layout>
   );
