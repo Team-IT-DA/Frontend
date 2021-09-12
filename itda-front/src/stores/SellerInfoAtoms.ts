@@ -14,6 +14,6 @@ export const sellerProfilePreviewImage = atom<{
 export const sellerProfileText = atom<{ text: string }>({
   key: "sellerProfileText",
   default: {
-    text: "",
+    text: "마음을 담아 재배합니다.",
   },
 });

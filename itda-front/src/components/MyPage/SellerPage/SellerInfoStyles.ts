@@ -96,6 +96,15 @@ const S = {
         margin: 0.5rem;
       }
     `,
+
+    ProfileText: styled.p`
+      width: 500px;
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem;
+    `,
   },
 };
 
