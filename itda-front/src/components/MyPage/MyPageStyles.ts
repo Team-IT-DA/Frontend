@@ -76,6 +76,11 @@ const S = {
       font-weight: ${(props) =>
         props.currentSelectedTab === props.category ? "900" : "200"};
       transition: background-color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        transition: color 0.3s;
+      }
     `,
   },
 
