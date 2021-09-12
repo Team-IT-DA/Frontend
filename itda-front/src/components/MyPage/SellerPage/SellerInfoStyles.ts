@@ -28,14 +28,14 @@ const S = {
     `,
 
     ProfileImageBlock: styled.div`
-      width: 30%;
+      width: 25%;
       height: 500px;
       display: flex;
       align-items: center;
     `,
 
     DescriptionBlock: styled.div`
-      width: 50%;
+      width: 60%;
       height: 500px;
       display: flex;
       align-items: center;
@@ -93,6 +93,7 @@ const S = {
       padding: 1rem;
       & > button {
         font-weight: 350;
+        margin: 0.5rem;
       }
     `,
   },

@@ -16,6 +16,13 @@ const ProfileTextForm = () => {
         <ColorButton
           width="200px"
           height="40px"
+          baseColor={theme.colors.gray.light}
+        >
+          취소
+        </ColorButton>
+        <ColorButton
+          width="200px"
+          height="40px"
           baseColor={theme.colors.navy.normal}
         >
           확인
