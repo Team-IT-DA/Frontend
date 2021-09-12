@@ -3,7 +3,7 @@ import S from "./MyPageStyles";
 const MyInfoEditAfter = () => {
   return (
     <S.MyInfoAfter.Layout>
-      <S.MyInfoAfter.HeaderLayer>개인정보 수정</S.MyInfoAfter.HeaderLayer>
+      <S.MyInfoAfter.HeaderLayer>기본 정보 수정</S.MyInfoAfter.HeaderLayer>
       <S.MyInfoAfter.FormLayer>
         <S.MyInfoAfter.FormInputsLayer>
           <S.MyInfoAfter.CurrentPasswordBlock>

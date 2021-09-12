@@ -161,6 +161,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
@@ -229,6 +231,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
