@@ -15,7 +15,7 @@ const AddProductForm = () => {
         <S.AddProductFormBlock>
           <S.AddProductTextFieldBox>
             {inputNames.map((input) => (
-              <AddProductTextField {...input} />
+              <AddProductTextField {...input} key={input.name} />
             ))}
           </S.AddProductTextFieldBox>
           <S.AddProductSelectBoxHolder>

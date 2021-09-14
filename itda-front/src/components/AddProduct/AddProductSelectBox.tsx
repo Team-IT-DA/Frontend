@@ -29,9 +29,10 @@ const AddProductSelectBox = ({
   ) => {
     const { name, value } = e.target;
     setProductSelectInput({ ...productSelectInput, [name]: value });
+    console.log(productSelectInput[name]);
   };
 
-  const isError = hasBlankInput && productSelectInput[name] !== "";
+  const isError = hasBlankInput && productSelectInput[name] === "";
 
   return (
     <FormControl error={isError}>
@@ -46,7 +47,9 @@ const AddProductSelectBox = ({
         onChange={handleProductSelectChange}
       >
         {options.map((optionName) => (
-          <option value={optionName}>{optionName}</option>
+          <option key={optionName} value={optionName}>
+            {optionName}
+          </option>
         ))}
       </NativeSelect>
       {isError && <FormHelperText>필수 항목입니다!</FormHelperText>}
