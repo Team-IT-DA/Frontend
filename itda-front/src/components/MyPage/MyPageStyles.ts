@@ -191,7 +191,7 @@ const S = {
     `,
 
     FormBlock: styled.div`
-      width: 60%;
+      width: 500px;
       display: flex;
       margin: 0 auto 1.5rem;
     `,
