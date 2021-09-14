@@ -29,7 +29,6 @@ const AddProductSelectBox = ({
   ) => {
     const { name, value } = e.target;
     setProductSelectInput({ ...productSelectInput, [name]: value });
-    console.log(productSelectInput[name]);
   };
 
   const isError = hasBlankInput && productSelectInput[name] === "";
