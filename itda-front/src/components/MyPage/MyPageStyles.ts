@@ -65,15 +65,15 @@ const S = {
       align-items: center;
       height: 60px;
       cursor: pointer;
-      background-color: ${(props) =>
+      background-color: ${props =>
         props.currentSelectedTab === props.category
           ? `${props.theme.colors.gray.extraLight}`
           : "ffffff"};
-      border-right: ${(props) =>
+      border-right: ${props =>
         props.currentSelectedTab === props.category
           ? `2px solid ${props.theme.colors.navy.normal}`
           : "none"};
-      font-weight: ${(props) =>
+      font-weight: ${props =>
         props.currentSelectedTab === props.category ? "900" : "200"};
       transition: background-color 0.3s;
     `,
@@ -440,6 +440,73 @@ const S = {
         bottom: 1rem;
       }
     `,
+  },
+  ReceiptModal: {
+    Wrapper: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    `,
+    Layout: styled.div`
+      padding: 20px;
+      width: 450px;
+      height: 700px;
+      background: white;
+      border-radius: 10px;
+      overflow: auto;
+      position: relative;
+    `,
+    ButtonLayer: styled.div`
+      position: absolute;
+      right: 15px;
+      top: 20px;
+    `,
+    Title: styled.div`
+      padding-bottom: 2rem;
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+    `,
+    DateTitle: styled.div`
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding-bottom: 0.7rem;
+      color: ${({ theme }) => theme.colors.navy.dark};
+    `,
+    OrderId: styled.div`
+      color: ${({ theme }) => theme.colors.gray.normal};
+    `,
+    TitleLayer: styled.div`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `,
+  },
+  ReceiptCard: {
+    Layout: styled.div`
+      border-style: none solid dotted solid;
+      border-color: ${({ theme }) => theme.colors.gray.light};
+      padding: 1rem 0;
+    `,
+
+    RowLayer: styled.div`
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 30px;
+    `,
+    SubTitle: styled.div`
+      font-size: 1.3 rem;
+      font-weight: bold;
+    `,
+    Contents: styled.div``,
   },
 };
 
