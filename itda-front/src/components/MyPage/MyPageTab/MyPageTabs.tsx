@@ -1,5 +1,6 @@
-import S from "./MyPageStyles";
-import MyPageTab from "components/MyPage/MyPageTab";
+import { useState } from "react";
+import MyPageTab from "components/MyPage/MyPageTab/MyPageTab";
+import S from "../MyPageStyles";
 
 interface IMyPageTabsProps {
   isSeller: boolean;
@@ -20,6 +21,8 @@ const MyPageTabs = ({
     "개인 정보 수정",
     "등록 상품 조회",
   ];
+  const [isSubtabActive, setIsSubtabActive] = useState(false);
+
   return (
     <S.MyPageTabs.Layout>
       <S.MyPageTabs.Layer>

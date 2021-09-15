@@ -1,7 +1,7 @@
 import ColorButton from "components/common/Atoms/ColorButton";
 import React from "react";
 import theme from "styles/theme";
-import S from "./MyPageStyles";
+import S from "../MyPageStyles";
 
 const ReviewWriteForm = ({
   handleModalOpen,

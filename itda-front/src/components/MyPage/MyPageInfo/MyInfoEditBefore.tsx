@@ -1,6 +1,6 @@
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
-import S from "./MyPageStyles";
+import S from "../MyPageStyles";
 import TextInput from "components/common/Atoms/TextInput";
 import { useState } from "react";
 

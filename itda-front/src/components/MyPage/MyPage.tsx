@@ -1,11 +1,11 @@
 import { useState } from "react";
 import S from "./MyPageStyles";
 import Header from "components/common/Header";
-import MyPageTabs from "components/MyPage/MyPageTabs";
-import MyReview from "components/MyPage/MyReview";
-import MyPageOrderList from "./MyPageOrderList";
-import MyInfoEditBefore from "./MyInfoEditBefore";
-import MyInfoEditAfter from "./MyInfoEditAfter";
+import MyPageTabs from "components/MyPage/MyPageTab/MyPageTabs";
+import MyReview from "components/MyPage/MyPageReview/MyReview";
+import MyPageOrderList from "./MyPageOrderList/MyPageOrderList";
+import MyInfoEditBefore from "./MyPageInfo/MyInfoEditBefore";
+import MyInfoEditAfter from "./MyPageInfo/MyInfoEditAfter";
 import { SellerInfoEdit } from "./SellerPage";
 
 const MyPage = () => {

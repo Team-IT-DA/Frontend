@@ -1,7 +1,7 @@
 import OrderList from "components/common/Atoms/OrderList";
 import useToggle from "hooks/useToggle";
 import orders from "util/mock/orderListData";
-import ReviewWriteForm from "./ReviewWriteForm";
+import ReviewWriteForm from "../MyPageReview/ReviewWriteForm";
 
 const MyPageOrderList = () => {
   const [isReviewModalOpen, toggleReviewModal] = useToggle(false);

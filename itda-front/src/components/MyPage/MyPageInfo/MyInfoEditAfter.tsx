@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextInput from "components/common/Atoms/TextInput";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
-import S from "./MyPageStyles";
+import S from "../MyPageStyles";
 
 const MyInfoEditAfter = () => {
   const [testState, setTestState] = useState("");
