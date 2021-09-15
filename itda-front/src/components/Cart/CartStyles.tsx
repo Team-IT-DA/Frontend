@@ -102,6 +102,20 @@ const S = {
   },
 
   AddressFormModal: {
+    Wrapper: styled.div`
+      display: flex;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    `,
     Layout: styled.div`
       z-index: 2;
       width: 800px;
@@ -142,14 +156,6 @@ const S = {
       align-items: center;
       padding-right: 20px;
       width: 10rem;
-    `,
-
-    BlackBackground: styled.div`
-      position: fixed;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
     `,
   },
 
