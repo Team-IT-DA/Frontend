@@ -30,27 +30,17 @@ const MyPageTabs = ({
   return (
     <S.MyPageTabs.Layout>
       <S.MyPageTabs.Layer>
-        {isSeller
-          ? sellerTabs.map((tab) => (
-              <MyPageTab
-                category={tab}
-                isSubtabVisible={isSubtabVisible}
-                setIsSubtabVisible={setIsSubtabVisible}
-                currentSelectedTab={currentSelectedTab}
-                setCurrentSelectedTab={setCurrentSelectedTab}
-                handleTabClick={handleTabClick}
-              />
-            ))
-          : customerTabs.map((tab) => (
-              <MyPageTab
-                category={tab}
-                isSubtabVisible={isSubtabVisible}
-                setIsSubtabVisible={setIsSubtabVisible}
-                currentSelectedTab={currentSelectedTab}
-                setCurrentSelectedTab={setCurrentSelectedTab}
-                handleTabClick={handleTabClick}
-              />
-            ))}
+        {(isSeller ? sellerTabs : customerTabs).map((tab) => (
+          <MyPageTab
+            isSeller={isSeller}
+            category={tab}
+            isSubtabVisible={isSubtabVisible}
+            setIsSubtabVisible={setIsSubtabVisible}
+            currentSelectedTab={currentSelectedTab}
+            setCurrentSelectedTab={setCurrentSelectedTab}
+            handleTabClick={handleTabClick}
+          />
+        ))}
       </S.MyPageTabs.Layer>
     </S.MyPageTabs.Layout>
   );

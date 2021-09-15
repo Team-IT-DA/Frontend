@@ -2,6 +2,7 @@ import SellerSubtabs from "./SellerSubtabs";
 import S from "../MyPageStyles";
 
 interface IMyPageTabProps {
+  isSeller: boolean;
   category: string;
   isSubtabVisible: boolean;
   setIsSubtabVisible: (param: boolean) => void;
@@ -11,6 +12,7 @@ interface IMyPageTabProps {
 }
 
 const MyPageTab = ({
+  isSeller,
   category,
   isSubtabVisible,
   setIsSubtabVisible,
@@ -19,7 +21,7 @@ const MyPageTab = ({
   handleTabClick,
 }: IMyPageTabProps) => {
   const handleMouseEnter = () => {
-    if (category === "개인 정보 수정") {
+    if (isSeller && category === "개인 정보 수정") {
       setIsSubtabVisible(true);
     }
   };
