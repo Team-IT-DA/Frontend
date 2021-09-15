@@ -56,7 +56,11 @@ const S = {
   },
 
   MyPageTab: {
-    Layout: styled.div<{
+    Layout: styled.div`
+      position: relative;
+    `,
+
+    TabLayer: styled.div<{
       category: string;
       currentSelectedTab: string;
     }>`
@@ -81,6 +85,27 @@ const S = {
         color: ${({ theme }) => theme.colors.navy.normal};
         transition: color 0.3s;
       }
+    `,
+
+    SubtabLayer: styled.div`
+      position: absolute;
+      left: 270px;
+      top: 0;
+      width: 130px;
+      cursor: pointer;
+    `,
+  },
+
+  SellerSubtabs: {
+    Layout: styled.ul`
+      border: 1px solid ${({ theme }) => theme.colors.gray.light};
+      border-radius: 15px;
+    `,
+
+    Subtab: styled.li`
+      text-align: center;
+      border: 1px solid red;
+      padding: 1rem;
     `,
   },
 
