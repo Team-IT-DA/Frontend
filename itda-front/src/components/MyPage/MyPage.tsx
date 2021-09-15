@@ -12,8 +12,8 @@ const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
   //임시로 만든 로그인 상태: true => 기본정보수정 페이지, 판매자 페이지 보여짐
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  //임시로 만든 판매자 식별 상태 => seller화면 보기: true
-  const [isSeller, setIsSeller] = useState(false);
+  //임시로 만든 판매자 식별 상태 => 판매자용 화면/탭 보기: true
+  const [isSeller, setIsSeller] = useState(true);
 
   const handleTabClick = (tabName: string) => {
     setCurrentSelectedTab(tabName);
@@ -28,6 +28,7 @@ const MyPage = () => {
         <S.MyPage.MainLayout>
           <S.MyPage.SideTabLayout>
             <MyPageTabs
+              isSeller={isSeller}
               currentSelectedTab={currentSelectedTab}
               handleTabClick={handleTabClick}
             />
@@ -45,6 +46,9 @@ const MyPage = () => {
                 ) : (
                   <MyInfoEditAfter />
                 ))}
+              {currentSelectedTab === "등록 상품 조회" && (
+                <>등록된 상품 목록 보여주기</>
+              )}
             </S.MyPage.ContentLayer>
           </S.MyPage.ContentLayout>
         </S.MyPage.MainLayout>
