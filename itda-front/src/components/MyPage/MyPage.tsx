@@ -10,6 +10,7 @@ import { SellerInfoEdit } from "./SellerPage";
 
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
+  console.log(currentSelectedTab);
   //임시로 만든 로그인 상태: true => 기본정보수정 페이지, 판매자 페이지 보여짐
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   //임시로 만든 판매자 식별 상태 => 판매자용 화면/탭 보기: true
@@ -34,6 +35,7 @@ const MyPage = () => {
               isSubtabVisible={isSubtabVisible}
               setIsSubtabVisible={setIsSubtabVisible}
               currentSelectedTab={currentSelectedTab}
+              setCurrentSelectedTab={setCurrentSelectedTab}
               handleTabClick={handleTabClick}
             />
           </S.MyPage.SideTabLayout>
@@ -42,14 +44,9 @@ const MyPage = () => {
               {currentSelectedTab === "주문 내역" && <MyPageOrderList />}
               {currentSelectedTab === "상품 후기" && <MyReview />}
               {currentSelectedTab === "잇다톡"}
+              {currentSelectedTab === "판매자 정보" && <SellerInfoEdit />}
               {currentSelectedTab === "개인 정보 수정" &&
-                (!isLoggedIn ? (
-                  <MyInfoEditBefore />
-                ) : isSeller ? (
-                  <SellerInfoEdit />
-                ) : (
-                  <MyInfoEditAfter />
-                ))}
+                (!isLoggedIn ? <MyInfoEditBefore /> : <MyInfoEditAfter />)}
               {currentSelectedTab === "등록 상품 조회" && (
                 <>등록된 상품 목록 보여주기</>
               )}

@@ -6,6 +6,7 @@ interface IMyPageTabProps {
   isSubtabVisible: boolean;
   setIsSubtabVisible: (param: boolean) => void;
   currentSelectedTab: string;
+  setCurrentSelectedTab: (tabName: string) => void;
   handleTabClick: (tabName: string) => void;
 }
 
@@ -14,6 +15,7 @@ const MyPageTab = ({
   isSubtabVisible,
   setIsSubtabVisible,
   currentSelectedTab,
+  setCurrentSelectedTab,
   handleTabClick,
 }: IMyPageTabProps) => {
   const handleMouseEnter = () => {
@@ -26,7 +28,7 @@ const MyPageTab = ({
   const handleMouseLeave = () => {
     setTimeout(() => {
       setIsSubtabVisible(false);
-    }, 500);
+    }, 1000);
   };
 
   return (
@@ -42,7 +44,11 @@ const MyPageTab = ({
       </S.MyPageTab.TabLayer>
       <S.MyPageTab.SubtabLayer>
         {category === "개인 정보 수정" &&
-          (isSubtabVisible ? <SellerSubtabs /> : <></>)}
+          (isSubtabVisible ? (
+            <SellerSubtabs setCurrentSelectedTab={setCurrentSelectedTab} />
+          ) : (
+            <></>
+          ))}
       </S.MyPageTab.SubtabLayer>
     </S.MyPageTab.Layout>
   );
