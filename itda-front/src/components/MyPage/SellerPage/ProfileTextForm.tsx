@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { sellerProfileText } from "stores/SellerInfoAtoms";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import S from "./SellerInfoStyles";
 import theme from "styles/theme";
 import ColorButton from "components/common/Atoms/ColorButton";
@@ -10,7 +10,17 @@ const ProfileTextForm = () => {
   const [profileText, setProfileText] = useRecoilState(sellerProfileText);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleConfirmButtonClick = () => {};
+  const updateProfileText = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    console.log(e.target.value);
+    const inputText = e.target.value;
+    setProfileText({ text: inputText });
+  };
+
+  const handleConfirmButtonClick = () => {
+    setIsEditMode(false);
+  };
 
   const handleCancelButtonClick = () => {
     setIsEditMode(false);
@@ -28,10 +38,12 @@ const ProfileTextForm = () => {
         <>
           <S.ProfileTextForm.ProfileTextbox
             id="outlined-multiline-static"
+            value={profileText.text}
             multiline
             rows={10}
             placeholder="판매자님을 소개하는 한마디를 적어주세요."
             variant="outlined"
+            onChange={(e) => updateProfileText(e)}
           />
           <S.ProfileTextForm.ButtonLayer>
             <ColorButton
