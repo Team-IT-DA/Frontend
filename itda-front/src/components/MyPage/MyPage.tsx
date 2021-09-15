@@ -14,6 +14,8 @@ const MyPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   //임시로 만든 판매자 식별 상태 => 판매자용 화면/탭 보기: true
   const [isSeller, setIsSeller] = useState(true);
+  //하위 탭이 보여지는 상태
+  const [isSubtabVisible, setIsSubtabVisible] = useState(false);
 
   const handleTabClick = (tabName: string) => {
     setCurrentSelectedTab(tabName);
@@ -29,6 +31,8 @@ const MyPage = () => {
           <S.MyPage.SideTabLayout>
             <MyPageTabs
               isSeller={isSeller}
+              isSubtabVisible={isSubtabVisible}
+              setIsSubtabVisible={setIsSubtabVisible}
               currentSelectedTab={currentSelectedTab}
               handleTabClick={handleTabClick}
             />

@@ -1,15 +1,18 @@
-import { useState } from "react";
 import MyPageTab from "components/MyPage/MyPageTab/MyPageTab";
 import S from "../MyPageStyles";
 
 interface IMyPageTabsProps {
   isSeller: boolean;
+  isSubtabVisible: boolean;
+  setIsSubtabVisible: (param: boolean) => void;
   currentSelectedTab: string;
   handleTabClick: (tabName: string) => void;
 }
 
 const MyPageTabs = ({
   isSeller,
+  isSubtabVisible,
+  setIsSubtabVisible,
   currentSelectedTab,
   handleTabClick,
 }: IMyPageTabsProps) => {
@@ -21,7 +24,6 @@ const MyPageTabs = ({
     "개인 정보 수정",
     "등록 상품 조회",
   ];
-  const [isSubtabActive, setIsSubtabActive] = useState(false);
 
   return (
     <S.MyPageTabs.Layout>
@@ -30,6 +32,8 @@ const MyPageTabs = ({
           ? sellerTabs.map((tab) => (
               <MyPageTab
                 category={tab}
+                isSubtabVisible={isSubtabVisible}
+                setIsSubtabVisible={setIsSubtabVisible}
                 currentSelectedTab={currentSelectedTab}
                 handleTabClick={handleTabClick}
               />
@@ -37,6 +41,8 @@ const MyPageTabs = ({
           : customerTabs.map((tab) => (
               <MyPageTab
                 category={tab}
+                isSubtabVisible={isSubtabVisible}
+                setIsSubtabVisible={setIsSubtabVisible}
                 currentSelectedTab={currentSelectedTab}
                 handleTabClick={handleTabClick}
               />

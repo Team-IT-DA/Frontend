@@ -1,30 +1,49 @@
+import SellerSubtabs from "./SellerSubtabs";
 import S from "../MyPageStyles";
 
 interface IMyPageTabProps {
   category: string;
+  isSubtabVisible: boolean;
+  setIsSubtabVisible: (param: boolean) => void;
   currentSelectedTab: string;
   handleTabClick: (tabName: string) => void;
 }
 
 const MyPageTab = ({
   category,
+  isSubtabVisible,
+  setIsSubtabVisible,
   currentSelectedTab,
   handleTabClick,
 }: IMyPageTabProps) => {
   const handleMouseEnter = () => {
     if (category === "개인 정보 수정") {
+      setIsSubtabVisible(true);
     }
-    // todo: 탭에 마우스가 들어왔을 때 탭 이름이 "개인정보수정"이라면, 하위 탭의 "기본정보"와 "판매자정보"를 보여주기
+  };
+
+  // todo: 하위탭에 마우스가 올라왔는지도 확인해야 함.
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setIsSubtabVisible(false);
+    }, 500);
   };
 
   return (
-    <S.MyPageTab.Layout
-      category={category}
-      currentSelectedTab={currentSelectedTab}
-      onClick={() => handleTabClick(category)}
-      onMouseEnter={() => handleMouseEnter()}
-    >
-      {category}
+    <S.MyPageTab.Layout>
+      <S.MyPageTab.TabLayer
+        category={category}
+        currentSelectedTab={currentSelectedTab}
+        onClick={() => handleTabClick(category)}
+        onMouseEnter={() => handleMouseEnter()}
+        onMouseLeave={() => handleMouseLeave()}
+      >
+        {category}
+      </S.MyPageTab.TabLayer>
+      <S.MyPageTab.SubtabLayer>
+        {category === "개인 정보 수정" &&
+          (isSubtabVisible ? <SellerSubtabs /> : <></>)}
+      </S.MyPageTab.SubtabLayer>
     </S.MyPageTab.Layout>
   );
 };
