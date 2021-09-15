@@ -305,13 +305,6 @@ const S = {
       align-items: center;
     `,
 
-    ReviewerImageBlock: styled.img`
-      width: 4rem;
-      height: 4rem;
-      border-radius: 70%;
-      border: 1px solid ${({ theme }) => theme.colors.gray.dark};
-      margin-right: 1rem;
-    `,
     ReviewerNameBlock: styled.div`
       font-weight: bold;
       margin-bottom: 0.1rem;

@@ -1,71 +1,95 @@
+import { useState } from "react";
+import TextInput from "components/common/Atoms/TextInput";
+import ColorButton from "components/common/Atoms/ColorButton";
+import theme from "styles/theme";
 import S from "./MyPageStyles";
 
 const MyInfoEditAfter = () => {
+  const [testState, setTestState] = useState("");
+
   return (
     <S.MyInfoAfter.Layout>
-      <S.MyInfoAfter.HeaderLayer>개인정보 수정</S.MyInfoAfter.HeaderLayer>
+      <S.MyInfoAfter.HeaderLayer>기본 정보 수정</S.MyInfoAfter.HeaderLayer>
       <S.MyInfoAfter.FormLayer>
         <S.MyInfoAfter.FormInputsLayer>
           <S.MyInfoAfter.CurrentPasswordBlock>
             <S.MyInfoAfter.CurrentPasswordLabel>
               현재 비밀번호
             </S.MyInfoAfter.CurrentPasswordLabel>
-            <S.MyInfoAfter.CurrentPasswordInput
-              id="outlined-secondary"
+            <TextInput
               label="현재 비밀번호를 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.CurrentPasswordBlock>
           <S.MyInfoAfter.NewPasswordBlock>
             <S.MyInfoAfter.NewPasswordLabel>
               새 비밀번호
             </S.MyInfoAfter.NewPasswordLabel>
-            <S.MyInfoAfter.NewPasswordInput
-              id="outlined-secondary"
+            <TextInput
               label="새롭게 설정할 비밀번호를 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.NewPasswordBlock>
           <S.MyInfoAfter.NewPasswordConfirmBlock>
             <S.MyInfoAfter.NewPasswordConfirmLabel>
               새 비밀번호 확인
             </S.MyInfoAfter.NewPasswordConfirmLabel>
-            <S.MyInfoAfter.NewPasswordConfirmInput
-              id="outlined-secondary"
+            <TextInput
               label="새롭게 설정할 비밀번호를 다시 한번 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.NewPasswordConfirmBlock>
           <S.MyInfoAfter.NameBlock>
             <S.MyInfoAfter.NameLabel>이름</S.MyInfoAfter.NameLabel>
-            <S.MyInfoAfter.NameInput
-              id="outlined-secondary"
+            <TextInput
               label="이름을 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.NameBlock>
           <S.MyInfoAfter.EmailBlock>
             <S.MyInfoAfter.EmailLabel>이메일</S.MyInfoAfter.EmailLabel>
-            <S.MyInfoAfter.EmailInput
-              id="outlined-secondary"
+            <TextInput
               label="이메일을 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.EmailBlock>
           <S.MyInfoAfter.CellPhoneNumberBlock>
             <S.MyInfoAfter.CellPhoneNumberLabel>
               휴대폰
             </S.MyInfoAfter.CellPhoneNumberLabel>
-            <S.MyInfoAfter.CellPhoneNumberInput
-              id="outlined-secondary"
+            <TextInput
               label="휴대폰 번호를 입력해주세요."
               variant="outlined"
-              color="secondary"
+              size="medium"
+              width="50%"
+              isRequired={true}
+              state={testState}
+              setState={setTestState}
             />
           </S.MyInfoAfter.CellPhoneNumberBlock>
         </S.MyInfoAfter.FormInputsLayer>
@@ -79,12 +103,22 @@ const MyInfoEditAfter = () => {
         </S.MyInfoAfter.FormButtonsLayer>
       </S.MyInfoAfter.FormLayer>
       <S.MyInfoAfter.ButtonLayer>
-        <S.MyInfoAfter.ButtonExpireAccount>
+        <ColorButton
+          isWhiteButton={false}
+          baseColor={theme.colors.gray.normal}
+          width={"20%"}
+          fontSize={theme.fontSizes.lg}
+        >
           탈퇴하기
-        </S.MyInfoAfter.ButtonExpireAccount>
-        <S.MyInfoAfter.ButtonConfirmEdit>
+        </ColorButton>
+        <ColorButton
+          isWhiteButton={false}
+          baseColor={theme.colors.navy.light}
+          width={"20%"}
+          fontSize={theme.fontSizes.lg}
+        >
           회원정보수정
-        </S.MyInfoAfter.ButtonConfirmEdit>
+        </ColorButton>
       </S.MyInfoAfter.ButtonLayer>
     </S.MyInfoAfter.Layout>
   );
