@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import theme from "styles/theme";
 
 const inputBlockStyle = css`
   display: flex;
@@ -104,8 +103,10 @@ const S = {
 
     Subtab: styled.li`
       text-align: center;
-      border: 1px solid red;
       padding: 1rem;
+      :first-child {
+        border-bottom: 1px solid ${({ theme }) => theme.colors.gray.light};
+      }
     `,
   },
 
