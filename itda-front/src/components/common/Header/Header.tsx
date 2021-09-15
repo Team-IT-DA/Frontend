@@ -37,11 +37,8 @@ const Header = ({ isSticky = false }: THeader) => {
   };
 
   useEffect(() => {
-    console.log(dropDownRef.current);
-  }, [dropDownRef]);
-
-  useEffect(() => {
     const pageClickEvent = (e: MouseEvent) => {
+      console.log(dropDownRef.current);
       if (dropDownRef.current !== null) {
         setIsDropDownActive(!isDropDownActive);
       }

@@ -76,6 +76,11 @@ const S = {
       font-weight: ${(props) =>
         props.currentSelectedTab === props.category ? "900" : "200"};
       transition: background-color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        transition: color 0.3s;
+      }
     `,
   },
 
@@ -156,6 +161,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
@@ -224,6 +231,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
