@@ -262,10 +262,6 @@ const S = {
       width: 30%;
     `,
 
-    CurrentPasswordInput: styled(TextField)`
-      width: 50%;
-    `,
-
     NewPasswordBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -273,10 +269,6 @@ const S = {
     NewPasswordLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    NewPasswordInput: styled(TextField)`
-      width: 50%;
     `,
 
     NewPasswordConfirmBlock: styled.div`
@@ -288,10 +280,6 @@ const S = {
       width: 30%;
     `,
 
-    NewPasswordConfirmInput: styled(TextField)`
-      width: 50%;
-    `,
-
     NameBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -301,10 +289,6 @@ const S = {
       width: 30%;
     `,
 
-    NameInput: styled(TextField)`
-      width: 50%;
-    `,
-
     EmailBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -312,10 +296,6 @@ const S = {
     EmailLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    EmailInput: styled(TextField)`
-      width: 50%;
     `,
 
     EmailCheckButton: styled(Button)`
@@ -332,10 +312,6 @@ const S = {
     CellPhoneNumberLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    CellPhoneNumberInput: styled(TextField)`
-      width: 50%;
     `,
 
     CellPhoneNumberCheckButton: styled(Button)`
@@ -363,30 +339,6 @@ const S = {
       & > button {
         margin: 1rem;
       }
-    `,
-
-    ButtonExpireAccount: styled(Button)`
-      background: ${({ theme }) => theme.colors.gray.normal};
-      color: white;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-      height: 3.5rem;
-      &:hover {
-        background: ${({ theme }) => theme.colors.navy.normal};
-      }
-      width: 20%;
-    `,
-
-    ButtonConfirmEdit: styled(Button)`
-      background: ${({ theme }) => theme.colors.navy.light};
-      color: white;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-      height: 3.5rem;
-      &:hover {
-        background: ${({ theme }) => theme.colors.navy.normal};
-      }
-      width: 20%;
     `,
   },
   ReviewBox: {
