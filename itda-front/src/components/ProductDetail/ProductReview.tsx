@@ -103,7 +103,6 @@ const Review = ({ reviewData }: { reviewData: IReview }) => {
     <>
       <S.ReviewTab.SingleReviewLayout>
         <S.ReviewTab.ReviewerLayer>
-          <S.ReviewTab.ReviewerImageBlock src="https://ifh.cc/g/gFFnTG.jpg" />
           <div>
             <S.ReviewTab.ReviewerNameBlock>
               {reviewData.writer.name}
