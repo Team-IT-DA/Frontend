@@ -61,7 +61,7 @@ const S = {
       color: ${({ theme }) => theme.colors.gray.light};
       cursor: pointer;
       :hover {
-        color: ${(props) =>
+        color: ${props =>
           props.hoverEffect
             ? props.theme.colors.navy.normal
             : props.theme.colors.gray.light};
@@ -72,7 +72,7 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${(props) =>
+    background: ${props =>
       props.disabled
         ? props.theme.colors.gray.light
         : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
@@ -246,6 +246,11 @@ const S = {
     ProductName: styled.div`
       font-weight: bold;
       font-size: ${({ theme }) => theme.fontSizes.l};
+    `,
+    HeaderLayer: styled.header`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     `,
   },
 };

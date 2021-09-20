@@ -3,13 +3,14 @@ import S from "./MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "components/MyPage/MyPageTabs";
 import MyReview from "components/MyPage/MyReview";
-import MyPageOrderList from "./MyPageOrderList";
+import MyPageOrderList from "./MyPageOrderList/";
 import MyInfoEditBefore from "./MyInfoEditBefore";
 import MyInfoEditAfter from "./MyInfoEditAfter";
 import { SellerInfoEdit } from "./SellerPage";
 
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
+
   //임시로 만든 로그인 상태: true => 기본정보수정 페이지, 판매자 페이지 보여짐
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   //임시로 만든 판매자 식별 상태 => seller화면 보기: true
