@@ -1,41 +1,25 @@
 import OrderList from "components/common/Atoms/OrderList";
+import PaymentList from "./PaymentList";
 import Header from "components/common/Header";
-import orders from "util/mock/orderListData";
+import newOrderListData from "util/mock/newOrderListData";
 import S from "./ThankyouStyles";
+import { useEffect } from "react";
 
 const ThankYou = () => {
+  const { orderList } = newOrderListData;
+
   return (
     <div>
       <Header />
       <S.ThankyouLayout>
         <h1>마음을 잇는 현명한 소비에 함께해주셔서 감사합니다.</h1>
         <h3>24시간 이내로 무통장입금을 완료하지 않으시면 자동취소 됩니다.</h3>
-        <OrderList orderList={orders} width="1050px" />
+        <S.PaymentLayerTitle>주문 내역</S.PaymentLayerTitle>
+        <OrderList orderList={orderList} width="1050px" />
         <S.PaymentLayerTitle>결제 내역</S.PaymentLayerTitle>
         <S.PaymentLayer>
-          <S.PaymentItemBlock>
-            <dl>
-              <dt>결제 수단</dt>
-              <dd>무통장 입금</dd>
-            </dl>
-            <dl>
-              <dt>입금 계좌</dt>
-              <dd>크롱은행 100-3434-454-6666</dd>
-            </dl>
-            <dl>
-              <dt>예금주</dt>
-              <dd>이크롱</dd>
-            </dl>
-            <dl>
-              <dt>배송비</dt>
-              <dd>2,500원</dd>
-            </dl>
-            <dl>
-              <dt>입금 금액</dt>
-              <dd>22,500원</dd>
-            </dl>
-          </S.PaymentItemBlock>
-          <div></div>
+          <PaymentList />
+          <PaymentList />
         </S.PaymentLayer>
       </S.ThankyouLayout>
     </div>
