@@ -7,16 +7,20 @@ const AddProductSubmitLayer = () => {
   const [hasBlankInput, setBlank] = useRecoilState(checkBlankInputs);
   const productFinalInput = useRecoilValue(finalAddProductValue);
 
-  const handleSubmitClick = () => {
+  const blockSubmitIfBlackInputExists = () => {
     const blankInputs = Object.entries(productFinalInput).filter(
       (v) => v[1] === "" || v[1] === 0
     );
 
     blankInputs.length ? setBlank(true) : setBlank(false);
-    console.log(productFinalInput);
-    const newProduct = {
-      productFinalInput,
-    };
+  };
+
+  const handleSubmitClick = () => {
+    blockSubmitIfBlackInputExists();
+
+    // const newProduct = {
+    //   productFinalInput,
+    // };
 
     /*여기서 hasBlankInput이 false면
     POST newProduct => axios.post(url, newProduct); */
