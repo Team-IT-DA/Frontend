@@ -7,6 +7,7 @@ interface IMyPageTabsProps {
   setIsSubtabVisible: (param: boolean) => void;
   currentSelectedTab: string;
   setCurrentSelectedTab: (tabName: string) => void;
+  setCurrentSelectedSubtab: (tabName: string) => void;
   handleTabClick: (tabName: string) => void;
 }
 
@@ -16,6 +17,7 @@ const MyPageTabs = ({
   setIsSubtabVisible,
   currentSelectedTab,
   setCurrentSelectedTab,
+  setCurrentSelectedSubtab,
   handleTabClick,
 }: IMyPageTabsProps) => {
   const customerTabs = ["주문 내역", "상품 후기", "잇다톡", "개인 정보 수정"];
@@ -38,6 +40,7 @@ const MyPageTabs = ({
             setIsSubtabVisible={setIsSubtabVisible}
             currentSelectedTab={currentSelectedTab}
             setCurrentSelectedTab={setCurrentSelectedTab}
+            setCurrentSelectedSubtab={setCurrentSelectedSubtab}
             handleTabClick={handleTabClick}
           />
         ))}

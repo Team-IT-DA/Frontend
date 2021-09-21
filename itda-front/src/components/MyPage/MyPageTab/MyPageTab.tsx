@@ -8,6 +8,7 @@ interface IMyPageTabProps {
   setIsSubtabVisible: (param: boolean) => void;
   currentSelectedTab: string;
   setCurrentSelectedTab: (tabName: string) => void;
+  setCurrentSelectedSubtab: (tabName: string) => void;
   handleTabClick: (tabName: string) => void;
 }
 
@@ -18,6 +19,7 @@ const MyPageTab = ({
   setIsSubtabVisible,
   currentSelectedTab,
   setCurrentSelectedTab,
+  setCurrentSelectedSubtab,
   handleTabClick,
 }: IMyPageTabProps) => {
   const handleMouseEnter = () => {
@@ -37,7 +39,6 @@ const MyPageTab = ({
         currentSelectedTab={currentSelectedTab}
         onClick={() => handleTabClick(category)}
         onMouseEnter={() => handleMouseEnter()}
-        // onMouseLeave={() => handleMouseLeave()}
       >
         {category}
       </S.MyPageTab.TabLayer>
@@ -46,6 +47,7 @@ const MyPageTab = ({
           (isSubtabVisible ? (
             <SellerSubtabs
               setCurrentSelectedTab={setCurrentSelectedTab}
+              setCurrentSelectedSubtab={setCurrentSelectedSubtab}
               handleMouseLeave={handleMouseLeave}
             />
           ) : (

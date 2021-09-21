@@ -8,6 +8,7 @@ import MyInfoEditBefore from "./MyPageInfo/MyInfoEditBefore";
 import MyInfoEditAfter from "./MyPageInfo/MyInfoEditAfter";
 import { SellerInfoEdit } from "./SellerPage";
 
+// todo: 관리해야 할 상태가 너무 많아짐. recoil로 관리할 수 있게 뺄 것.
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
   console.log(currentSelectedTab);
@@ -17,6 +18,8 @@ const MyPage = () => {
   const [isSeller, setIsSeller] = useState(true);
   //하위 탭이 보여지는 상태
   const [isSubtabVisible, setIsSubtabVisible] = useState(false);
+  const [currentSelectedSubTab, setCurrentSelectedSubtab] =
+    useState("기본정보");
 
   const handleTabClick = (tabName: string) => {
     setCurrentSelectedTab(tabName);
@@ -36,6 +39,7 @@ const MyPage = () => {
               setIsSubtabVisible={setIsSubtabVisible}
               currentSelectedTab={currentSelectedTab}
               setCurrentSelectedTab={setCurrentSelectedTab}
+              setCurrentSelectedSubtab={setCurrentSelectedSubtab}
               handleTabClick={handleTabClick}
             />
           </S.MyPage.SideTabLayout>
@@ -44,9 +48,14 @@ const MyPage = () => {
               {currentSelectedTab === "주문 내역" && <MyPageOrderList />}
               {currentSelectedTab === "상품 후기" && <MyReview />}
               {currentSelectedTab === "잇다톡"}
-              {currentSelectedTab === "판매자 정보" && <SellerInfoEdit />}
               {currentSelectedTab === "개인 정보 수정" &&
-                (!isLoggedIn ? <MyInfoEditBefore /> : <MyInfoEditAfter />)}
+                (!isLoggedIn ? (
+                  <MyInfoEditBefore />
+                ) : currentSelectedSubTab === "기본정보" ? (
+                  <MyInfoEditAfter />
+                ) : (
+                  <SellerInfoEdit />
+                ))}
               {currentSelectedTab === "등록 상품 조회" && (
                 <>등록된 상품 목록 보여주기</>
               )}
