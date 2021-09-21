@@ -11,7 +11,6 @@ import { SellerInfoEdit } from "./SellerPage";
 // todo: 관리해야 할 상태가 너무 많아짐. recoil로 관리할 수 있게 뺄 것.
 const MyPage = () => {
   const [currentSelectedTab, setCurrentSelectedTab] = useState("주문 내역");
-  console.log(currentSelectedTab);
   //임시로 만든 로그인 상태: true => 기본정보수정 페이지, 판매자 페이지 보여짐
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   //임시로 만든 판매자 식별 상태 => 판매자용 화면/탭 보기: true
