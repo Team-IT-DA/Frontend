@@ -185,15 +185,7 @@ const S = {
       display: flex;
       flex-direction: column;
       width: ${({ width }) => width};
-      margin: 3rem auto;
-    `,
-
-    TitleLayer: styled.div`
-      display: flex;
-      align-items: center;
-      margin: 0.8rem 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
-      font-weight: bold;
+      margin-bottom: 3rem;
     `,
 
     ProductLayer: styled.div`

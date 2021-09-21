@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import theme from "styles/theme";
 
 const inputBlockStyle = css`
   display: flex;
@@ -466,6 +465,24 @@ const S = {
       font-weight: bold;
     `,
     Contents: styled.div``,
+  },
+
+  MyOrderList: {
+    Layout: styled.div``,
+    HeaderLayer: styled.header<{ width?: string }>`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: ${({ width }) => width};
+    `,
+    TitleLayer: styled.div`
+      //없애야
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-weight: bold;
+    `,
   },
 };
 
