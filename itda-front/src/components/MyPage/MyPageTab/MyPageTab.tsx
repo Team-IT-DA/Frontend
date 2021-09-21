@@ -26,11 +26,8 @@ const MyPageTab = ({
     }
   };
 
-  // todo: 하위탭에 마우스가 올라왔는지도 확인해야 함.
   const handleMouseLeave = () => {
-    setTimeout(() => {
-      setIsSubtabVisible(false);
-    }, 1000);
+    setIsSubtabVisible(false);
   };
 
   return (
@@ -40,14 +37,17 @@ const MyPageTab = ({
         currentSelectedTab={currentSelectedTab}
         onClick={() => handleTabClick(category)}
         onMouseEnter={() => handleMouseEnter()}
-        onMouseLeave={() => handleMouseLeave()}
+        // onMouseLeave={() => handleMouseLeave()}
       >
         {category}
       </S.MyPageTab.TabLayer>
       <S.MyPageTab.SubtabLayer>
         {category === "개인 정보 수정" &&
           (isSubtabVisible ? (
-            <SellerSubtabs setCurrentSelectedTab={setCurrentSelectedTab} />
+            <SellerSubtabs
+              setCurrentSelectedTab={setCurrentSelectedTab}
+              handleMouseLeave={handleMouseLeave}
+            />
           ) : (
             <></>
           ))}
