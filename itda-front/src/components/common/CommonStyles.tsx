@@ -113,9 +113,9 @@ const S = {
       width: 130px;
       border-radius: 10px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      opacity: ${(props) => (props.className === "dropdown active" ? 1 : 0)};
-      visibility: ${(props) =>
-        props.className === "dropdown active" ? "visible" : "hidden"}; ;
+      opacity: ${({ className }) => (className === "dropdown active" ? 1 : 0)};
+      visibility: ${({ className }) =>
+        className === "dropdown active" ? "visible" : "hidden"}; ;
     `,
 
     DropDownMenuLayout: styled.li`
@@ -203,10 +203,8 @@ const S = {
     `,
 
     ProductPrice: styled.div<{ horizontal: boolean }>`
-      font-size: ${props =>
-        props.horizontal
-          ? props.theme.fontSizes.xs
-          : props.theme.fontSizes.base};
+      font-size: ${({ horizontal, theme }) =>
+        horizontal ? theme.fontSizes.xs : theme.fontSizes.base};
       font-weight: bold;
       padding: 0px 0px 10px 5px;
     `,
@@ -307,14 +305,12 @@ const S = {
         border-top: 1px solid ${({ theme }) => theme.colors.gray.light};
         padding-top: 18px;
       }
-      /* box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.beige.light}; */
     `,
 
     DrawerCardDescription: styled.div`
       margin-left: 10px;
       & > div {
         display: flex;
-        /* flex-direction: column; */
         align-items: flex-end;
         justify-content: space-around;
       }

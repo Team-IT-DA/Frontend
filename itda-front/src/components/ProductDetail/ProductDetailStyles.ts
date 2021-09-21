@@ -30,7 +30,6 @@ const S = {
     DetailBlock: styled.div`
       display: flex;
       flex-direction: column;
-      /* width: 35rem; */
       justify-content: space-between;
     `,
 

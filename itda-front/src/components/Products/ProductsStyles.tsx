@@ -10,7 +10,7 @@ const S = {
       top: 0;
       z-index: 99;
       background: ${({ theme }) => theme.colors.white};
-      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.extraLight};
+      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.xx_light};
       backdrop-filter: blur(4px);
     `,
     HeaderLayer: styled.div`
@@ -66,9 +66,9 @@ const S = {
       padding: 1rem;
       height: 2.5rem;
       width: 25rem;
-      border: ${({ theme }) => theme.colors.gray.extraLight} 1px solid;
+      border: ${({ theme }) => theme.colors.gray.xx_light} 1px solid;
       border-radius: 10px;
-      background: ${({ theme }) => theme.colors.gray.extraLight};
+      background: ${({ theme }) => theme.colors.gray.xx_light};
       color: ${({ theme }) => theme.colors.black};
       font-size: 14px;
       cursor: pointer;
@@ -111,7 +111,7 @@ const S = {
       cursor: pointer;
 
       :hover {
-        background-color: ${({ theme }) => theme.colors.gray.extraLight};
+        background-color: ${({ theme }) => theme.colors.gray.xx_light};
         color: ${({ theme }) => theme.colors.mint.normal};
       }
     `,
@@ -122,7 +122,7 @@ const S = {
       padding: 0;
       background-color: ${({ theme }) => theme.colors.white};
       border-radius: 5px;
-      border: 1px solid ${({ theme }) => theme.colors.gray.extraLight};
+      border: 1px solid ${({ theme }) => theme.colors.gray.xx_light};
     `,
 
     MenuButton: styled(hamburgerIcon)`
