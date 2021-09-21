@@ -1,4 +1,4 @@
-import S from "./MyPageStyles";
+import S from "../MyPageStyles";
 
 const MyReview = () => {
   return (

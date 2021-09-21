@@ -10,7 +10,7 @@ import Cart from "components/Cart";
 import ThankYou from "components/ThankYou";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import SignUpCompletePage from "components/SignUp/SignUpCompletePage";
-import MyReview from "components/MyPage/MyReview";
+import MyReview from "components/MyPage/MyPageReview/MyReview";
 
 const Router = () => {
   return (

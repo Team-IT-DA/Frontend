@@ -11,12 +11,12 @@ const MyPageOrderList = () => {
   const [isReviewModalOpen, toggleReviewModal] = useToggle(false);
   const [isOrderDetailModalOpen, toggleOrderDetailModal] = useToggle(false);
   const [page, setPage] = useState(1);
-
   const reviewModalHandler = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
     if (target.closest(".reviewModal")) return;
     toggleReviewModal();
   };
+
 
   const orderDetailHandler = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
