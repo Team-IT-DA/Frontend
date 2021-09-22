@@ -20,12 +20,12 @@ const S = {
     HeaderLayout: styled.div`
       width: 100%;
       top: 0;
-      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.extraLight};
+      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.xx_light};
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 2px solid #f2f2f2;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.gray.xx_light};
     `,
     MainLayout: styled.div`
       display: flex;
@@ -40,7 +40,6 @@ const S = {
     `,
 
     ContentLayer: styled.div`
-      /* position: fixed; */
       min-width: 768px;
       overflow-y: scroll;
     `,
@@ -70,7 +69,7 @@ const S = {
       cursor: pointer;
       background-color: ${props =>
         props.currentSelectedTab === props.category
-          ? `${props.theme.colors.gray.extraLight}`
+          ? `${props.theme.colors.gray.xx_light}`
           : "ffffff"};
       border-right: ${props =>
         props.currentSelectedTab === props.category
@@ -114,7 +113,6 @@ const S = {
     Layout: styled.div`
       width: 100%;
       height: 100%;
-      /* border: 1px solid black; */
     `,
 
     Layer: styled.div`
@@ -494,6 +492,24 @@ const S = {
       font-weight: bold;
     `,
     Contents: styled.div``,
+  },
+
+  MyOrderList: {
+    Layout: styled.div``,
+    HeaderLayer: styled.header<{ width?: string }>`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: ${({ width }) => width};
+    `,
+    TitleLayer: styled.div`
+      //없애야
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-weight: bold;
+    `,
   },
 };
 

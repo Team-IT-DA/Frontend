@@ -28,7 +28,7 @@ const MyPage = () => {
     <>
       <S.MyPage.Layout>
         <S.MyPage.HeaderLayout>
-          <Header isSticky={true} />
+          <Header />
         </S.MyPage.HeaderLayout>
         <S.MyPage.MainLayout>
           <S.MyPage.SideTabLayout>

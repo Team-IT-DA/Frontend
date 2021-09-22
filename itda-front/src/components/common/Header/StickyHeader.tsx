@@ -3,24 +3,26 @@ import { Link } from "react-router-dom";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import LoginDropDown from "./LoginDropDown";
+import useScrollToggle from "hooks/useScrollToggle";
 
 interface MutableRefObject<T> {
   current: T;
 }
 
-const Header = () => {
+const StickyHeader = () => {
   const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
   const [isSideDrawerClicked, setIsSideDrawerClicked] = useState<
     undefined | boolean
   >(undefined);
   const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
+  const scrollFlag = useScrollToggle(false);
 
   const checkPageName = () => {
     const splitURL = window.location.href.split("/");
     return splitURL[splitURL.length - 1] === "" ? true : false;
   };
-
   const isHomePage = checkPageName();
+
   const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => {
@@ -33,6 +35,7 @@ const Header = () => {
 
   useEffect(() => {
     const pageClickEvent = (e: MouseEvent) => {
+      console.log(dropDownRef.current);
       if (dropDownRef.current !== null) {
         setIsDropDownActive(!isDropDownActive);
       }
@@ -47,7 +50,9 @@ const Header = () => {
     };
   }, [isDropDownActive]);
 
-  return (
+  return scrollFlag ? (
+    <></>
+  ) : (
     <S.Header.HeaderLayout>
       <S.Header.HeaderLayer>
         <S.Header.LeftBlock color={color}>
@@ -84,4 +89,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default StickyHeader;

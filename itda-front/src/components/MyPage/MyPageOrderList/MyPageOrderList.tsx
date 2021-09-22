@@ -5,7 +5,8 @@ import Pagination from "components/common/Atoms/Pagination";
 import SelectBox from "components/common/Atoms/SelectBox";
 import ReceiptModal from "./ReceiptModal";
 import { useState } from "react";
-import OrderList from "./MyOrderList";
+import MyOrderList from "./MyOrderList";
+import S from "../MyPageStyles";
 
 const MyPageOrderList = () => {
   const [isReviewModalOpen, toggleReviewModal] = useToggle(false);
@@ -27,11 +28,11 @@ const MyPageOrderList = () => {
   const dateFilter = ["전체", "최근 3개월", "최근 6개월", "최근 1년"];
   const { orderList } = newOrderListData;
   return (
-    <>
+    <S.MyOrderList.Layout>
       <SelectBox selectArray={dateFilter} />
-      <OrderList
+      <MyOrderList
         orderList={orderList}
-        width={"80%"}
+        width={"75%"}
         onClickReviewButton={reviewModalHandler}
         onClickOrderDetailButton={orderDetailHandler}
       />
@@ -51,7 +52,7 @@ const MyPageOrderList = () => {
         paginate={setPage}
         currentPage={page}
       />
-    </>
+    </S.MyOrderList.Layout>
   );
 };
 

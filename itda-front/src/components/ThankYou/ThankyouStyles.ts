@@ -30,8 +30,8 @@ const S = {
   `,
 
   PaymentLayerTitle: styled.div`
-    margin: 0.8rem 0;
-    font-size: ${({ theme }) => theme.fontSizes.xl};
+    margin: 1rem 0;
+    font-size: ${({ theme }) => theme.fontSizes.xxxl};
     font-weight: bold;
   `,
 
