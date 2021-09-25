@@ -3,13 +3,15 @@ import S from "../MyPageStyles";
 interface ISellerSubtabsProps {
   setCurrentSelectedTab: (tabName: string) => void;
   setCurrentSelectedSubtab: (tabName: string) => void;
-  handleMouseLeave: () => void;
+  handleMouseLeaveSubTab: () => void;
+  handleMouseEnterSubtab: () => void;
 }
 
 const SellerSubtabs = ({
   setCurrentSelectedTab,
-  handleMouseLeave,
   setCurrentSelectedSubtab,
+  handleMouseLeaveSubTab,
+  handleMouseEnterSubtab,
 }: ISellerSubtabsProps) => {
   const subtabTitles = ["기본정보", "판매자 정보"];
 
@@ -25,7 +27,10 @@ const SellerSubtabs = ({
   };
 
   return (
-    <S.SellerSubtabs.Layout onMouseLeave={handleMouseLeave}>
+    <S.SellerSubtabs.Layout
+      onMouseLeave={handleMouseLeaveSubTab}
+      onMouseEnter={handleMouseEnterSubtab}
+    >
       {subtabTitles.map((subtab) => (
         <S.SellerSubtabs.Subtab onClick={() => handleSubtabClick(subtab)}>
           {subtab}

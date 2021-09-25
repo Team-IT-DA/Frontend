@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import SellerSubtabs from "./SellerSubtabs";
 import S from "../MyPageStyles";
 
@@ -22,14 +23,38 @@ const MyPageTab = ({
   setCurrentSelectedSubtab,
   handleTabClick,
 }: IMyPageTabProps) => {
+  const isMouseEnterInSubTab = useRef(false);
+  const subtabMouseLeaveHandler = useRef<any>(null);
+
   const handleMouseEnter = () => {
     if (isSeller && category === "개인 정보 수정") {
+      clearTimeout(subtabMouseLeaveHandler.current);
       setIsSubtabVisible(true);
+      isMouseEnterInSubTab.current = true;
+    } else {
+      setIsSubtabVisible(false);
+      isMouseEnterInSubTab.current = false;
     }
   };
 
   const handleMouseLeave = () => {
-    setIsSubtabVisible(false);
+    if (!isMouseEnterInSubTab.current && isSubtabVisible) {
+      setIsSubtabVisible(false);
+    }
+  };
+
+  const handleMouseLeaveSubTab = () => {
+    subtabMouseLeaveHandler.current = setTimeout(() => {
+      if (!isMouseEnterInSubTab.current && category === "개인 정보 수정") {
+        return;
+      } else {
+        isMouseEnterInSubTab.current = false;
+        setIsSubtabVisible(false);
+      }
+    }, 500);
+  };
+  const handleMouseEnterSubtab = () => {
+    isMouseEnterInSubTab.current = true;
   };
 
   return (
@@ -38,7 +63,8 @@ const MyPageTab = ({
         category={category}
         currentSelectedTab={currentSelectedTab}
         onClick={() => handleTabClick(category)}
-        onMouseEnter={() => handleMouseEnter()}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {category}
       </S.MyPageTab.TabLayer>
@@ -48,7 +74,8 @@ const MyPageTab = ({
             <SellerSubtabs
               setCurrentSelectedTab={setCurrentSelectedTab}
               setCurrentSelectedSubtab={setCurrentSelectedSubtab}
-              handleMouseLeave={handleMouseLeave}
+              handleMouseLeaveSubTab={handleMouseLeaveSubTab}
+              handleMouseEnterSubtab={handleMouseEnterSubtab}
             />
           ) : (
             <></>
