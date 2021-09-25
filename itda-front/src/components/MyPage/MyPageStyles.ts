@@ -34,6 +34,7 @@ const S = {
     SideTabLayout: styled.div``,
 
     ContentLayout: styled.div`
+      z-index: -1;
       width: 100%;
       height: 100%;
       padding: 3rem;
@@ -98,6 +99,7 @@ const S = {
     Layout: styled.ul`
       border: 1px solid ${({ theme }) => theme.colors.gray.light};
       border-radius: 15px;
+      background-color: ${({ theme }) => theme.colors.white};
     `,
 
     Subtab: styled.li`
