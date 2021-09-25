@@ -2,8 +2,9 @@ import S from "./AddProductStyles";
 import { useRecoilState, useRecoilValue } from "recoil";
 import GradientButton from "components/common/Atoms/GradientButton";
 import { finalAddProductValue, checkBlankInputs } from "stores/AddProductAtoms";
-// import { addNewProduct } from "util/apis/productAPI";
+import myPageAPI from "util/API/myPageAPI";
 import { useMutation } from "react-query";
+import { IAddProduct } from "types/AddProductTypes";
 
 const AddProductSubmitLayer = () => {
   const [hasBlankInput, setBlank] = useRecoilState(checkBlankInputs);
@@ -17,19 +18,16 @@ const AddProductSubmitLayer = () => {
     blankInputs.length ? setBlank(true) : setBlank(false);
   };
 
-  // const mutation = useMutation((newProduct) => addNewProduct(newProduct));
+  const mutation = useMutation(async (productFinalInput: IAddProduct) => {
+    console.log("fire");
+    myPageAPI.seller.addNewProduct(productFinalInput);
+  });
 
   const handleSubmitClick = () => {
     blockSubmitIfBlackInputExists();
-
-    // const newProduct = {
-    //   productFinalInput,
-    // };
-
-    /*여기서 hasBlankInput이 false면
-    POST newProduct => axios.post(url, newProduct); */
-
-    // mutation.mutate(newProduct);
+    console.log("fire");
+    if (hasBlankInput) return;
+    mutation.mutate(productFinalInput);
   };
 
   return (

@@ -18,7 +18,7 @@ const NaverCallback = ({ history, location }: RouteComponentProps) => {
           `http://34.64.233.121:3000/api/login/naver?code=${code}&state=${state}`
         );
 
-        localStorage.setItem("token", JSON.stringify(jwtToken));
+        localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
 
         history.push("/");
       } catch (e) {}
