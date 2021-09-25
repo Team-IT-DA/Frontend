@@ -32,8 +32,9 @@ const MyPageTabs = ({
   return (
     <S.MyPageTabs.Layout>
       <S.MyPageTabs.Layer>
-        {(isSeller ? sellerTabs : customerTabs).map((tab) => (
+        {(isSeller ? sellerTabs : customerTabs).map((tab, index) => (
           <MyPageTab
+            key={`tabName-${index}`}
             isSeller={isSeller}
             category={tab}
             isSubtabVisible={isSubtabVisible}

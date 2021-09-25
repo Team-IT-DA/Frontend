@@ -19,11 +19,11 @@ const LoginDropDown = React.forwardRef(
       <S.LoginDropDown.DropDownLayout ref={ref}>
         <S.LoginDropDown.DropDownLayer className={className}>
           {loggedInByUser[0]
-            ? loggedInMenu.map((menuName: string) => (
-                <LoginDropDownMenu name={menuName} />
+            ? loggedInMenu.map((menuName: string, index: number) => (
+                <LoginDropDownMenu key={`menuName-${index}`} name={menuName} />
               ))
-            : loggedOutMenu.map((menuName: string) => (
-                <LoginDropDownMenu name={menuName} />
+            : loggedOutMenu.map((menuName: string, index: number) => (
+                <LoginDropDownMenu key={`menuName-${index}`} name={menuName} />
               ))}
         </S.LoginDropDown.DropDownLayer>
       </S.LoginDropDown.DropDownLayout>

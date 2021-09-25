@@ -31,8 +31,11 @@ const SellerSubtabs = ({
       onMouseLeave={handleMouseLeaveSubTab}
       onMouseEnter={handleMouseEnterSubtab}
     >
-      {subtabTitles.map((subtab) => (
-        <S.SellerSubtabs.Subtab onClick={() => handleSubtabClick(subtab)}>
+      {subtabTitles.map((subtab, index) => (
+        <S.SellerSubtabs.Subtab
+          key={`subtab-${index}`}
+          onClick={() => handleSubtabClick(subtab)}
+        >
           {subtab}
         </S.SellerSubtabs.Subtab>
       ))}
