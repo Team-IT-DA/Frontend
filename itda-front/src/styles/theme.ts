@@ -7,7 +7,7 @@ const colors = {
     light: "#F8F1F1",
   },
   gray: {
-    extraLight: " #f2f2f2",
+    xx_light: " #f2f2f2",
     x_light: "#dfdbdb",
     light: "#cecece",
     normal: "#999999",
@@ -17,7 +17,7 @@ const colors = {
     normal: "#46CDCF",
   },
   blue: {
-    extraLight: " #f2f6f8",
+    xx_light: " #f2f6f8",
   },
   navy: {
     light: "#3D84A8",
@@ -43,7 +43,7 @@ const fontSizes = {
   xxxl: calcRem(24),
   titleSize: calcRem(32),
   largeTitleSize: calcRem(48),
-  extraLageTitleSize: calcRem(75),
+  extraLargeTitleSize: calcRem(75),
 };
 const theme = { colors, fontSizes };
 

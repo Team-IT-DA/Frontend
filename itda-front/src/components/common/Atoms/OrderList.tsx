@@ -3,18 +3,18 @@ import S from "./AtomsStyles";
 import ColorButton from "./ColorButton";
 
 interface IOrder {
-  orderName: string;
-  orderImage: string;
-  orderCount: number;
-  orderPrice: number;
-  orderId: number;
+  productName: string;
+  imgSrc: string;
+  count: number;
+  price: number;
+  productId: number;
 }
 
 const OrderList = ({
   orderList,
   width = "500px",
   useReviewButton = false,
-  useOrderTitle = true,
+  // useOrderTitle = true,
   onClickReviewButton,
 }: {
   orderList: IOrder[];
@@ -25,11 +25,8 @@ const OrderList = ({
 }) => {
   return (
     <S.OrderList.Layout width={width}>
-      {useOrderTitle && (
-        <S.OrderList.TitleLayer>주문 내역</S.OrderList.TitleLayer>
-      )}
       <S.OrderList.ProductLayer>
-        {orderList.map((order) => (
+        {orderList.map(order => (
           <S.OrderList.ProductBlock>
             <S.OrderList.ProductImage
               src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg"
@@ -37,11 +34,11 @@ const OrderList = ({
             />
             <S.OrderList.ProductInfo>
               <S.OrderList.ProductName>
-                {order.orderName}
+                {order.productName}
               </S.OrderList.ProductName>
               <div>
-                <span>수량: {order.orderCount}</span>
-                <span>{order.orderPrice.toLocaleString()}원</span>
+                <span>수량: {order.count}</span>
+                <span>{order.price.toLocaleString()}원</span>
               </div>
             </S.OrderList.ProductInfo>
             {useReviewButton && (

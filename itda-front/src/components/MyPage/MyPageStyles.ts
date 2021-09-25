@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import theme from "styles/theme";
 
 const inputBlockStyle = css`
   display: flex;
@@ -21,12 +20,12 @@ const S = {
     HeaderLayout: styled.div`
       width: 100%;
       top: 0;
-      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.extraLight};
+      box-shadow: 0px 0px 2px 2px ${({ theme }) => theme.colors.gray.xx_light};
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 2px solid #f2f2f2;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.gray.xx_light};
     `,
     MainLayout: styled.div`
       display: flex;
@@ -41,7 +40,6 @@ const S = {
     `,
 
     ContentLayer: styled.div`
-      /* position: fixed; */
       min-width: 768px;
       overflow-y: scroll;
     `,
@@ -56,7 +54,11 @@ const S = {
   },
 
   MyPageTab: {
-    Layout: styled.div<{
+    Layout: styled.div`
+      position: relative;
+    `,
+
+    TabLayer: styled.div<{
       category: string;
       currentSelectedTab: string;
     }>`
@@ -65,17 +67,45 @@ const S = {
       align-items: center;
       height: 60px;
       cursor: pointer;
-      background-color: ${(props) =>
+      background-color: ${props =>
         props.currentSelectedTab === props.category
-          ? `${props.theme.colors.gray.extraLight}`
+          ? `${props.theme.colors.gray.xx_light}`
           : "ffffff"};
-      border-right: ${(props) =>
+      border-right: ${props =>
         props.currentSelectedTab === props.category
           ? `2px solid ${props.theme.colors.navy.normal}`
           : "none"};
-      font-weight: ${(props) =>
+      font-weight: ${props =>
         props.currentSelectedTab === props.category ? "900" : "200"};
       transition: background-color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.navy.normal};
+        transition: color 0.3s;
+      }
+    `,
+
+    SubtabLayer: styled.div`
+      position: absolute;
+      left: 270px;
+      top: 0;
+      width: 130px;
+      cursor: pointer;
+    `,
+  },
+
+  SellerSubtabs: {
+    Layout: styled.ul`
+      border: 1px solid ${({ theme }) => theme.colors.gray.light};
+      border-radius: 15px;
+    `,
+
+    Subtab: styled.li`
+      text-align: center;
+      padding: 1rem;
+      :first-child {
+        border-bottom: 1px solid ${({ theme }) => theme.colors.gray.light};
+      }
     `,
   },
 
@@ -83,7 +113,6 @@ const S = {
     Layout: styled.div`
       width: 100%;
       height: 100%;
-      /* border: 1px solid black; */
     `,
 
     Layer: styled.div`
@@ -156,6 +185,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
@@ -191,7 +222,7 @@ const S = {
     `,
 
     FormBlock: styled.div`
-      width: 60%;
+      width: 500px;
       display: flex;
       margin: 0 auto 1.5rem;
     `,
@@ -224,6 +255,8 @@ const S = {
     `,
 
     HeaderLayer: styled.div`
+      font-family: "Gowun Batang", sans-serif;
+      color: ${({ theme }) => theme.colors.gray.normal};
       font-size: ${({ theme }) => theme.fontSizes.titleSize};
       font-weight: bold;
       margin-bottom: 1.5rem;
@@ -253,10 +286,6 @@ const S = {
       width: 30%;
     `,
 
-    CurrentPasswordInput: styled(TextField)`
-      width: 50%;
-    `,
-
     NewPasswordBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -264,10 +293,6 @@ const S = {
     NewPasswordLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    NewPasswordInput: styled(TextField)`
-      width: 50%;
     `,
 
     NewPasswordConfirmBlock: styled.div`
@@ -279,10 +304,6 @@ const S = {
       width: 30%;
     `,
 
-    NewPasswordConfirmInput: styled(TextField)`
-      width: 50%;
-    `,
-
     NameBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -292,10 +313,6 @@ const S = {
       width: 30%;
     `,
 
-    NameInput: styled(TextField)`
-      width: 50%;
-    `,
-
     EmailBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -303,10 +320,6 @@ const S = {
     EmailLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    EmailInput: styled(TextField)`
-      width: 50%;
     `,
 
     EmailCheckButton: styled(Button)`
@@ -323,10 +336,6 @@ const S = {
     CellPhoneNumberLabel: styled.div`
       text-align: left;
       width: 30%;
-    `,
-
-    CellPhoneNumberInput: styled(TextField)`
-      width: 50%;
     `,
 
     CellPhoneNumberCheckButton: styled(Button)`
@@ -354,30 +363,6 @@ const S = {
       & > button {
         margin: 1rem;
       }
-    `,
-
-    ButtonExpireAccount: styled(Button)`
-      background: ${({ theme }) => theme.colors.gray.normal};
-      color: white;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-      height: 3.5rem;
-      &:hover {
-        background: ${({ theme }) => theme.colors.navy.normal};
-      }
-      width: 20%;
-    `,
-
-    ButtonConfirmEdit: styled(Button)`
-      background: ${({ theme }) => theme.colors.navy.light};
-      color: white;
-      font-weight: bold;
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-      height: 3.5rem;
-      &:hover {
-        background: ${({ theme }) => theme.colors.navy.normal};
-      }
-      width: 20%;
     `,
   },
   ReviewBox: {
@@ -439,6 +424,91 @@ const S = {
         right: 2rem;
         bottom: 1rem;
       }
+    `,
+  },
+  ReceiptModal: {
+    Wrapper: styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    `,
+    Layout: styled.div`
+      padding: 20px;
+      width: 450px;
+      height: 700px;
+      background: white;
+      border-radius: 10px;
+      overflow: auto;
+      position: relative;
+    `,
+    ButtonLayer: styled.div`
+      position: absolute;
+      right: 15px;
+      top: 20px;
+    `,
+    Title: styled.div`
+      padding-bottom: 2rem;
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: bold;
+    `,
+    DateTitle: styled.div`
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding-bottom: 0.7rem;
+      color: ${({ theme }) => theme.colors.navy.dark};
+    `,
+    OrderId: styled.div`
+      color: ${({ theme }) => theme.colors.gray.normal};
+    `,
+    TitleLayer: styled.div`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `,
+  },
+  ReceiptCard: {
+    Layout: styled.div`
+      border-style: none solid dotted solid;
+      border-color: ${({ theme }) => theme.colors.gray.light};
+      padding: 1rem 0;
+    `,
+
+    RowLayer: styled.div`
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 30px;
+    `,
+    SubTitle: styled.div`
+      font-size: 1.3 rem;
+      font-weight: bold;
+    `,
+    Contents: styled.div``,
+  },
+
+  MyOrderList: {
+    Layout: styled.div``,
+    HeaderLayer: styled.header<{ width?: string }>`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: ${({ width }) => width};
+    `,
+    TitleLayer: styled.div`
+      //없애야
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      font-weight: bold;
     `,
   },
 };

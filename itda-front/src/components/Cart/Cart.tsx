@@ -4,16 +4,19 @@ import AddressInfo from "./AddressInfo";
 import PaymentInfo from "./PaymentInfo";
 import CartProduct from "./CartProduct/";
 import AddressForm from "./AddressForm";
+import useToggle from "hooks/useToggle";
 const Cart = () => {
+  const [isAddressFormOpen, toggleAddressForm] = useToggle(false);
+
   return (
     <S.Cart.Layout>
-      <S.AddressFormModal.BlackBackground />
-      {/* 모달 클릭 여부에 따라 리턴 */}
       <S.Cart.HeaderLayout>
         <Header />
       </S.Cart.HeaderLayout>
       <S.Cart.ModalLayout>
-        <AddressForm />
+        {isAddressFormOpen && (
+          <AddressForm toggleAddressForm={toggleAddressForm} />
+        )}
       </S.Cart.ModalLayout>
       <S.Cart.CartHeaderLayout>장바구니</S.Cart.CartHeaderLayout>
       <S.Cart.MainLayout>
@@ -22,7 +25,7 @@ const Cart = () => {
             <CartProduct />
           </S.Cart.ProductsLayer>
           <S.Cart.SummaryLayer>
-            <AddressInfo />
+            <AddressInfo toggleAddressForm={toggleAddressForm} />
             <S.Cart.DivisionLine />
             <PaymentInfo />
           </S.Cart.SummaryLayer>

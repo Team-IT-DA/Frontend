@@ -14,9 +14,9 @@ const S = {
       justify-content: center;
       align-items: center;
       height: 6rem;
-      border: 1px solid ${({ theme }) => theme.colors.gray.extraLight};
+      border: 1px solid ${({ theme }) => theme.colors.gray.xx_light};
       background: ${({ theme }) => theme.colors.white};
-      box-shadow: 0px 1px 1px 0px ${({ theme }) => theme.colors.gray.extraLight};
+      box-shadow: 0px 1px 1px 0px ${({ theme }) => theme.colors.gray.xx_light};
       backdrop-filter: blur(4px);
       font-weight: bold;
       font-size: 1.7rem;
@@ -102,11 +102,25 @@ const S = {
   },
 
   AddressFormModal: {
+    Wrapper: styled.div`
+      display: flex;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    `,
     Layout: styled.div`
       z-index: 2;
       width: 800px;
       height: 600px;
-      background-color: ${({ theme }) => theme.colors.blue.extraLight};
+      background-color: ${({ theme }) => theme.colors.blue.xx_light};
       border: 1px solid ${({ theme }) => theme.colors.gray.light};
       border-radius: 10px;
       position: absolute;
@@ -142,14 +156,6 @@ const S = {
       align-items: center;
       padding-right: 20px;
       width: 10rem;
-    `,
-
-    BlackBackground: styled.div`
-      position: fixed;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
     `,
   },
 

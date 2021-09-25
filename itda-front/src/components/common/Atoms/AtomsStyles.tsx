@@ -61,10 +61,8 @@ const S = {
       color: ${({ theme }) => theme.colors.gray.light};
       cursor: pointer;
       :hover {
-        color: ${(props) =>
-          props.hoverEffect
-            ? props.theme.colors.navy.normal
-            : props.theme.colors.gray.light};
+        color: ${({ hoverEffect, theme }) =>
+          hoverEffect ? theme.colors.navy.normal : theme.colors.gray.light};
       }
     `,
   },
@@ -72,10 +70,10 @@ const S = {
     disabled?: boolean;
     width: string;
   }>`
-    background: ${(props) =>
-      props.disabled
-        ? props.theme.colors.gray.light
-        : `linear-gradient(45deg, ${props.theme.colors.navy.light} 30%,${props.theme.colors.mint.normal}  90%)`};
+    background: ${({ theme, disabled }) =>
+      disabled
+        ? theme.colors.gray.light
+        : `linear-gradient(45deg, ${theme.colors.navy.light} 30%,${theme.colors.mint.normal}  90%)`};
     border-radius: 3px;
     border: none;
     color: ${({ theme }) => theme.colors.white};
@@ -187,15 +185,7 @@ const S = {
       display: flex;
       flex-direction: column;
       width: ${({ width }) => width};
-      margin: 3rem auto;
-    `,
-
-    TitleLayer: styled.div`
-      display: flex;
-      align-items: center;
-      margin: 0.8rem 0;
-      font-size: ${({ theme }) => theme.fontSizes.xl};
-      font-weight: bold;
+      margin-bottom: 3rem;
     `,
 
     ProductLayer: styled.div`
@@ -246,6 +236,11 @@ const S = {
     ProductName: styled.div`
       font-weight: bold;
       font-size: ${({ theme }) => theme.fontSizes.l};
+    `,
+    HeaderLayer: styled.header`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     `,
   },
 };
