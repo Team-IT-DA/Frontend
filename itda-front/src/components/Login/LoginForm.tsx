@@ -19,8 +19,12 @@ const LoginForm = () => {
         <S.LoginButton>로그인하기</S.LoginButton>
       </S.LoginFormLayer>
       <S.LoginSocialLayer>
-        <S.LoginAsKakaoIcon />
-        <S.LoginAsNaverIcon />
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=ee6e1a4937fbdd837c05bf548215a3ae&redirect_uri=http://localhost:3000/kakao/callback&response_type=code">
+          <S.LoginAsKakaoIcon />
+        </a>
+        <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=boxzCRuNeP0Gvv5BGhcM&state=STATE_STRING&redirect_uri=http://localhost:3000/naver/callback">
+          <S.LoginAsNaverIcon />
+        </a>
       </S.LoginSocialLayer>
       <S.LoginSignUpLayer>회원가입 하기</S.LoginSignUpLayer>
     </S.LoginLayout>
