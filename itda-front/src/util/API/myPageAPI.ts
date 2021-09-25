@@ -1,7 +1,7 @@
 import { instanceWithAuth } from "./index";
 
-const addNewProduct = (newProduct: any) =>
-  instanceWithAuth.post("/seller/product", newProduct);
+const addNewProduct = async (newProduct: any) =>
+  instanceWithAuth.post("/products", newProduct);
 
 const myPageAPI = {
   seller: { addNewProduct },

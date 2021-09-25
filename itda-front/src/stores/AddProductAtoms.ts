@@ -20,7 +20,8 @@ export const addProductInfos = atom<IAddProductTextField>({
   key: "addProductTextFieldValue",
   default: {
     name: "",
-    productImage: "",
+    productImage:
+      "https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg",
     description: "",
     price: 0,
     salesUnit: "",
@@ -52,7 +53,7 @@ export const addProductSelectInput = atom<IAddProductSelectField>({
   },
 });
 
-export const finalAddProductValue = selector({
+export const finalAddProductValue = selector<IAddProduct>({
   key: "finalAddProductValue",
   get: ({ get }) => {
     const addProductTextValue = get(addProductInfos);

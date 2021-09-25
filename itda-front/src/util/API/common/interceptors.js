@@ -2,10 +2,12 @@ export function setInterceptors(instance) {
   // Add a request interceptor
   instance.interceptors.request.use(
     function (config) {
-      // Do something before request is sent
+      const authToken = JSON.parse(localStorage.getItem("token"));
+      console.log("interceptor~!", authToken);
+      if (authToken) {
+        config.headers.Authorization = authToken;
+      }
 
-      //여기에 토큰 설정 하면 됩니당 👇
-      //   config.headers.Authorization = 우리가 관리할 사용자 토큰;
       return config;
     },
     function (error) {
