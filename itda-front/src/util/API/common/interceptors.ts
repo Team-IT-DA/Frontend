@@ -1,8 +1,15 @@
-export function setInterceptors(instance) {
+import {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
+
+export function setInterceptors(instance: AxiosInstance) {
   // Add a request interceptor
   instance.interceptors.request.use(
-    function (config) {
-      const authToken = JSON.parse(localStorage.getItem("token"));
+    function (config: AxiosRequestConfig) {
+      const authToken = JSON.parse(localStorage.getItem("token") as string);
 
       if (authToken) {
         config.headers.Authorization = authToken;
@@ -10,7 +17,7 @@ export function setInterceptors(instance) {
 
       return config;
     },
-    function (error) {
+    function (error: AxiosError) {
       // Do something with request error
       return Promise.reject(error);
     }
@@ -18,12 +25,12 @@ export function setInterceptors(instance) {
 
   // Add a response interceptor
   instance.interceptors.response.use(
-    function (response) {
+    function (response: AxiosResponse) {
       // Any status code that lie within the range of 2xx cause this function to trigger
       // Do something with response data
       return response;
     },
-    function (error) {
+    function (error: AxiosError) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
       return Promise.reject(error);
