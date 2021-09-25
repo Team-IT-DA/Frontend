@@ -19,13 +19,12 @@ const AddProductSubmitLayer = () => {
   };
 
   const mutation = useMutation(async (productFinalInput: IAddProduct) => {
-    console.log("fire");
     myPageAPI.seller.addNewProduct(productFinalInput);
   });
 
   const handleSubmitClick = () => {
     blockSubmitIfBlackInputExists();
-    console.log("fire");
+
     if (hasBlankInput) return;
     mutation.mutate(productFinalInput);
   };

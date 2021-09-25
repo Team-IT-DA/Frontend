@@ -3,7 +3,7 @@ export function setInterceptors(instance) {
   instance.interceptors.request.use(
     function (config) {
       const authToken = JSON.parse(localStorage.getItem("token"));
-      console.log("interceptor~!", authToken);
+
       if (authToken) {
         config.headers.Authorization = authToken;
       }
