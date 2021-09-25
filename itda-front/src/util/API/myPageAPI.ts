@@ -1,0 +1,2 @@
+//mypage
+export {};

@@ -2,7 +2,7 @@ import S from "./AddProductStyles";
 import { useRecoilState, useRecoilValue } from "recoil";
 import GradientButton from "components/common/Atoms/GradientButton";
 import { finalAddProductValue, checkBlankInputs } from "stores/AddProductAtoms";
-import { addNewProduct } from "util/apis/seller";
+// import { addNewProduct } from "util/apis/productAPI";
 import { useMutation } from "react-query";
 
 const AddProductSubmitLayer = () => {
@@ -17,7 +17,7 @@ const AddProductSubmitLayer = () => {
     blankInputs.length ? setBlank(true) : setBlank(false);
   };
 
-  const mutation = useMutation((newProduct) => addNewProduct(newProduct));
+  // const mutation = useMutation((newProduct) => addNewProduct(newProduct));
 
   const handleSubmitClick = () => {
     blockSubmitIfBlackInputExists();
