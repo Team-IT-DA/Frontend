@@ -7,14 +7,9 @@ import { currentSelectedTab } from "stores/MyPageAtoms";
 interface IMyPageTabProps {
   isSeller: boolean;
   category: string;
-  setCurrentSelectedSubtab: (tabName: string) => void;
 }
 
-const MyPageTab = ({
-  isSeller,
-  category,
-  setCurrentSelectedSubtab,
-}: IMyPageTabProps) => {
+const MyPageTab = ({ isSeller, category }: IMyPageTabProps) => {
   const [isSubtabVisible, setIsSubtabVisible] = useState(false);
   const [currentSelectedTabState, setCurrentSelectedTab] =
     useRecoilState(currentSelectedTab);
@@ -71,7 +66,6 @@ const MyPageTab = ({
         {category === "개인 정보 수정" &&
           (isSubtabVisible ? (
             <SellerSubtabs
-              setCurrentSelectedSubtab={setCurrentSelectedSubtab}
               handleMouseLeaveSubTab={handleMouseLeaveSubTab}
               handleMouseEnterSubtab={handleMouseEnterSubtab}
             />
