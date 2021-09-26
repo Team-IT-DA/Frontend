@@ -11,6 +11,8 @@ import ThankYou from "components/ThankYou";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import SignUpCompletePage from "components/SignUp/SignUpCompletePage";
 import MyReview from "components/MyPage/MyPageReview/MyReview";
+import NaverCallback from "components/Login/NaverCallback";
+import KakaoCallback from "components/Login/KakaoCallback";
 
 const Router = () => {
   return (
@@ -28,6 +30,8 @@ const Router = () => {
         <Route path="/signUpComplete" component={SignUpCompletePage}></Route>
         <Route path="/thankYou" component={ThankYou}></Route>
         <Route path="/JennyTest" component={MyReview}></Route>
+        <Route exact path="/naver/callback" component={NaverCallback}></Route>
+        <Route exact path="/kakao/callback" component={KakaoCallback}></Route>
       </Switch>
     </BrowserRouter>
   );

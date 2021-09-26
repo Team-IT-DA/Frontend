@@ -3,7 +3,7 @@ import { setInterceptors } from "./common/interceptors";
 
 const createInstanceWithAuth = () => {
   const instance = axios.create({
-    baseUrl: "https://af425ed2-ed9f-4a0b-9ece-5c69c5ce9d3e.mock.pstmn.io/api",
+    baseURL: "http://34.64.233.121:3000/api",
   });
   return setInterceptors(instance);
 };
