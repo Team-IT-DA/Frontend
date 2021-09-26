@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useRecoilState } from "recoil";
 import S from "../MyPageStyles";
 import SellerSubtabs from "./SellerSubtabs";
@@ -7,18 +7,15 @@ import { currentSelectedTab } from "stores/MyPageAtoms";
 interface IMyPageTabProps {
   isSeller: boolean;
   category: string;
-  isSubtabVisible: boolean;
-  setIsSubtabVisible: (param: boolean) => void;
   setCurrentSelectedSubtab: (tabName: string) => void;
 }
 
 const MyPageTab = ({
   isSeller,
   category,
-  isSubtabVisible,
-  setIsSubtabVisible,
   setCurrentSelectedSubtab,
 }: IMyPageTabProps) => {
+  const [isSubtabVisible, setIsSubtabVisible] = useState(false);
   const [currentSelectedTabState, setCurrentSelectedTab] =
     useRecoilState(currentSelectedTab);
   const isMouseEnterInSubTab = useRef(false);

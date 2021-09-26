@@ -3,15 +3,11 @@ import S from "../MyPageStyles";
 
 interface IMyPageTabsProps {
   isSeller: boolean;
-  isSubtabVisible: boolean;
-  setIsSubtabVisible: (param: boolean) => void;
   setCurrentSelectedSubtab: (tabName: string) => void;
 }
 
 const MyPageTabs = ({
   isSeller,
-  isSubtabVisible,
-  setIsSubtabVisible,
   setCurrentSelectedSubtab,
 }: IMyPageTabsProps) => {
   const customerTabs = ["주문 내역", "상품 후기", "잇다톡", "개인 정보 수정"];
@@ -31,8 +27,6 @@ const MyPageTabs = ({
             key={`tabName-${index}`}
             isSeller={isSeller}
             category={tab}
-            isSubtabVisible={isSubtabVisible}
-            setIsSubtabVisible={setIsSubtabVisible}
             setCurrentSelectedSubtab={setCurrentSelectedSubtab}
           />
         ))}
