@@ -5,7 +5,7 @@ export const inputNames = [
   { name: "salesUnit", label: "판매 단위" },
   { name: "deliveryFee", label: "배송비" },
   { name: "deliveryFeeCondition", label: "배송비 추가 조건" },
-  { name: "weight", label: "중량/용량" },
+  { name: "capacity", label: "중량/용량" },
   { name: "notice", label: "안내 사항" },
   { name: "bank", label: "은행명" },
   { name: "accountHolder", label: "예금주" },
