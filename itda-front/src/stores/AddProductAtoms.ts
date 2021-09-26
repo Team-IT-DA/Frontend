@@ -22,7 +22,7 @@ export const addProductInfos = atom<IAddProductTextField>({
     name: "",
     productImage:
       "https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg",
-    description: "",
+    subTitle: "",
     price: 0,
     salesUnit: "",
     capacity: "",
@@ -62,7 +62,7 @@ export const finalAddProductValue = selector<IAddProduct>({
 
     return {
       ...addProductTextValue,
-      detailDescription: addProductEditorValue,
+      description: addProductEditorValue,
       ...addProductSelectValue,
       mainCategoryId: 1,
     };
