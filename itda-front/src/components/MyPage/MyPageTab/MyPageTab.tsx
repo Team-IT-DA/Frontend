@@ -1,16 +1,15 @@
 import { useRef } from "react";
-import SellerSubtabs from "./SellerSubtabs";
+import { useRecoilState } from "recoil";
 import S from "../MyPageStyles";
+import SellerSubtabs from "./SellerSubtabs";
+import { currentSelectedTab } from "stores/MyPageAtoms";
 
 interface IMyPageTabProps {
   isSeller: boolean;
   category: string;
   isSubtabVisible: boolean;
   setIsSubtabVisible: (param: boolean) => void;
-  currentSelectedTab: string;
-  setCurrentSelectedTab: (tabName: string) => void;
   setCurrentSelectedSubtab: (tabName: string) => void;
-  handleTabClick: (tabName: string) => void;
 }
 
 const MyPageTab = ({
@@ -18,11 +17,10 @@ const MyPageTab = ({
   category,
   isSubtabVisible,
   setIsSubtabVisible,
-  currentSelectedTab,
-  setCurrentSelectedTab,
   setCurrentSelectedSubtab,
-  handleTabClick,
 }: IMyPageTabProps) => {
+  const [currentSelectedTabState, setCurrentSelectedTab] =
+    useRecoilState(currentSelectedTab);
   const isMouseEnterInSubTab = useRef(false);
   const subtabMouseLeaveHandler = useRef<any>(null);
 
@@ -57,11 +55,15 @@ const MyPageTab = ({
     isMouseEnterInSubTab.current = true;
   };
 
+  const handleTabClick = (tabName: string) => {
+    setCurrentSelectedTab(tabName);
+  };
+
   return (
     <S.MyPageTab.Layout>
       <S.MyPageTab.TabLayer
         category={category}
-        currentSelectedTab={currentSelectedTab}
+        currentSelectedTab={currentSelectedTabState}
         onClick={() => handleTabClick(category)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -72,7 +74,6 @@ const MyPageTab = ({
         {category === "개인 정보 수정" &&
           (isSubtabVisible ? (
             <SellerSubtabs
-              setCurrentSelectedTab={setCurrentSelectedTab}
               setCurrentSelectedSubtab={setCurrentSelectedSubtab}
               handleMouseLeaveSubTab={handleMouseLeaveSubTab}
               handleMouseEnterSubtab={handleMouseEnterSubtab}

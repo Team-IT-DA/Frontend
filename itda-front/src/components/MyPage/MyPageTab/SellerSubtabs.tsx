@@ -1,18 +1,19 @@
+import { useSetRecoilState } from "recoil";
 import S from "../MyPageStyles";
+import { currentSelectedTab } from "stores/MyPageAtoms";
 
 interface ISellerSubtabsProps {
-  setCurrentSelectedTab: (tabName: string) => void;
   setCurrentSelectedSubtab: (tabName: string) => void;
   handleMouseLeaveSubTab: () => void;
   handleMouseEnterSubtab: () => void;
 }
 
 const SellerSubtabs = ({
-  setCurrentSelectedTab,
   setCurrentSelectedSubtab,
   handleMouseLeaveSubTab,
   handleMouseEnterSubtab,
 }: ISellerSubtabsProps) => {
+  const setCurrentSelectedTab = useSetRecoilState(currentSelectedTab);
   const subtabTitles = ["기본정보", "판매자 정보"];
 
   const handleSubtabClick = (tabName: string) => {
