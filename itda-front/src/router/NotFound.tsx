@@ -6,7 +6,9 @@ const NotFound = () => {
   return (
     <>
       <HeaderLayer>
-        <S.Header.ItdaLogo color={"#555555"} />
+        <Link to="/">
+          <S.Header.ItdaLogo color={"#555555"} />
+        </Link>
       </HeaderLayer>
       <MainLayer>
         <Title>찾을 수 없는 페이지 입니다.</Title>
