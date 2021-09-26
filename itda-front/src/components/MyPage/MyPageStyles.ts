@@ -34,6 +34,7 @@ const S = {
     SideTabLayout: styled.div``,
 
     ContentLayout: styled.div`
+      z-index: -1;
       width: 100%;
       height: 100%;
       padding: 3rem;
@@ -67,16 +68,16 @@ const S = {
       align-items: center;
       height: 60px;
       cursor: pointer;
-      background-color: ${props =>
-        props.currentSelectedTab === props.category
-          ? `${props.theme.colors.gray.xx_light}`
+      background-color: ${({ currentSelectedTab, category, theme }) =>
+        currentSelectedTab === category
+          ? `${theme.colors.gray.xx_light}`
           : "ffffff"};
-      border-right: ${props =>
-        props.currentSelectedTab === props.category
-          ? `2px solid ${props.theme.colors.navy.normal}`
+      border-right: ${({ currentSelectedTab, category, theme }) =>
+        currentSelectedTab === category
+          ? `2px solid ${theme.colors.navy.normal}`
           : "none"};
-      font-weight: ${props =>
-        props.currentSelectedTab === props.category ? "900" : "200"};
+      font-weight: ${({ currentSelectedTab, category }) =>
+        currentSelectedTab === category ? "900" : "200"};
       transition: background-color 0.3s;
 
       &:hover {
@@ -98,6 +99,7 @@ const S = {
     Layout: styled.ul`
       border: 1px solid ${({ theme }) => theme.colors.gray.light};
       border-radius: 15px;
+      background-color: ${({ theme }) => theme.colors.white};
     `,
 
     Subtab: styled.li`
