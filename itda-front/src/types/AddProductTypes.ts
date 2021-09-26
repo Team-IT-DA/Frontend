@@ -2,28 +2,29 @@ export interface IAddProduct {
   [index: string]: string | number;
   name: string;
   price: number;
-  description: string;
+  subTitle: string;
   salesUnit: string;
-  weight: string;
+  capacity: string;
   deliveryFee: number;
   deliveryFeeCondition: string;
   origin: string;
   packagingType: string;
-  detailDescription: string;
+  description: string;
   bank: string;
   accountHolder: string;
   account: string;
   productImage: string;
   notice: string;
+  mainCategoryId: number;
 }
 
 export interface IAddProductTextField {
   [index: string]: string | number;
   name: string;
   price: number;
-  description: string;
+  subTitle: string;
   salesUnit: string;
-  weight: string;
+  capacity: string;
   deliveryFee: number;
   deliveryFeeCondition: string;
   bank: string;
@@ -40,5 +41,5 @@ export interface IAddProductSelectField {
 }
 
 export interface IAddProductEditorField {
-  detailDescription: string;
+  description: string;
 }

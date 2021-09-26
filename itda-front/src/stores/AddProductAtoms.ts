@@ -25,7 +25,7 @@ export const addProductInfos = atom<IAddProductTextField>({
     description: "",
     price: 0,
     salesUnit: "",
-    weight: "",
+    capacity: "",
     deliveryFee: 0,
     deliveryFeeCondition: "",
     notice: "",
@@ -64,6 +64,7 @@ export const finalAddProductValue = selector<IAddProduct>({
       ...addProductTextValue,
       detailDescription: addProductEditorValue,
       ...addProductSelectValue,
+      mainCategoryId: 1,
     };
   },
 });
