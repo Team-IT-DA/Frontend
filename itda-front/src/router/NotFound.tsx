@@ -11,7 +11,7 @@ const NotFound = () => {
         </Link>
       </HeaderLayer>
       <MainLayer>
-        <Title>찾을 수 없는 페이지 입니다.</Title>
+        <Title>페이지를 찾지 못했습니다.</Title>
         <SubText>
           주소가 잘못되었거나 더 이상 제공되지 않는 페이지입니다.
         </SubText>
