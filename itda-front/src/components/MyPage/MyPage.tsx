@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
+import { Link, Route } from "react-router-dom";
 import S from "./MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "components/MyPage/MyPageTab/MyPageTabs";
@@ -22,7 +23,7 @@ const MyPage = () => {
   return (
     <>
       <S.MyPage.Layout>
-        <S.MyPage.HeaderLayout>
+        {/* <S.MyPage.HeaderLayout>
           <Header />
         </S.MyPage.HeaderLayout>
         <S.MyPage.MainLayout>
@@ -47,7 +48,11 @@ const MyPage = () => {
               )}
             </S.MyPage.ContentLayer>
           </S.MyPage.ContentLayout>
-        </S.MyPage.MainLayout>
+        </S.MyPage.MainLayout> */}
+        <Route path="/myPage/orderList" component={MyPageOrderList} />
+        <Route path="/myPage/reviews" component={MyReview} />
+        <Route path="/myPage/itdaTalk" />
+        <Route path="/myPage/myInfoEdit" component={MyInfoEditBefore} />
       </S.MyPage.Layout>
     </>
   );
