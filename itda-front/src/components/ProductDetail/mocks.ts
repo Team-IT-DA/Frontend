@@ -142,7 +142,7 @@ export const mockProduct: IProductDetail = {
   description: "제주 바다 바람을 품은 친환경 흙당근",
   price: 19900,
   salesUnit: "1봉지",
-  weight: "500g (2~4개입)",
+  capacity: "500g (2~4개입)",
   deliveryFee: 2500,
   deliveryFeeCondition: "30,000원 이상 무료 배송",
   origin: "제주",

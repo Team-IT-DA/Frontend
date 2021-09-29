@@ -2,11 +2,6 @@ import styled, { keyframes, css } from "styled-components";
 import { ReactComponent as itdaLogo } from "images/icons/logo.svg";
 import { ReactComponent as loginIcon } from "images/icons/hamburger.svg";
 import { ReactComponent as cartIcon } from "images/icons/cart.svg";
-import {
-  MdKeyboardArrowUp,
-  MdKeyboardArrowDown,
-  MdClose,
-} from "react-icons/md";
 import { VscChromeClose } from "react-icons/vsc";
 import { HiChevronDoubleUp } from "react-icons/hi";
 import Button from "@material-ui/core/Button";

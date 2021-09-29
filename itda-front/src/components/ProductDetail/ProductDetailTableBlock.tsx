@@ -11,7 +11,7 @@ const ProductDetailTableBlock = (mockProduct: IProductDetail) => {
         </dl>
         <dl>
           <dt>중량/용량</dt>
-          <dd>{mockProduct.weight}</dd>
+          <dd>{mockProduct.capacity}</dd>
         </dl>
       </li>
       <li>

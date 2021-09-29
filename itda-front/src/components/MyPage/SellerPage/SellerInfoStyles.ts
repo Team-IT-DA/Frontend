@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 
 //판매자 정보 수정 페이지와 등록상품조회 페이지의 스타일을 관리합니다.
-const S = {
+const SS = {
   SellerInfoEdit: {
     Layout: styled.div`
       min-width: 1024px;
@@ -108,4 +108,4 @@ const S = {
   },
 };
 
-export default S;
+export default SS;

@@ -3,7 +3,6 @@ import PaymentList from "./PaymentList";
 import Header from "components/common/Header";
 import newOrderListData from "util/mock/newOrderListData";
 import S from "./ThankyouStyles";
-import { useEffect } from "react";
 
 const ThankYou = () => {
   const { orderList } = newOrderListData;
