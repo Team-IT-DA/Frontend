@@ -3,7 +3,7 @@ import { setInterceptors } from "./common/interceptors";
 
 const createInstanceWithAuth = () => {
   const instance = axios.create({
-    baseURL: "http://34.64.233.121:3000/api",
+    baseURL: "http://34.125.79.175:8000/api",
   });
   return setInterceptors(instance);
 };

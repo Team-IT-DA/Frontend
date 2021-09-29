@@ -3,23 +3,22 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 
 const KakaoCallback = ({ history, location }: RouteComponentProps) => {
-  useEffect(() => {
-    const getToken = async () => {
-      let params = new URLSearchParams(location.search);
-      let code = params.get("code");
+  const getToken = async () => {
+    let params = new URLSearchParams(location.search);
+    let code = params.get("code");
 
-      try {
-        const jwtToken = await axios.get(
-          `http://34.64.233.121:3000/api/login/kakao?code=${code}`
-        );
+    try {
+      const jwtToken = await axios.get(
+        `http://34.125.79.175:8000/api/login/kakao?code=${code}`
+      );
 
-        localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
+      localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
+      localStorage.setItem("name", JSON.stringify(jwtToken.data.data.name));
 
-        history.push("/");
-      } catch (e) {}
-    };
-    getToken();
-  }, []);
+      history.push("/");
+    } catch (e) {}
+  };
+  getToken();
 
   return null;
 };
