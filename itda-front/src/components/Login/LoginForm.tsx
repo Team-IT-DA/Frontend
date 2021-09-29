@@ -1,4 +1,5 @@
 import S from "./LoginStyles";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   return (
@@ -26,7 +27,9 @@ const LoginForm = () => {
           <S.LoginAsNaverIcon />
         </a>
       </S.LoginSocialLayer>
-      <S.LoginSignUpLayer>회원가입 하기</S.LoginSignUpLayer>
+      <S.LoginSignUpLayer>
+        <Link to="/signUp">회원가입 하기</Link>
+      </S.LoginSignUpLayer>
     </S.LoginLayout>
   );
 };

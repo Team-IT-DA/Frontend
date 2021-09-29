@@ -8,7 +8,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <Router></Router>
+        <Router />
       </RecoilRoot>
     </QueryClientProvider>
   );

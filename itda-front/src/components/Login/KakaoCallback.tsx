@@ -12,12 +12,12 @@ const KakaoCallback = ({ history, location }: RouteComponentProps) => {
           `http://34.125.79.175:8000/api/login/kakao?code=${code}`
         );
         localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
-
+        localStorage.setItem("name", JSON.stringify(jwtToken.data.data.name));
         history.push("/");
       } catch (e) {}
     };
     getToken();
-  }, []);
+  });
 
   return null;
 };

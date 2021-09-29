@@ -13,25 +13,28 @@ import SignUpCompletePage from "components/SignUp/SignUpCompletePage";
 import MyReview from "components/MyPage/MyPageReview/MyReview";
 import NaverCallback from "components/Login/NaverCallback";
 import KakaoCallback from "components/Login/KakaoCallback";
+import PrivateRouter from "./PrivateRouter";
+import NotFound from "./NotFound";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/brandstory" component={BrandStory}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/myPage" component={MyPage}></Route>
-        <Route path="/products" component={Products}></Route>
-        <Route path="/product/:productId" component={ProductDetail}></Route>
-        <Route path="/addProduct" component={AddProduct}></Route>
-        <Route path="/cart" component={Cart}></Route>
-        <Route path="/signUp" component={SignUp}></Route>
-        <Route path="/signUpComplete" component={SignUpCompletePage}></Route>
-        <Route path="/thankYou" component={ThankYou}></Route>
-        <Route path="/JennyTest" component={MyReview}></Route>
-        <Route exact path="/naver/callback" component={NaverCallback}></Route>
-        <Route exact path="/kakao/callback" component={KakaoCallback}></Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/brandstory" component={BrandStory} />
+        <Route path="/login" component={Login} />
+        <Route path="/products" component={Products} />
+        <Route path="/product/:productId" component={ProductDetail} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/signUp" component={SignUp} />
+        <Route path="/signUpComplete" component={SignUpCompletePage} />
+        <Route path="/JennyTest" component={MyReview} />
+        <Route exact path="/naver/callback" component={NaverCallback} />
+        <Route exact path="/kakao/callback" component={KakaoCallback} />
+        <PrivateRouter path="/myPage" component={MyPage} />
+        <PrivateRouter path="/addProduct" component={AddProduct} />
+        <PrivateRouter path="/thankYou" component={ThankYou} />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
