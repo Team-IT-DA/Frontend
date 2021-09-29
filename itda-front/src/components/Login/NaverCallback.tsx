@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 
 const NaverCallback = ({ history, location }: RouteComponentProps) => {
