@@ -1,6 +1,9 @@
 import { instanceWithAuth } from "./index";
 
-const getCategoryList = () => instanceWithAuth.get<any>("/categories");
+const getCategoryList = () => instanceWithAuth.get("/categories");
+
+const getProductDetail = (productId: number) =>
+  instanceWithAuth.get(`/products/${productId}`);
 
 export const productAPI = {
   category: {
@@ -8,6 +11,6 @@ export const productAPI = {
   },
   products: {
     post: {},
-    get: {},
+    get: { getProductDetail },
   },
 };

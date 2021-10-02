@@ -1,44 +1,44 @@
 import S from "./ProductDetailStyles";
 import { IProductDetail } from "types/ProductDetailTypes";
 
-const ProductDetailTableBlock = (mockProduct: IProductDetail) => {
+const ProductDetailTableBlock = (product: IProductDetail) => {
   return (
     <S.ProductInfo.DetailProductInfo>
       <li>
         <dl>
           <dt>판매 단위</dt>
-          <dd>{mockProduct.salesUnit.toLocaleString()}</dd>
+          <dd>{product.salesUnit.toLocaleString()}</dd>
         </dl>
         <dl>
           <dt>중량/용량</dt>
-          <dd>{mockProduct.capacity}</dd>
+          <dd>{product.weight}</dd>
         </dl>
       </li>
       <li>
         <dl>
           <dt>배송</dt>
           <dd>
-            {mockProduct.deliveryFee.toLocaleString()}원 (
-            {mockProduct.deliveryFeeCondition})
+            {product.deliveryFee.toLocaleString()}원 (
+            {product.deliveryFeeCondition})
           </dd>
         </dl>
       </li>
       <li>
         <dl>
           <dt>원산지</dt>
-          <dd>{mockProduct.origin}</dd>
+          <dd>{product.origin}</dd>
         </dl>
       </li>
       <li>
         <dl>
           <dt>포장 타입</dt>
-          <dd>{mockProduct.packagingType}</dd>
+          <dd>{product.packagingType}</dd>
         </dl>
       </li>
       <li>
         <dl>
           <dt>안내 사항</dt>
-          <dd>{mockProduct.notice}</dd>
+          <dd>{product.notice}</dd>
         </dl>
       </li>
     </S.ProductInfo.DetailProductInfo>

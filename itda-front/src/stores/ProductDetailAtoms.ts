@@ -21,6 +21,11 @@ export const reviews = atom<IReview[]>({
   default: [],
 });
 
+export const detailDescription = atom({
+  key: "mainContent",
+  default: "",
+});
+
 export const currentPage = atom({
   key: "currentReviewPage",
   default: 1,
@@ -29,11 +34,6 @@ export const currentPage = atom({
 export const tabUIStickyState = atom({
   key: "detailTabStickyState",
   default: false,
-});
-
-export const detailProductData = atom({
-  key: "detailProductData",
-  default: {},
 });
 
 export const detailProductPrice = atom({

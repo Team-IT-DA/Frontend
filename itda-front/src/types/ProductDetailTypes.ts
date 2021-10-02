@@ -3,7 +3,6 @@ import { ICommonInfo, ICommonWriterInfo } from "./CommonTypes";
 export interface IProductDetail extends ICommonInfo {
   price: number;
   salesUnit: string;
-  capacity: string;
   deliveryFee: number;
   deliveryFeeCondition: string;
   origin: string;
@@ -11,6 +10,8 @@ export interface IProductDetail extends ICommonInfo {
   detailDescription: string;
   seller: ICommonInfo;
   notice: string;
+  weight: string;
+  imgUrl: string;
 }
 
 export interface IReview {
