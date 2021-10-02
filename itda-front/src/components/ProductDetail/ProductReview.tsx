@@ -71,8 +71,8 @@ const ProductReview = () => {
       </S.ReviewTab.ReviewPhotoTabLayer>
       <S.ReviewTab.ReviewListLayer>
         <S.ReviewTab.ReviewListBlock>
-          {productReviews.map((v) => (
-            <Review reviewData={v} />
+          {productReviews.map((review) => (
+            <Review reviewData={review} key={review.id} />
           ))}
         </S.ReviewTab.ReviewListBlock>
         <Pagination

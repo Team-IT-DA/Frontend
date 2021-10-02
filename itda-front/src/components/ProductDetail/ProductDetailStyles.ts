@@ -6,6 +6,11 @@ const S = {
     height: fit-content;
   `,
 
+  ProductDetailBlock: styled.div`
+    padding-top: 1rem;
+    min-height: 600px;
+  `,
+
   ProductInfo: {
     InfoLayout: styled.div`
       display: flex;

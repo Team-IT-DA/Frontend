@@ -1,43 +1,10 @@
+import { useRecoilValue } from "recoil";
+import { detailDescription } from "stores/ProductDetailAtoms";
+import S from "./ProductDetailStyles";
+
 const ProductDescription = () => {
-  return (
-    <>
-      <h1>
-        상품 설명 START!!상품 설명 START!!상품 설명 START!!상품 설명 START!!
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-      <h1>
-        상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품
-        설명상품 설명
-      </h1>
-    </>
-  );
+  const productDescription = useRecoilValue(detailDescription);
+  return <S.ProductDetailBlock>{productDescription}</S.ProductDetailBlock>;
 };
 
 export default ProductDescription;

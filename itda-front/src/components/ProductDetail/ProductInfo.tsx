@@ -3,55 +3,66 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import {
   detailProductCount,
   detailProductPrice,
+  detailDescription,
 } from "stores/ProductDetailAtoms";
 import S from "./ProductDetailStyles";
 import { withRouter, RouteComponentProps } from "react-router";
 import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
-import { mockProduct } from "./mocks";
-import { useEffect } from "react";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
+import { useQuery } from "react-query";
+import { productAPI } from "util/API/productAPI";
 
 interface MatchParams {
   productId: string;
 }
 
 const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
-  const seProductPrice = useSetRecoilState(detailProductPrice);
+  const setProductPrice = useSetRecoilState(detailProductPrice);
+  const setDetailDescription = useSetRecoilState(detailDescription);
 
-  useEffect(() => {
-    // axios.get(`${url}/${match.params.id}`).then(({data})=>{
-    //   1. detailProductData 아톰 불러와서 세팅,
-    //   2. data.price 값만 빼서 다른 상태에 저장하고, 그걸 통해 stepper로 렌더링
-    // });
-    seProductPrice(4000);
-  }, []);
+  const { data, isLoading } = useQuery(
+    "productDetail",
+    () =>
+      productAPI.products.get.getProductDetail(Number(match.params.productId)),
+    {
+      onSuccess: (data) => {
+        setProductPrice(data?.data?.product?.price);
+        setDetailDescription(data?.data?.product?.detailDescription);
+      },
+    }
+  );
 
   return (
     <S.ProductInfo.InfoLayout>
-      <S.ProductInfo.ProductDetailLayer>
-        <S.ProductInfo.ImageBlock
-          src={mockProduct.imageUrl}
-          alt="상품 이미지"
-        />
-        <S.ProductInfo.DetailBlock>
-          <ProductDetailHeaderBlock {...mockProduct} />
-          <ProductDetailTableBlock {...mockProduct} />
-          <ProductDetailBuyBlock />
-        </S.ProductInfo.DetailBlock>
-      </S.ProductInfo.ProductDetailLayer>
-      <S.ProductInfo.ProductPaymentLayer>
-        <ProductDetailSellerBlock />
-        <ProductDetailButtonBlock />
-      </S.ProductInfo.ProductPaymentLayer>
+      {isLoading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          <S.ProductInfo.ProductDetailLayer>
+            <S.ProductInfo.ImageBlock
+              src={data?.data.product.imgUrl}
+              alt="상품 이미지"
+            />
+            <S.ProductInfo.DetailBlock>
+              <ProductDetailHeaderBlock {...data?.data.product} />
+              <ProductDetailTableBlock {...data?.data.product} />
+              <ProductDetailBuyBlock />
+            </S.ProductInfo.DetailBlock>
+          </S.ProductInfo.ProductDetailLayer>
+          <S.ProductInfo.ProductPaymentLayer>
+            <ProductDetailSellerBlock {...data?.data.product} />
+            <ProductDetailButtonBlock />
+          </S.ProductInfo.ProductPaymentLayer>
+        </>
+      )}
     </S.ProductInfo.InfoLayout>
   );
 };
 
 const ProductDetailBuyBlock = () => {
   const [productCount, setProductCount] = useRecoilState(detailProductCount);
-  //여기서 따로 product price 관리할 예정
 
   const productPrice = useRecoilValue(detailProductPrice);
 

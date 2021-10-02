@@ -22,6 +22,7 @@ const Pagination = ({
     <S.Pagination.Layer>
       {pageNumbers.map((number) => (
         <S.Pagination.Number
+          key={number}
           isClicked={number === currentPage}
           onClick={() => paginate(number)}
         >

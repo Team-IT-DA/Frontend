@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconButton } from "@material-ui/core";
 
 const S = {
   AddProductLayout: styled.div`
@@ -21,12 +22,29 @@ const S = {
     display: flex;
     justify-content: space-between;
   `,
-  AddProductImageBlock: styled.div``,
+  AddProductImageBlock: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+      display: none;
+    }
+  `,
+
+  AddProductInputButton: styled(IconButton)`
+    width: 50px;
+    color: ${({ theme }) => theme.colors.navy.light};
+    * {
+      cursor: pointer;
+    }
+  `,
 
   AddProductImageHolder: styled.div`
-    border: 1px solid green;
+    border: 1px solid ${({ theme }) => theme.colors.gray.x_light};
+    border-radius: 10px;
     width: 300px;
     height: 350px;
+    margin-bottom: 3px;
   `,
   AddProductImg: styled.img`
     width: 100%;
