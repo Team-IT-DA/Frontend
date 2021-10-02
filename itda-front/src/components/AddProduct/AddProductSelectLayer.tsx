@@ -1,20 +1,14 @@
 import S from "./AddProductStyles";
 import AddProductSelectBox from "./AddProductSelectBox";
 import AddProductTextField from "./AddProductTextField";
-import { useEffect } from "react";
 import { productAPI } from "util/API/productAPI";
-import { categoryList } from "stores/ProductListAtoms";
-import { useRecoilState } from "recoil";
 import { useQuery } from "react-query";
 
 const AddProductSelectLayer = () => {
-  const [categories, setCategories] = useRecoilState(categoryList);
-
   const { data, isLoading } = useQuery(
     "categories",
     productAPI.category.get.getCategoryList
   );
-  console.log("here", isLoading);
 
   return (
     <S.AddProductSelectBoxHolder>
