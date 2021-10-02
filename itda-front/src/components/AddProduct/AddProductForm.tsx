@@ -22,9 +22,9 @@ const AddProductForm = () => {
             <S.AddProductSelectBox>
               <div>
                 <AddProductSelectBox
-                  label={"원산지"}
+                  label="원산지"
                   name="origin"
-                  options={["제주도", "대구", "광주"]}
+                  options={["제주도", "대구", "광주", "부산", "강원도"]}
                 />
               </div>
               <div>

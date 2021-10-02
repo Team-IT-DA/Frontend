@@ -1,4 +1,7 @@
 import { useRecoilState } from "recoil";
+import { IconButton } from "@material-ui/core";
+import { AiFillCamera } from "react-icons/ai";
+
 import { productPreviewImage } from "stores/AddProductAtoms";
 import S from "./AddProductStyles";
 
@@ -25,7 +28,17 @@ const AddProductImageBox = () => {
           <S.AddProductImg src={previewImg.previewURL} alt="상품 이미지" />
         )}
       </S.AddProductImageHolder>
-      <input type="file" accept="image/*" onChange={handlePreviewChange} />
+      <input
+        type="file"
+        accept="image/*"
+        id="add-file"
+        onChange={handlePreviewChange}
+      />
+      <S.AddProductInputButton color="primary" aria-label="upload picture">
+        <label htmlFor="add-file">
+          <AiFillCamera />
+        </label>
+      </S.AddProductInputButton>
     </S.AddProductImageBlock>
   );
 };
