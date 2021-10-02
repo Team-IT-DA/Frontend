@@ -1,5 +1,11 @@
+import { instanceWithAuth } from "./index";
+
+const getCategoryList = () => instanceWithAuth.get<any>("/categories");
+
 export const productAPI = {
-  category: {},
+  category: {
+    get: { getCategoryList },
+  },
   products: {
     post: {},
     get: {},

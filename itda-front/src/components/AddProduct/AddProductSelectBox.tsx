@@ -9,11 +9,12 @@ import {
   addProductSelectInput,
 } from "stores/AddProductAtoms";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect } from "react";
 
 const AddProductSelectBox = ({
   label,
   name,
-  options,
+  options = [],
 }: {
   label: string;
   name: string;

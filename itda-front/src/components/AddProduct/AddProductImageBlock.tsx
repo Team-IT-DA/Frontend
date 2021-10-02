@@ -1,5 +1,4 @@
 import { useRecoilState } from "recoil";
-import { IconButton } from "@material-ui/core";
 import { AiFillCamera } from "react-icons/ai";
 
 import { productPreviewImage } from "stores/AddProductAtoms";

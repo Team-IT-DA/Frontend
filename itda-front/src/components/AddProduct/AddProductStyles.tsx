@@ -81,7 +81,7 @@ const S = {
 
   AddProductSelectBox: styled.div`
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
   `,
 
   AddProductEditorLayer: styled.div``,

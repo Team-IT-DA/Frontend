@@ -5,9 +5,9 @@ import {
   AxiosResponse,
 } from "axios";
 
-export function setInterceptors(instance: AxiosInstance) {
+export function setInterceptors(instance: AxiosInstance): AxiosInstance {
   instance.interceptors.request.use(
-    function (config: AxiosRequestConfig) {
+    (config: AxiosRequestConfig) => {
       const authToken = JSON.parse(localStorage.getItem("token") as string);
 
       if (authToken) {
@@ -15,16 +15,16 @@ export function setInterceptors(instance: AxiosInstance) {
       }
       return config;
     },
-    function (error: AxiosError) {
+    (error: AxiosError) => {
       return Promise.reject(error);
     }
   );
 
   instance.interceptors.response.use(
-    function (response: AxiosResponse) {
-      return response;
+    (response: AxiosResponse): AxiosResponse => {
+      return response.data;
     },
-    function (error: AxiosError) {
+    (error: AxiosError) => {
       return Promise.reject(error);
     }
   );
