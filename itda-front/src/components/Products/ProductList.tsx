@@ -10,13 +10,15 @@ const ProductList = () => {
     ({ id, imageUrl, productName, sellerName, price }: IProduct) => (
       <S.ProductList.Block key={`productList-${id}`}>
         <ProductCard
-          key={id}
+          key={`productCard-${id}`}
           size="extra"
           horizontal={false}
           productImg={imageUrl}
           productName={productName}
           productPrice={price}
           seller={sellerName}
+          description={"description이 API 응답에 없다!!이건 직접 적음"}
+          id={id}
         />
       </S.ProductList.Block>
     )
