@@ -1,20 +1,25 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import isLogin from "util/isLogin";
 
 const PrivateRoute = ({
   component: Component,
   redirectPath,
+  validationFunc,
   ...parentProps
 }: {
   component: React.ComponentType<RouteProps>;
   path: string;
   redirectPath: string;
+  validationFunc: () => boolean;
 }) => {
   return (
     <Route
       {...parentProps}
       render={(props) =>
-        isLogin() ? <Component {...props} /> : <Redirect to={redirectPath} />
+        validationFunc() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={redirectPath} />
+        )
       }
     />
   );
