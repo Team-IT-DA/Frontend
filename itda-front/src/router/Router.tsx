@@ -31,9 +31,21 @@ const Router = () => {
         <Route path="/JennyTest" component={MyReview} />
         <Route exact path="/naver/callback" component={NaverCallback} />
         <Route exact path="/kakao/callback" component={KakaoCallback} />
-        <PrivateRouter path="/myPage" component={MyPage} />
-        <PrivateRouter path="/addProduct" component={AddProduct} />
-        <PrivateRouter path="/thankYou" component={ThankYou} />
+        <PrivateRouter
+          path="/myPage"
+          redirectPath="/login"
+          component={MyPage}
+        />
+        <PrivateRouter
+          path="/addProduct"
+          redirectPath="/login"
+          component={AddProduct}
+        />
+        <PrivateRouter
+          path="/thankYou"
+          redirectPath="/login"
+          component={ThankYou}
+        />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
