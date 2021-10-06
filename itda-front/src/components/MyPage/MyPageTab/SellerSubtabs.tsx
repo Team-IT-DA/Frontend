@@ -24,11 +24,11 @@ const SellerSubtabs = ({
 
   const path: TPath = {
     기본정보: "",
-    "판매자 정보": "seller",
+    "판매자 정보": "/seller",
   };
 
   const getPath = (tab: string) => {
-    let base = "/myPage/myInfoEdit/";
+    let base = "/myPage/myInfoEdit";
     return (base += path[tab]);
   };
 
