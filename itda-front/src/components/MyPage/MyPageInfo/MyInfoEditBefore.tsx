@@ -1,5 +1,3 @@
-import { useRecoilValue } from "recoil";
-import { Route, Switch } from "react-router-dom";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 import S from "../MyPageStyles";
@@ -7,12 +5,8 @@ import TextInput from "components/common/Atoms/TextInput";
 import { useState } from "react";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
-import MyInfoEditAfter from "./MyInfoEditAfter";
-import { SellerInfoEdit } from "../SellerPage";
-import { currentSelectedSubtab } from "stores/MyPageAtoms";
 
 const MyInfoEditBefore = () => {
-  const currentSelectedSubtabState = useRecoilValue(currentSelectedSubtab);
   const [testState, setTestState] = useState("");
   const [isSeller, setIsSeller] = useState(true);
   return (
