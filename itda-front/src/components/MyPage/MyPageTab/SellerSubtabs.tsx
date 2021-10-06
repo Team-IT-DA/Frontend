@@ -49,14 +49,12 @@ const SellerSubtabs = ({
       onMouseEnter={handleMouseEnterSubtab}
     >
       {subtabTitles.map((subtab, index) => (
-        <Link to={getPath(subtab)}>
-          <S.SellerSubtabs.Subtab
-            key={`subtab-${index}`}
-            onClick={() => handleSubtabClick(subtab)}
-          >
-            {subtab}
-          </S.SellerSubtabs.Subtab>
-        </Link>
+        <S.SellerSubtabs.Subtab
+          key={`subtab-${index}`}
+          onClick={() => handleSubtabClick(subtab)}
+        >
+          <Link to={getPath(subtab)}>{subtab} </Link>
+        </S.SellerSubtabs.Subtab>
       ))}
     </S.SellerSubtabs.Layout>
   );
