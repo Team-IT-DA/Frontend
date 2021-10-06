@@ -8,7 +8,7 @@ import MyPageTabs from "../MyPageTab/MyPageTabs";
 
 const MyInfoEditAfter = () => {
   const [testState, setTestState] = useState("");
-  const [isSeller, setIsSeller] = useState(true);
+  const [isSeller, setIsSeller] = useState(true); //임시
 
   return (
     <>
