@@ -15,6 +15,7 @@ import NaverCallback from "components/Login/NaverCallback";
 import KakaoCallback from "components/Login/KakaoCallback";
 import PrivateRouter from "./PrivateRouter";
 import NotFound from "./NotFound";
+import isLogin from "util/isLogin";
 
 const Router = () => {
   return (
@@ -31,9 +32,24 @@ const Router = () => {
         <Route path="/JennyTest" component={MyReview} />
         <Route exact path="/naver/callback" component={NaverCallback} />
         <Route exact path="/kakao/callback" component={KakaoCallback} />
-        <PrivateRouter path="/myPage" component={MyPage} />
-        <PrivateRouter path="/addProduct" component={AddProduct} />
-        <PrivateRouter path="/thankYou" component={ThankYou} />
+        <PrivateRouter
+          path="/myPage"
+          redirectPath="/login"
+          validationFunc={isLogin}
+          component={MyPage}
+        />
+        <PrivateRouter
+          path="/addProduct"
+          redirectPath="/login"
+          validationFunc={isLogin}
+          component={AddProduct}
+        />
+        <PrivateRouter
+          path="/thankYou"
+          redirectPath="/login"
+          validationFunc={isLogin}
+          component={ThankYou}
+        />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
