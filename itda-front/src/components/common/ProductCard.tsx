@@ -1,5 +1,6 @@
 import S from "./CommonStyles";
 import useLazyLoad from "hooks/useLazyLoad";
+import { Link } from "react-router-dom";
 
 type TProductCardPropType = {
   size: string;
@@ -9,6 +10,7 @@ type TProductCardPropType = {
   productPrice: number;
   seller: string;
   description?: string;
+  id?: number;
 };
 
 type TcardSizeType = {
@@ -29,27 +31,34 @@ const ProductCard = ({
   productPrice,
   seller,
   description = "",
+  id,
 }: TProductCardPropType) => {
   return (
     <>
       {horizontal ? (
         <HorizontalCard
-          size={size}
-          horizontal={horizontal}
-          productImg={productImg}
-          productName={productName}
-          productPrice={productPrice}
-          seller={seller}
+          {...{
+            size,
+            horizontal,
+            productImg,
+            productName,
+            productPrice,
+            seller,
+            id,
+          }}
         />
       ) : (
         <VerticalCard
-          size={size}
-          horizontal={horizontal}
-          productImg={productImg}
-          productName={productName}
-          productPrice={productPrice}
-          seller={seller}
-          description={description}
+          {...{
+            size,
+            horizontal,
+            productImg,
+            productName,
+            productPrice,
+            seller,
+            description,
+            id,
+          }}
         />
       )}
     </>
@@ -64,6 +73,7 @@ const VerticalCard = ({
   productPrice,
   seller,
   description,
+  id,
 }: TProductCardPropType) => {
   const { imageSrc, imageRef } = useLazyLoad(productImg);
 
@@ -78,12 +88,14 @@ const VerticalCard = ({
       size={verticalCardSize[size]}
     >
       <S.ProductCard.ProductImageHolderLayer horizontal={horizontal}>
-        <S.ProductCard.ProductImage
-          ref={imageRef}
-          alt="이미지"
-          src={imageSrc}
-          horizontal={horizontal}
-        />
+        <Link to={`/product/${id}`}>
+          <S.ProductCard.ProductImage
+            ref={imageRef}
+            alt="이미지"
+            src={imageSrc}
+            horizontal={horizontal}
+          />
+        </Link>
       </S.ProductCard.ProductImageHolderLayer>
       <S.ProductCard.ProductDescriptionLayer>
         <S.ProductCard.ProductTitle
@@ -104,6 +116,8 @@ const VerticalCard = ({
   );
 };
 
+//TODO: HorizontalCard에 상품 id 넣어주기 (이미지 클릭시 상세 페이지로 이동)
+
 const HorizontalCard = ({
   size,
   horizontal,
@@ -111,6 +125,7 @@ const HorizontalCard = ({
   productName,
   productPrice,
   seller,
+  id,
 }: TProductCardPropType) => {
   const horizontalCardSize: TcardSizeType = {
     small: { width: 200, height: 100, fontSize: 13 },
@@ -124,11 +139,13 @@ const HorizontalCard = ({
       size={horizontalCardSize[size]}
     >
       <S.ProductCard.ProductImageHolderLayer horizontal={horizontal}>
-        <S.ProductCard.ProductImage
-          alt="이미지"
-          src={productImg}
-          horizontal={horizontal}
-        />
+        <Link to={`/product/${id}`}>
+          <S.ProductCard.ProductImage
+            alt="이미지"
+            src={productImg}
+            horizontal={horizontal}
+          />
+        </Link>
       </S.ProductCard.ProductImageHolderLayer>
       <S.ProductCard.ProductDescriptionLayer>
         <S.ProductCard.ProductTitle

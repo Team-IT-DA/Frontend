@@ -1,6 +1,4 @@
-import Header from "components/common/Header/Header";
 import StickyHeader from "components/common/Header/StickyHeader";
-
 import Navigator from "./Navigator";
 import ProductList from "./ProductList";
 import TopButton from "components/common/TopButton";
