@@ -60,7 +60,7 @@ const SideDrawer = ({
 
   useEffect(() => {
     let total = 0;
-    cartProductsCount.forEach(cartItem => {
+    cartProductsCount.forEach((cartItem) => {
       total += cartItem.price * cartItem.count;
     });
     setCartTotalPrice(total);
@@ -79,7 +79,7 @@ const SideDrawer = ({
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
         {cartProductsCount.length !== 0 &&
-          cartProductList.map(cartItem => {
+          cartProductList.map((cartItem) => {
             return (
               <SideDrawerItem
                 // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
@@ -134,7 +134,7 @@ const SideDrawerItem = ({
   setCartProductsCount,
 }: drawerITemType) => {
   const [productCount, setProductCount] = useState(
-    cartProductsCount.filter(cartItem => cartItem.id === productId)[0].count
+    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
   );
 
   useEffect(() => {
@@ -143,7 +143,7 @@ const SideDrawerItem = ({
       price: productPrice,
       count: productCount,
     };
-    const updatedCartProductsCount = cartProductsCount.map(cartItem => {
+    const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
       return cartItem.id === productId ? newCount : cartItem;
     });
     setCartProductsCount(updatedCartProductsCount);
@@ -157,7 +157,6 @@ const SideDrawerItem = ({
           productImg={productImage}
           productName={productName}
           productPrice={productPrice}
-          seller="박크롱" //seller 정보 넣을 것인가
           horizontal={true}
         />
         <S.SideDrawer.DrawerCardDescription>
