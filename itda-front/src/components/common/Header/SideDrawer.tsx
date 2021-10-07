@@ -101,11 +101,16 @@ const SideDrawer = ({
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
         </S.SideDrawer.DrawerDeliveryFee>
-        <S.SideDrawer.DrawerMoveToCartButton
-          onClick={handleMoveToCartButtonClicked}
-        >
-          <Link to="/cart"> 장바구니로 이동</Link>
-        </S.SideDrawer.DrawerMoveToCartButton>
+        <S.SideDrawer.ButtonLayer>
+          <S.SideDrawer.ApplyNumbersButton>
+            수량변경
+          </S.SideDrawer.ApplyNumbersButton>
+          <S.SideDrawer.DrawerMoveToCartButton
+            onClick={handleMoveToCartButtonClicked}
+          >
+            <Link to="/cart"> 장바구니로 이동</Link>
+          </S.SideDrawer.DrawerMoveToCartButton>
+        </S.SideDrawer.ButtonLayer>
       </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerLayout>
   );
