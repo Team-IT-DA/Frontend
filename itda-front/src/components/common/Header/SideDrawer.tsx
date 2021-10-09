@@ -35,9 +35,12 @@ const SideDrawer = ({
     setCartProductList(newProductData);
   };
 
+  const handleApplyNumberButtonClicked = () => {
+    // todo: POST요청으로 장바구니 데이터 서버에 전달
+  };
+
   const handleMoveToCartButtonClicked = () => {
     //cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
-    // todo: POST요청으로 장바구니 데이터 서버에 전달
     // todo: cart페이지로 이동
   };
 
@@ -102,7 +105,9 @@ const SideDrawer = ({
           (배송비 불포함 금액)
         </S.SideDrawer.DrawerDeliveryFee>
         <S.SideDrawer.ButtonLayer>
-          <S.SideDrawer.ApplyNumbersButton>
+          <S.SideDrawer.ApplyNumbersButton
+            onClick={handleApplyNumberButtonClicked}
+          >
             수량변경
           </S.SideDrawer.ApplyNumbersButton>
           <S.SideDrawer.DrawerMoveToCartButton
@@ -172,7 +177,7 @@ const SideDrawerItem = ({
       </S.SideDrawer.DrawerCardCountDiv>
       <S.SideDrawer.DrawerCardBottom>
         <S.SideDrawer.DrawerCardPrice>
-          총 합: 21400원
+          {`총 합: ${productPrice * productCount}원`}
         </S.SideDrawer.DrawerCardPrice>
         <S.SideDrawer.DrawerCardDeleteButton
           onClick={() => removeItem(productId)}
