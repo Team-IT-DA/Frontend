@@ -37,11 +37,7 @@ const SideDrawer = ({
 
   const handleApplyNumberButtonClicked = () => {
     // todo: POST요청으로 장바구니 데이터 서버에 전달
-  };
-
-  const handleMoveToCartButtonClicked = () => {
-    //cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
-    // todo: cart페이지로 이동
+    // todo: cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
   };
 
   useEffect(() => {
@@ -110,9 +106,7 @@ const SideDrawer = ({
           >
             수량변경
           </S.SideDrawer.ApplyNumbersButton>
-          <S.SideDrawer.DrawerMoveToCartButton
-            onClick={handleMoveToCartButtonClicked}
-          >
+          <S.SideDrawer.DrawerMoveToCartButton>
             <Link to="/cart"> 장바구니로 이동</Link>
           </S.SideDrawer.DrawerMoveToCartButton>
         </S.SideDrawer.ButtonLayer>
