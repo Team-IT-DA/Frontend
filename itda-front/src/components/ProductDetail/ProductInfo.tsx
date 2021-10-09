@@ -18,7 +18,7 @@ interface MatchParams {
   productId: string;
 }
 
-const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
+const ProductInfo = ({ match, history }: RouteComponentProps<MatchParams>) => {
   const setProductPrice = useSetRecoilState(detailProductPrice);
   const setDetailDescription = useSetRecoilState(detailDescription);
 
@@ -27,9 +27,13 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
     () =>
       productAPI.products.get.getProductDetail(Number(match.params.productId)),
     {
+      retry: 1,
       onSuccess: (data) => {
         setProductPrice(data?.data?.product?.price);
         setDetailDescription(data?.data?.product?.detailDescription);
+      },
+      onError: (err) => {
+        history.push("/notFound");
       },
     }
   );
