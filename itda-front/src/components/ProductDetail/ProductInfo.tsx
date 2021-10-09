@@ -5,6 +5,8 @@ import {
   detailProductPrice,
   detailDescription,
 } from "stores/ProductDetailAtoms";
+import { cartProductData } from "stores/CartAtoms";
+import { ICartProduct } from "types/CartTypes";
 import S from "./ProductDetailStyles";
 import { withRouter, RouteComponentProps } from "react-router";
 import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
@@ -19,8 +21,10 @@ interface MatchParams {
 }
 
 const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
-  const setProductPrice = useSetRecoilState(detailProductPrice);
+  const [productPrice, setProductPrice] = useRecoilState(detailProductPrice);
   const setDetailDescription = useSetRecoilState(detailDescription);
+  const setCartProductData = useSetRecoilState(cartProductData);
+  const productCount = useRecoilValue(detailProductCount);
 
   const { data, isLoading } = useQuery(
     "productDetail",
@@ -33,6 +37,18 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
       },
     }
   );
+
+  const handleClickAddToCartButton = () => {
+    const productId = match.params.productId;
+    const targetProductData: ICartProduct = {
+      id: Number(productId),
+      count: productCount,
+      price: productPrice,
+      productName: data?.data.product.name,
+      imageUrl: data?.data.product.imgUrl,
+    };
+    setCartProductData((cartProducts) => [...cartProducts, targetProductData]);
+  };
 
   return (
     <S.ProductInfo.InfoLayout>
@@ -53,7 +69,9 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
           </S.ProductInfo.ProductDetailLayer>
           <S.ProductInfo.ProductPaymentLayer>
             <ProductDetailSellerBlock {...data?.data.product} />
-            <ProductDetailButtonBlock />
+            <ProductDetailButtonBlock
+              handleClickAddToCartButton={handleClickAddToCartButton}
+            />
           </S.ProductInfo.ProductPaymentLayer>
         </>
       )}

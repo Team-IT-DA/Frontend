@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { useState, useEffect, SetStateAction } from "react";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
-import { GETCartData } from "util/mock/GETCartData";
+// import { GETCartData } from "util/mock/GETCartData";
 import { Link } from "react-router-dom";
 
 type TSideDrawer = {
@@ -17,7 +17,7 @@ const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
-  const MockData = GETCartData.data.detail;
+  // const MockData = GETCartData.data.detail; //mock데이터 삭제
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
@@ -40,9 +40,9 @@ const SideDrawer = ({
     // todo: cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
   };
 
-  useEffect(() => {
-    setCartProductList(MockData);
-  }, []);
+  // useEffect(() => {
+  //   setCartProductList(MockData);
+  // }, []);
 
   useEffect(() => {
     const cartItemCountArray = cartProductList.map(
