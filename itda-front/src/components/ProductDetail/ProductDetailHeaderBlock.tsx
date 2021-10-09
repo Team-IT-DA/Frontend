@@ -1,15 +1,15 @@
 import { IProductDetail } from "types/ProductDetailTypes";
 import S from "./ProductDetailStyles";
 
-const ProductDetailHeaderBlock = (mockProduct: IProductDetail) => {
+const ProductDetailHeaderBlock = (product: IProductDetail) => {
   return (
     <>
-      <S.ProductInfo.DetailName>{mockProduct.name}</S.ProductInfo.DetailName>
+      <S.ProductInfo.DetailName>{product.name}</S.ProductInfo.DetailName>
       <S.ProductInfo.DetailShortInfo>
-        {mockProduct.description}
+        {product.description}
       </S.ProductInfo.DetailShortInfo>
       <S.ProductInfo.DetailPrice>
-        {mockProduct.price.toLocaleString()}원
+        {product.price.toLocaleString()}원
       </S.ProductInfo.DetailPrice>
     </>
   );
