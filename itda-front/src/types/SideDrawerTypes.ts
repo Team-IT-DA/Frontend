@@ -6,7 +6,7 @@ type TSideDrawer = {
   setIsSideDrawerClicked: (value: boolean) => void;
 };
 
-type drawerItemType = {
+type TDrawerItem = {
   // productSeller: string
   productId: number;
   productImage: string;
@@ -17,4 +17,4 @@ type drawerItemType = {
   setCartProductsCount: React.Dispatch<SetStateAction<ISendingCartProduct[]>>;
 };
 
-export type { TSideDrawer, drawerItemType };
+export type { TSideDrawer, TDrawerItem };
