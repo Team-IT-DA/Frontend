@@ -7,9 +7,8 @@ import { CircularProgress } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
 import { useQuery } from "react-query";
 import { productAPI } from "util/API/productAPI";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState } from "recoil";
 import {
-  detailProductCount,
   productInfo,
   detailProductPrice,
   detailDescription,

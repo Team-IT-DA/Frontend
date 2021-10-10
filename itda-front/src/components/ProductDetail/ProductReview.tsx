@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useRef } from "react";
 import useToggle from "hooks/useToggle";
 import S from "./ProductDetailStyles";
@@ -6,12 +6,15 @@ import {
   isReviewOnlyPhoto,
   reviews,
   currentPage,
+  productInfo,
 } from "stores/ProductDetailAtoms";
 import PhotoModal from "./PhotoModal";
 import { reviewMock } from "./mocks";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
 import { IReview } from "types/ProductDetailTypes";
 import Pagination from "components/common/Atoms/Pagination";
+import { productAPI } from "util/API/productAPI";
 
 const ProductReview = () => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
@@ -21,35 +24,45 @@ const ProductReview = () => {
   const [page, setPage] = useRecoilState(currentPage);
   const reviewsPerPage = 5;
 
+  const productData = useRecoilValue(productInfo);
+
+  const { isLoading } = useQuery(
+    "productDetail",
+    () =>
+      productAPI.products.get.getProductReview(
+        productData.id,
+        page,
+        isPhotoReview,
+        reviewsPerPage
+      ),
+    {
+      retry: 1,
+      onSuccess: (data) => {
+        setProductReviews(data?.data);
+      },
+    }
+  );
+
   useEffect(() => {
     if (!isPhotoReview) {
-      // 포토리뷰가 아니면 그냥 전체 리뷰들 리스트 렌더링 해주면 됨
       setProductReviews(
         reviewMock.slice(
           reviewsPerPage * (page - 1),
           reviewsPerPage * (page - 1) + reviewsPerPage
         )
-        // page가 atom으로 현재 default 1로 지정을 해둔 상태입니다. 0~5 5~10 의 인덱스 사이의 데이터 불러오는 로직입니다. 아직 서버를 달지 않아서 일단 이렇게나마 흉내내봤습니다.
       );
     } else {
       setProductReviews(
-        //포토리뷰이면 포토리뷰만 필터링해서 렌더링 -> 서버에서 필터링 해줘서 보내준다고 했음
         reviewMock
           .filter((mock) => mock.image.length)
           .slice(
             reviewsPerPage * (page - 1),
             reviewsPerPage * (page - 1) + reviewsPerPage
           )
-        // page가 atom으로 현재 default 1로 지정을 해둔 상태입니다. 0~5 5~10 의 인덱스 사이의 데이터 불러오는 로직입니다. 아직 서버를 달지 않아서 일단 이렇게나마 흉내내봤습니다.
       );
     }
   }, [page, isPhotoReview]);
-
-  // 여기서 useEffect로 productReviews설정할 예정 (의존배열에 reviews가 들어갈듯합니다)
-  // setCurrentPage를 Pagination 컴포넌트에 내려주고 있음
-  // 그래서 currentPage가 변할때마다 ITDA api 설계글에 쓰여있는대로
-  // Get api/products/1/reviews?pageNo=${currentPage}&offset=${reviewsPerPage}
-  // 이렇게 할 예정입니다.
+  //http://34.125.79.175:8000/api/products/1/reviews?page=1&size=5
 
   const getPhotoReviewOnly = () => {
     setIsPhotoReview(true);
