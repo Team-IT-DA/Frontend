@@ -1,4 +1,4 @@
-import { instanceWithAuth } from "./index";
+import { instanceWithAuth, instanceWithoutAuth } from "./index";
 
 const getCategoryList = () => instanceWithAuth.get("/categories");
 
@@ -13,7 +13,7 @@ const getProductReview = (
   isPhoto: boolean,
   reviewsPerPage: number
 ) =>
-  instanceWithAuth(
+  instanceWithoutAuth.get(
     `/products/${productId}/reviews?page=${page}&size=${reviewsPerPage}${
       isPhoto ? "&type=photo" : ""
     }`

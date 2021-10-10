@@ -1,68 +1,18 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useRef } from "react";
 import useToggle from "hooks/useToggle";
 import S from "./ProductDetailStyles";
-import {
-  isReviewOnlyPhoto,
-  reviews,
-  currentPage,
-  productInfo,
-} from "stores/ProductDetailAtoms";
+import { isReviewOnlyPhoto } from "stores/ProductDetailAtoms";
 import PhotoModal from "./PhotoModal";
-import { reviewMock } from "./mocks";
-import { useEffect } from "react";
-import { useQuery } from "react-query";
 import { IReview } from "types/ProductDetailTypes";
 import Pagination from "components/common/Atoms/Pagination";
-import { productAPI } from "util/API/productAPI";
+import { useReviewList } from "hooks/useReviewList";
 
 const ProductReview = () => {
   const [isPhotoReview, setIsPhotoReview] = useRecoilState(isReviewOnlyPhoto);
   const reviewTabRef = useRef(null);
 
-  const [productReviews, setProductReviews] = useRecoilState(reviews);
-  const [page, setPage] = useRecoilState(currentPage);
-  const reviewsPerPage = 5;
-
-  const productData = useRecoilValue(productInfo);
-
-  const { isLoading } = useQuery(
-    "productDetail",
-    () =>
-      productAPI.products.get.getProductReview(
-        productData.id,
-        page,
-        isPhotoReview,
-        reviewsPerPage
-      ),
-    {
-      retry: 1,
-      onSuccess: (data) => {
-        setProductReviews(data?.data);
-      },
-    }
-  );
-
-  useEffect(() => {
-    if (!isPhotoReview) {
-      setProductReviews(
-        reviewMock.slice(
-          reviewsPerPage * (page - 1),
-          reviewsPerPage * (page - 1) + reviewsPerPage
-        )
-      );
-    } else {
-      setProductReviews(
-        reviewMock
-          .filter((mock) => mock.image.length)
-          .slice(
-            reviewsPerPage * (page - 1),
-            reviewsPerPage * (page - 1) + reviewsPerPage
-          )
-      );
-    }
-  }, [page, isPhotoReview]);
-  //http://34.125.79.175:8000/api/products/1/reviews?page=1&size=5
+  const { data, isLoading, setPage, page, reviewsPerPage } = useReviewList();
 
   const getPhotoReviewOnly = () => {
     setIsPhotoReview(true);
@@ -84,18 +34,14 @@ const ProductReview = () => {
       </S.ReviewTab.ReviewPhotoTabLayer>
       <S.ReviewTab.ReviewListLayer>
         <S.ReviewTab.ReviewListBlock>
-          {productReviews.map((review) => (
+          {data?.data.reviews?.map((review: IReview) => (
             <Review reviewData={review} key={review.id} />
           ))}
         </S.ReviewTab.ReviewListBlock>
         <Pagination
           itemsPerPage={reviewsPerPage}
           paginate={setPage}
-          totalPosts={
-            isPhotoReview
-              ? reviewMock.filter((mock) => mock.image.length).length
-              : reviewMock.length
-          }
+          totalPosts={data?.data.totalCounts}
           currentPage={page}
         />
       </S.ReviewTab.ReviewListLayer>
