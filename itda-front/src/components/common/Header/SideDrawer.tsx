@@ -1,6 +1,10 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
+import {
+  CartService,
+  UpdateCartService,
+} from "components/Cart/CartProduct/CartProductsService";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import { cartProductData } from "stores/CartAtoms";
@@ -12,6 +16,7 @@ const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
+  const { cartListData, isLoading } = CartService();
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
@@ -49,11 +54,14 @@ const SideDrawer = ({
   };
 
   useEffect(() => {
-    // todo: POST요청으로 장바구니 데이터 서버에 전달
-  }, [cartProductList]);
+    // todo: 500에러남.
+    // setCartProductList(cartListData);
+  }, []);
 
   useEffect(() => {
-    const cartItemCountArray = cartProductList.map(
+    // todo: POST요청으로 장바구니 데이터 서버에 전달. hook안에서 hook이 안불려서 실행이 안됌.
+    // UpdateCartService(cartProductList);
+    const cartItemCountArray = cartProductList?.map(
       (cartItem: ISendingCartProduct) => {
         return {
           id: cartItem.id,
