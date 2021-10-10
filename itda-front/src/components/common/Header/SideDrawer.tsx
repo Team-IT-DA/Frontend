@@ -85,7 +85,7 @@ const SideDrawer = ({
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        {cartProductsCount.length !== 0 &&
+        {(cartProductsCount.length &&
           cartProductList.map((cartItem) => {
             return (
               <SideDrawerItem
@@ -100,7 +100,13 @@ const SideDrawer = ({
                 setCartProductsCount={setCartProductsCount}
               />
             );
-          })}
+          })) || (
+          <>
+            <S.SideDrawer.EmptyDrawerMessage>
+              장바구니에 상품이 존재하지 않습니다.
+            </S.SideDrawer.EmptyDrawerMessage>
+          </>
+        )}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>

@@ -290,6 +290,11 @@ const S = {
       overflow-y: scroll;
     `,
 
+    EmptyDrawerMessage: styled.div`
+      align-self: center;
+      color: ${({ theme }) => theme.colors.mint.normal};
+    `,
+
     DrawerCardLayout: styled.div`
       display: flex;
       flex-direction: column;
