@@ -3,6 +3,7 @@ import AddProductSelectBox from "./AddProductSelectBox";
 import AddProductTextField from "./AddProductTextField";
 import { productAPI } from "util/API/productAPI";
 import { useQuery } from "react-query";
+import { packagingTypeOptions, originOptions } from "util/constants";
 
 const AddProductSelectLayer = () => {
   const { data, isLoading } = useQuery(
@@ -28,14 +29,14 @@ const AddProductSelectLayer = () => {
           <AddProductSelectBox
             label="원산지"
             name="origin"
-            options={["제주도", "대구", "광주", "부산", "강원도"]}
+            options={originOptions}
           />
         </div>
         <div>
           <AddProductSelectBox
             label="포장 타입"
             name="packagingType"
-            options={["박스", "비닐", "얼음팩"]}
+            options={packagingTypeOptions}
           />
         </div>
       </S.AddProductSelectBox>

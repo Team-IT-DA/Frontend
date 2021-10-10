@@ -4,6 +4,7 @@ import {
   IAddProductSelectField,
   IAddProductTextField,
 } from "types/AddProductTypes";
+import { packagingTypeOptions, originOptions } from "util/constants";
 
 export const productPreviewImage = atom<{
   file: any;
@@ -48,8 +49,8 @@ export const editorValue = atom({
 export const addProductSelectInput = atom<IAddProductSelectField>({
   key: "addProductSelectInput",
   default: {
-    origin: "",
-    packagingType: "",
+    origin: originOptions[0],
+    packagingType: packagingTypeOptions[0],
   },
 });
 
