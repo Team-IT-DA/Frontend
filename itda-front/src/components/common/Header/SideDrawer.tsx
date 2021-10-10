@@ -18,10 +18,6 @@ const SideDrawer = ({
   >([]);
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
-  const handleCloseButtonClick = () => {
-    setIsSideDrawerClicked(false);
-  };
-
   const removeItem = (id: number) => {
     const newProductData = cartProductList.filter(
       (item: ICartProduct) => item.id !== id
@@ -29,13 +25,32 @@ const SideDrawer = ({
     setCartProductList(newProductData);
   };
 
-  const handleApplyNumberButtonClicked = () => {
-    // todo: POST요청으로 장바구니 데이터 서버에 전달
-    // todo: cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
-
-    console.log("cartProductsCount:", cartProductsCount);
-    console.log("cartProductList:", cartProductList);
+  const findSameItemCount = (id: number) => {
+    const sameItem = cartProductsCount.find((el) => el.id === id);
+    return sameItem?.count;
   };
+
+  const handleCloseButtonClick = () => {
+    setIsSideDrawerClicked(false);
+  };
+
+  const handleApplyNumberButtonClicked = () => {
+    const newCartProductList = cartProductList.map((product) => {
+      if (findSameItemCount(product.id)) {
+        const updatedCount = findSameItemCount(product.id);
+        product = {
+          ...product,
+          count: updatedCount || product.count,
+        };
+      }
+      return product;
+    });
+    setCartProductList(newCartProductList);
+  };
+
+  useEffect(() => {
+    // todo: POST요청으로 장바구니 데이터 서버에 전달
+  }, [cartProductList]);
 
   useEffect(() => {
     const cartItemCountArray = cartProductList.map(
