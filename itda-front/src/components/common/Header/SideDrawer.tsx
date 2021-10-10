@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
-import { TSideDrawer, drawerITemType } from "types/SideDrawerTypes";
+import { TSideDrawer, drawerItemType } from "types/SideDrawerTypes";
 import { Link } from "react-router-dom";
 
 const SideDrawer = ({
@@ -132,7 +132,7 @@ const SideDrawerItem = ({
   removeItem,
   cartProductsCount,
   setCartProductsCount,
-}: drawerITemType) => {
+}: drawerItemType) => {
   const [productCount, setProductCount] = useState(
     cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
   );
