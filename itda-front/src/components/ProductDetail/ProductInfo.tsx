@@ -13,6 +13,7 @@ import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
 import { useQuery } from "react-query";
 import { productAPI } from "util/API/productAPI";
+import LoadingSpinner from "components/common/LoadingSpinner";
 
 interface MatchParams {
   productId: string;
@@ -27,7 +28,7 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
     () =>
       productAPI.products.get.getProductDetail(Number(match.params.productId)),
     {
-      onSuccess: (data) => {
+      onSuccess: data => {
         setProductPrice(data?.data?.product?.price);
         setDetailDescription(data?.data?.product?.detailDescription);
       },
@@ -37,7 +38,7 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
   return (
     <S.ProductInfo.InfoLayout>
       {isLoading ? (
-        <>Loading...</>
+        <LoadingSpinner />
       ) : (
         <>
           <S.ProductInfo.ProductDetailLayer>

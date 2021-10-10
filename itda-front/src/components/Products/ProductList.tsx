@@ -2,7 +2,7 @@ import S from "./ProductsStyles";
 import ProductCard from "components/common/ProductCard";
 import { IProduct } from "types/ProductTypes";
 import ProductsService from "./ProductsService";
-
+import LoadingSpinner from "components/common/LoadingSpinner";
 const ProductList = () => {
   const { productsData, isLoading } = ProductsService();
 
@@ -28,7 +28,7 @@ const ProductList = () => {
   //TODO: BE에게 description={description} 추가해달라 요청
 
   return isLoading ? (
-    <h1>Loading image 넣기</h1>
+    <LoadingSpinner />
   ) : (
     <S.ProductList.Layout>
       <S.ProductList.CountLayer>
