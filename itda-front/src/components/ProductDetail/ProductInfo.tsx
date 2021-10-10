@@ -22,8 +22,9 @@ interface MatchParams {
 
 const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
   const [productPrice, setProductPrice] = useRecoilState(detailProductPrice);
+  const [cartProductsData, setCartProductData] =
+    useRecoilState(cartProductData);
   const setDetailDescription = useSetRecoilState(detailDescription);
-  const setCartProductData = useSetRecoilState(cartProductData);
   const productCount = useRecoilValue(detailProductCount);
 
   const { data, isLoading } = useQuery(
@@ -38,16 +39,25 @@ const ProductInfo = ({ match }: RouteComponentProps<MatchParams>) => {
     }
   );
 
+  const hasSameProductInCart = (id: number) => {
+    return cartProductsData.some((product) => product.id === id);
+  };
+
   const handleClickAddToCartButton = () => {
-    const productId = match.params.productId;
+    const productId = Number(match.params.productId);
     const targetProductData: ICartProduct = {
-      id: Number(productId),
+      id: productId,
       count: productCount,
       price: productPrice,
       productName: data?.data.product.name,
       imageUrl: data?.data.product.imgUrl,
     };
-    setCartProductData((cartProducts) => [...cartProducts, targetProductData]);
+    if (!hasSameProductInCart(productId)) {
+      setCartProductData((cartProducts) => [
+        ...cartProducts,
+        targetProductData,
+      ]);
+    }
   };
 
   return (
