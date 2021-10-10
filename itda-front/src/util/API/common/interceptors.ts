@@ -5,9 +5,13 @@ import {
   AxiosResponse,
 } from "axios";
 
-export function setInterceptors(instance: AxiosInstance): AxiosInstance {
+export function setInterceptors(
+  instance: AxiosInstance,
+  withAuth: boolean
+): AxiosInstance {
   instance.interceptors.request.use(
     (config: AxiosRequestConfig) => {
+      if (!withAuth) return config;
       const authToken = JSON.parse(localStorage.getItem("token") as string);
 
       if (authToken) {
