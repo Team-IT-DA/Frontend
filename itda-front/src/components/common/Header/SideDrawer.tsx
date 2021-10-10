@@ -2,15 +2,11 @@ import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
 import { useRecoilState } from "recoil";
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
+import { TSideDrawer, drawerITemType } from "types/SideDrawerTypes";
 import { Link } from "react-router-dom";
-
-type TSideDrawer = {
-  isSideDrawerClicked: undefined | boolean;
-  setIsSideDrawerClicked: (value: boolean) => void;
-};
 
 const SideDrawer = ({
   isSideDrawerClicked,
@@ -111,19 +107,6 @@ const SideDrawer = ({
       </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerLayout>
   );
-};
-
-// 장바구니 아이템의 props로 받아올 type들
-// 위에서 map 돌릴 것 같아요
-type drawerITemType = {
-  // productSeller: string
-  productId: number;
-  productImage: string;
-  productName: string;
-  productPrice: number;
-  removeItem: (id: number) => void;
-  cartProductsCount: ISendingCartProduct[];
-  setCartProductsCount: React.Dispatch<SetStateAction<ISendingCartProduct[]>>;
 };
 
 const SideDrawerItem = ({
