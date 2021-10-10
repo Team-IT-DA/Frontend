@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import { useState, useEffect, SetStateAction } from "react";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
-// import { GETCartData } from "util/mock/GETCartData";
 import { Link } from "react-router-dom";
 
 type TSideDrawer = {
@@ -17,7 +16,6 @@ const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
-  // const MockData = GETCartData.data.detail; //mock데이터 삭제
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
@@ -38,11 +36,10 @@ const SideDrawer = ({
   const handleApplyNumberButtonClicked = () => {
     // todo: POST요청으로 장바구니 데이터 서버에 전달
     // todo: cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
-  };
 
-  // useEffect(() => {
-  //   setCartProductList(MockData);
-  // }, []);
+    console.log("cartProductsCount:", cartProductsCount);
+    console.log("cartProductList:", cartProductList);
+  };
 
   useEffect(() => {
     const cartItemCountArray = cartProductList.map(
@@ -82,6 +79,7 @@ const SideDrawer = ({
             return (
               <SideDrawerItem
                 // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
+                key={`item-${cartItem.id}`}
                 productId={cartItem.id}
                 productImage={cartItem.imageUrl}
                 productName={cartItem.productName}
