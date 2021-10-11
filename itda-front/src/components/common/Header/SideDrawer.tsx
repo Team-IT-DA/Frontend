@@ -51,16 +51,16 @@ const SideDrawer = ({
       return product;
     });
     setCartProductList(newCartProductList);
+    // todo: POST요청으로 장바구니 데이터 서버에 전달.
+    // UpdateCartService(cartProductList);
   };
 
   useEffect(() => {
-    // todo: 500에러남.
+    // todo: 500에러
     // setCartProductList(cartListData);
   }, []);
 
   useEffect(() => {
-    // todo: POST요청으로 장바구니 데이터 서버에 전달. hook안에서 hook이 안불려서 실행이 안됌.
-    // UpdateCartService(cartProductList);
     const cartItemCountArray = cartProductList?.map(
       (cartItem: ISendingCartProduct) => {
         return {
@@ -148,7 +148,7 @@ const SideDrawerItem = ({
   setCartProductsCount,
 }: TDrawerItem) => {
   const [productCount, setProductCount] = useState(
-    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0].count
+    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0]?.count
   );
 
   useEffect(() => {
