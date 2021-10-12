@@ -1,16 +1,16 @@
-import { useState } from "react";
-
 import S from "./AtomsStyles";
 
 type TSelectBox = {
   selectArray: string[];
+  state: string;
+  setState: (input: string) => void;
 };
 
-const SelectBox = ({ selectArray }: TSelectBox) => {
-  const [state, setState] = useState(""); //state 밖에서 받아오기
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setState(event.target.value as string);
+const SelectBox = ({ selectArray, state, setState }: TSelectBox) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setState(event.target.value);
   };
+
   const options = selectArray.map(value => (
     <option value={value}>{value}</option>
   ));
