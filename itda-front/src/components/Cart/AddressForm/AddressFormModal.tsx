@@ -8,15 +8,28 @@ import DeliveryRequestForm from "./DeliveryRequestForm";
 import CancelButton from "components/common/Atoms/CancelButton";
 import { isDefaultAddress } from "stores/CartAtoms";
 import { useRecoilValue } from "recoil";
+import { shippingData } from "stores/CartAtoms";
+import { useMutation } from "react-query";
+import cartAPI from "util/API/cartAPI";
+import { IShippingInfos } from "types/CartTypes";
+
 const AddressFormModal = ({
   toggleAddressForm,
 }: {
   toggleAddressForm: React.MouseEventHandler<SVGElement | HTMLElement>;
 }) => {
   const isDefaultAddressState = useRecoilValue(isDefaultAddress);
+  const shippingDataState = useRecoilValue(shippingData);
+
+  const mutation = useMutation(async (shippingDataState: IShippingInfos) => {
+    cartAPI.shipping.post.postShippingInfos(shippingDataState);
+  });
+
   const saveAddressInfo = (e: React.MouseEvent<HTMLElement>) => {
     toggleAddressForm(e);
+    mutation.mutate(shippingDataState);
   };
+
   return (
     <S.AddressFormModal.Wrapper className="address-form">
       <S.AddressFormModal.Layout>
@@ -60,17 +73,3 @@ const AddressFormModal = ({
 };
 
 export default AddressFormModal;
-
-//GET기본 주소지와 최근 4개 주소지 조회
-// {
-// 	"consignee": "크롱",
-// 	"phone": "01040207042",
-//     "regionOneDepthName":"서울특별시" ,
-//     "regionTwoDepthName":"강남구",
-// 	"regionThreeDepthName":"역삼동",
-// 	"mainBuildingNo":40,
-// 	"subBuildingNo":4,
-// 	"zoneNo": 36680,
-// 	"defaultAddrYn": true,
-//     "message": "문 앞에 놓고 전화주세요."
-// }
