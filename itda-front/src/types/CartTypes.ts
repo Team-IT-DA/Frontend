@@ -39,10 +39,24 @@ interface IAddressNumber {
   zoneNo: number;
 }
 
+interface IOrder {
+  orderList: IOrderList[];
+  orderPrice: number;
+  shippingFee: number;
+  totalPrice: number;
+  shippingAddressId: number;
+}
+
+interface IOrderList {
+  productId: number;
+  count: number;
+}
+
 export type {
   ICartProduct,
   ISendingCartProduct,
   IShippingInfos,
   IAddressText,
   IAddressNumber,
+  IOrder,
 };
