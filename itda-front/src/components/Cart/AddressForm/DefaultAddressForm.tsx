@@ -1,5 +1,5 @@
 import S from "components/Cart/CartStyles";
-
+//TODO: shippingInfos GET 한 거 atom으로 관리해서 defaultShippingAddress 값 여기에 넣기
 const DefaultAddressForm = () => {
   return (
     <>

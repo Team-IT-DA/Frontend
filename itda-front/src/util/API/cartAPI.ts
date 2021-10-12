@@ -8,7 +8,7 @@ const postShippingInfos = async (shippingInfos: IShippingInfos) => {
 const getShippingInfos = () => instanceWithAuth.get("/shippingInfos");
 
 const postOrder = async (orderList: IOrder) => {
-  instanceWithAuth.post("/shippingInfos", orderList);
+  instanceWithAuth.post("/order", orderList);
 };
 
 const cartAPI = {
@@ -17,7 +17,7 @@ const cartAPI = {
     get: { getShippingInfos },
   },
   order: {
-    get: { postOrder },
+    post: { postOrder },
   },
 };
 
