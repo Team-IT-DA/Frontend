@@ -1,15 +1,31 @@
-import TextInput from "components/common/Atoms/TextInput";
 import S from "components/Cart/CartStyles";
-import { useState } from "react";
+import TextInput from "components/common/Atoms/TextInput";
+import { useRecoilState } from "recoil";
+import {
+  regionOneDepthName,
+  regionTwoDepthName,
+  regionThreeDepthName,
+} from "stores/CartAtoms";
+
 const AddressSearchForm = () => {
-  const [inputState, setInputState] = useState(""); //임시 상태
+  const [regionOneState, setRegionOneState] = useRecoilState(
+    regionOneDepthName
+  );
+  const [regionTwoState, setRegionTwoState] = useRecoilState(
+    regionTwoDepthName
+  );
+
+  const [regionThreeState, setRegionThreeState] = useRecoilState(
+    regionThreeDepthName
+  );
+
   return (
     <div>
       <S.AddressSearchForm.LineLayer>
         <TextInput
           width={"100px"}
-          state={inputState}
-          setState={setInputState}
+          state={regionOneState}
+          setState={setRegionOneState}
         />
         <S.AddressSearchForm.SearchButton>
           검색
@@ -18,13 +34,13 @@ const AddressSearchForm = () => {
       <S.AddressSearchForm.LineLayer>
         <TextInput
           width={"100px"}
-          state={inputState}
-          setState={setInputState}
+          state={regionTwoState}
+          setState={setRegionTwoState}
         />
         <TextInput
           width={"200px"}
-          state={inputState}
-          setState={setInputState}
+          state={regionThreeState}
+          setState={setRegionThreeState}
         />
       </S.AddressSearchForm.LineLayer>
     </div>

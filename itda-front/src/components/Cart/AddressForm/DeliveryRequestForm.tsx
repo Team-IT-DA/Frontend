@@ -1,14 +1,17 @@
+import { useRecoilState } from "recoil";
+import { shippingMessage } from "stores/CartAtoms";
 import TextInput from "components/common/Atoms/TextInput";
-import { useState } from "react";
 
 const DeliveryRequestForm = () => {
-  const [inputState, setInputState] = useState(""); //임시 상태
+  const [shippingMessageState, setShippingMessageState] = useRecoilState(
+    shippingMessage
+  );
   return (
     <TextInput
       width={"400px"}
       isRequired={false}
-      state={inputState}
-      setState={setInputState}
+      state={shippingMessageState}
+      setState={setShippingMessageState}
     />
   );
 };
