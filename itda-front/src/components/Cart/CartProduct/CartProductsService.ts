@@ -15,4 +15,10 @@ const UpdateCartService = (cartList: any) => {
   );
 };
 
-export { CartService, UpdateCartService };
+const DeleteCartService = (productId: number) => {
+  const { data } = useQuery("deleteCartList", () =>
+    cartAPI.delete.deleteCartProduct(`/cart?productId=${productId}`)
+  );
+};
+
+export { CartService, UpdateCartService, DeleteCartService };

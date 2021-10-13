@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard";
 import {
   CartService,
   UpdateCartService,
+  DeleteCartService,
 } from "components/Cart/CartProduct/CartProductsService";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
@@ -28,6 +29,8 @@ const SideDrawer = ({
       (item: ICartProduct) => item.id !== id
     );
     setCartProductList(newProductData);
+    // todo: 상품이 삭제되면 서버에 삭제요청
+    DeleteCartService(id);
   };
 
   const findSameItemCount = (id: number) => {
