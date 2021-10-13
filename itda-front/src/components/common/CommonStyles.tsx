@@ -291,6 +291,11 @@ const S = {
       overflow-y: scroll;
     `,
 
+    EmptyDrawerMessage: styled.div`
+      align-self: center;
+      color: ${({ theme }) => theme.colors.mint.normal};
+    `,
+
     DrawerCardLayout: styled.div`
       display: flex;
       flex-direction: column;
@@ -361,9 +366,11 @@ const S = {
       color: #c2c2c2;
     `,
 
-    DrawerMoveToCartButton: styled(Button)`
-      width: 100%;
+    ApplyNumbersButton: styled(Button)`
+      width: 50%;
       padding: 15px 0;
+      margin: 5px;
+      color: #ffffff;
       background: ${({ theme }) => theme.colors.navy.light};
       border: none;
       border-radius: 5px;
@@ -373,6 +380,27 @@ const S = {
         color: ${({ theme }) => theme.colors.white};
         background: ${({ theme }) => theme.colors.navy.normal};
       }
+    `,
+
+    DrawerMoveToCartButton: styled(Button)`
+      width: 50%;
+      padding: 15px 0;
+      margin: 5px;
+      color: ${({ theme }) => theme.colors.navy.light};
+      border: 2px solid ${({ theme }) => theme.colors.navy.light};
+      background-color: none;
+      border-radius: 5px;
+      margin-top: 2%;
+      &:hover {
+        cursor: pointer;
+        color: ${({ theme }) => theme.colors.white};
+        background: ${({ theme }) => theme.colors.navy.normal};
+      }
+    `,
+
+    ButtonLayer: styled.div`
+      display: flex;
+      width: 100%;
     `,
   },
   TopButton: {

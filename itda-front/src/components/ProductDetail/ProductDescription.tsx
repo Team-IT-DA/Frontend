@@ -4,7 +4,12 @@ import S from "./ProductDetailStyles";
 
 const ProductDescription = () => {
   const productDescription = useRecoilValue(detailDescription);
-  return <S.ProductDetailBlock>{productDescription}</S.ProductDetailBlock>;
+
+  return (
+    <S.ProductDetailBlock
+      dangerouslySetInnerHTML={{ __html: productDescription }}
+    ></S.ProductDetailBlock>
+  );
 };
 
 export default ProductDescription;

@@ -1,5 +1,13 @@
+import { ICartProduct,IShippingInfos, IOrder } from "types/CartTypes";
 import { instanceWithAuth } from "./index";
-import { IShippingInfos, IOrder } from "types/CartTypes";
+
+const getCartProductList = () => instanceWithAuth.get("/cart");
+
+const updateCartProductList = (productList: ICartProduct[]) =>
+  instanceWithAuth.post("/cart");
+
+const deleteCartProduct = (productId: string) =>
+  instanceWithAuth.delete(`/cart?productId=${productId}`);
 
 const postShippingInfos = async (shippingInfos: IShippingInfos) => {
   instanceWithAuth.post("/shippingInfos", shippingInfos);
@@ -11,8 +19,12 @@ const postOrder = async (orderList: IOrder) => {
   instanceWithAuth.post("/order", orderList);
 };
 
+
 const cartAPI = {
-  shipping: {
+  get: { getCartProductList },
+  post: { updateCartProductList },
+  delete: { deleteCartProduct },
+   shipping: {
     post: { postShippingInfos },
     get: { getShippingInfos },
   },

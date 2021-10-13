@@ -16,7 +16,6 @@ const ProductList = () => {
           productImg={imageUrl}
           productName={productName}
           productPrice={price}
-          seller={sellerName}
           description={"description이 API 응답에 없다!!이건 직접 적음"}
           id={id}
         />
