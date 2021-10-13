@@ -9,7 +9,6 @@ import {
   addProductSelectInput,
 } from "stores/AddProductAtoms";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { useEffect } from "react";
 
 const AddProductSelectBox = ({
   label,
@@ -46,7 +45,7 @@ const AddProductSelectBox = ({
         }}
         onChange={handleProductSelectChange}
       >
-        {options.map((optionName) => (
+        {options.map((optionName, index) => (
           <option key={optionName} value={optionName}>
             {optionName}
           </option>
