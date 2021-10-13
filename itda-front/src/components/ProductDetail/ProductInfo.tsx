@@ -8,6 +8,8 @@ import {
   detailProductPrice,
   detailDescription,
 } from "stores/ProductDetailAtoms";
+import { cartProductData } from "stores/CartAtoms";
+import { ICartProduct } from "types/CartTypes";
 import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
@@ -15,6 +17,26 @@ import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
 
 const ProductInfo = () => {
   const productData = useRecoilValue(productInfo);
+  const hasSameProductInCart = (id: number) => {
+    return cartProductsData.some((product) => product.id === id);
+  };
+
+  const handleClickAddToCartButton = () => {
+    const productId = Number(match.params.productId);
+    const targetProductData: ICartProduct = {
+      id: productId,
+      count: productCount,
+      price: productPrice,
+      productName: data?.data.product.name,
+      imageUrl: data?.data.product.imgUrl,
+    };
+    if (!hasSameProductInCart(productId)) {
+      setCartProductData((cartProducts) => [
+        ...cartProducts,
+        targetProductData,
+      ]);
+    }
+  };
 
   return (
     <S.ProductInfo.InfoLayout>

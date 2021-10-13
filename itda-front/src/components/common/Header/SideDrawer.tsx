@@ -1,52 +1,70 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
+import {
+  CartService,
+  UpdateCartService,
+  DeleteCartService,
+} from "components/Cart/CartProduct/CartProductsService";
 import { useRecoilState } from "recoil";
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
-import { GETCartData } from "util/mock/GETCartData";
+import { TSideDrawer, TDrawerItem } from "types/SideDrawerTypes";
 import { Link } from "react-router-dom";
-
-type TSideDrawer = {
-  isSideDrawerClicked: undefined | boolean;
-  setIsSideDrawerClicked: (value: boolean) => void;
-};
 
 const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
-  const MockData = GETCartData.data.detail;
+  const { cartListData, isLoading } = CartService();
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
   >([]);
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
-  const handleCloseButtonClick = () => {
-    setIsSideDrawerClicked(false);
-  };
-
   const removeItem = (id: number) => {
     const newProductData = cartProductList.filter(
       (item: ICartProduct) => item.id !== id
     );
     setCartProductList(newProductData);
+    // todo: 상품이 삭제되면 서버에 삭제요청
+    DeleteCartService(id);
   };
 
-  const handleMoveToCartButtonClicked = () => {
-    //cartProductsCount의 수량과 cartProductList의 수량의 싱크 맞추기
-    // todo: POST요청으로 장바구니 데이터 서버에 전달
-    // todo: cart페이지로 이동
+  const findSameItemCount = (id: number) => {
+    const sameItem = cartProductsCount.find((el) => el.id === id);
+    return sameItem?.count;
+  };
+
+  const handleCloseButtonClick = () => {
+    setIsSideDrawerClicked(false);
+  };
+
+  const handleApplyNumberButtonClicked = () => {
+    const newCartProductList = cartProductList.map((product) => {
+      if (findSameItemCount(product.id)) {
+        const updatedCount = findSameItemCount(product.id);
+        product = {
+          ...product,
+          count: updatedCount || product.count,
+        };
+      }
+      return product;
+    });
+    setCartProductList(newCartProductList);
+    // todo: POST요청으로 장바구니 데이터 서버에 전달.
+    // UpdateCartService(cartProductList);
   };
 
   useEffect(() => {
-    setCartProductList(MockData);
+    // todo: 500에러
+    // setCartProductList(cartListData);
   }, []);
 
   useEffect(() => {
-    const cartItemCountArray = cartProductList.map(
+    const cartItemCountArray = cartProductList?.map(
       (cartItem: ISendingCartProduct) => {
         return {
           id: cartItem.id,
@@ -60,7 +78,7 @@ const SideDrawer = ({
 
   useEffect(() => {
     let total = 0;
-    cartProductsCount.forEach(cartItem => {
+    cartProductsCount.forEach((cartItem) => {
       total += cartItem.price * cartItem.count;
     });
     setCartTotalPrice(total);
@@ -78,11 +96,12 @@ const SideDrawer = ({
         </S.SideDrawer.DrawerCardCloseButton>
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
-        {cartProductsCount.length !== 0 &&
-          cartProductList.map(cartItem => {
+        {(cartProductsCount.length &&
+          cartProductList.map((cartItem) => {
             return (
               <SideDrawerItem
                 // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
+                key={`item-${cartItem.id}`}
                 productId={cartItem.id}
                 productImage={cartItem.imageUrl}
                 productName={cartItem.productName}
@@ -92,7 +111,13 @@ const SideDrawer = ({
                 setCartProductsCount={setCartProductsCount}
               />
             );
-          })}
+          })) || (
+          <>
+            <S.SideDrawer.EmptyDrawerMessage>
+              장바구니에 상품이 존재하지 않습니다.
+            </S.SideDrawer.EmptyDrawerMessage>
+          </>
+        )}
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
@@ -101,27 +126,19 @@ const SideDrawer = ({
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
         </S.SideDrawer.DrawerDeliveryFee>
-        <S.SideDrawer.DrawerMoveToCartButton
-          onClick={handleMoveToCartButtonClicked}
-        >
-          <Link to="/cart"> 장바구니로 이동</Link>
-        </S.SideDrawer.DrawerMoveToCartButton>
+        <S.SideDrawer.ButtonLayer>
+          <S.SideDrawer.ApplyNumbersButton
+            onClick={handleApplyNumberButtonClicked}
+          >
+            수량변경
+          </S.SideDrawer.ApplyNumbersButton>
+          <S.SideDrawer.DrawerMoveToCartButton>
+            <Link to="/cart"> 장바구니로 이동</Link>
+          </S.SideDrawer.DrawerMoveToCartButton>
+        </S.SideDrawer.ButtonLayer>
       </S.SideDrawer.DrawerBottom>
     </S.SideDrawer.DrawerLayout>
   );
-};
-
-// 장바구니 아이템의 props로 받아올 type들
-// 위에서 map 돌릴 것 같아요
-type drawerITemType = {
-  // productSeller: string
-  productId: number;
-  productImage: string;
-  productName: string;
-  productPrice: number;
-  removeItem: (id: number) => void;
-  cartProductsCount: ISendingCartProduct[];
-  setCartProductsCount: React.Dispatch<SetStateAction<ISendingCartProduct[]>>;
 };
 
 const SideDrawerItem = ({
@@ -132,9 +149,9 @@ const SideDrawerItem = ({
   removeItem,
   cartProductsCount,
   setCartProductsCount,
-}: drawerITemType) => {
+}: TDrawerItem) => {
   const [productCount, setProductCount] = useState(
-    cartProductsCount.filter(cartItem => cartItem.id === productId)[0].count
+    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0]?.count
   );
 
   useEffect(() => {
@@ -143,7 +160,7 @@ const SideDrawerItem = ({
       price: productPrice,
       count: productCount,
     };
-    const updatedCartProductsCount = cartProductsCount.map(cartItem => {
+    const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
       return cartItem.id === productId ? newCount : cartItem;
     });
     setCartProductsCount(updatedCartProductsCount);
@@ -157,7 +174,6 @@ const SideDrawerItem = ({
           productImg={productImage}
           productName={productName}
           productPrice={productPrice}
-          seller="박크롱" //seller 정보 넣을 것인가
           horizontal={true}
         />
         <S.SideDrawer.DrawerCardDescription>
@@ -168,7 +184,7 @@ const SideDrawerItem = ({
       </S.SideDrawer.DrawerCardCountDiv>
       <S.SideDrawer.DrawerCardBottom>
         <S.SideDrawer.DrawerCardPrice>
-          총 합: 21400원
+          {`총 합: ${productPrice * productCount}원`}
         </S.SideDrawer.DrawerCardPrice>
         <S.SideDrawer.DrawerCardDeleteButton
           onClick={() => removeItem(productId)}
