@@ -15,6 +15,8 @@ const MyPageOrderList = () => {
   const [isReviewModalOpen, toggleReviewModal] = useToggle(false);
   const [isOrderDetailModalOpen, toggleOrderDetailModal] = useToggle(false);
   const [page, setPage] = useState(1);
+  const [tmp, setTmp] = useState(""); //TODO: SelectBox 상태로 바꿔주세요
+
   const reviewModalHandler = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
     if (target.closest(".reviewModal")) return;
@@ -41,7 +43,11 @@ const MyPageOrderList = () => {
         <S.MyPage.ContentLayout>
           <S.MyPage.ContentLayer>
             <S.MyOrderList.Layout>
-              <SelectBox selectArray={dateFilter} />
+              <SelectBox
+                selectArray={dateFilter}
+                state={tmp}
+                setState={setTmp}
+              />
               <MyOrderList
                 orderList={orderList}
                 width={"75%"}

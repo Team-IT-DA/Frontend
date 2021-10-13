@@ -1,9 +1,14 @@
 import S from "./CartStyles";
 import GradientButton from "components/common/Atoms/GradientButton";
-import { selectedProduct, cartProductData } from "stores/CartAtoms";
+import { cartProductData } from "stores/CartAtoms";
 import { useRecoilValue } from "recoil";
+import { useMutation } from "react-query";
+import cartAPI from "util/API/cartAPI";
+import { IOrder } from "types/CartTypes";
+
 const PaymentInfo = () => {
   const cartProductState = useRecoilValue(cartProductData);
+
   const subTitles = ["주문금액", "배송비", "합계"];
   const subTitleList = subTitles.map((title, idx) => (
     <li key={idx}>
@@ -17,6 +22,14 @@ const PaymentInfo = () => {
       acc += price * count;
       return acc;
     }, 0);
+  };
+
+  const mutation = useMutation(async (orderList: IOrder) => {
+    cartAPI.order.post.postOrder(orderList);
+  });
+
+  const handleOrderProduct = () => {
+    //mutation.mutate(body에 넣은 데이터를 넣어준다)
   };
 
   const totalAmount = calculateTotalAmount();
@@ -37,7 +50,11 @@ const PaymentInfo = () => {
           </S.PaymentInfo.Contents>
         </S.PaymentInfo.ContentsBlock>
       </S.PaymentInfo.ContentsLayer>
-      <GradientButton width={"18rem"} disabled={true}>
+      <GradientButton
+        width={"18rem"}
+        disabled={true}
+        onClick={handleOrderProduct}
+      >
         구매 하기
       </GradientButton>
     </S.PaymentInfo.Layout>

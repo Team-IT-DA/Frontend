@@ -1,9 +1,12 @@
 import RadioButtonWithCancel from "components/common/Atoms/RadioButtonWithCancel";
 import { useState } from "react";
 import S from "../CartStyles";
+import AddressService from "./AddressService";
 
 const LastAddressSelection = () => {
   const [state, setSelectedState] = useState("test");
+  // const { defaultShippingAddress, shippingAddress } = AddressService();
+  //TODO: shippingAddress로 RadioButtonWithCancel map 돌리기
   return (
     <S.LastAddressSelection.Layout>
       <RadioButtonWithCancel

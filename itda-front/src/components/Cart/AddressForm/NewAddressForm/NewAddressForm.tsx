@@ -2,16 +2,19 @@ import S from "components/Cart/CartStyles";
 import TextInput from "components/common/Atoms/TextInput";
 import PhoneNumberForm from "components/Cart/AddressForm/NewAddressForm/PhoneNumberForm";
 import AddressSearchForm from "./AddressSearchForm";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { consignee } from "stores/CartAtoms";
+
 const NewAddressForm = () => {
-  const [inputState, setInputState] = useState(""); //임시 상태
+  const [consigneeState, setConsigneeState] = useRecoilState(consignee);
+
   return (
     <>
       <S.AddressFormModal.Layer>
         <S.AddressFormModal.SubTitle>수령인</S.AddressFormModal.SubTitle>
         <TextInput
-          state={inputState}
-          setState={setInputState}
+          state={consigneeState}
+          setState={setConsigneeState}
           width={"100px"}
         />
       </S.AddressFormModal.Layer>

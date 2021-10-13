@@ -4,6 +4,7 @@ import AddProductTextField from "./AddProductTextField";
 import { productAPI } from "util/API/productAPI";
 import { useQuery } from "react-query";
 import { packagingTypeOptions, originOptions } from "util/constants";
+import LoadingSpinner from "components/common/LoadingSpinner";
 
 const AddProductSelectLayer = () => {
   const { data, isLoading } = useQuery(
@@ -16,7 +17,7 @@ const AddProductSelectLayer = () => {
       <S.AddProductSelectBox>
         <div>
           {isLoading ? (
-            <>loading..</>
+            <LoadingSpinner width={"100px"} />
           ) : (
             <AddProductSelectBox
               label="카테고리"

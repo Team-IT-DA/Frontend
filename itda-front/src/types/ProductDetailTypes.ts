@@ -14,6 +14,14 @@ export interface IProductDetail extends ICommonInfo {
   imgUrl: string;
 }
 
+// export interface ITargetProductDetail {
+//   id: number;
+//   imageUrl: string;
+//   productName: string;
+//   price: number;
+//   count: number;
+// }
+
 export interface IReview {
   id: number;
   writer: ICommonWriterInfo;

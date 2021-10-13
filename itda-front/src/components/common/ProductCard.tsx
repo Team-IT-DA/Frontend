@@ -8,7 +8,6 @@ type TProductCardPropType = {
   productImg: string;
   productName: string;
   productPrice: number;
-  seller: string;
   description?: string;
   id?: number;
 };
@@ -29,7 +28,6 @@ const ProductCard = ({
   productImg,
   productName,
   productPrice,
-  seller,
   description = "",
   id,
 }: TProductCardPropType) => {
@@ -43,7 +41,6 @@ const ProductCard = ({
             productImg,
             productName,
             productPrice,
-            seller,
             id,
           }}
         />
@@ -55,7 +52,6 @@ const ProductCard = ({
             productImg,
             productName,
             productPrice,
-            seller,
             description,
             id,
           }}
@@ -71,7 +67,6 @@ const VerticalCard = ({
   productImg,
   productName,
   productPrice,
-  seller,
   description,
   id,
 }: TProductCardPropType) => {
@@ -102,7 +97,6 @@ const VerticalCard = ({
           horizontal={horizontal}
           size={verticalCardSize[size]}
         >
-          <span>{`[${seller}]`}</span>
           <span>{productName}</span>
         </S.ProductCard.ProductTitle>
         <S.ProductCard.ProductDescription>
@@ -124,7 +118,6 @@ const HorizontalCard = ({
   productImg,
   productName,
   productPrice,
-  seller,
   id,
 }: TProductCardPropType) => {
   const horizontalCardSize: TcardSizeType = {
@@ -152,7 +145,7 @@ const HorizontalCard = ({
           horizontal={horizontal}
           size={horizontalCardSize[size]}
         >
-          [{seller}] {productName}
+          {productName}
         </S.ProductCard.ProductTitle>
         <S.ProductCard.ProductPrice
           horizontal={horizontal}
