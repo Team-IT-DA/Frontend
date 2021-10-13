@@ -17,18 +17,22 @@ import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
 
 const ProductInfo = () => {
   const productData = useRecoilValue(productInfo);
+  const [cartProductsData, setCartProductData] =
+    useRecoilState(cartProductData);
+  const productCount = useRecoilValue(detailProductCount);
+  const [productPrice, setProductPrice] = useRecoilState(detailProductPrice);
   const hasSameProductInCart = (id: number) => {
     return cartProductsData.some((product) => product.id === id);
   };
 
   const handleClickAddToCartButton = () => {
-    const productId = Number(match.params.productId);
+    const productId = Number(productData.id);
     const targetProductData: ICartProduct = {
       id: productId,
       count: productCount,
       price: productPrice,
-      productName: data?.data.product.name,
-      imageUrl: data?.data.product.imgUrl,
+      productName: productData?.name,
+      imageUrl: productData?.imgUrl,
     };
     if (!hasSameProductInCart(productId)) {
       setCartProductData((cartProducts) => [
@@ -54,7 +58,9 @@ const ProductInfo = () => {
         </S.ProductInfo.ProductDetailLayer>
         <S.ProductInfo.ProductPaymentLayer>
           <ProductDetailSellerBlock {...productData} />
-          <ProductDetailButtonBlock />
+          <ProductDetailButtonBlock
+            handleClickAddToCartButton={handleClickAddToCartButton}
+          />
         </S.ProductInfo.ProductPaymentLayer>
       </>
     </S.ProductInfo.InfoLayout>
