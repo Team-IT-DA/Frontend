@@ -11,6 +11,14 @@ const S = {
     min-height: 600px;
   `,
 
+  LoadingHolder: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  `,
+
   ProductInfo: {
     InfoLayout: styled.div`
       display: flex;

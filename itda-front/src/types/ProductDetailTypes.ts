@@ -29,3 +29,21 @@ export interface IReview {
   image: string[];
   contents: string;
 }
+
+// export interface IProductDetail extends ICommonInfo {
+//   [index: string]: string | number;
+//   name: string;
+//   price: number;
+//   subTitle: string;
+//   salesUnit: string;
+//   capacity: string;
+//   deliveryFee: number;
+//   deliveryFeeCondition: string;
+//   origin: string;
+//   packagingType: string;
+//   description: string;
+//   productImage: string;
+//   notice: string;
+//   mainCategoryId: number;
+
+// }

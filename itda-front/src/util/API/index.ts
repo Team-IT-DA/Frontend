@@ -1,10 +1,4 @@
 import axios from "axios";
-import {
-  AxiosInterceptorManager,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from "axios";
 
 import { setInterceptors } from "./common/interceptors";
 

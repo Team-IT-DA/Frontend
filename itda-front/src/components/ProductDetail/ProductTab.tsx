@@ -15,7 +15,6 @@ const ProductTab = () => {
   const [isSticky, setSticky] = useRecoilState(tabUIStickyState);
   const tabRef = useRef<HTMLDivElement>(null);
   const reviewRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
 
   const setTabSticky = (checkpoint: IntersectionObserverEntry) => {
     if (checkpoint.boundingClientRect.y <= 0) {
@@ -41,7 +40,7 @@ const ProductTab = () => {
 
   const moveToInfoSection = () => {
     setTabStateInfo(true);
-    infoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    tabRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const moveToReviewSection = () => {
@@ -66,9 +65,7 @@ const ProductTab = () => {
           후기
         </S.ProductTab.ReviewTabBlock>
       </S.ProductTab.TabToggleLayer>
-      <div ref={infoRef}>
-        <ProductDescription />
-      </div>
+      <ProductDescription />
       <div ref={reviewRef}>
         <ProductReview />
       </div>
