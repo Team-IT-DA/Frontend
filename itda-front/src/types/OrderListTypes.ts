@@ -10,4 +10,9 @@ interface IOrderList {
   account: string;
 }
 
-export type { IOrderList };
+interface IThankyou {
+  orderList: IOrderList[];
+  totalPrice: number;
+}
+
+export type { IOrderList, IThankyou };
