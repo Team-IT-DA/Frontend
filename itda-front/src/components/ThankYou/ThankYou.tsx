@@ -3,9 +3,15 @@ import PaymentList from "./PaymentList";
 import Header from "components/common/Header";
 import newOrderListData from "util/mock/newOrderListData";
 import S from "./ThankyouStyles";
+import { useQuery } from "react-query";
+import orderAPI from "util/API/orderAPI";
 
 const ThankYou = () => {
   const { orderList } = newOrderListData;
+
+  const { data, isLoading } = useQuery("thankYou", () =>
+    orderAPI.thankYou.get.getThankyouPageData()
+  );
 
   return (
     <div>
