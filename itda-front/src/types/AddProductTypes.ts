@@ -38,6 +38,7 @@ export interface IAddProductSelectField {
   [index: string]: string | number;
   origin: string;
   packagingType: string;
+  mainCategoryId: number;
 }
 
 export interface IAddProductEditorField {
