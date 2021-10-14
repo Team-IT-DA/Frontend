@@ -1,4 +1,4 @@
-export const inputNames = [
+export const addProductinputNames = [
   { name: "name", label: "상품명" },
   { name: "subTitle", label: "상품 설명" },
   { name: "price", label: "상품가격" },
