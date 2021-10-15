@@ -1,4 +1,4 @@
-import { inputNames } from "util/constants";
+import { addProductinputNames } from "util/constants";
 import S from "./AddProductStyles";
 import TinyEditor from "components/common/TinyEditor";
 import AddProductTextField from "./AddProductTextField";
@@ -14,7 +14,7 @@ const AddProductForm = () => {
         <AddProductImageBlock />
         <S.AddProductFormBlock>
           <S.AddProductTextFieldBox>
-            {inputNames.map((input) => (
+            {addProductinputNames.map((input) => (
               <AddProductTextField {...input} key={input.name} />
             ))}
           </S.AddProductTextFieldBox>

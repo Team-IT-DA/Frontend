@@ -39,6 +39,7 @@ const MyOrderList = ({
         orderList={orderList}
         useReviewButton={true}
         onClickReviewButton={onClickReviewButton}
+        totalPrice={22000}
       />
     </>
   );

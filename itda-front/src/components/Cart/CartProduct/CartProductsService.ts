@@ -1,4 +1,4 @@
-import { cartAPI } from "util/API/cartAPI";
+import cartAPI from "util/API/cartAPI";
 import { useQuery } from "react-query";
 
 const CartService = () => {

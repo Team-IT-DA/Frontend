@@ -6,7 +6,6 @@ import {
   detailProductCount,
   productInfo,
   detailProductPrice,
-  detailDescription,
 } from "stores/ProductDetailAtoms";
 import { cartProductData } from "stores/CartAtoms";
 import { ICartProduct } from "types/CartTypes";
@@ -14,21 +13,17 @@ import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
-import { useQuery } from "react-query";
-import { productAPI } from "util/API/productAPI";
-import LoadingSpinner from "components/common/LoadingSpinner";
-
 
 const ProductInfo = () => {
   const productData = useRecoilValue(productInfo);
   const [cartProductsData, setCartProductData] =
     useRecoilState(cartProductData);
   const productCount = useRecoilValue(detailProductCount);
-  const [productPrice, setProductPrice] = useRecoilState(detailProductPrice);
+  const productPrice = useRecoilValue(detailProductPrice);
   const hasSameProductInCart = (id: number) => {
     return cartProductsData.some((product) => product.id === id);
   };
-  
+
   const handleClickAddToCartButton = () => {
     const productId = Number(productData.id);
     const targetProductData: ICartProduct = {
@@ -43,7 +38,6 @@ const ProductInfo = () => {
         ...cartProducts,
         targetProductData,
       ]);
-
     }
   };
 

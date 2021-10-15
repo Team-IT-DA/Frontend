@@ -3,9 +3,15 @@ import PaymentList from "./PaymentList";
 import Header from "components/common/Header";
 import newOrderListData from "util/mock/newOrderListData";
 import S from "./ThankyouStyles";
+import { useQuery } from "react-query";
+import orderAPI from "util/API/orderAPI";
 
 const ThankYou = () => {
   const { orderList } = newOrderListData;
+
+  const { data, isLoading } = useQuery("thankYou", () =>
+    orderAPI.thankYou.get.getThankyouPageData()
+  );
 
   return (
     <div>
@@ -14,7 +20,7 @@ const ThankYou = () => {
         <h1>마음을 잇는 현명한 소비에 함께해주셔서 감사합니다.</h1>
         <h3>24시간 이내로 무통장입금을 완료하지 않으시면 자동취소 됩니다.</h3>
         <S.PaymentLayerTitle>주문 내역</S.PaymentLayerTitle>
-        <OrderList orderList={orderList} width="1050px" />
+        <OrderList orderList={orderList} width="1050px" totalPrice={22000} />
         <S.PaymentLayerTitle>결제 내역</S.PaymentLayerTitle>
         <S.PaymentLayer>
           <PaymentList />

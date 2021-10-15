@@ -16,17 +16,19 @@ const OrderList = ({
   useReviewButton = false,
   // useOrderTitle = true,
   onClickReviewButton,
+  totalPrice,
 }: {
   orderList: IOrder[];
   width?: string;
   useReviewButton?: boolean;
   useOrderTitle?: boolean;
   onClickReviewButton?: React.MouseEventHandler<HTMLElement>;
+  totalPrice: number;
 }) => {
   return (
     <S.OrderList.Layout width={width}>
       <S.OrderList.ProductLayer>
-        {orderList.map(order => (
+        {orderList.map((order) => (
           <S.OrderList.ProductBlock>
             <S.OrderList.ProductImage
               src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/pd/21/1/1/0/2/2/9/LdeGY/3721110229_B.jpg"
@@ -59,7 +61,7 @@ const OrderList = ({
       <S.OrderList.PriceLayer>
         <dl>
           <dt>총 주문 금액</dt>
-          <dd>20,000원</dd>
+          <dd>{totalPrice.toLocaleString()} 원</dd>
         </dl>
       </S.OrderList.PriceLayer>
     </S.OrderList.Layout>
