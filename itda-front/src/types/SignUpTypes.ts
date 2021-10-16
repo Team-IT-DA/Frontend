@@ -1,5 +1,5 @@
 export interface IValidation {
-  username?: string;
+  name?: string;
   email?: string;
   password?: string;
   password2?: string;
@@ -7,7 +7,7 @@ export interface IValidation {
 }
 
 export interface ISignUp {
-  username?: string;
+  name?: string;
   email?: string;
   password?: string;
   password2?: string;

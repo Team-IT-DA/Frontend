@@ -1,7 +1,7 @@
 import { IValidation, ISignUp } from "types/SignUpTypes";
 
 const ValidateForm = ({
-  username,
+  name,
   email,
   telephone,
   password,
@@ -12,8 +12,8 @@ const ValidateForm = ({
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}/;
 
-  if (!username?.trim()) {
-    errors.username = "이름을 입력하지 않으셨습니다.";
+  if (!name) {
+    errors.name = "이름을 입력하지 않으셨습니다.";
   }
 
   if (!email) {
