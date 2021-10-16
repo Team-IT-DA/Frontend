@@ -7,9 +7,9 @@ export interface IValidation {
 }
 
 export interface ISignUp {
-  username: string;
-  email: string;
-  password: string;
-  password2: string;
-  telephone: number;
+  username?: string;
+  email?: string;
+  password?: string;
+  password2?: string;
+  telephone?: number;
 }

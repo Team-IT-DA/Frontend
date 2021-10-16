@@ -12,7 +12,7 @@ const ValidateForm = ({
   const emailRegex = /\S+@\S+\.\S+/;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}/;
 
-  if (!username.trim()) {
+  if (!username?.trim()) {
     errors.username = "이름을 입력하지 않으셨습니다.";
   }
 
@@ -38,6 +38,8 @@ const ValidateForm = ({
   } else if (password2 !== password) {
     errors.password2 = "비밀번호가 일치하지 않습니다.";
   }
+
+  return errors;
 };
 
 export default ValidateForm;
