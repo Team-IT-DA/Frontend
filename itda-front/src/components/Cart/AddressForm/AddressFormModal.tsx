@@ -10,7 +10,7 @@ import { isDefaultAddress } from "stores/CartAtoms";
 import { useRecoilValue } from "recoil";
 import { shippingData } from "stores/CartAtoms";
 import { useMutation } from "react-query";
-import cartAPI from "util/API/cartAPI";
+import shippingAPI from "util/API/shippingAPI";
 import { IShippingInfos } from "types/CartTypes";
 
 const AddressFormModal = ({
@@ -22,7 +22,7 @@ const AddressFormModal = ({
   const shippingDataState = useRecoilValue(shippingData);
 
   const mutation = useMutation(async (shippingDataState: IShippingInfos) => {
-    cartAPI.shipping.post.postShippingInfos(shippingDataState);
+    shippingAPI.post.postShippingInfos(shippingDataState);
   });
 
   const saveAddressInfo = (e: React.MouseEvent<HTMLElement>) => {
