@@ -1,3 +1,5 @@
+import { NumberLiteralType } from "typescript";
+
 interface ICartProduct {
   id: number;
   imageUrl: string;
@@ -13,6 +15,7 @@ interface ISendingCartProduct {
 }
 
 interface IShippingInfos {
+  id?: number;
   consignee: string;
   phone: string;
   regionOneDepthName: string;
