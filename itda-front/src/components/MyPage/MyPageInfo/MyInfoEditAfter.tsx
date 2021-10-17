@@ -55,6 +55,7 @@ const MyInfoEditAfter = () => {
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");
+    // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
   };
 
   return (
