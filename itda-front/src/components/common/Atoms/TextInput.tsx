@@ -1,6 +1,7 @@
 import S from "./AtomsStyles";
 
 type TTextInput = {
+  value?: string;
   label?: string | number;
   variant?: "outlined" | "filled" | "standard";
   size?: "small" | "medium";
@@ -11,6 +12,7 @@ type TTextInput = {
 };
 
 const TextInput = ({
+  value,
   label,
   size = "small", //size가 아닌 height로는 높이 조정이 불가능해서 주어진 높이 관련 속성인 size로 정했습니다.
   variant = "outlined",
@@ -30,6 +32,7 @@ const TextInput = ({
 
   return (
     <S.TextInput
+      value={value}
       error={handleEmptyInput()}
       type="text"
       label={label}
