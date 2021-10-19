@@ -9,7 +9,7 @@ const KakaoCallback = ({ history, location }: RouteComponentProps) => {
       let code = params.get("code");
       try {
         const jwtToken = await axios.get(
-          `http://34.125.79.175:8000/api/login/kakao?code=${code}`
+          `http://15.164.97.165:8000/api/login/kakao?code=${code}`
         );
         localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
         localStorage.setItem("name", JSON.stringify(jwtToken.data.data.name));

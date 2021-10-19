@@ -15,7 +15,7 @@ const NaverCallback = ({ history, location }: RouteComponentProps) => {
 
       try {
         const jwtToken = await axios.get(
-          `http://34.125.79.175:8000/api/login/naver?code=${code}&state=${state}`
+          `http://15.164.97.165:8000/api/login/naver?code=${code}&state=${state}`
         );
         localStorage.setItem("token", JSON.stringify(jwtToken.data.data.token));
         localStorage.setItem("name", JSON.stringify(jwtToken.data.data.name));
