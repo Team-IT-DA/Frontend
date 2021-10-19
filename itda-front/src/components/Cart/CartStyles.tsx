@@ -60,7 +60,7 @@ const S = {
       padding-bottom: 1rem;
     `,
     Contents: styled.div`
-      padding-bottom: 2rem;
+      padding-bottom: 1rem;
     `,
   },
   CartProduct: {
