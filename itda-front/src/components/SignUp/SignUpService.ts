@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import { signUpData, signUpErrorData } from "stores/SignupAtoms";
 import { IValidation, ISignUp } from "types/SignUpTypes";
 
-const SignUpService = (validate: (args: ISignUp) => IValidation) => {
-  const [signUpInfo, setSignUpInfo] = useRecoilState<ISignUp>(signUpData);
+const SignUpService = (validate: (args: IValidation) => IValidation) => {
+  const [signUpInfo, setSignUpInfo] = useRecoilState<IValidation>(signUpData);
   const [signUpError, setError] = useRecoilState<IValidation>(signUpErrorData);
 
   const handleSignUpFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const SignUpService = (validate: (args: ISignUp) => IValidation) => {
       return;
     }
 
-    //TODO: 서버 통신 코드 작성
+    console.log("리턴되나?");
   };
 
   return {

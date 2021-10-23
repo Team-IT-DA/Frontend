@@ -78,10 +78,12 @@ const SignForm = () => {
         <S.SignUp.BlankLine />
         <S.SignUp.AdminVerificationCode
           id="outlined-textarea"
+          name="authCode"
           label="판매자 인증코드"
           placeholder="판매자 인증코드를 입력하세요."
           variant="outlined"
           helperText="*판매자로 가입하시는 경우, 인증코드를 입력하세요."
+          onChange={handleSignUpFormChange}
         />
       </S.SignUp.AdminSignUpLayer>
       <S.SignUp.SignUpButtonLayer>

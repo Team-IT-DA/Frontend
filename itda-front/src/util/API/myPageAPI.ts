@@ -1,7 +1,6 @@
 import { instanceWithAuth } from "./index";
 
 const addNewProduct = async (newProduct: any) => {
-  console.log(newProduct);
   instanceWithAuth.post("/products", newProduct);
 };
 

@@ -1,4 +1,4 @@
-import { IValidation, ISignUp } from "types/SignUpTypes";
+import { IValidation } from "types/SignUpTypes";
 
 const ValidateForm = ({
   name,
@@ -6,7 +6,7 @@ const ValidateForm = ({
   telephone,
   password,
   password2,
-}: ISignUp) => {
+}: IValidation) => {
   const errors: IValidation = {};
 
   const emailRegex = /\S+@\S+\.\S+/;
