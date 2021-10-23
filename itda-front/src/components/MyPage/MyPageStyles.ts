@@ -91,6 +91,7 @@ const S = {
       top: 0;
       width: 130px;
       cursor: pointer;
+      z-index: 1;
     `,
   },
 
