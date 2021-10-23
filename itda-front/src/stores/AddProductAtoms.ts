@@ -50,7 +50,7 @@ export const addProductSelectInput = atom<IAddProductSelectField>({
   default: {
     origin: originOptions[0],
     packagingType: packagingTypeOptions[0],
-    mainCategoryId: 1,
+    mainCategoryId: 0,
   },
 });
 
