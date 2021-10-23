@@ -8,6 +8,7 @@ const SignForm = () => {
     signUpInfo,
     signUpError,
     handleSignUpButtonClick,
+    checkEmail,
   } = SignUpService(ValidateForm);
 
   return (
@@ -32,7 +33,7 @@ const SignForm = () => {
           variant="outlined"
           name="telephone"
           error={signUpError.telephone !== undefined}
-          helperText={signUpError.telephone}
+          helperText={signUpError.telephone === 0 ? "" : signUpError.telephone}
           onChange={handleSignUpFormChange}
         />
         <S.SignUp.EmailBlock>
@@ -47,7 +48,11 @@ const SignForm = () => {
             variant="outlined"
             onChange={handleSignUpFormChange}
           />
-          <S.SignUp.DuplicateCheckButton variant="contained" disableElevation>
+          <S.SignUp.DuplicateCheckButton
+            variant="contained"
+            disableElevation
+            onClick={checkEmail}
+          >
             중복확인
           </S.SignUp.DuplicateCheckButton>
         </S.SignUp.EmailBlock>

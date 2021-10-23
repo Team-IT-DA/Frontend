@@ -4,11 +4,12 @@ import { ISignUp } from "types/SignUpTypes";
 const signUpAsUser = (userData: ISignUp) =>
   instanceWithoutAuth.post("/join", userData);
 
-const varifyEmail = () => instanceWithoutAuth.get("/duplicateEmail");
+const verifyEmail = (email: string) =>
+  instanceWithoutAuth.get(`/duplicateEmail?email=${email}`);
 
 const auth = {
   signUp: {
-    get: { varifyEmail },
+    get: { verifyEmail },
     post: { signUpAsUser },
   },
 };
