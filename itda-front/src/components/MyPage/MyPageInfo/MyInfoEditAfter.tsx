@@ -1,14 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useMutation } from "react-query";
 import TextInput from "components/common/Atoms/TextInput";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 import S from "../MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
+import myPageAPI from "util/API/myPageAPI";
+import { StringMappingType } from "typescript";
+
+interface IUserInfo {
+  name: string;
+  telephone: string; //number로 받으면 맨 앞의 0이 8진수 리터럴로 인식됨. string => number 변환할 것.
+  email: string;
+  password: string;
+}
+
+interface IUserInputDate {
+  name: string;
+  telephone: string;
+  email: string;
+  password: string;
+  newPassword: string;
+  newPasswordConfirm: string;
+}
 
 const MyInfoEditAfter = () => {
-  const [testState, setTestState] = useState("");
   const [isSeller, setIsSeller] = useState(true); //임시
+  // api로 받아오는 initial 사용자 정보 - 임시로 mock 데이터 넣어둠.
+  const [userInfo, setUserInfo] = useState<IUserInfo>({
+    name: "홍길동",
+    telephone: "01011112222",
+    email: "roach@test.com",
+    password: "test",
+  });
+  //사용자로부터 입력받는 input 데이터
+  const [userInputData, setUserInputData] = useState<IUserInputDate>({
+    name: userInfo.name,
+    telephone: userInfo.telephone,
+    email: userInfo.email,
+    password: "",
+    newPassword: "",
+    newPasswordConfirm: "",
+  });
+
+  const mutation = useMutation(async () => {
+    myPageAPI.user.checkUserInfo();
+  });
+
+  // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
+  // useEffect(() => {
+  //   setUserInfo(mutation.data as any);
+  // }, []);
+
+  const handleChangeUserInfoButtonClick = () => {
+    console.log("회원정보수정 페이지 클릭됌");
+    // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
+  };
 
   return (
     <>
@@ -37,8 +85,14 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.password}
+                      state={userInputData.password}
+                      setState={(userInput) =>
+                        setUserInputData({
+                          ...userInputData,
+                          password: userInput,
+                        })
+                      }
                     />
                   </S.MyInfoAfter.CurrentPasswordBlock>
                   <S.MyInfoAfter.NewPasswordBlock>
@@ -51,8 +105,14 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.newPassword}
+                      state={userInputData.newPassword}
+                      setState={(userInput) =>
+                        setUserInputData({
+                          ...userInputData,
+                          newPassword: userInput,
+                        })
+                      }
                     />
                   </S.MyInfoAfter.NewPasswordBlock>
                   <S.MyInfoAfter.NewPasswordConfirmBlock>
@@ -65,8 +125,14 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.newPasswordConfirm}
+                      state={userInputData.newPasswordConfirm}
+                      setState={(userInput) => {
+                        setUserInputData({
+                          ...userInputData,
+                          newPasswordConfirm: userInput,
+                        });
+                      }}
                     />
                   </S.MyInfoAfter.NewPasswordConfirmBlock>
                   <S.MyInfoAfter.NameBlock>
@@ -77,8 +143,14 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.name}
+                      state={userInputData.name}
+                      setState={(userInput) => {
+                        setUserInputData({
+                          ...userInputData,
+                          name: userInput,
+                        });
+                      }}
                     />
                   </S.MyInfoAfter.NameBlock>
                   <S.MyInfoAfter.EmailBlock>
@@ -89,8 +161,14 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.email}
+                      state={userInputData.email}
+                      setState={(userInput) => {
+                        setUserInputData({
+                          ...userInputData,
+                          email: userInput,
+                        });
+                      }}
                     />
                   </S.MyInfoAfter.EmailBlock>
                   <S.MyInfoAfter.CellPhoneNumberBlock>
@@ -103,12 +181,19 @@ const MyInfoEditAfter = () => {
                       size="medium"
                       width="50%"
                       isRequired={true}
-                      state={testState}
-                      setState={setTestState}
+                      value={userInputData.telephone}
+                      state={userInputData.telephone}
+                      setState={(userInput) => {
+                        setUserInputData({
+                          ...userInputData,
+                          telephone: userInput,
+                        });
+                      }}
                     />
                   </S.MyInfoAfter.CellPhoneNumberBlock>
                 </S.MyInfoAfter.FormInputsLayer>
                 <S.MyInfoAfter.FormButtonsLayer>
+                  {/* todo: 중복확인 로직 필요 */}
                   <S.MyInfoAfter.EmailCheckButton variant="outlined">
                     중복확인
                   </S.MyInfoAfter.EmailCheckButton>
@@ -131,6 +216,7 @@ const MyInfoEditAfter = () => {
                   baseColor={theme.colors.navy.light}
                   width={"20%"}
                   fontSize={theme.fontSizes.lg}
+                  onClickButton={handleChangeUserInfoButtonClick}
                 >
                   회원정보수정
                 </ColorButton>

@@ -1,10 +1,10 @@
-import cartAPI from "util/API/cartAPI";
+import shippingAPI from "util/API/shippingAPI";
 import { useQuery } from "react-query";
 
 const AddressService = () => {
   const { data, isLoading } = useQuery(
     "latestShippingInfos",
-    cartAPI.shipping.get.getShippingInfos
+    shippingAPI.get.getShippingInfos
   );
 
   return { productsData: data, isLoading };

@@ -104,3 +104,8 @@ export const shippingData = selector({
     };
   },
 });
+
+export const shippingDefaultInfoState = atom({
+  key: "shippingDefaultInfoState",
+  default: true,
+});

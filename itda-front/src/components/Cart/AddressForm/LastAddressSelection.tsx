@@ -1,7 +1,7 @@
 import RadioButtonWithCancel from "components/common/Atoms/RadioButtonWithCancel";
 import { useState } from "react";
 import S from "../CartStyles";
-import AddressService from "./AddressService";
+import AddressService from "../AddressService";
 
 const LastAddressSelection = () => {
   const [state, setSelectedState] = useState("test");

@@ -19,12 +19,25 @@ const getProductReview = (
     }`
   );
 
+export const getProductBySellerName = (seller: string) =>
+  instanceWithAuth.get(`/products?sellerName=${seller}`);
+
+export const getProductByProductName = (product: string) =>
+  instanceWithAuth.get(`/products?productName=${product}`);
+
 export const productAPI = {
   category: {
     get: { getCategoryList },
   },
+
   products: {
     post: {},
-    get: { getProductDetail, getProductList, getProductReview },
+    get: {
+      getProductDetail,
+      getProductList,
+      getProductReview,
+      getProductBySellerName,
+      getProductByProductName,
+    },
   },
 };

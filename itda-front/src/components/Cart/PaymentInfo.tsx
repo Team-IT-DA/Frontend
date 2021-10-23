@@ -5,9 +5,11 @@ import { useRecoilValue } from "recoil";
 import { useMutation } from "react-query";
 import cartAPI from "util/API/cartAPI";
 import { IOrder } from "types/CartTypes";
+import { shippingDefaultInfoState } from "stores/CartAtoms";
 
 const PaymentInfo = () => {
   const cartProductState = useRecoilValue(cartProductData);
+  const shippingInfoState = useRecoilValue(shippingDefaultInfoState);
 
   const subTitles = ["주문금액", "배송비", "합계"];
   const subTitleList = subTitles.map((title, idx) => (
@@ -52,7 +54,7 @@ const PaymentInfo = () => {
       </S.PaymentInfo.ContentsLayer>
       <GradientButton
         width={"18rem"}
-        disabled={true}
+        disabled={shippingInfoState}
         onClick={handleOrderProduct}
       >
         구매 하기
