@@ -58,6 +58,7 @@ const SignForm = () => {
         <S.SignUp.Password
           required
           name="password"
+          type="password"
           id="outlined-textarea"
           error={signUpError.password !== ""}
           helperText={signUpError.password}

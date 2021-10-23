@@ -11,9 +11,17 @@ const SignUpService = (validate: (args: IValidation) => IValidation) => {
 
   const history = useHistory();
 
-  const signUpMutation = useMutation(async (userData: ISignUp) => {
-    auth.signUp.post.signUpAsUser(userData);
-  });
+  const signUpMutation = useMutation(
+    async (userData: ISignUp) => {
+      auth.signUp.post.signUpAsUser(userData);
+    },
+    {
+      onSuccess: () => {
+        alert("회원가입이 완료되었습니다. 서비스 사용을 위해 로그인해주세요");
+        history.push("/login");
+      },
+    }
+  );
 
   const checkEmail = async () => {
     if (signUpError.email) return;
@@ -47,7 +55,6 @@ const SignUpService = (validate: (args: IValidation) => IValidation) => {
     };
 
     signUpMutation.mutate(userSignUpData);
-    history.push("/login");
   };
 
   return {
