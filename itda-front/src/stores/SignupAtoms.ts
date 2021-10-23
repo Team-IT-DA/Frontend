@@ -15,7 +15,7 @@ export const signUpData = atom<IValidation>({
 
 export const signUpErrorData = atom<IValidation>({
   key: "firstSignUpErrorData",
-  default: { name: "", email: "", telephone: 0, password: "", password2: "" },
+  default: { name: "", email: "", telephone: "", password: "", password2: "" },
 });
 
 export const realSignUp = atom<ISignUp>({

@@ -5,7 +5,6 @@ import ValidateForm from "./ValidateForm";
 const SignForm = () => {
   const {
     handleSignUpFormChange,
-    signUpInfo,
     signUpError,
     handleSignUpButtonClick,
     checkEmail,
@@ -21,7 +20,7 @@ const SignForm = () => {
           label="이름"
           placeholder="홍길동"
           variant="outlined"
-          error={signUpError.name !== undefined}
+          error={signUpError.name !== ""}
           helperText={signUpError.name}
           onChange={handleSignUpFormChange}
         />
@@ -32,8 +31,8 @@ const SignForm = () => {
           placeholder="01011112222"
           variant="outlined"
           name="telephone"
-          error={signUpError.telephone !== undefined}
-          helperText={signUpError.telephone === 0 ? "" : signUpError.telephone}
+          error={signUpError.telephone !== ""}
+          helperText={signUpError.telephone}
           onChange={handleSignUpFormChange}
         />
         <S.SignUp.EmailBlock>
@@ -42,7 +41,7 @@ const SignForm = () => {
             id="outlined-textarea"
             label="이메일"
             name="email"
-            error={signUpError.email !== undefined}
+            error={signUpError.email !== ""}
             helperText={signUpError.email}
             placeholder="drake_cool@gmail.com"
             variant="outlined"
@@ -60,7 +59,7 @@ const SignForm = () => {
           required
           name="password"
           id="outlined-textarea"
-          error={signUpError.password !== undefined}
+          error={signUpError.password !== ""}
           helperText={signUpError.password}
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요."
@@ -72,7 +71,7 @@ const SignForm = () => {
           id="outlined-textarea"
           label="비밀번호 재확인"
           name="password2"
-          error={signUpError.password2 !== undefined}
+          error={signUpError.password2 !== ""}
           helperText={signUpError.password2}
           placeholder="비밀번호 재확인"
           variant="outlined"
