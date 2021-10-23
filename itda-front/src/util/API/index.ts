@@ -4,7 +4,7 @@ import { setInterceptors } from "./common/interceptors";
 
 const createInstance = (isWithAuth: boolean) => {
   const instance = axios.create({
-    baseURL: "http://15.164.97.165:8000/api",
+    baseURL: "http://3.37.99.129:8000/api",
   });
   return setInterceptors(instance, isWithAuth);
 };
