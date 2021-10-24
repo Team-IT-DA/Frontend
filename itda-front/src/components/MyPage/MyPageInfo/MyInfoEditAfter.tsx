@@ -28,7 +28,6 @@ interface IUserInputDate {
 
 const MyInfoEditAfter = () => {
   const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
-  console.log("isSideDrawerClickedState", isSideDrawerClickedState);
   const [isSeller, setIsSeller] = useState(true); //임시
   // api로 받아오는 initial 사용자 정보 - 임시로 mock 데이터 넣어둠.
   const [userInfo, setUserInfo] = useState<IUserInfo>({
@@ -82,60 +81,60 @@ const MyInfoEditAfter = () => {
                     <S.MyInfoAfter.CurrentPasswordLabel>
                       현재 비밀번호
                     </S.MyInfoAfter.CurrentPasswordLabel>
-                    <TextInput
+                    <S.MyInfoAfter.CurrentPasswordInput
+                      required
+                      name="currentPassword"
                       label="현재 비밀번호를 입력해주세요."
+                      placeholder="Example1234"
                       variant="outlined"
-                      size="medium"
-                      width="50%"
-                      isRequired={true}
-                      value={userInputData.password}
-                      state={userInputData.password}
-                      setState={(userInput) =>
-                        setUserInputData({
-                          ...userInputData,
-                          password: userInput,
-                        })
-                      }
+                      // value={userInputData.password}
+                      // state={userInputData.password}
+                      // setState={(userInput) =>
+                      //   setUserInputData({
+                      //     ...userInputData,
+                      //     password: userInput,
+                      //   }) 
+                      // }
                     />
                   </S.MyInfoAfter.CurrentPasswordBlock>
                   <S.MyInfoAfter.NewPasswordBlock>
                     <S.MyInfoAfter.NewPasswordLabel>
                       새 비밀번호
                     </S.MyInfoAfter.NewPasswordLabel>
-                    <TextInput
+                    <S.MyInfoAfter.NewPasswordInput
+                      required
+                      name="newPassword"
                       label="새롭게 설정할 비밀번호를 입력해주세요."
+                      placeholder="Example5678"
                       variant="outlined"
-                      size="medium"
-                      width="50%"
-                      isRequired={true}
-                      value={userInputData.newPassword}
-                      state={userInputData.newPassword}
-                      setState={(userInput) =>
-                        setUserInputData({
-                          ...userInputData,
-                          newPassword: userInput,
-                        })
-                      }
+                      // value={userInputData.newPassword}
+                      // state={userInputData.newPassword}
+                      // setState={(userInput) =>
+                      //   setUserInputData({
+                      //     ...userInputData,
+                      //     newPassword: userInput,
+                      //   })
+                      // }
                     />
                   </S.MyInfoAfter.NewPasswordBlock>
                   <S.MyInfoAfter.NewPasswordConfirmBlock>
                     <S.MyInfoAfter.NewPasswordConfirmLabel>
                       새 비밀번호 확인
                     </S.MyInfoAfter.NewPasswordConfirmLabel>
-                    <TextInput
+                    <S.MyInfoAfter.NewPasswordConfirmInput
+                      required
+                      name="newPasswordConfirm"
                       label="새롭게 설정할 비밀번호를 다시 한번 입력해주세요."
+                      placeholder="Example5678"
                       variant="outlined"
-                      size="medium"
-                      width="50%"
-                      isRequired={true}
-                      value={userInputData.newPasswordConfirm}
-                      state={userInputData.newPasswordConfirm}
-                      setState={(userInput) => {
-                        setUserInputData({
-                          ...userInputData,
-                          newPasswordConfirm: userInput,
-                        });
-                      }}
+                      // value={userInputData.newPasswordConfirm}
+                      // state={userInputData.newPasswordConfirm}
+                      // setState={(userInput) => {
+                      //   setUserInputData({
+                      //     ...userInputData,
+                      //     newPasswordConfirm: userInput,
+                      //   });
+                      // }}
                     />
                   </S.MyInfoAfter.NewPasswordConfirmBlock>
                   <S.MyInfoAfter.NameBlock>

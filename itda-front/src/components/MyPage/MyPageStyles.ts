@@ -291,6 +291,10 @@ const S = {
       width: 30%;
     `,
 
+    CurrentPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
     NewPasswordBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -298,6 +302,10 @@ const S = {
     NewPasswordLabel: styled.div`
       text-align: left;
       width: 30%;
+    `,
+
+    NewPasswordInput: styled(TextField)`
+      width: 50%;
     `,
 
     NewPasswordConfirmBlock: styled.div`
@@ -308,6 +316,10 @@ const S = {
       text-align: left;
       width: 30%;
     `,
+
+    NewPasswordConfirmInput: styled(TextField)`
+    width: 50%;
+  `,
 
     NameBlock: styled.div`
       ${inputBlockStyle}
