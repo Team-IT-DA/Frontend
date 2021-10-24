@@ -220,7 +220,6 @@ const S = {
       position: fixed;
       top: 0;
       right: 0;
-      z-index: 99999;
       padding: 1rem;
 
       @keyframes slideIn {
