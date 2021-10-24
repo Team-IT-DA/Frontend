@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import { useRecoilValue } from 'recoil';
 import { useMutation } from "react-query";
 import TextInput from "components/common/Atoms/TextInput";
 import ColorButton from "components/common/Atoms/ColorButton";
@@ -7,7 +8,7 @@ import S from "../MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
 import myPageAPI from "util/API/myPageAPI";
-import { StringMappingType } from "typescript";
+import { isSideDrawerClicked } from 'stores/SideDrawerAtoms';
 
 interface IUserInfo {
   name: string;
@@ -26,6 +27,8 @@ interface IUserInputDate {
 }
 
 const MyInfoEditAfter = () => {
+  const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
+  console.log("isSideDrawerClickedState", isSideDrawerClickedState);
   const [isSeller, setIsSeller] = useState(true); //임시
   // api로 받아오는 initial 사용자 정보 - 임시로 mock 데이터 넣어둠.
   const [userInfo, setUserInfo] = useState<IUserInfo>({
@@ -67,7 +70,7 @@ const MyInfoEditAfter = () => {
         <S.MyPage.SideTabLayout>
           <MyPageTabs isSeller={isSeller} />
         </S.MyPage.SideTabLayout>
-        <S.MyPage.ContentLayout>
+        <S.MyPage.ContentLayout isSideDrawerClicked={isSideDrawerClickedState}>
           <S.MyPage.ContentLayer>
             <S.MyInfoAfter.Layout>
               <S.MyInfoAfter.HeaderLayer>

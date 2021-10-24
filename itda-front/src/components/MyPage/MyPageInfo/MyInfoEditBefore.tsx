@@ -1,3 +1,4 @@
+import { useRecoilValue } from 'recoil';
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 import S from "../MyPageStyles";
@@ -5,10 +6,13 @@ import TextInput from "components/common/Atoms/TextInput";
 import { useState } from "react";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
+import { isSideDrawerClicked } from 'stores/SideDrawerAtoms';
 
 const MyInfoEditBefore = () => {
   const [testState, setTestState] = useState("");
   const [isSeller, setIsSeller] = useState(true);
+  const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
+
   return (
     <>
       <S.MyPage.HeaderLayout>
@@ -18,7 +22,7 @@ const MyInfoEditBefore = () => {
         <S.MyPage.SideTabLayout>
           <MyPageTabs isSeller={isSeller} />
         </S.MyPage.SideTabLayout>
-        <S.MyPage.ContentLayout>
+        <S.MyPage.ContentLayout isSideDrawerClicked={isSideDrawerClickedState}>
           <S.MyPage.ContentLayer>
             <S.MyInfoBefore.Layout>
               <S.MyInfoBefore.HeaderLayer>
