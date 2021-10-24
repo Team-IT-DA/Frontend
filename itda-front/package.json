@@ -15,6 +15,7 @@
 		"@types/react-router-dom": "^5.1.8",
 		"@types/styled-components": "^5.1.11",
 		"@uiw/react-md-editor": "^3.4.12",
+		"aws-sdk": "^2.1013.0",
 		"axios": "^0.21.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
