@@ -3,7 +3,7 @@ import { SetStateAction } from "react";
 
 type TSideDrawer = {
   isSideDrawerClicked: undefined | boolean;
-  setIsSideDrawerClicked: (value: boolean) => void;
+  setIsSideDrawerClicked: (value: undefined | boolean) => void;
 };
 
 type TDrawerItem = {
