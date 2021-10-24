@@ -12,7 +12,7 @@ interface MutableRefObject<T> {
 
 const Header = () => {
   const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
-  const [isSideDrawerClickedState, setisSideDrawerClickedState] = useRecoilState<boolean>(isSideDrawerClicked);
+  const [isSideDrawerClickedState, setisSideDrawerClickedState] = useRecoilState<undefined | boolean>(isSideDrawerClicked);
   const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
 
   const checkPageName = () => {
