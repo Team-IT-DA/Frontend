@@ -17,7 +17,7 @@ const S = {
       border: 1px solid ${({ theme }) => theme.colors.gray.xx_light};
       background: ${({ theme }) => theme.colors.white};
       box-shadow: 0px 1px 1px 0px ${({ theme }) => theme.colors.gray.xx_light};
-      backdrop-filter: blur(4px);
+      // backdrop-filter: blur(4px); //SideDrawer 위로 겹쳐지는 문제 해결을 위해서 주석처리.
       font-weight: bold;
       font-size: 1.7rem;
     `,
@@ -33,6 +33,7 @@ const S = {
       justify-content: center;
     `,
     ContainerLayer: styled.div`
+      z-index: -1;
       display: grid;
       grid-template-columns: 2fr 1fr;
       justify-items: center;

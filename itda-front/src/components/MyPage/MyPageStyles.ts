@@ -34,6 +34,7 @@ const S = {
     SideTabLayout: styled.div``,
 
     ContentLayout: styled.div`
+      z-index: -1;
       width: 100%;
       height: 100%;
       padding: 3rem;
@@ -91,6 +92,7 @@ const S = {
       top: 0;
       width: 130px;
       cursor: pointer;
+      z-index: 1;
     `,
   },
 
