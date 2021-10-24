@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useRecoilValue } from 'recoil';
 import S from "../MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
+import { isSideDrawerClicked } from 'stores/SideDrawerAtoms';
 
 const MyReview = () => {
+  const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
   const [isSeller, setIsSeller] = useState(true);
   return (
     <>
@@ -14,7 +17,7 @@ const MyReview = () => {
         <S.MyPage.SideTabLayout>
           <MyPageTabs isSeller={isSeller} />
         </S.MyPage.SideTabLayout>
-        <S.MyPage.ContentLayout>
+        <S.MyPage.ContentLayout isSideDrawerClicked={isSideDrawerClickedState}>
           <S.MyPage.ContentLayer>
             <S.MyReview.Layout>
               {/*
