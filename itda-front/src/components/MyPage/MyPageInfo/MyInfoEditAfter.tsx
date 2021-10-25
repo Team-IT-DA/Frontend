@@ -207,14 +207,6 @@ const MyInfoEditAfter = () => {
               <S.MyInfoAfter.ButtonLayer>
                 <ColorButton
                   isWhiteButton={false}
-                  baseColor={theme.colors.gray.normal}
-                  width={"20%"}
-                  fontSize={theme.fontSizes.lg}
-                >
-                  탈퇴하기
-                </ColorButton>
-                <ColorButton
-                  isWhiteButton={false}
                   baseColor={theme.colors.navy.light}
                   width={"20%"}
                   fontSize={theme.fontSizes.lg}
