@@ -8,23 +8,8 @@ import S from "../MyPageStyles";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
 import myPageAPI from "util/API/myPageAPI";
+import {IUserInfo, IUserInputDate} from 'types/MyInfoTypes';
 import { isSideDrawerClicked } from 'stores/SideDrawerAtoms';
-
-interface IUserInfo {
-  name: string;
-  telephone: string; //number로 받으면 맨 앞의 0이 8진수 리터럴로 인식됨. string => number 변환할 것.
-  email: string;
-  password: string;
-}
-
-interface IUserInputDate {
-  name: string;
-  telephone: string;
-  email: string;
-  password: string;
-  newPassword: string;
-  newPasswordConfirm: string;
-}
 
 const MyInfoEditAfter = () => {
   const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
@@ -46,7 +31,7 @@ const MyInfoEditAfter = () => {
     newPasswordConfirm: "",
   });
 
-  const mutation = useMutation(async () => {
+  const myInfoEditMutation = useMutation(async () => {
     myPageAPI.user.checkUserInfo();
   });
 
