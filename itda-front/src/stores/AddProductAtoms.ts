@@ -65,7 +65,6 @@ export const finalAddProductValue = selector<IAddProduct>({
     const addProductEditorValue = get(editorValue);
     const addProductSelectValue = get(addProductSelectInput);
     const addProductImage = get(productImage);
-    console.log(addProductImage);
     return {
       ...addProductTextValue,
       description: addProductEditorValue,
