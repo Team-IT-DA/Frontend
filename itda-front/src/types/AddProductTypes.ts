@@ -30,7 +30,6 @@ export interface IAddProductTextField {
   bank: string;
   accountHolder: string;
   account: string;
-  productImage: string;
   notice: string;
 }
 
