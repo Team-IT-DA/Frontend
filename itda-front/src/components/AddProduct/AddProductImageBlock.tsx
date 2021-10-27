@@ -1,6 +1,5 @@
 import { useRecoilState } from "recoil";
 import { AiFillCamera } from "react-icons/ai";
-
 import { productPreviewImage } from "stores/AddProductAtoms";
 import S from "./AddProductStyles";
 
@@ -18,7 +17,8 @@ const AddProductImageBox = () => {
         setPreviewImg({ file: file, previewURL: reader.result });
       }
     };
-    reader.readAsDataURL(e.target.files[0]);
+
+    if (file) reader.readAsDataURL(e.target.files[0]);
   };
   return (
     <S.AddProductImageBlock>
