@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import { useRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import LoginDropDown from "./LoginDropDown";
+import { isSideDrawerClicked } from "stores/SideDrawerAtoms";
 
 interface MutableRefObject<T> {
   current: T;
@@ -10,9 +12,7 @@ interface MutableRefObject<T> {
 
 const Header = () => {
   const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
-  const [isSideDrawerClicked, setIsSideDrawerClicked] = useState<
-    undefined | boolean
-  >(undefined);
+  const [isSideDrawerClickedState, setisSideDrawerClickedState] = useRecoilState<any>(isSideDrawerClicked);
   const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
 
   const checkPageName = () => {
@@ -24,7 +24,7 @@ const Header = () => {
   const color = isHomePage ? "#ffffff" : "#555555";
 
   const toggleSideDrawer = () => {
-    setIsSideDrawerClicked(true);
+    setisSideDrawerClickedState(true);
   };
 
   const handleLoginButtonClick = () => {
@@ -77,8 +77,8 @@ const Header = () => {
         />
       </S.Header.HeaderLayer>
       <SideDrawer
-        isSideDrawerClicked={isSideDrawerClicked}
-        setIsSideDrawerClicked={setIsSideDrawerClicked}
+        isSideDrawerClicked={isSideDrawerClickedState}
+        setIsSideDrawerClicked={setisSideDrawerClickedState}
       />
     </S.Header.HeaderLayout>
   );

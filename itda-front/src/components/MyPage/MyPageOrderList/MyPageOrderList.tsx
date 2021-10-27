@@ -1,4 +1,5 @@
 import useToggle from "hooks/useToggle";
+import { useRecoilValue } from 'recoil';
 import newOrderListData from "util/mock/newOrderListData";
 import ReviewWriteForm from "./ReviewWriteForm";
 import Pagination from "components/common/Atoms/Pagination";
@@ -8,9 +9,11 @@ import { useState } from "react";
 import MyOrderList from "./MyOrderList";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
+import { isSideDrawerClicked } from 'stores/SideDrawerAtoms';
 import S from "../MyPageStyles";
 
 const MyPageOrderList = () => {
+  const isSideDrawerClickedState = useRecoilValue(isSideDrawerClicked);
   const [isSeller, setIsSeller] = useState(true);
   const [isReviewModalOpen, toggleReviewModal] = useToggle(false);
   const [isOrderDetailModalOpen, toggleOrderDetailModal] = useToggle(false);
@@ -40,7 +43,7 @@ const MyPageOrderList = () => {
         <S.MyPage.SideTabLayout>
           <MyPageTabs isSeller={isSeller} />
         </S.MyPage.SideTabLayout>
-        <S.MyPage.ContentLayout>
+        <S.MyPage.ContentLayout isSideDrawerClicked={isSideDrawerClickedState}>
           <S.MyPage.ContentLayer>
             <S.MyOrderList.Layout>
               <SelectBox

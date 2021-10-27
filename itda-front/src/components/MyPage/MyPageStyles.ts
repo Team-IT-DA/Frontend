@@ -33,8 +33,10 @@ const S = {
 
     SideTabLayout: styled.div``,
 
-    ContentLayout: styled.div`
-      z-index: -1;
+    ContentLayout: styled.div<{
+      isSideDrawerClicked?: boolean;
+    }>`
+      z-index: ${({ isSideDrawerClicked }) => isSideDrawerClicked ? -1 : 0};
       width: 100%;
       height: 100%;
       padding: 3rem;
@@ -289,6 +291,10 @@ const S = {
       width: 30%;
     `,
 
+    CurrentPasswordInput: styled(TextField)`
+      width: 50%;
+    `,
+
     NewPasswordBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -296,6 +302,10 @@ const S = {
     NewPasswordLabel: styled.div`
       text-align: left;
       width: 30%;
+    `,
+
+    NewPasswordInput: styled(TextField)`
+      width: 50%;
     `,
 
     NewPasswordConfirmBlock: styled.div`
@@ -306,6 +316,10 @@ const S = {
       text-align: left;
       width: 30%;
     `,
+
+    NewPasswordConfirmInput: styled(TextField)`
+    width: 50%;
+  `,
 
     NameBlock: styled.div`
       ${inputBlockStyle}

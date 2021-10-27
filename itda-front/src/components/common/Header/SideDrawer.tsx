@@ -40,6 +40,7 @@ const SideDrawer = ({
 
   const handleCloseButtonClick = () => {
     setIsSideDrawerClicked(false);
+    setTimeout(() => {setIsSideDrawerClicked(undefined)}, 1000)
   };
 
   const handleApplyNumberButtonClicked = () => {
