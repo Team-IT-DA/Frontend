@@ -6,8 +6,7 @@ const ProductDetailHeaderBlock = (product: IProductDetail) => {
     <>
       <S.ProductInfo.DetailName>{product.name}</S.ProductInfo.DetailName>
       <S.ProductInfo.DetailShortInfo>
-        {product.description}
-        {/* product.subTitle */}
+        {product.subTitle}
       </S.ProductInfo.DetailShortInfo>
       <S.ProductInfo.DetailPrice>
         {product.price.toLocaleString()}원
