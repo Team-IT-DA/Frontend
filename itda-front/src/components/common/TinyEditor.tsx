@@ -1,9 +1,11 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { useRecoilState } from "recoil";
 import { editorValue } from "stores/AddProductAtoms";
+import { addPhoto } from "util/API/awsStorageAPI";
 
 export default function TinyEditor() {
   const [value, setValue] = useRecoilState<any>(editorValue);
+
   return (
     <>
       <input
@@ -17,6 +19,7 @@ export default function TinyEditor() {
         apiKey="0jy0itwdqb4xmmeblh148y5w6bd3j22tjmc7udno3ptkinxk"
         onEditorChange={(newValue, editor) => {
           setValue(newValue);
+          console.log(newValue);
         }}
         init={{
           height: 500,
@@ -40,12 +43,17 @@ export default function TinyEditor() {
               input.onchange = function () {
                 let file = (input as any)?.files[0];
                 let reader = new FileReader();
-                reader.onload = function (e: ProgressEvent<FileReader>) {
-                  console.log("name", (e.target as FileReader).result);
+                console.log("!!", file);
 
-                  callback((e.target as FileReader).result, {
-                    alt: file.name,
-                  });
+                reader.onload = function (e: ProgressEvent<FileReader>) {
+                  const { isSuccess, fileName } = addPhoto(
+                    (input as any)?.files
+                  );
+                  if (isSuccess) {
+                    callback(`${process.env.REACT_APP_S3_URL}/${fileName}`, {
+                      alt: file.name,
+                    });
+                  }
                 };
                 reader.readAsDataURL(file);
               };
