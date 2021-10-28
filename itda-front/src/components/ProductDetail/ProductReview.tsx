@@ -27,14 +27,16 @@ const ProductReview = () => {
   return (
     <S.ReviewTab.ReviewTabLayout ref={reviewTabRef}>
       <S.ReviewTab.ReviewTitleLayer>상품 후기</S.ReviewTab.ReviewTitleLayer>
-      <S.ReviewTab.ReviewCountLayer>리뷰 13건</S.ReviewTab.ReviewCountLayer>
+      <S.ReviewTab.ReviewCountLayer>
+        리뷰 {data?.data.totalCounts}건
+      </S.ReviewTab.ReviewCountLayer>
       <S.ReviewTab.ReviewPhotoTabLayer isPhoto={isPhotoReview}>
         <div onClick={getTotalReview}>전체후기</div>
         <div onClick={getPhotoReviewOnly}>포토후기</div>
       </S.ReviewTab.ReviewPhotoTabLayer>
       <S.ReviewTab.ReviewListLayer>
         <S.ReviewTab.ReviewListBlock>
-          {data?.data.reviews?.map((review: IReview) => (
+          {data?.data.reviewsOfProductDtos?.map((review: IReview) => (
             <Review reviewData={review} key={review.id} />
           ))}
         </S.ReviewTab.ReviewListBlock>
