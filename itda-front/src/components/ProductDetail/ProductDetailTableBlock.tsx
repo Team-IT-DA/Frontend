@@ -11,7 +11,7 @@ const ProductDetailTableBlock = (product: IProductDetail) => {
         </dl>
         <dl>
           <dt>중량/용량</dt>
-          <dd>{product.weight}</dd>
+          <dd>{product.capacity}</dd>
         </dl>
       </li>
       <li>

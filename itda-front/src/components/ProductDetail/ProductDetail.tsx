@@ -36,6 +36,7 @@ const ProductDetail = ({
         setProduct(data?.data.product);
         setProductPrice(data?.data?.product?.price);
         setDetailDescription(data?.data?.product?.detailDescription);
+        console.log(data);
       },
       onError: (err) => {
         history.push("/notFound");
