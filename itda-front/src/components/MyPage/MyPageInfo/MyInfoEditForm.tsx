@@ -45,7 +45,16 @@ const MyInfoEditForm = () => {
       if (inputName === "password") {
         // todo: 서버에서 비밀번호 가져와서 비교하는 로직 필요할
         const curPassword = "test1234" // 서버 비밀번호 대체. 임시.
-        errors[inputName] = (curPassword === inputValue ? '' : "비밀번호가 일치하지 않습니다.");
+        errors.password = (curPassword === inputValue ? '' : "비밀번호가 일치하지 않습니다.");
+      }
+
+      if (inputName === "newPassword" && userInputData.newPasswordConfirm !== '') {
+        errors.newPasswordConfirm = (inputValue === userInputData.newPasswordConfirm ? '' : "입력하신 정보가 새로운 비밀번호와 일치하지 않습니다.");
+        errors.newPasswordConfirm = (inputValue === '' ? '' : errors.newPasswordConfirm);
+      }
+
+      if (inputName === "newPasswordConfirm" && userInputData.newPassword !== '') {
+        errors.newPasswordConfirm = (userInputData.newPassword === inputValue  ? '' : "입력하신 정보가 새로운 비밀번호와 일치하지 않습니다.");
       }
 
       return errors;
@@ -122,9 +131,9 @@ const MyInfoEditForm = () => {
                       label="새롭게 설정할 비밀번호를 다시 한번 입력해주세요."
                       placeholder="Example5678"
                       variant="outlined"
-                      onChange={(e) => {
-                       // TODO: newPassword랑 같은지 검사하는 로직 필요
-                      }}
+                      onChange={handleMyInfoFormChange}
+                      error={myInfoError.newPasswordConfirm !== ''}
+                      helperText={myInfoError.newPasswordConfirm}
                     />
                   </S.MyInfoAfter.NewPasswordConfirmBlock>
                   <S.MyInfoAfter.NameBlock>
