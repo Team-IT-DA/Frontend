@@ -72,6 +72,17 @@ const MyInfoEditForm = () => {
     setMyInfoError(inputError as IUserInputDate);
   }
 
+  const handleDuplicateCheckButtonClick = () => {
+    // todo: 입력된 데이터 서버에 전송해서 중복검사 결과 보여주기 (아마도 post)
+    const isDuplicateEmail = true; // 임시
+    if (isDuplicateEmail) {
+      setMyInfoError({
+        ...myInfoError,
+        email: "중복 되는 이메일 입니다. 다른 이메일 주소를 입력하세요."
+      })
+    }
+  }
+
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");
@@ -118,6 +129,8 @@ const MyInfoEditForm = () => {
                       placeholder="Example5678"
                       variant="outlined"
                       onChange={handleMyInfoFormChange}
+                      error={myInfoError.newPassword !== ''}
+                      helperText={myInfoError.newPassword}
                     />
                   </S.MyInfoAfter.NewPasswordBlock>
                   <S.MyInfoAfter.NewPasswordConfirmBlock>
@@ -145,6 +158,8 @@ const MyInfoEditForm = () => {
                     value={userInputData.name && userInputData.name}
                     variant="outlined"
                     onChange={handleMyInfoFormChange}
+                    error={myInfoError.name !== ''}
+                    helperText={myInfoError.name}
                     />
                   </S.MyInfoAfter.NameBlock>
                   <S.MyInfoAfter.EmailBlock>
@@ -156,6 +171,8 @@ const MyInfoEditForm = () => {
                     value={userInputData.email && userInputData.email}
                     variant="outlined"
                     onChange={handleMyInfoFormChange}
+                    error={myInfoError.email !== ''}
+                    helperText={myInfoError.email}
                     />
                   </S.MyInfoAfter.EmailBlock>
                   <S.MyInfoAfter.CellPhoneNumberBlock>
@@ -169,12 +186,15 @@ const MyInfoEditForm = () => {
                     value={userInputData.telephone && userInputData.telephone}
                     variant="outlined"
                     onChange={handleMyInfoFormChange}
+                    error={myInfoError.telephone !== ''}
+                    helperText={myInfoError.telephone}
                     />
                   </S.MyInfoAfter.CellPhoneNumberBlock>
                 </S.MyInfoAfter.FormInputsLayer>
                 <S.MyInfoAfter.FormButtonsLayer>
-                  {/* todo: 중복확인 로직 필요 */}
-                  <S.MyInfoAfter.EmailCheckButton variant="outlined">
+                  <S.MyInfoAfter.EmailCheckButton
+                    variant="outlined"
+                    onClick={handleDuplicateCheckButtonClick}>
                     중복확인
                   </S.MyInfoAfter.EmailCheckButton>
                   <S.MyInfoAfter.CellPhoneNumberCheckButton>
