@@ -9,7 +9,14 @@ import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
 const MyInfoEditForm = () => {
-  const [myInfoError, setMyInfoError] = useRecoilState<IUserInputDate>(myInfoErrorData)
+  const [myInfoError, setMyInfoError] = useState<IUserInputDate>({
+    name: "",
+    telephone: "",
+    email: "",
+    password: "",
+    newPassword: "",
+    newPasswordConfirm: ""
+  })
   // !--------api로 받아오는 initial 사용자 정보 - 임시 mock 데이터. 실제 api가져오는 로직으로 바꿔야함.
   const [userInfo, setUserInfo] = useState<IUserInfo>({
     name: "홍길동",
@@ -33,17 +40,17 @@ const MyInfoEditForm = () => {
   });
 
   const validateInputdata = (inputName:string, inputValue:string) => {
-      const errors ={};
-      console.log("에러를 만들어요.")
+      const errors = myInfoError;
+
+      if (inputName === "password") {
+        // todo: 서버에서 비밀번호 가져와서 비교하는 로직 필요할
+        const curPassword = "test1234" // 서버 비밀번호 대체. 임시.
+        errors[inputName] = (curPassword === inputValue ? '' : "비밀번호가 일치하지 않습니다.");
+      }
+
       return errors;
   }
 
-  // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
-  // useEffect(() => {
-  //   setUserInfo(mutation.data as any);
-  // }, []);
-
-  //todo: 여기서 하는 일: 에러검사, 에러메세지 보여주고 userInputData에서 해당하는 상태 업데이트
   const handleMyInfoFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -51,9 +58,9 @@ const MyInfoEditForm = () => {
       ...userInputData,
       [name]: value
     })
-    console.log(userInputData)
-    const inputErrors = validateInputdata(name, value);
-    setMyInfoError(inputErrors as IUserInputDate);
+
+    const inputError = validateInputdata(name, value);
+    setMyInfoError(inputError as IUserInputDate);
   }
 
 
@@ -61,6 +68,11 @@ const MyInfoEditForm = () => {
     console.log("회원정보수정 페이지 클릭됌");
     // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
   };
+
+  // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
+  // useEffect(() => {
+  //   setUserInfo(mutation.data as any);
+  // }, []);
 
     return (
         <>
@@ -81,8 +93,8 @@ const MyInfoEditForm = () => {
                       placeholder="Example1234"
                       variant="outlined"
                       onChange={handleMyInfoFormChange}
-                      error={userInputData.password === ""}
-                      helperText="에러메세지가 나오는 곳"
+                      error={myInfoError.password !== ''}
+                      helperText={myInfoError.password}
                     />
                   </S.MyInfoAfter.CurrentPasswordBlock>
                   <S.MyInfoAfter.NewPasswordBlock>
