@@ -5,7 +5,10 @@ const getCategoryList = () => instanceWithAuth.get("/categories");
 const getProductDetail = (productId: number) =>
   instanceWithAuth.get(`/products/${productId}`);
 
-const getProductList = () => instanceWithAuth.get(`/products`);
+const getProductList = () => instanceWithAuth.get("/products");
+
+const getProductBySearchParams = (key: string, seller: string) =>
+  instanceWithAuth.get(`/products?${key}=${encodeURIComponent(seller)}`);
 
 const getProductReview = (
   productId: number,
@@ -19,12 +22,6 @@ const getProductReview = (
     }`
   );
 
-export const getProductBySellerName = (seller: string) =>
-  instanceWithAuth.get(`/products?sellerName=${seller}`);
-
-export const getProductByProductName = (product: string) =>
-  instanceWithAuth.get(`/products?productName=${product}`);
-
 export const productAPI = {
   category: {
     get: { getCategoryList },
@@ -36,8 +33,7 @@ export const productAPI = {
       getProductDetail,
       getProductList,
       getProductReview,
-      getProductBySellerName,
-      getProductByProductName,
+      getProductBySearchParams,
     },
   },
 };
