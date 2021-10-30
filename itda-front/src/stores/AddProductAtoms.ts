@@ -17,11 +17,15 @@ export const productPreviewImage = atom<{
   },
 });
 
+export const productImage = atom<any>({
+  key: "addProductImageUrl",
+  default: "",
+});
+
 export const addProductInfos = atom<IAddProductTextField>({
   key: "addProductTextFieldValue",
   default: {
     name: "",
-    productImage: "123",
     subTitle: "",
     price: 0,
     salesUnit: "",
@@ -50,7 +54,7 @@ export const addProductSelectInput = atom<IAddProductSelectField>({
   default: {
     origin: originOptions[0],
     packagingType: packagingTypeOptions[0],
-    mainCategoryId: 0,
+    mainCategoryId: 1,
   },
 });
 
@@ -60,10 +64,11 @@ export const finalAddProductValue = selector<IAddProduct>({
     const addProductTextValue = get(addProductInfos);
     const addProductEditorValue = get(editorValue);
     const addProductSelectValue = get(addProductSelectInput);
-
+    const addProductImage = get(productImage);
     return {
       ...addProductTextValue,
       description: addProductEditorValue,
+      productImage: addProductImage,
       ...addProductSelectValue,
     };
   },
