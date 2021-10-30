@@ -5,7 +5,6 @@ import { myInfoErrorData } from 'stores/MyPageAtoms';
 import { useMutation } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
 import {IUserInfo, IUserInputDate} from 'types/MyInfoTypes';
-import TextInput from "components/common/Atoms/TextInput";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
@@ -71,6 +70,7 @@ const MyInfoEditForm = () => {
                     <S.MyInfoAfter.CurrentPasswordInput
                       required
                       name="currentPassword"
+                      type="password"
                       label="현재 비밀번호를 입력해주세요."
                       placeholder="Example1234"
                       variant="outlined"
@@ -89,6 +89,7 @@ const MyInfoEditForm = () => {
                     <S.MyInfoAfter.NewPasswordInput
                       required
                       name="newPassword"
+                      type="password"
                       label="새롭게 설정할 비밀번호를 입력해주세요."
                       placeholder="Example5678"
                       variant="outlined"
@@ -107,6 +108,7 @@ const MyInfoEditForm = () => {
                     <S.MyInfoAfter.NewPasswordConfirmInput
                       required
                       name="newPasswordConfirm"
+                      type="password"
                       label="새롭게 설정할 비밀번호를 다시 한번 입력해주세요."
                       placeholder="Example5678"
                       variant="outlined"
