@@ -32,24 +32,30 @@ const MyInfoEditForm = () => {
     myPageAPI.user.checkUserInfo();
   });
 
-  const validateInputdata = (args: IUserInputDate ) => {
+  const validateInputdata = (inputName:string, inputValue:string) => {
       const errors ={};
+      console.log("에러를 만들어요.")
       return errors;
-  }
-
-  const handleMyInfoFormChange = (e: React.ChangeEvent<any>) => {
-    const { name, value } = e.target;
-
-    const inputErrors = validateInputdata(userInputData);
-    // setUserInputData(userInputData[value]) //todo: userInputData에서 해당하는 key를 찾아서 value를 업데이트 하고, 업데이트 된 객체를 다시 set해줘야 함.
-
-    setMyInfoError(inputErrors as IUserInputDate);
   }
 
   // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
   // useEffect(() => {
   //   setUserInfo(mutation.data as any);
   // }, []);
+
+  //todo: 여기서 하는 일: 에러검사, 에러메세지 보여주고 userInputData에서 해당하는 상태 업데이트
+  const handleMyInfoFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUserInputData({
+      ...userInputData,
+      [name]: value
+    })
+    console.log(userInputData)
+    const inputErrors = validateInputdata(name, value);
+    setMyInfoError(inputErrors as IUserInputDate);
+  }
+
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");
@@ -69,17 +75,14 @@ const MyInfoEditForm = () => {
                     </S.MyInfoAfter.CurrentPasswordLabel>
                     <S.MyInfoAfter.CurrentPasswordInput
                       required
-                      name="currentPassword"
+                      name="password"
                       type="password"
                       label="현재 비밀번호를 입력해주세요."
                       placeholder="Example1234"
                       variant="outlined"
-                      onChange={(e) => {
-                        setUserInputData({
-                          ...userInputData,
-                          password: e.target.value,
-                        });
-                      }}
+                      onChange={handleMyInfoFormChange}
+                      error={userInputData.password === ""}
+                      helperText="에러메세지가 나오는 곳"
                     />
                   </S.MyInfoAfter.CurrentPasswordBlock>
                   <S.MyInfoAfter.NewPasswordBlock>
@@ -93,12 +96,7 @@ const MyInfoEditForm = () => {
                       label="새롭게 설정할 비밀번호를 입력해주세요."
                       placeholder="Example5678"
                       variant="outlined"
-                      onChange={(e) => {
-                        setUserInputData({
-                          ...userInputData,
-                          newPassword: e.target.value,
-                        })
-                      }}
+                      onChange={handleMyInfoFormChange}
                     />
                   </S.MyInfoAfter.NewPasswordBlock>
                   <S.MyInfoAfter.NewPasswordConfirmBlock>
@@ -125,12 +123,7 @@ const MyInfoEditForm = () => {
                     label="이름을 입력해주세요."
                     value={userInputData.name && userInputData.name}
                     variant="outlined"
-                    onChange={(e) => {
-                      setUserInputData({
-                        ...userInputData,
-                        name: e.target.value
-                      })
-                    }}
+                    onChange={handleMyInfoFormChange}
                     />
                   </S.MyInfoAfter.NameBlock>
                   <S.MyInfoAfter.EmailBlock>
@@ -141,12 +134,7 @@ const MyInfoEditForm = () => {
                     label="이메일을 입력해주세요."
                     value={userInputData.email && userInputData.email}
                     variant="outlined"
-                    onChange={(e) => {
-                      setUserInputData({
-                        ...userInputData,
-                        email: e.target.value
-                      })
-                    }}
+                    onChange={handleMyInfoFormChange}
                     />
                   </S.MyInfoAfter.EmailBlock>
                   <S.MyInfoAfter.CellPhoneNumberBlock>
@@ -155,16 +143,11 @@ const MyInfoEditForm = () => {
                     </S.MyInfoAfter.CellPhoneNumberLabel>
                     <S.MyInfoAfter.CellPhoneNumberInput
                     required
-                    name="cellphone"
+                    name="telephone"
                     label="휴대폰 번호를 입력해주세요."
                     value={userInputData.telephone && userInputData.telephone}
                     variant="outlined"
-                    onChange={(e) => {
-                      setUserInputData({
-                        ...userInputData,
-                        telephone: e.target.value
-                      })
-                    }}
+                    onChange={handleMyInfoFormChange}
                     />
                   </S.MyInfoAfter.CellPhoneNumberBlock>
                 </S.MyInfoAfter.FormInputsLayer>
