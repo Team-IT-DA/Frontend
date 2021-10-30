@@ -7,6 +7,7 @@ const useSearchParams = (search: string) => {
   const searchParams = new URLSearchParams(search);
   const productName = searchParams.get("productName");
   const sellerName = searchParams.get("sellerName");
+  const category = searchParams.get("category");
 
   useEffect(() => {
     productName && setParams(productName);
@@ -17,6 +18,11 @@ const useSearchParams = (search: string) => {
     sellerName && setParams(sellerName);
     setParamsKey("sellerName");
   }, [sellerName]);
+
+  useEffect(() => {
+    category && setParams(category);
+    setParamsKey("category");
+  }, [category]);
 
   return { paramsKey, params };
 };
