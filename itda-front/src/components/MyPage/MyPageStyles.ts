@@ -330,6 +330,11 @@ const S = {
       width: 30%;
     `,
 
+    //todo: bootstrap input으로 교체 - name
+    NameInput: styled(TextField)`
+      width: 50%;
+    `,
+
     EmailBlock: styled.div`
       ${inputBlockStyle}
     `,
@@ -337,6 +342,11 @@ const S = {
     EmailLabel: styled.div`
       text-align: left;
       width: 30%;
+    `,
+
+    //todo: bootstrap input으로 교체 - email
+    EmailInput: styled(TextField)`
+      width: 50%;
     `,
 
     EmailCheckButton: styled(Button)`
@@ -353,6 +363,11 @@ const S = {
     CellPhoneNumberLabel: styled.div`
       text-align: left;
       width: 30%;
+    `,
+
+    //todo: bootstrap input으로 교체 - cellphone number
+    CellPhoneNumberInput: styled(TextField)`
+      width: 50%;
     `,
 
     CellPhoneNumberCheckButton: styled(Button)`
