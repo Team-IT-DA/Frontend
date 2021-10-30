@@ -3,28 +3,35 @@ import ProductCard from "components/common/ProductCard";
 import { IProduct } from "types/ProductTypes";
 import ProductsService from "./ProductsService";
 import LoadingSpinner from "components/common/LoadingSpinner";
+
 const ProductList = () => {
   const { productsData, isLoading } = ProductsService();
 
   const productList = productsData?.map(
-    ({ id, imageUrl, productName, sellerName, price }: IProduct) => (
+    ({
+      id,
+      imageUrl,
+      productName,
+      sellerName,
+      price,
+      description,
+    }: IProduct) => (
       <S.ProductList.Block key={`productList-${id}`}>
         <ProductCard
           key={`productCard-${id}`}
           size="extra"
           horizontal={false}
           productImg={imageUrl}
-          productName={productName}
+          productName={`[${sellerName}] ${productName}`}
           productPrice={price}
-          description={"description이 API 응답에 없다!!이건 직접 적음"}
+          description={description}
           id={id}
         />
       </S.ProductList.Block>
     )
   );
 
-  const productCount = productsData?.length; //TODO: 검색했을 경우 렌더링
-  //TODO: BE에게 description={description} 추가해달라 요청
+  const productCount = productsData?.length; //TODO: 검색했을 경우 렌더
 
   return isLoading ? (
     <LoadingSpinner />
