@@ -9,5 +9,6 @@ interface IProduct {
   productName: string;
   sellerName: string;
   price: number;
+  description: string;
 }
 export type { ESearchCriteria, IProduct };
