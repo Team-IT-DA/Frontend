@@ -57,6 +57,10 @@ const MyInfoEditForm = () => {
         errors.newPasswordConfirm = (userInputData.newPassword === inputValue  ? '' : "입력하신 정보가 새로운 비밀번호와 일치하지 않습니다.");
       }
 
+      if (inputName === "email") {
+        if (inputValue === "") errors.email = '';
+      }
+
       return errors;
   }
 
@@ -75,10 +79,19 @@ const MyInfoEditForm = () => {
   const handleDuplicateCheckButtonClick = () => {
     // todo: 입력된 데이터 서버에 전송해서 중복검사 결과 보여주기 (아마도 post)
     const isDuplicateEmail = true; // 임시
+    const emailRegex = /\S+@\S+\.\S+/;
+
     if (isDuplicateEmail) {
       setMyInfoError({
         ...myInfoError,
         email: "중복 되는 이메일 입니다. 다른 이메일 주소를 입력하세요."
+      })
+    }
+
+    if (!emailRegex.test(userInputData.email)) {
+      setMyInfoError({
+        ...myInfoError,
+        email: "이메일 주소 형식이 올바르지 않습니다."
       })
     }
   }
@@ -217,4 +230,4 @@ const MyInfoEditForm = () => {
     )
 }
 
-export default MyInfoEditForm
+export default MyInfoEditForm;
