@@ -1,7 +1,7 @@
 import S from "./ProductsStyles";
 import ProductCard from "components/common/ProductCard";
 import { IProduct } from "types/ProductTypes";
-import ProductsService from "./ProductsService";
+// import ProductsService from "./ProductsService";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { productsDataAtom } from "stores/ProductListAtoms";
 import { useRecoilState } from "recoil";
@@ -18,7 +18,7 @@ const ProductList = () => {
   const [productsData, setProductsData] = useRecoilState(productsDataAtom);
 
   const { isLoading } = useQuery(
-    "products",
+    ["products", params, paramsKey],
     () => {
       if (params && paramsKey) {
         return productAPI.products.get.getProductBySearchParams(
@@ -32,10 +32,8 @@ const ProductList = () => {
     {
       onSuccess: data => {
         if (params) {
-          console.log(data?.data);
           setProductsData(data?.data?.products);
         } else {
-          console.log(data?.data);
           setProductsData(data?.data);
         }
       },
