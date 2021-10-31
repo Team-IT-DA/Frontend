@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import { useState } from "react";
 import useToggle from "hooks/useToggle";
 import CategoryService from "./CategoryService";
-
 const CategoryList = () => {
   const [toggleFlag, setToggleFlag] = useToggle();
   const [selectedCategory, setSelectedCategory] = useState("");

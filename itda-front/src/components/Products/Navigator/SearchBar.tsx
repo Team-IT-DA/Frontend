@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { ESearchCriteria } from "types/SearchBar";
+import { ESearchCriteria } from "types/SearchBarTypes";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
