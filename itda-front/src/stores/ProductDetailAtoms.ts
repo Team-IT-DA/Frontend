@@ -54,11 +54,11 @@ export const productInfo = atom<IProductDetail>({
     price: 0,
     salesUnit: "",
     deliveryFee: 0,
+    subTitle: "",
     deliveryFeeCondition: "",
     notice: "",
-    detailDescription: "",
     origin: "",
-    weight: "",
+    capacity: "",
     seller: { id: 0, name: "", imageUrl: "", description: "" },
   },
 });

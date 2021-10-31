@@ -19,7 +19,6 @@ export default function TinyEditor() {
         apiKey="0jy0itwdqb4xmmeblh148y5w6bd3j22tjmc7udno3ptkinxk"
         onEditorChange={(newValue, editor) => {
           setValue(newValue);
-          console.log(newValue);
         }}
         init={{
           height: 500,
@@ -43,7 +42,6 @@ export default function TinyEditor() {
               input.onchange = function () {
                 let file = (input as any)?.files[0];
                 let reader = new FileReader();
-                console.log("!!", file);
 
                 reader.onload = function (e: ProgressEvent<FileReader>) {
                   const { isSuccess, fileName } = addPhoto(

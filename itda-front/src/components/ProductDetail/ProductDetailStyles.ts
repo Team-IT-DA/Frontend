@@ -154,7 +154,6 @@ const S = {
     SellerImage: styled.img`
       width: 7rem;
       height: 7rem;
-      padding: 0.4rem;
     `,
 
     SellerInfo: styled.div`
@@ -205,6 +204,7 @@ const S = {
       width: 1050px;
       margin: 5rem auto;
       position: relative;
+      z-index: 3;
     `,
 
     TabToggleLayer: styled.div<{ isSticky: boolean }>`

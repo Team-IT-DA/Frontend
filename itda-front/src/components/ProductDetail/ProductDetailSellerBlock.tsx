@@ -1,12 +1,13 @@
 import S from "./ProductDetailStyles";
 import { IProductDetail } from "types/ProductDetailTypes";
+import defaultSellerImage from "images/defaultPic.jpg";
 
 const ProductDetailSellerBlock = (product: IProductDetail) => {
   return (
     <S.ProductInfo.SellerBlock>
       <S.ProductInfo.SellerImageWrapper>
         <S.ProductInfo.SellerImage
-          src={product.seller.imageUrl}
+          src={product.seller.imageUrl ?? defaultSellerImage}
           alt="판매자사진"
         />
       </S.ProductInfo.SellerImageWrapper>

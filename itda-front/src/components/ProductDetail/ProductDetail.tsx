@@ -35,7 +35,7 @@ const ProductDetail = ({
       onSuccess: (data) => {
         setProduct(data?.data.product);
         setProductPrice(data?.data?.product?.price);
-        setDetailDescription(data?.data?.product?.detailDescription);
+        setDetailDescription(data?.data?.product?.description);
       },
       onError: (err) => {
         history.push("/notFound");

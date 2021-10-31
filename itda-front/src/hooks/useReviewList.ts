@@ -10,7 +10,7 @@ export function useReviewList() {
   const reviewsPerPage = 5;
   const productData = useRecoilValue(productInfo);
   const { isLoading, error, isError, data } = useQuery(
-    ["reviewList"],
+    ["reviewList", productData.id],
     () =>
       productAPI.products.get.getProductReview(
         productData.id,
@@ -22,7 +22,6 @@ export function useReviewList() {
       retry: 1,
     }
   );
-  console.log(productData.id);
 
   return {
     data,
