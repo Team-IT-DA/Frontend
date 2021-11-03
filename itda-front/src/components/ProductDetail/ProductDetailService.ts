@@ -4,13 +4,13 @@ import {
   detailDescription,
 } from "stores/ProductDetailAtoms";
 import { useHistory } from "react-router";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
 import { productAPI } from "util/API/productAPI";
 import { useQuery } from "react-query";
 
-const ProductDetailService = (productId: number) => {
-  const setProduct = useSetRecoilState(productInfo);
+const ProductDetailService = (productId?: number) => {
+  const [productData, setProduct] = useRecoilState(productInfo);
   const setProductPrice = useSetRecoilState(detailProductPrice);
   const setDetailDescription = useSetRecoilState(detailDescription);
 
@@ -24,7 +24,6 @@ const ProductDetailService = (productId: number) => {
 
   const getProductDetailData = (productId: number) =>
     productAPI.products.get.getProductDetail(productId);
-
   const productDetailQueryConfig = {
     retry: 1,
     onSuccess: setDetailProductData,
@@ -34,12 +33,12 @@ const ProductDetailService = (productId: number) => {
   };
 
   const { isLoading } = useQuery(
-    "productDetail",
-    () => getProductDetailData(productId),
+    ["productDetail", productId],
+    () => getProductDetailData(productId as number),
     productDetailQueryConfig
   );
 
-  return { isLoading };
+  return { isLoading, productData };
 };
 
 export default ProductDetailService;

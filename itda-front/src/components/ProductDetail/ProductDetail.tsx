@@ -5,7 +5,6 @@ import S from "./ProductDetailStyles";
 import TopButton from "components/common/TopButton";
 import { CircularProgress } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import { useQuery } from "react-query";
 import ProductDetailService from "./ProductDetailService";
 
 interface MatchParams {
