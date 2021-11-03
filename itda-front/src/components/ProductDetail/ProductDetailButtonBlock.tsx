@@ -1,5 +1,4 @@
 import S from "./ProductDetailStyles";
-import { useRecoilValue } from "recoil";
 
 type TProductDetailButtonBlock = {
   handleClickAddToCartButton: () => void;
