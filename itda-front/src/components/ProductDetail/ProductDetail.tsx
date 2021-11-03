@@ -6,31 +6,14 @@ import TopButton from "components/common/TopButton";
 import { CircularProgress } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
 import { useQuery } from "react-query";
-import { productAPI } from "util/API/productAPI";
 import ProductDetailService from "./ProductDetailService";
 
 interface MatchParams {
   productId: string;
 }
 
-const ProductDetail = ({
-  match,
-  history,
-}: RouteComponentProps<MatchParams>) => {
-  const { setDetailProductData } = ProductDetailService();
-
-  const { isLoading } = useQuery(
-    "productDetail",
-    () =>
-      productAPI.products.get.getProductDetail(Number(match.params.productId)),
-    {
-      retry: 1,
-      onSuccess: setDetailProductData,
-      onError: (err) => {
-        history.push("/notFound");
-      },
-    }
-  );
+const ProductDetail = ({ match }: RouteComponentProps<MatchParams>) => {
+  const { isLoading } = ProductDetailService(Number(match.params.productId));
 
   return (
     <>
