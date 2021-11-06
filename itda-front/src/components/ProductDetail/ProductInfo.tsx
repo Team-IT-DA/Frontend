@@ -1,45 +1,20 @@
 import StepperButton from "components/common/Atoms/StepperButton";
 import { useRecoilState, useRecoilValue } from "recoil";
-
 import S from "./ProductDetailStyles";
 import {
   detailProductCount,
-  productInfo,
   detailProductPrice,
 } from "stores/ProductDetailAtoms";
-import { cartProductData } from "stores/CartAtoms";
-import { ICartProduct } from "types/CartTypes";
+
 import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
+import ProductDetailCartService from "./ProductDetailCartService";
 
 const ProductInfo = () => {
-  const productData = useRecoilValue(productInfo);
-  const [cartProductsData, setCartProductData] =
-    useRecoilState(cartProductData);
-  const productCount = useRecoilValue(detailProductCount);
-  const productPrice = useRecoilValue(detailProductPrice);
-  const hasSameProductInCart = (id: number) => {
-    return cartProductsData.some((product) => product.id === id);
-  };
-
-  const handleClickAddToCartButton = () => {
-    const productId = Number(productData.id);
-    const targetProductData: ICartProduct = {
-      id: productId,
-      count: productCount,
-      price: productPrice,
-      productName: productData?.name,
-      imageUrl: productData?.imgUrl,
-    };
-    if (!hasSameProductInCart(productId)) {
-      setCartProductData((cartProducts) => [
-        ...cartProducts,
-        targetProductData,
-      ]);
-    }
-  };
+  const { productData, handleClickAddToCartButton } =
+    ProductDetailCartService();
 
   return (
     <S.ProductInfo.InfoLayout>

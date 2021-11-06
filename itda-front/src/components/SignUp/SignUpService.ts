@@ -29,7 +29,7 @@ const SignUpService = (validate: (args: IValidation) => IValidation) => {
     const isEmailValid = await auth.signUp.get.verifyEmail(
       signUpInfo.email as string
     );
-    // console.log(isEmailValid); 안됨. 400에러..주소 백엔드분들과 체크하기
+    console.log(isEmailValid);
   };
 
   const handleSignUpFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {

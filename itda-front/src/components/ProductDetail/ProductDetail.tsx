@@ -5,43 +5,14 @@ import S from "./ProductDetailStyles";
 import TopButton from "components/common/TopButton";
 import { CircularProgress } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import { useQuery } from "react-query";
-import { productAPI } from "util/API/productAPI";
-import { useSetRecoilState } from "recoil";
-import {
-  productInfo,
-  detailProductPrice,
-  detailDescription,
-} from "stores/ProductDetailAtoms";
+import ProductDetailService from "./ProductDetailService";
 
 interface MatchParams {
   productId: string;
 }
 
-const ProductDetail = ({
-  match,
-  history,
-}: RouteComponentProps<MatchParams>) => {
-  const setProduct = useSetRecoilState(productInfo);
-  const setProductPrice = useSetRecoilState(detailProductPrice);
-  const setDetailDescription = useSetRecoilState(detailDescription);
-
-  const { isLoading } = useQuery(
-    "productDetail",
-    () =>
-      productAPI.products.get.getProductDetail(Number(match.params.productId)),
-    {
-      retry: 1,
-      onSuccess: (data) => {
-        setProduct(data?.data.product);
-        setProductPrice(data?.data?.product?.price);
-        setDetailDescription(data?.data?.product?.description);
-      },
-      onError: (err) => {
-        history.push("/notFound");
-      },
-    }
-  );
+const ProductDetail = ({ match }: RouteComponentProps<MatchParams>) => {
+  const { isLoading } = ProductDetailService(Number(match.params.productId));
 
   return (
     <>

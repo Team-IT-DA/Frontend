@@ -35,12 +35,6 @@ const ProductDetailTableBlock = (product: IProductDetail) => {
           <dd>{product.packagingType}</dd>
         </dl>
       </li>
-      <li>
-        <dl>
-          <dt>안내 사항</dt>
-          <dd>{product.notice}</dd>
-        </dl>
-      </li>
     </S.ProductInfo.DetailProductInfo>
   );
 };
