@@ -228,12 +228,14 @@ const S = {
         }
         to {
           transform: translateX(0%);
+          z-index: 4;
         }
       }
 
       @keyframes slideOut {
         from {
           transform: translateX(0%);
+          z-index: 4;
         }
         to {
           transform: translateX(100%);
