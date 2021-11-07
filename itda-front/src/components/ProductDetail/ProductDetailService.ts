@@ -6,7 +6,7 @@ import {
 import { useHistory } from "react-router";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 import { useQuery } from "react-query";
 
 const ProductDetailService = (productId?: number) => {
