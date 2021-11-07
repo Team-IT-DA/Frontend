@@ -57,13 +57,9 @@ const S = {
     `,
   },
   CancelButton: {
-    Icon: styled(HiX)<{ hoverEffect?: boolean }>`
+    Icon: styled(HiX)`
       color: ${({ theme }) => theme.colors.gray.light};
       cursor: pointer;
-      :hover {
-        color: ${({ hoverEffect, theme }) =>
-          hoverEffect ? theme.colors.navy.normal : theme.colors.gray.light};
-      }
     `,
   },
   GradientButton: styled(Button)<{
