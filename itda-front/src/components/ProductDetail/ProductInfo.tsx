@@ -13,32 +13,23 @@ import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
+import cartAPI from "util/API/cartAPI";
+// import ProductDetailService from "./";
 
 const ProductInfo = () => {
   const productData = useRecoilValue(productInfo);
-  const [cartProductsData, setCartProductData] =
-    useRecoilState(cartProductData);
+  const [cartProductsData, setCartProductData] = useRecoilState(
+    cartProductData
+  );
   const productCount = useRecoilValue(detailProductCount);
   const productPrice = useRecoilValue(detailProductPrice);
+  const productId = Number(productData.id);
   const hasSameProductInCart = (id: number) => {
-    return cartProductsData.some((product) => product.id === id);
+    return cartProductsData.some(product => product.productId === id);
   };
 
   const handleClickAddToCartButton = () => {
-    const productId = Number(productData.id);
-    const targetProductData: ICartProduct = {
-      id: productId,
-      count: productCount,
-      price: productPrice,
-      productName: productData?.name,
-      imageUrl: productData?.imgUrl,
-    };
-    if (!hasSameProductInCart(productId)) {
-      setCartProductData((cartProducts) => [
-        ...cartProducts,
-        targetProductData,
-      ]);
-    }
+    cartAPI.post.updateCartProduct({ id: productId, count: productCount });
   };
 
   return (
