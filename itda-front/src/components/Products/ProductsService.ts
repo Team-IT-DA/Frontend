@@ -1,17 +1,17 @@
-import { useRecoilState } from "recoil";
 import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
-import { productAPI } from "util/API/productAPI";
-import useSearchParams from "hooks/useSearchParams";
+import { useSetRecoilState } from "recoil";
 import { productsDataAtom } from "stores/ProductListAtoms";
+import useSearchParams from "hooks/useSearchParams";
+import productAPI from "util/API/productAPI";
 
 const ProductsService = () => {
   const { search } = useLocation();
   const { paramsKey, params } = useSearchParams(search);
-  const [productsData, setProductsData] = useRecoilState(productsDataAtom);
+  const setProductsData = useSetRecoilState(productsDataAtom);
 
   const { isLoading } = useQuery(
-    "products",
+    ["products", params, paramsKey],
     () => {
       if (params && paramsKey) {
         return productAPI.products.get.getProductBySearchParams(
@@ -33,7 +33,7 @@ const ProductsService = () => {
     }
   );
 
-  return { productsData, isLoading };
+  return { isLoading };
 };
 
 export default ProductsService;
