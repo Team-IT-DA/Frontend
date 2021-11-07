@@ -14,6 +14,7 @@ const S = {
   MyPage: {
     Layout: styled.div`
       overflow-x: hidden;
+      overflow-y: hidden;
       height: 100vh;
     `,
 
@@ -44,6 +45,7 @@ const S = {
 
     ContentLayer: styled.div`
       min-width: 768px;
+      height: 100vh;
       overflow-y: scroll;
     `,
   },
