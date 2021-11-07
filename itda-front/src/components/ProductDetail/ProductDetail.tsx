@@ -13,7 +13,7 @@ interface MatchParams {
 
 const ProductDetail = ({ match }: RouteComponentProps<MatchParams>) => {
   const { isLoading } = ProductDetailService(Number(match.params.productId));
-
+    
   return (
     <>
       <Header />

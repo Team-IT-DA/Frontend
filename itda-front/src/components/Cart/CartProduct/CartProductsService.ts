@@ -1,12 +1,25 @@
-import cartAPI from "util/API/cartAPI";
 import { useQuery } from "react-query";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import cartAPI from "util/API/cartAPI";
+import { cartProductData } from "stores/CartAtoms";
+import { isSideDrawerClicked } from "stores/SideDrawerAtoms";
+import { ICart } from "types/CartTypes";
 
 const CartService = () => {
-  const { data, isLoading } = useQuery(
-    "cartlist",
-    cartAPI.get.getCartProductList
+  const setCartProductState = useSetRecoilState(cartProductData);
+  const sideDrawerToggleState = useRecoilValue(isSideDrawerClicked);
+
+  const { isLoading } = useQuery(
+    ["cartProducts", sideDrawerToggleState],
+    cartAPI.get.getCartProductList,
+    {
+      onSuccess: data => {
+        const tmpProducts: ICart[] = Object.values(data?.data.products);
+        setCartProductState(tmpProducts);
+      },
+    }
   );
-  return { cartListData: data?.data, isLoading };
+  return { isLoading };
 };
 
 const UpdateCartService = (cartList: any) => {
@@ -17,7 +30,7 @@ const UpdateCartService = (cartList: any) => {
 
 const DeleteCartService = (productId: number) => {
   const { data } = useQuery("deleteCartList", () =>
-    cartAPI.delete.deleteCartProduct(`/cart?productId=${productId}`)
+    cartAPI.delete.deleteCartProduct(productId)
   );
 };
 

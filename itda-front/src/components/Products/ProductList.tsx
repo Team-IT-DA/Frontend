@@ -1,44 +1,18 @@
+import { useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import S from "./ProductsStyles";
+import ProductsService from "./ProductsService";
 import ProductCard from "components/common/ProductCard";
-import { IProduct } from "types/ProductTypes";
-// import ProductsService from "./ProductsService";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { productsDataAtom } from "stores/ProductListAtoms";
-import { useRecoilState } from "recoil";
-import { useLocation } from "react-router-dom";
-import { productAPI } from "util/API/productAPI";
-import { useQuery } from "react-query";
 import useSearchParams from "hooks/useSearchParams";
+import { IProduct } from "types/ProductTypes";
 
 const ProductList = () => {
-  // const { productsData, isLoading } = ProductsService();
+  const { isLoading } = ProductsService();
   const { search } = useLocation();
   const { paramsKey, params } = useSearchParams(search);
-  console.log(params);
-  const [productsData, setProductsData] = useRecoilState(productsDataAtom);
-
-  const { isLoading } = useQuery(
-    ["products", params, paramsKey],
-    () => {
-      if (params && paramsKey) {
-        return productAPI.products.get.getProductBySearchParams(
-          paramsKey,
-          params
-        );
-      } else {
-        return productAPI.products.get.getProductList();
-      }
-    },
-    {
-      onSuccess: data => {
-        if (params) {
-          setProductsData(data?.data?.products);
-        } else {
-          setProductsData(data?.data);
-        }
-      },
-    }
-  );
+  const productsData = useRecoilValue(productsDataAtom);
 
   const getSearchResultSummary = () => {
     if (!params) return;

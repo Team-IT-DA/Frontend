@@ -10,6 +10,7 @@ import ProductDetailButtonBlock from "./ProductDetailButtonBlock";
 import ProductDetailSellerBlock from "./ProductDetailSellerBlock";
 import ProductDetailTableBlock from "./ProductDetailTableBlock";
 import ProductDetailHeaderBlock from "./ProductDetailHeaderBlock";
+import cartAPI from "util/API/cartAPI";
 import ProductDetailCartService from "./ProductDetailCartService";
 
 const ProductInfo = () => {
