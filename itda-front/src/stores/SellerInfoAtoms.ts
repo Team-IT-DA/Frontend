@@ -1,19 +1,17 @@
 import { atom } from "recoil";
 
-export const sellerProfilePreviewImage = atom<{
+export const sellerProfileImage = atom<{
   file: any;
-  previewURL: any;
 }>({
-  key: "sellerProfilePreviewImage",
+  key: "sellerProfileImage",
   default: {
     file: null,
-    previewURL: null,
   },
 });
 
 export const sellerProfileText = atom<{ text: string }>({
   key: "sellerProfileText",
   default: {
-    text: "마음을 담아 재배합니다.",
+    text: "판매자님을 소개하는 한마디를 적어주세요.",
   },
 });
