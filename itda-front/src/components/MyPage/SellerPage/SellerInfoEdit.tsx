@@ -8,12 +8,12 @@ import ProfileTextForm from "./ProfileTextForm";
 import Header from "components/common/Header";
 import MyPageTabs from "../MyPageTab/MyPageTabs";
 import { sellerProfileText } from "stores/SellerInfoAtoms";
-import { sellerProfilePreviewImage } from "stores/SellerInfoAtoms";
+import { sellerProfileImage } from "stores/SellerInfoAtoms";
 import sellerAPI from 'util/API/sellerAPI';
 
 const SellerInfoEdit = () => {
   const [isSeller, setIsSeller] = useState(true);
-  const [profileImage, setProfileImage] = useRecoilState(sellerProfilePreviewImage);
+  const [profileImage, setProfileImage] = useRecoilState(sellerProfileImage);
   const [profileText, setProfileText] = useRecoilState(sellerProfileText);
 
   // todo: GET api 생기면 먼저 초기 데이터 받아와서 보여주기!!
@@ -25,8 +25,7 @@ const SellerInfoEdit = () => {
         console.log(data);
         setProfileText({ "text": data.description });
         setProfileImage({
-          "file": null,
-          "previewURL": data.imgUrl
+          "file": data.imgUrl,
         })
       }
     }
@@ -35,7 +34,7 @@ const SellerInfoEdit = () => {
   useEffect(() => {
     const newSellerData = {
       "description": profileText.text,
-      "imgUrl": profileImage.previewURL
+      "imgUrl": profileImage.file
     }
     sellerAPI.post.updateSellerInfo(newSellerData);
   }, [profileText, profileImage])

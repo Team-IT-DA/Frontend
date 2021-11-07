@@ -1,13 +1,11 @@
 import { atom } from "recoil";
 
-export const sellerProfilePreviewImage = atom<{
+export const sellerProfileImage = atom<{
   file: any;
-  previewURL: any;
 }>({
-  key: "sellerProfilePreviewImage",
+  key: "sellerProfileImage",
   default: {
     file: null,
-    previewURL: null,
   },
 });
 

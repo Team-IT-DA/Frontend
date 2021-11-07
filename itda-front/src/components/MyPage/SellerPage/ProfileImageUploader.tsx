@@ -1,37 +1,31 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { sellerProfilePreviewImage } from "stores/SellerInfoAtoms";
+import React, {useState} from "react";
+import { useSetRecoilState } from "recoil";
+import { sellerProfileImage } from "stores/SellerInfoAtoms";
+import { addPhoto } from "util/API/awsStorageAPI";
 import S from "./SellerInfoStyles";
 
 const ProfileImageUploader = () => {
-  const [previewImage, setPreviewImage] = useRecoilState(
-    sellerProfilePreviewImage
-  );
+  const setSellerProfileImage = useSetRecoilState(sellerProfileImage)
+  const [previewImage, setPreviewImage] = useState({file:''});
 
-  const handlePreviewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-
-    const reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setPreviewImage({ file: file, previewURL: reader.result });
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
+  const uploadS3 = (e: any) => {
+    const { isSuccess, fileName} = addPhoto(e.target.files);
+    if(isSuccess) {
+      setSellerProfileImage({file:`${process.env.REACT_APP_S3_URL}/${fileName}`})
+      setPreviewImage({file:`${process.env.REACT_APP_S3_URL}/${fileName}`})
+    }
+  }
 
   return (
     <S.ProfileImageUploader.Layout>
       <S.ProfileImageUploader.ImageHolder>
-        {!previewImage.previewURL ? (
+        {!previewImage.file ? (
           <S.ProfileImageUploader.PreviewImageText>
             프로필 이미지를 설정해주세요.
           </S.ProfileImageUploader.PreviewImageText>
         ) : (
           <S.ProfileImageUploader.PreviewImage
-            src={previewImage.previewURL}
+            src={previewImage.file}
             alt="프로필 이미지"
           />
         )}
@@ -39,7 +33,7 @@ const ProfileImageUploader = () => {
       <S.ProfileImageUploader.ImageUploadInput
         type="file"
         accept="image/*"
-        onChange={handlePreviewChange}
+        onChange={uploadS3}
       />
     </S.ProfileImageUploader.Layout>
   );
