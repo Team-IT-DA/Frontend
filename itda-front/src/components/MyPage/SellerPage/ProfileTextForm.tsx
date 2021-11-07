@@ -41,7 +41,6 @@ const ProfileTextForm = () => {
             value={profileText.text}
             multiline
             rows={10}
-            placeholder="판매자님을 소개하는 한마디를 적어주세요."
             variant="outlined"
             onChange={(e) => updateProfileText(e)}
           />
