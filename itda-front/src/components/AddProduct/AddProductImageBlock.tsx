@@ -6,6 +6,7 @@ import S from "./AddProductStyles";
 
 const AddProductImageBox = () => {
   const [previewImg, setPreviewImg] = useRecoilState(productPreviewImage);
+
   const setProductImage = useSetRecoilState(productImage);
 
   const uploadS3 = (e: any) => {

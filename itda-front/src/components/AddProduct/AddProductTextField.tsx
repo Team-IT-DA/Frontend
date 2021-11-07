@@ -1,7 +1,5 @@
 import { TextField } from "@material-ui/core";
-import { addProductInfos, checkBlankInputs } from "stores/AddProductAtoms";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { IAddProductTextField } from "types/AddProductTypes";
+import AddProductService from "./AddProductService";
 
 interface InameInput {
   name: string;
@@ -9,29 +7,8 @@ interface InameInput {
 }
 
 const AddProductTextField = (input: InameInput) => {
-  const [productInput, setProductInput] =
-    useRecoilState<IAddProductTextField>(addProductInfos);
-  const hasBlankInput = useRecoilValue(checkBlankInputs);
-  const handleProductInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const newInput = {
-      ...productInput,
-      [name]: value,
-    };
-    setProductInput(newInput);
-  };
-
-  const isError =
-    hasBlankInput &&
-    (productInput[input.name] === "" || productInput[input.name] === 0)
-      ? true
-      : false;
-
-  const helperText =
-    hasBlankInput &&
-    (productInput[input.name] === "" || productInput[input.name] === 0)
-      ? "필수 항목입니다!"
-      : null;
+  const { handleProductInputChange, isError, helperText } =
+    AddProductService(input);
 
   return (
     <TextField
