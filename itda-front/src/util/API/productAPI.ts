@@ -21,10 +21,14 @@ const getProductReview = (
       isPhoto ? "&type=photo" : ""
     }`
   );
+const postCategory = (name: string) => {
+  instanceWithAuth.post("/test/categories", { name });
+};
 
 const productAPI = {
   category: {
     get: { getCategoryList },
+    post: { postCategory },
   },
 
   products: {

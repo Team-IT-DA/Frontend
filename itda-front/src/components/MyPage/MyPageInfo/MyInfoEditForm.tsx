@@ -1,5 +1,6 @@
 import S from "../MyPageStyles";
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import { useMutation } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
 import { IUserInfo, IUserInputDate } from "types/MyInfoTypes";
