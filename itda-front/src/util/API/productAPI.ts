@@ -25,7 +25,7 @@ const postCategory = (name: string) => {
   instanceWithAuth.post("/test/categories", { name });
 };
 
-export const productAPI = {
+const productAPI = {
   category: {
     get: { getCategoryList },
     post: { postCategory },
@@ -41,3 +41,5 @@ export const productAPI = {
     },
   },
 };
+
+export default productAPI;

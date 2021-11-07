@@ -1,12 +1,17 @@
 import { atom, selector } from "recoil";
-import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
+import {
+  ICartProduct,
+  ICart,
+  ISendingCartProduct,
+  ICartSelectedProduct,
+} from "types/CartTypes";
 
 export const selectedProduct = atom({
   key: "selectedProduct",
-  default: new Map<number, ICartProduct>(),
+  default: new Map<number, ICartSelectedProduct>(),
 });
 
-export const cartProductData = atom<ICartProduct[]>({
+export const cartProductData = atom<ICart[]>({
   key: "cartProductData",
   default: [],
 });

@@ -1,4 +1,4 @@
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 import { useQuery } from "react-query";
 
 const CategoryService = () => {

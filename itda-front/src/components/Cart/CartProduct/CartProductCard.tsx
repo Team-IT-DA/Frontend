@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import S from "../CartStyles";
 import CheckButton from "components/common/Atoms/CheckButton";
 import StepperButton from "components/common/Atoms/StepperButton";
 import CancelButton from "components/common/Atoms/CancelButton";
-import { selectedProduct, cartProductData } from "stores/CartAtoms";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { ICartProduct } from "types/CartTypes";
 import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
+import { selectedProduct } from "stores/CartAtoms";
+import cartAPI from "util/API/cartAPI";
+import { ICartProduct } from "types/CartTypes";
+
 const CartProductCard = ({
   id,
   imageUrl,
@@ -17,10 +19,6 @@ const CartProductCard = ({
   const [selectedProductState, setSelectedProductState] = useRecoilState(
     selectedProduct
   );
-  const [cartProductState, setCartProductState] = useRecoilState(
-    cartProductData
-  );
-
   const [productCount, setProductCount] = useState(count);
   const [isSelected, setIsSelected] = useState(false);
 
@@ -30,23 +28,14 @@ const CartProductCard = ({
 
   const handleCheckButton = () => {
     if (!isSelected) {
-      setSelectedProductState(
-        prev =>
-          new Map([
-            ...prev,
-            [
-              id,
-              {
-                id,
-                imageUrl,
-                productName,
-                price,
-                count,
-              },
-            ],
-          ])
-      );
+      //check하기
+      setSelectedProductState(prev => {
+        const newState = new Map(prev);
+        newState.set(id, { id, count });
+        return newState;
+      });
     } else {
+      //check 풀기
       setSelectedProductState(prev => {
         const newState = new Map(prev);
         newState.delete(id);
@@ -56,26 +45,14 @@ const CartProductCard = ({
   };
 
   const deleteProduct = () => {
-    //TODO: 장바구니 삭제 POST 적용하면 아래 내용 필요 없음
-    setCartProductState(prev => [...prev].filter(data => data.id !== id));
+    //TODO: 장바구니 삭제 POST 에러 뜸
+    //setCartProductState(prev => [...prev].filter(data => data.id !== id));
+    cartAPI.delete.deleteCartProduct(id);
   };
+
   const changeProductCount = () => {
-    //TODO: 장바구니 수정 POST BODY
-    //   {
-    //     "products": [
-
-    //               {
-    //               "id" : 1,
-    //           "count" : 6
-    //             },
-    //             {
-    //               "id" : 2,
-    //               "count" : 6
-    //             }
-    //   ]
-    // }
-
-    alert("수량이 변경되었습니다."); //TODO: alert말고 변경 완료~를 1초 정도 보여주고 사라지게
+    cartAPI.post.updateCartProduct({ id: id, count: productCount });
+    alert("수량이 변경되었습니다.");
   };
 
   return (

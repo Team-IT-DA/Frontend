@@ -1,23 +1,20 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
-import {
-  CartService,
-  UpdateCartService,
-  DeleteCartService,
-} from "components/Cart/CartProduct/CartProductsService";
+import { CartService } from "components/Cart/CartProduct/CartProductsService";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import { cartProductData } from "stores/CartAtoms";
-import { ICartProduct, ISendingCartProduct } from "types/CartTypes";
+import { ICart, ICartProduct, ISendingCartProduct } from "types/CartTypes";
 import { TSideDrawer, TDrawerItem } from "types/SideDrawerTypes";
 import { Link } from "react-router-dom";
+import cartAPI from "util/API/cartAPI";
 
 const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
-  const { cartListData, isLoading } = CartService();
+  const { isLoading } = CartService(); // TODO: SideDrawer open할 때마다 리프레시가 되지 않음
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
@@ -26,30 +23,31 @@ const SideDrawer = ({
 
   const removeItem = (id: number) => {
     const newProductData = cartProductList.filter(
-      (item: ICartProduct) => item.id !== id
+      (item: ICart) => item.productId !== id
     );
     setCartProductList(newProductData);
-    // todo: 상품이 삭제되면 서버에 삭제요청
-    DeleteCartService(id);
+    cartAPI.delete.deleteCartProduct(id);
   };
 
   const findSameItemCount = (id: number) => {
-    const sameItem = cartProductsCount.find((el) => el.id === id);
+    const sameItem = cartProductsCount.find(el => el.id === id);
     return sameItem?.count;
   };
 
   const handleCloseButtonClick = () => {
     setIsSideDrawerClicked(false);
-    setTimeout(() => {setIsSideDrawerClicked(undefined)}, 1000)
+    setTimeout(() => {
+      setIsSideDrawerClicked(undefined);
+    }, 1000);
   };
 
   const handleApplyNumberButtonClicked = () => {
-    const newCartProductList = cartProductList.map((product) => {
-      if (findSameItemCount(product.id)) {
-        const updatedCount = findSameItemCount(product.id);
+    const newCartProductList = cartProductList.map(product => {
+      if (findSameItemCount(product.productId)) {
+        const updatedCount = findSameItemCount(product.productId);
         product = {
           ...product,
-          count: updatedCount || product.count,
+          productCount: updatedCount || product.productCount,
         };
       }
       return product;
@@ -57,29 +55,23 @@ const SideDrawer = ({
     setCartProductList(newCartProductList);
     // todo: POST요청으로 장바구니 데이터 서버에 전달.
     // UpdateCartService(cartProductList);
+    alert("수량이 변경되었습니다.");
   };
 
   useEffect(() => {
-    // todo: 500에러
-    // setCartProductList(cartListData);
-  }, []);
-
-  useEffect(() => {
-    const cartItemCountArray = cartProductList?.map(
-      (cartItem: ISendingCartProduct) => {
-        return {
-          id: cartItem.id,
-          price: cartItem.price,
-          count: cartItem.count,
-        };
-      }
-    );
+    const cartItemCountArray = cartProductList?.map((cartItem: ICart) => {
+      return {
+        id: cartItem.productId,
+        price: cartItem.price,
+        count: cartItem.productCount,
+      };
+    });
     setCartProductsCount(cartItemCountArray);
   }, [cartProductList]);
 
   useEffect(() => {
     let total = 0;
-    cartProductsCount.forEach((cartItem) => {
+    cartProductsCount.forEach(cartItem => {
       total += cartItem.price * cartItem.count;
     });
     setCartTotalPrice(total);
@@ -98,13 +90,13 @@ const SideDrawer = ({
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
         {(cartProductsCount.length &&
-          cartProductList.map((cartItem) => {
+          cartProductList.map(cartItem => {
             return (
               <SideDrawerItem
                 // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
-                key={`item-${cartItem.id}`}
-                productId={cartItem.id}
-                productImage={cartItem.imageUrl}
+                key={`item-${cartItem.productId}`}
+                productId={cartItem.productId}
+                productImage={cartItem.imgUrl}
                 productName={cartItem.productName}
                 productPrice={cartItem.price}
                 removeItem={removeItem}
@@ -152,7 +144,7 @@ const SideDrawerItem = ({
   setCartProductsCount,
 }: TDrawerItem) => {
   const [productCount, setProductCount] = useState(
-    cartProductsCount.filter((cartItem) => cartItem.id === productId)[0]?.count
+    cartProductsCount.filter(cartItem => cartItem.id === productId)[0]?.count
   );
 
   useEffect(() => {
@@ -161,7 +153,7 @@ const SideDrawerItem = ({
       price: productPrice,
       count: productCount,
     };
-    const updatedCartProductsCount = cartProductsCount.map((cartItem) => {
+    const updatedCartProductsCount = cartProductsCount.map(cartItem => {
       return cartItem.id === productId ? newCount : cartItem;
     });
     setCartProductsCount(updatedCartProductsCount);

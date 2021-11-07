@@ -37,7 +37,7 @@ const AddressFormModal = ({
           <S.AddressFormModal.Title>
             배송지 정보
             <S.AddressFormModal.CancelLayer>
-              <CancelButton hoverEffect={false} onClick={toggleAddressForm} />
+              <CancelButton onClick={toggleAddressForm} />
             </S.AddressFormModal.CancelLayer>
           </S.AddressFormModal.Title>
         </S.AddressFormModal.Header>
