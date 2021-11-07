@@ -6,7 +6,7 @@ import TopButton from "components/common/TopButton";
 import { CircularProgress } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
 import { useQuery } from "react-query";
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 import { useSetRecoilState } from "recoil";
 import {
   productInfo,
@@ -32,12 +32,12 @@ const ProductDetail = ({
       productAPI.products.get.getProductDetail(Number(match.params.productId)),
     {
       retry: 1,
-      onSuccess: (data) => {
+      onSuccess: data => {
         setProduct(data?.data.product);
         setProductPrice(data?.data?.product?.price);
         setDetailDescription(data?.data?.product?.description);
       },
-      onError: (err) => {
+      onError: err => {
         history.push("/notFound");
       },
     }

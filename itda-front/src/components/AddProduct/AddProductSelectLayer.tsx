@@ -1,7 +1,7 @@
 import S from "./AddProductStyles";
 import AddProductSelectBox from "./AddProductSelectBox";
 import AddProductTextField from "./AddProductTextField";
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 import { useQuery } from "react-query";
 import { packagingTypeOptions, originOptions } from "util/constants";
 import LoadingSpinner from "components/common/LoadingSpinner";

@@ -22,7 +22,7 @@ const getProductReview = (
     }`
   );
 
-export const productAPI = {
+const productAPI = {
   category: {
     get: { getCategoryList },
   },
@@ -37,3 +37,5 @@ export const productAPI = {
     },
   },
 };
+
+export default productAPI;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useQuery } from "react-query";
 import { isReviewOnlyPhoto, productInfo } from "stores/ProductDetailAtoms";
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 
 export function useReviewList() {
   const [page, setPage] = useState(1);
