@@ -1,6 +1,6 @@
 import Header from "components/common/Header";
 import AddProductForm from "./AddProductForm";
-import { productAPI } from "util/API/productAPI";
+import productAPI from "util/API/productAPI";
 
 const AddProduct = () => {
   const addCate = () => {
