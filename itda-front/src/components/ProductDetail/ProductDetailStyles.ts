@@ -221,7 +221,6 @@ const S = {
       border-top: 1px solid ${({ theme }) => theme.colors.gray.x_light};
       width: 100%;
       font-size: 1.5rem;
-      z-index: -1;
       &:hover {
         cursor: pointer;
       }
