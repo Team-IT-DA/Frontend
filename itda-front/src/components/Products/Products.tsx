@@ -3,6 +3,7 @@ import Navigator from "./Navigator";
 import ProductList from "./ProductList";
 import TopButton from "components/common/TopButton";
 import S from "./ProductsStyles";
+
 const Products = () => {
   return (
     <>
