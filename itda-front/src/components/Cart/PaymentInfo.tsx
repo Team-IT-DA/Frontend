@@ -20,8 +20,8 @@ const PaymentInfo = () => {
 
   const calculateTotalAmount = () => {
     return cartProductState.reduce((acc, product) => {
-      const { price, count } = product;
-      acc += price * count;
+      const { price, productCount } = product;
+      acc += price * productCount;
       return acc;
     }, 0);
   };

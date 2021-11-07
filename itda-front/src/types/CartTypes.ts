@@ -1,5 +1,3 @@
-import { NumberLiteralType } from "typescript";
-
 interface ICartProduct {
   id: number;
   imageUrl: string;
@@ -8,6 +6,25 @@ interface ICartProduct {
   count: number;
 }
 
+interface ICartSelectedProduct {
+  id: number;
+  count: number;
+}
+
+interface ICart {
+  imgUrl: string;
+  price: number;
+  productCount: number;
+  productId: number;
+  productName: string;
+  sellerName: string;
+  shippingFee: number;
+}
+
+interface IUpdateCartProduct {
+  count: number;
+  id: number;
+}
 interface ISendingCartProduct {
   id: number;
   price: number;
@@ -27,8 +44,6 @@ interface IShippingInfos {
   defaultAddrYn: boolean;
   message: string;
 }
-
-//TODO: 위에 타입에 합치기
 
 interface IAddressText {
   regionOneDepthName: string;
@@ -57,6 +72,9 @@ interface IOrderList {
 
 export type {
   ICartProduct,
+  ICart,
+  ICartSelectedProduct,
+  IUpdateCartProduct,
   ISendingCartProduct,
   IShippingInfos,
   IAddressText,
