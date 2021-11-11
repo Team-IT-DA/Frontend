@@ -6,7 +6,10 @@ const signUpAsUser = (userData: ISignUp) =>
   instanceWithoutAuth.post("/join", userData);
 
 const LoginAsUser = (userData: ILogin) =>
-  instanceWithoutAuth.post("/login", userData);
+  instanceWithoutAuth.post("/login", userData).then((res) => {
+    localStorage.setItem("token", JSON.stringify(res.data.token));
+    localStorage.setItem("name", JSON.stringify(res.data.name));
+  });
 
 const verifyEmail = (email: string) =>
   instanceWithoutAuth.get(`/duplicateEmail?email=${email}`);
