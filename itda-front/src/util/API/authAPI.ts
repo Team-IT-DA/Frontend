@@ -16,6 +16,7 @@ const auth = {
     get: { verifyEmail },
     post: { signUpAsUser, LoginAsUser },
   },
+  logIn: { post: { LoginAsUser } },
 };
 
 export default auth;
