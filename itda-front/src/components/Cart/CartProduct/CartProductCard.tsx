@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";
+import { PostCart, DeleteCart } from "components/Cart/CartService";
 import S from "../CartStyles";
 import CheckButton from "components/common/Atoms/CheckButton";
 import StepperButton from "components/common/Atoms/StepperButton";
 import CancelButton from "components/common/Atoms/CancelButton";
 import StepperSubmitButton from "components/common/Atoms/StepperSubmitButton";
 import { selectedProduct } from "stores/CartAtoms";
-import cartAPI from "util/API/cartAPI";
 import { ICartProduct } from "types/CartTypes";
-
+import cartAPI from "util/API/cartAPI";
 const CartProductCard = ({
   id,
   imageUrl,
@@ -23,6 +23,7 @@ const CartProductCard = ({
   const [productCount, setProductCount] = useState(count);
   const [isSelected, setIsSelected] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     selectedProductState.has(id) ? setIsSelected(true) : setIsSelected(false);
   }, [selectedProductState]);
@@ -45,17 +46,15 @@ const CartProductCard = ({
     }
   };
 
-  const deleteProduct = () => {
-    console.log("delete", id);
-    //TODO: 장바구니 삭제 POST 에러 뜸
-    //setCartProductState(prev => [...prev].filter(data => data.id !== id));
-    cartAPI.delete.deleteCartProduct(id);
-  };
+  const deleteProduct = () => cartAPI.delete.deleteCartProduct(id); //TODO: 장바구니 삭제 POST 에러 뜸
 
   const changeProductCount = () => {
-    cartAPI.post.updateCartProduct({ id: id, count: productCount });
+    const requestData = { id: id, count: productCount };
+    PostCart(requestData);
+
     alert("수량이 변경되었습니다.");
   };
+
   const openProductDetailPage = () => history.push(`product/${id}`);
 
   return (
