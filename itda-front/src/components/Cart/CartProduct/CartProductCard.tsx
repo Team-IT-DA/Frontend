@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { useHistory } from "react-router-dom";
 import S from "../CartStyles";
 import CheckButton from "components/common/Atoms/CheckButton";
 import StepperButton from "components/common/Atoms/StepperButton";
@@ -21,7 +22,7 @@ const CartProductCard = ({
   );
   const [productCount, setProductCount] = useState(count);
   const [isSelected, setIsSelected] = useState(false);
-
+  const history = useHistory();
   useEffect(() => {
     selectedProductState.has(id) ? setIsSelected(true) : setIsSelected(false);
   }, [selectedProductState]);
@@ -45,6 +46,7 @@ const CartProductCard = ({
   };
 
   const deleteProduct = () => {
+    console.log("delete", id);
     //TODO: 장바구니 삭제 POST 에러 뜸
     //setCartProductState(prev => [...prev].filter(data => data.id !== id));
     cartAPI.delete.deleteCartProduct(id);
@@ -54,12 +56,13 @@ const CartProductCard = ({
     cartAPI.post.updateCartProduct({ id: id, count: productCount });
     alert("수량이 변경되었습니다.");
   };
+  const openProductDetailPage = () => history.push(`product/${id}`);
 
   return (
     <>
       <S.CartProduct.ContentsLayout>
         <CheckButton checked={isSelected} onClick={handleCheckButton} />
-        <S.CartProduct.Image src={imageUrl} />
+        <S.CartProduct.Image src={imageUrl} onClick={openProductDetailPage} />
         <S.CartProduct.ProductNameLayer>
           {productName}
         </S.CartProduct.ProductNameLayer>
