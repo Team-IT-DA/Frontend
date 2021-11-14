@@ -72,6 +72,7 @@ const SignForm = () => {
           id="outlined-textarea"
           label="비밀번호 재확인"
           name="password2"
+          type="password"
           error={signUpError.password2 !== ""}
           helperText={signUpError.password2}
           placeholder="비밀번호 재확인"
