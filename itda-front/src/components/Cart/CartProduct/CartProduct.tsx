@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import S from "../CartStyles";
-import { GetCart } from "components/Cart/CartService";
+import { CartService } from "components/Cart/CartProduct/CartProductsService";
 import CarProductCard from "./CartProductCard";
 import CheckButton from "components/common/Atoms/CheckButton";
 import { selectedProduct, cartProductData } from "stores/CartAtoms";
 
 const CartProduct = () => {
-  GetCart();
+  CartService();
   const [cartProductState, setCartProductState] = useRecoilState(
     cartProductData
   );

@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const S = {
   Cart: {
-    Layout: styled.div``,
+    Layout: styled.div`
+      overflow-x: hidden;
+    `,
     ModalLayout: styled.div`
       display: flex;
       justify-content: center;
@@ -83,7 +85,6 @@ const S = {
     Image: styled.img`
       width: 100px;
       margin-left: 20px;
-      cursor: pointer;
     `,
     ProductNameLayer: styled.div`
       width: 24rem;

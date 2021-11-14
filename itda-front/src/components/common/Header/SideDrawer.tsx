@@ -1,11 +1,11 @@
 import S from "../CommonStyles";
 import StepperButton from "components/common/Atoms/StepperButton";
 import ProductCard from "../ProductCard";
+import { CartService } from "components/Cart/CartProduct/CartProductsService";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
-import { GetCart, PostCartAll } from "components/Cart/CartService";
 import { cartProductData } from "stores/CartAtoms";
-import { ICart, ISendingCartProduct } from "types/CartTypes";
+import { ICart, ICartProduct, ISendingCartProduct } from "types/CartTypes";
 import { TSideDrawer, TDrawerItem } from "types/SideDrawerTypes";
 import { Link } from "react-router-dom";
 import cartAPI from "util/API/cartAPI";
@@ -14,7 +14,7 @@ const SideDrawer = ({
   isSideDrawerClicked,
   setIsSideDrawerClicked,
 }: TSideDrawer) => {
-  GetCart(); // TODO: SideDrawer open할 때마다 리프레시가 되지 않음
+  const { isLoading } = CartService(); // TODO: SideDrawer open할 때마다 리프레시가 되지 않음
   const [cartProductList, setCartProductList] = useRecoilState(cartProductData);
   const [cartProductsCount, setCartProductsCount] = useState<
     ISendingCartProduct[]
@@ -53,7 +53,8 @@ const SideDrawer = ({
       return product;
     });
     setCartProductList(newCartProductList);
-    PostCartAll(newCartProductList);
+    // todo: POST요청으로 장바구니 데이터 서버에 전달.
+    // UpdateCartService(cartProductList);
     alert("수량이 변경되었습니다.");
   };
 
@@ -89,15 +90,15 @@ const SideDrawer = ({
       </S.SideDrawer.DrawerHeaderLayer>
       <S.SideDrawer.DrawerCardListLayer>
         {(cartProductsCount.length &&
-          cartProductList.map(({ productId, imgUrl, productName, price }) => {
+          cartProductList.map(cartItem => {
             return (
               <SideDrawerItem
                 // productSeller={} => // todo: API로 교체하면 seller 정보 넣기
-                key={`item-${productId}`}
-                productId={productId}
-                productImage={imgUrl}
-                productName={productName}
-                productPrice={price}
+                key={`item-${cartItem.productId}`}
+                productId={cartItem.productId}
+                productImage={cartItem.imgUrl}
+                productName={cartItem.productName}
+                productPrice={cartItem.price}
                 removeItem={removeItem}
                 cartProductsCount={cartProductsCount}
                 setCartProductsCount={setCartProductsCount}
@@ -113,7 +114,7 @@ const SideDrawer = ({
       </S.SideDrawer.DrawerCardListLayer>
       <S.SideDrawer.DrawerBottom>
         <S.SideDrawer.DrawerTotalPrice>
-          {`합계: ${cartTotalPrice.toLocaleString()}원`}
+          {`합계: ${cartTotalPrice}`}
         </S.SideDrawer.DrawerTotalPrice>
         <S.SideDrawer.DrawerDeliveryFee>
           (배송비 불포함 금액)
@@ -146,12 +147,6 @@ const SideDrawerItem = ({
     cartProductsCount.filter(cartItem => cartItem.id === productId)[0]?.count
   );
 
-  const calculateTotalPrice = () => {
-    const totalPrice = productPrice * productCount;
-
-    return totalPrice.toLocaleString();
-  };
-
   useEffect(() => {
     const newCount = {
       id: productId,
@@ -182,7 +177,7 @@ const SideDrawerItem = ({
       </S.SideDrawer.DrawerCardCountDiv>
       <S.SideDrawer.DrawerCardBottom>
         <S.SideDrawer.DrawerCardPrice>
-          {`총 합: ${calculateTotalPrice()}원`}
+          {`총 합: ${productPrice * productCount}원`}
         </S.SideDrawer.DrawerCardPrice>
         <S.SideDrawer.DrawerCardDeleteButton
           onClick={() => removeItem(productId)}
