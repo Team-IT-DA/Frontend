@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { useMutation } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
-import { IUserInfo, IUserInputDate } from "types/MyInfoTypes";
+import { IUserInputData } from "types/MyInfoTypes";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
 const MyInfoEditForm = () => {
-  const [myInfoError, setMyInfoError] = useState<IUserInputDate>({
+  const [myInfoError, setMyInfoError] = useState<IUserInputData>({
     name: "",
     telephone: "",
     email: "",
@@ -17,15 +17,15 @@ const MyInfoEditForm = () => {
     newPasswordConfirm: "",
   });
   // !--------api로 받아오는 initial 사용자 정보 - 임시 mock 데이터. 실제 api가져오는 로직으로 바꿔야함.
-  const [userInfo, setUserInfo] = useState<IUserInfo>({
+  const [userInfo, setUserInfo] = useState<Pick<IUserInputData, 'name' | 'telephone' | 'email' | 'password'>>({
     name: "홍길동",
     telephone: "01011112222",
     email: "roach@test.com",
     password: "test",
   });
 
-  //사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
-  const [userInputData, setUserInputData] = useState<IUserInputDate>({
+  // ! 사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
+  const [userInputData, setUserInputData] = useState<IUserInputData>({
     name: userInfo.name,
     telephone: userInfo.telephone,
     email: userInfo.email,
@@ -86,7 +86,7 @@ const MyInfoEditForm = () => {
     });
 
     const inputError = validateInputdata(name, value);
-    setMyInfoError(inputError as IUserInputDate);
+    setMyInfoError(inputError as IUserInputData);
   };
 
   const handleDuplicateCheckButtonClick = () => {
