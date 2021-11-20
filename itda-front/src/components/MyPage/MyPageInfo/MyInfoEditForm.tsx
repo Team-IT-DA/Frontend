@@ -1,9 +1,9 @@
 import S from "../MyPageStyles";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
-import { IUserInputData } from "types/MyInfoTypes";
+import { IUserInfo ,IUserInputData } from "types/MyInfoTypes";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
@@ -18,25 +18,51 @@ const MyInfoEditForm = () => {
   });
   // !--------api로 받아오는 initial 사용자 정보 - 임시 mock 데이터. 실제 api가져오는 로직으로 바꿔야함.
   const [userInfo, setUserInfo] = useState<Pick<IUserInputData, 'name' | 'telephone' | 'email' | 'password'>>({
-    name: "홍길동",
-    telephone: "01011112222",
-    email: "roach@test.com",
-    password: "test",
+    name: "",
+    telephone: "",
+    email: "",
+    password: "",
   });
 
   // ! 사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
   const [userInputData, setUserInputData] = useState<IUserInputData>({
-    name: userInfo.name,
-    telephone: userInfo.telephone,
-    email: userInfo.email,
+    name: userInfo?.name,
+    telephone: userInfo?.telephone,
+    email: userInfo?.email,
     password: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
 
-  const myInfoEditMutation = useMutation(async () => {
-    myPageAPI.user.checkUserInfo();
+  // useEffect(() => {
+  //   setUserInfo({
+  //     ...userInfo,
+
+  //   })
+  // }, [userInfo])
+
+  const mutation = useMutation(async () => {
+    // myPageAPI.user.checkUserInfo();
   });
+
+    // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
+  // useEffect(() => {
+  //   const userInfo = myPageAPI.user.checkUserInfo();
+    
+  //   console.log(userInfo);
+  //   // setUserInfo(myPageAPI.user.checkUserInfo().data as any);
+  // }, []);
+  const { data } = useQuery('userData', myPageAPI.user.checkUserInfo,
+  {
+    onSuccess: data => {
+      const userInfo: IUserInfo = data?.data;
+      console.log(userInfo);
+      setUserInfo(userInfo as IUserInfo);
+    }
+  })
+
+  // console.log(data);
+
 
   const validateInputdata = (inputName: string, inputValue: string) => {
     const errors = myInfoError;
@@ -114,10 +140,6 @@ const MyInfoEditForm = () => {
     // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
   };
 
-  // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
-  // useEffect(() => {
-  //   setUserInfo(mutation.data as any);
-  // }, []);
 
   return (
     <>
@@ -178,7 +200,7 @@ const MyInfoEditForm = () => {
               required
               name="name"
               label="이름을 입력해주세요."
-              value={userInputData.name && userInputData.name}
+              value={userInputData.name ? userInputData.name : userInfo.name}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.name !== ""}
@@ -191,7 +213,7 @@ const MyInfoEditForm = () => {
               required
               name="email"
               label="이메일을 입력해주세요."
-              value={userInputData.email && userInputData.email}
+              value={userInputData.email ? userInputData.email : userInfo.email}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.email !== ""}
@@ -206,7 +228,7 @@ const MyInfoEditForm = () => {
               required
               name="telephone"
               label="휴대폰 번호를 입력해주세요."
-              value={userInputData.telephone && userInputData.telephone}
+              value={userInputData.telephone ? userInputData.telephone : userInfo.telephone}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.telephone !== ""}
