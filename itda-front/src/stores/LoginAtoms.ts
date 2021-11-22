@@ -3,7 +3,7 @@ import { ILogin } from "types/LoginTypes";
 
 export const isLoggedIn = atom({
   key: "isLoggedIn",
-  default: true,
+  default: false,
 });
 
 export const userLoginData = atom<ILogin>({
