@@ -34,34 +34,17 @@ const MyInfoEditForm = () => {
     newPasswordConfirm: "",
   });
 
-  // useEffect(() => {
-  //   setUserInfo({
-  //     ...userInfo,
-
-  //   })
-  // }, [userInfo])
-
   const mutation = useMutation(async () => {
     // myPageAPI.user.checkUserInfo();
   });
 
-    // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
-  // useEffect(() => {
-  //   const userInfo = myPageAPI.user.checkUserInfo();
-    
-  //   console.log(userInfo);
-  //   // setUserInfo(myPageAPI.user.checkUserInfo().data as any);
-  // }, []);
-  const { data } = useQuery('userData', myPageAPI.user.checkUserInfo,
+  useQuery('userData', myPageAPI.user.checkUserInfo,
   {
     onSuccess: data => {
       const userInfo: IUserInfo = data?.data;
-      console.log(userInfo);
       setUserInfo(userInfo as IUserInfo);
     }
   })
-
-  // console.log(data);
 
 
   const validateInputdata = (inputName: string, inputValue: string) => {
