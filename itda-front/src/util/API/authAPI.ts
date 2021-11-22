@@ -17,7 +17,7 @@ const verifyEmail = (email: string) =>
 const auth = {
   signUp: {
     get: { verifyEmail },
-    post: { signUpAsUser, LoginAsUser },
+    post: { signUpAsUser },
   },
   logIn: { post: { LoginAsUser } },
 };
