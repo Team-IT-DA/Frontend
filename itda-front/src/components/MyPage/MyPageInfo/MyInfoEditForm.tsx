@@ -7,6 +7,7 @@ import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
 const MyInfoEditForm = () => {
+  const [curPassword, setCurPassword] = useState<string>('');
   const [myInfoError, setMyInfoError] = useState<IUserInputData>({
     name: "",
     telephone: "",
@@ -34,6 +35,7 @@ const MyInfoEditForm = () => {
   });
 
   useEffect(() => {
+    setCurPassword(userInputData.password);
     setUserInputData({
       ...userInputData,
       name: userInfo.name,
@@ -58,9 +60,9 @@ const MyInfoEditForm = () => {
   const validateInputdata = (inputName: string, inputValue: string) => {
     const errors = myInfoError;
 
+    console.log(inputValue);
+
     if (inputName === "password") {
-      // todo: 서버에서 비밀번호 가져와서 비교하는 로직 필요할
-      const curPassword = "test1234"; // 서버 비밀번호 대체. 임시.
       errors.password =
         curPassword === inputValue ? "" : "비밀번호가 일치하지 않습니다.";
     }
