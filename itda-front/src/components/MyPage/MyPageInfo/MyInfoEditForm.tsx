@@ -1,6 +1,5 @@
 import S from "../MyPageStyles";
 import React, { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
 import { useMutation, useQuery } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
 import { IUserInfo ,IUserInputData } from "types/MyInfoTypes";
@@ -26,13 +25,22 @@ const MyInfoEditForm = () => {
 
   // ! 사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
   const [userInputData, setUserInputData] = useState<IUserInputData>({
-    name: userInfo?.name,
-    telephone: userInfo?.telephone,
-    email: userInfo?.email,
+    name: "",
+    telephone: "",
+    email: "",
     password: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
+
+  useEffect(() => {
+    setUserInputData({
+      ...userInputData,
+      name: userInfo.name,
+      telephone: userInfo.telephone,
+      email: userInfo.email,
+    })
+  }, [userInfo])
 
   const mutation = useMutation(async () => {
     // myPageAPI.user.checkUserInfo();
@@ -183,7 +191,7 @@ const MyInfoEditForm = () => {
               required
               name="name"
               label="이름을 입력해주세요."
-              value={userInputData.name ? userInputData.name : userInfo.name}
+              value={userInputData.name}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.name !== ""}
@@ -196,7 +204,7 @@ const MyInfoEditForm = () => {
               required
               name="email"
               label="이메일을 입력해주세요."
-              value={userInputData.email ? userInputData.email : userInfo.email}
+              value={userInputData.email}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.email !== ""}
@@ -211,7 +219,7 @@ const MyInfoEditForm = () => {
               required
               name="telephone"
               label="휴대폰 번호를 입력해주세요."
-              value={userInputData.telephone ? userInputData.telephone : userInfo.telephone}
+              value={userInputData.telephone}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.telephone !== ""}
