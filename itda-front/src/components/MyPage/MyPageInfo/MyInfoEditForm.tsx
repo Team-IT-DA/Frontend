@@ -17,7 +17,7 @@ const MyInfoEditForm = () => {
     newPassword: "",
     newPasswordConfirm: "",
   });
-  // !--------api로 받아오는 initial 사용자 정보 - 임시 mock 데이터. 실제 api가져오는 로직으로 바꿔야함.
+
   const [userInfo, setUserInfo] = useState<Pick<IUserInputData, 'name' | 'telephone' | 'email' | 'password'>>({
     name: "",
     telephone: "",
@@ -25,7 +25,6 @@ const MyInfoEditForm = () => {
     password: "",
   });
 
-  // ! 사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
   const [userInputData, setUserInputData] = useState<IUserInputData>({
     name: "",
     telephone: "",
@@ -138,6 +137,10 @@ const MyInfoEditForm = () => {
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");
+    for(let key in userInputData) {
+      // todo: 빈 값이 있다면 어느 인풋이 비어 있는지 찾고, setMyInfoError 로 해당 인풋에 에러메세지 보여주기
+      // userInputData[key] === "" && alert('작성되지 않은 항목이 있습니다.')
+    }
     // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
   };
 
