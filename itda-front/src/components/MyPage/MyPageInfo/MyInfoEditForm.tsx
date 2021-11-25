@@ -2,11 +2,13 @@ import S from "../MyPageStyles";
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
+import auth from "util/API/authAPI";
 import { IUserInfo ,IUserInputData } from "types/MyInfoTypes";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
 const MyInfoEditForm = () => {
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
   const [curPassword, setCurPassword] = useState<string>('');
   const [myInfoError, setMyInfoError] = useState<IUserInputData>({
     name: "",
@@ -44,9 +46,29 @@ const MyInfoEditForm = () => {
     })
   }, [userInfo])
 
-  const mutation = useMutation(async () => {
+  const myInfoEditMutation = useMutation(
+    async () => {
     // myPageAPI.user.checkUserInfo();
-  });
+    }
+  );
+
+  // const checkEmailMutation = useMutation(
+  //   async (email: string) => {
+  //   auth.signUp.get.verifyEmail(email)
+  //   },
+  //   {
+  //     onSuccess: (data) => {
+  //       console.log(data)
+  //       setIsValidEmail(true);
+  //       alert("사용가능한 이메일 입니다.");
+  //     },
+  //     onError: (data) => {
+  //       console.log(data)
+  //       setIsValidEmail(false);
+  //       // alert("이미 사용중인 이메일 입니다.")
+  //     }
+  //   }
+  // )
 
   useQuery('userData', myPageAPI.user.checkUserInfo,
   {
@@ -55,7 +77,6 @@ const MyInfoEditForm = () => {
       setUserInfo(userInfo as IUserInfo);
     }
   })
-
 
   const validateInputdata = (inputName: string, inputValue: string) => {
     const errors = myInfoError;
@@ -96,6 +117,24 @@ const MyInfoEditForm = () => {
     return errors;
   };
 
+  const checkEmailValidation = async () => {
+    // useQuery('checkEmailValidation', (email: string) => {auth.signUp.get.verifyEmail(email)}, {
+
+    // })
+
+    // const isValidEmail = await auth.signUp.get.verifyEmail(userInputData.email as string);
+    // await checkEmailMutation.mutate(userInputData.email);
+    // console.log("checkEmailMutation",checkEmailMutation);
+    // // return isValidEmail;
+    // if(checkEmailMutation.status === "success") {
+
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return await auth.signUp.get.verifyEmail(userInputData.email as string);
+  }
+
   const handleMyInfoFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -108,12 +147,32 @@ const MyInfoEditForm = () => {
     setMyInfoError(inputError as IUserInputData);
   };
 
-  const handleDuplicateCheckButtonClick = () => {
-    // todo: 입력된 데이터 서버에 전송해서 중복검사 결과 보여주기 (아마도 post)
-    const isDuplicateEmail = true; // 임시
-    const emailRegex = /\S+@\S+\.\S+/;
+  const handleDuplicateCheckButtonClick = async () => {
+    // const emailRegex = /\S+@\S+\.\S+/;
+    const isValidEmail = await auth.signUp.get.verifyEmail(userInputData.email as string);
+    console.log(isValidEmail);
+    // const isValidEmail = await validationResult ? true : false;
+    // useQuery('checkDuplicateEmail', auth.signUp.get.verifyEmail(userInputData.email as string), ); // 임시
+    await createErrorMessage(isValidEmail);
+    
+    // if (!isValidEmail) {
+    //   setMyInfoError({
+    //     ...myInfoError,
+    //     email: "중복 되는 이메일 입니다. 다른 이메일 주소를 입력하세요.",
+    //   });
+    // }
 
-    if (isDuplicateEmail) {
+    // if (!emailRegex.test(userInputData.email)) {
+    //   setMyInfoError({
+    //     ...myInfoError,
+    //     email: "이메일 주소 형식이 올바르지 않습니다.",
+    //   });
+    // }
+  };
+
+  const createErrorMessage = (isValidEmail: any) => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!isValidEmail) {
       setMyInfoError({
         ...myInfoError,
         email: "중복 되는 이메일 입니다. 다른 이메일 주소를 입력하세요.",
@@ -126,7 +185,7 @@ const MyInfoEditForm = () => {
         email: "이메일 주소 형식이 올바르지 않습니다.",
       });
     }
-  };
+  }
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");

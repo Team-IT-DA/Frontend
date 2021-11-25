@@ -5,6 +5,7 @@ import S from "../CommonStyles";
 import SideDrawer from "./SideDrawer";
 import LoginDropDown from "./LoginDropDown";
 import { isSideDrawerClicked } from "stores/SideDrawerAtoms";
+import { isLoggedIn } from "stores/LoginAtoms";
 
 interface MutableRefObject<T> {
   current: T;
@@ -12,8 +13,10 @@ interface MutableRefObject<T> {
 
 const Header = () => {
   const dropDownRef = useRef<MutableRefObject<null | HTMLDivElement>>(null);
-  const [isSideDrawerClickedState, setisSideDrawerClickedState] = useRecoilState<any>(isSideDrawerClicked);
+  const [isSideDrawerClickedState, setisSideDrawerClickedState] =
+    useRecoilState<any>(isSideDrawerClicked);
   const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
+  const [logInState, setLoginState] = useRecoilState(isLoggedIn);
 
   const checkPageName = () => {
     const splitURL = window.location.href.split("/");
@@ -37,6 +40,12 @@ const Header = () => {
         setIsDropDownActive(!isDropDownActive);
       }
     };
+
+    const token = localStorage.getItem("token");
+    if (token) setLoginState(true);
+    else {
+      setLoginState(false);
+    }
 
     if (isDropDownActive) {
       window.addEventListener("click", pageClickEvent);
