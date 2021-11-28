@@ -1,14 +1,15 @@
 import S from "../MyPageStyles";
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
-import { useMutation } from "react-query";
+import React, { useState, useEffect } from "react";
+import { useMutation, useQuery } from "react-query";
 import myPageAPI from "util/API/myPageAPI";
-import { IUserInfo, IUserInputDate } from "types/MyInfoTypes";
+import auth from "util/API/authAPI";
+import { IUserInfo ,IUserInputData } from "types/MyInfoTypes";
 import ColorButton from "components/common/Atoms/ColorButton";
 import theme from "styles/theme";
 
 const MyInfoEditForm = () => {
-  const [myInfoError, setMyInfoError] = useState<IUserInputDate>({
+  const [curPassword, setCurPassword] = useState<string>('');
+  const [myInfoError, setMyInfoError] = useState<IUserInputData>({
     name: "",
     telephone: "",
     email: "",
@@ -16,34 +17,51 @@ const MyInfoEditForm = () => {
     newPassword: "",
     newPasswordConfirm: "",
   });
-  // !--------api로 받아오는 initial 사용자 정보 - 임시 mock 데이터. 실제 api가져오는 로직으로 바꿔야함.
-  const [userInfo, setUserInfo] = useState<IUserInfo>({
-    name: "홍길동",
-    telephone: "01011112222",
-    email: "roach@test.com",
-    password: "test",
+
+  const [userInfo, setUserInfo] = useState<Pick<IUserInputData, 'name' | 'telephone' | 'email' | 'password'>>({
+    name: "",
+    telephone: "",
+    email: "",
+    password: "",
   });
 
-  //사용자로부터 입력받는 input 데이터 (input들의 상태를 관리)
-  const [userInputData, setUserInputData] = useState<IUserInputDate>({
-    name: userInfo.name,
-    telephone: userInfo.telephone,
-    email: userInfo.email,
+  const [userInputData, setUserInputData] = useState<IUserInputData>({
+    name: "",
+    telephone: "",
+    email: "",
     password: "",
     newPassword: "",
     newPasswordConfirm: "",
   });
 
-  const myInfoEditMutation = useMutation(async () => {
-    myPageAPI.user.checkUserInfo();
-  });
+  useEffect(() => {
+    setCurPassword(userInputData.password);
+    setUserInputData({
+      ...userInputData,
+      name: userInfo.name,
+      telephone: userInfo.telephone,
+      email: userInfo.email,
+    })
+  }, [userInfo])
+
+  const myInfoEditMutation = useMutation(
+    async () => {
+    // myPageAPI.user.checkUserInfo();
+    }
+  );
+
+  useQuery('userData', myPageAPI.user.checkUserInfo,
+  {
+    onSuccess: data => {
+      const userInfo: IUserInfo = data?.data;
+      setUserInfo(userInfo as IUserInfo);
+    }
+  })
 
   const validateInputdata = (inputName: string, inputValue: string) => {
     const errors = myInfoError;
 
     if (inputName === "password") {
-      // todo: 서버에서 비밀번호 가져와서 비교하는 로직 필요할
-      const curPassword = "test1234"; // 서버 비밀번호 대체. 임시.
       errors.password =
         curPassword === inputValue ? "" : "비밀번호가 일치하지 않습니다.";
     }
@@ -86,19 +104,27 @@ const MyInfoEditForm = () => {
     });
 
     const inputError = validateInputdata(name, value);
-    setMyInfoError(inputError as IUserInputDate);
+    setMyInfoError(inputError as IUserInputData);
   };
 
-  const handleDuplicateCheckButtonClick = () => {
-    // todo: 입력된 데이터 서버에 전송해서 중복검사 결과 보여주기 (아마도 post)
-    const isDuplicateEmail = true; // 임시
-    const emailRegex = /\S+@\S+\.\S+/;
+  const handleDuplicateCheckButtonClick = async () => {
+    const isValidEmail = await auth.signUp.get.verifyEmail(userInputData.email as string);
+    await createErrorMessage(isValidEmail);
+  };
 
-    if (isDuplicateEmail) {
+  const createErrorMessage = (isValidEmail: any) => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (isValidEmail === '이메일이 중복되었습니다.') {
       setMyInfoError({
         ...myInfoError,
         email: "중복 되는 이메일 입니다. 다른 이메일 주소를 입력하세요.",
-      });
+      })
+    } else {
+      alert('사용 가능한 이메일입니다.')
+      setMyInfoError({
+        ...myInfoError,
+        email: ""
+      })
     }
 
     if (!emailRegex.test(userInputData.email)) {
@@ -107,17 +133,17 @@ const MyInfoEditForm = () => {
         email: "이메일 주소 형식이 올바르지 않습니다.",
       });
     }
-  };
+  }
 
   const handleChangeUserInfoButtonClick = () => {
     console.log("회원정보수정 페이지 클릭됌");
+    for(let key in userInputData) {
+      // todo: 빈 값이 있다면 어느 인풋이 비어 있는지 찾고, setMyInfoError 로 해당 인풋에 에러메세지 보여주기
+      // userInputData[key] === "" && alert('작성되지 않은 항목이 있습니다.')
+    }
     // myPageAPI.user.updateUserInfo<IUserInfo>(userInfo);
   };
 
-  // todo: 사용자의 정보를 먼저 가져와서 input에 보여줘야 함. 서버 작동하면 살릴 것.
-  // useEffect(() => {
-  //   setUserInfo(mutation.data as any);
-  // }, []);
 
   return (
     <>
@@ -178,7 +204,7 @@ const MyInfoEditForm = () => {
               required
               name="name"
               label="이름을 입력해주세요."
-              value={userInputData.name && userInputData.name}
+              value={userInputData.name}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.name !== ""}
@@ -191,7 +217,7 @@ const MyInfoEditForm = () => {
               required
               name="email"
               label="이메일을 입력해주세요."
-              value={userInputData.email && userInputData.email}
+              value={userInputData.email}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.email !== ""}
@@ -206,7 +232,7 @@ const MyInfoEditForm = () => {
               required
               name="telephone"
               label="휴대폰 번호를 입력해주세요."
-              value={userInputData.telephone && userInputData.telephone}
+              value={userInputData.telephone}
               variant="outlined"
               onChange={handleMyInfoFormChange}
               error={myInfoError.telephone !== ""}

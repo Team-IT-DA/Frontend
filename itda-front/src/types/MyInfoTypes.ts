@@ -5,7 +5,7 @@ export interface IUserInfo {
     password: string;
   }
 
- export interface IUserInputDate {
+ export interface IUserInputData {
     name: string;
     telephone: string;
     email: string;
